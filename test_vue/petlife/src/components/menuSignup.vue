@@ -1,7 +1,7 @@
 <template>
     <main class="form-signup">
-        <form v-on:submit.prevent="singup">                
-            <h1 class="h3 mb-3 fw-normal">singup</h1>
+        <form v-on:submit.prevent="signup">                
+            <h1 class="h3 mb-3 fw-normal">Registrar usuario</h1>
             <div class = "container py-5">
                 <div class="form-floating">
                     <input type="text" class="form-control" id="floatingName" placeholder="Nombre" v-model="name">
@@ -63,7 +63,9 @@
             <div class="alert alert-danger" role="alert" v-if="error">
                 {{error_msg}}
             </div>
-
+            <div class="alert alert-success" role="alert" v-if="register_success">
+                Registro exitoso!
+            </div>
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">Registrarse</button>
         </form>
@@ -88,15 +90,18 @@ export default {
             email:"",
             cellPhoneNumber:"",
             password:"",
-            Rpassword:"",
+            rpassword:"",
             ciudad:"",
             rol:"user",
             error:false,
             error_msg:"",
+            register_success:false,
         }
     },
     methods:{
-        singup(){
+        signup(){
+            this.register_success = false;
+            this.error = false;
             let json ={
                 "email" : this.email,
                 "password" : this.password,
@@ -109,19 +114,22 @@ export default {
             .then(data => {
                 console.log(data)
                 if(data.status == 200){
-                    this.$router.push('profile');
-                }
-            }).catch((error) => {
-                this.error = true
-                if (error.response.status === 400 || error.response.status === 401 ) {
+                    this.register_success = true;
+
+                    
                     this.name = null;
                     this.surname = null;
                     this.email = null;
                     this.cellPhoneNumber = null;
                     this.password = null;
-                    this.Rpassword = null;
+                    this.rpassword = null;
                     this.ciudad = null;
                     this.rol = null;
+                    
+                }
+            }).catch((error) => {
+                this.error = true
+                if (error.response.status === 400 || error.response.status === 401 ) {
                     this.error_msg = "Credenciales incorrectas";
                 }
                 
