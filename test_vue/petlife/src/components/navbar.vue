@@ -7,6 +7,7 @@
                 <a class="nav-link active" aria-current="page" href="#" @click="goHome">Inicio</a>
                 <a class="nav-link" href="#">Acerca</a>
                 <a class="nav-link" href="#" @click="goLogin">Login</a>
+                <a class="nav-link" href="#" @click="goSignup">Registrarse</a>
             </nav>
             </div>
         </header>
@@ -21,6 +22,9 @@ export default {
         },
         goLogin(){
             this.$router.push('login');
+        },
+        goSignup(){
+            this.$router.push('signup');
         }
 
     }

@@ -4,33 +4,34 @@
         <div class="row alto bg-dark" >
             <div class="col-sm-12 col-md-6 bg-danger">
                 
+                
+
+
             </div>
             <div class="col-sm-12 col-md-6 bg-success align-self-center">
-                <menuLogin/> 
+                <menuSignup/>
             </div>
         </div>    
     </div>
 
     <div class="float-md-left bg-primary">
         <p>
-        
+            Texto inferior
         </p>
     </div>
 </template>
 <script>
 
-import menuLogin from "@/components/menuLogin"
 import navbar from "@/components/navbar"
+import menuSignup from "@/components/menuSignup"
 export default {
-    name: "Login",
+    name: "Signup",
     components:{
         navbar,
-        menuLogin
+        menuSignup
     }
 }
 </script>
 <style>
-    .alto{
-        height:800px;
-    }
+    
 </style>

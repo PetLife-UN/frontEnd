@@ -119,7 +119,6 @@
     </div>
 </template>
 <script>
-import menuLogin from "@/components/menuLogin"
 import navbar from "@/components/navbar"
 export default {
     components:{

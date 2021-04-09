@@ -17,7 +17,7 @@
             <div class="alert alert-danger" role="alert" v-if="error">
                 {{error_msg}}
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Acceder</button>
         </form>
     </main>
 
@@ -33,7 +33,7 @@ export default {
     data(){
         return{
             usuario:"",
-            passwors:"",
+            password:"",
             error:false,
             error_msg:"",
         }
