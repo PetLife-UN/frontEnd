@@ -5,6 +5,7 @@
         <img src="./../../assets/husky-1-unscreen.gif">
     </div>
 </template>
+
 <script>
 import navbar from "@/components/navbar"
 export default {
