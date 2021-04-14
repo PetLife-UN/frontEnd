@@ -1,4 +1,4 @@
-# petlifeapp
+# petlife
 
 ## Project setup
 ```
