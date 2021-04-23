@@ -3,6 +3,7 @@ import Login from '../views/login/Login.vue'
 import Signup from '../views/register/Signup.vue'
 import Home from '../views/home/Home.vue'
 import Profile from '../views/profile/Profile.vue'
+import AnimalReg from "../views/animalReg/AnimalReg.vue"
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -22,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/profile',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/animalreg',
+    name: 'AnimalReg',
+    component: AnimalReg
   }
 ]
 
