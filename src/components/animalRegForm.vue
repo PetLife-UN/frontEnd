@@ -43,7 +43,7 @@
         <div class="col-sm-9">
           <input
             type="text"
-            v-model="name"
+            v-model="type"
             class="form-control"
             id="type"
             placeholder="Que tipo de mascota es"
@@ -170,8 +170,8 @@
       <div class="form-group row">
         <label for="image" class="col-sm-3 control-label">Fotografia</label>
         <div class="dropbox col-sm-4">
-          <input type="file" multiple name:="image" :disabled="isSaving"
-          @change="filesChange($event.target.name, $event.target.files)"
+          <input type="file" name:="image" :disabled="isSaving"
+          @change="filesChange($event.target.files)"
           accept="image/*"
           class="input-file" id="file">
           <p v-if="isInitial">
@@ -183,15 +183,15 @@
         </div>
         <div class="col-sm-5">  
           <img src="https://infocusmfg.com/wp-content/uploads/2015/10/brown-basket-400x400.png" id="img" alt="Image" >
-          <p id="url" > </p> 
+          
         </div>
       </div>
       <div class="form-group row justify-content-md-center">
         <div class="col-3">
-          <button class="btn btn-primary" >Publicar</button>
+          <button class="btn btn-primary" @click="publicar" type="button">Publicar</button>
         </div>
         <div class="col-3">
-          <button class="btn btn-danger">Cancelar</button>
+          <button type="button" class="btn btn-danger">Cancelar</button>
         </div>
       </div>
     </form>
@@ -200,14 +200,11 @@
 
 <script>
 import axios from "axios";
-var img = document.getElementById("img");
 var url = document.getElementById("url");
-var file2 = document.getElementById("file");
 const STATUS_INITIAL = 0,
   STATUS_SAVING = 1,
   STATUS_SUCCESS = 2,
   STATUS_FAILED = 3;
-const BASE_URL = "https://api.imgur.com";
 export default {
   name: "animalRegForm",
   data() {
@@ -216,6 +213,16 @@ export default {
       uploadError: null,
       currentStatus: null,
       unloadFieldName: "photos",
+      name: "",
+      age: "",
+      sterile: "",
+      type:"",
+      sex: "",
+      breed:"",
+      size:"",
+      vaccines:"",
+      message:"",
+      url:""
     };
   },
   computed: {
@@ -250,11 +257,11 @@ export default {
           this.currentStatus = STATUS_FAILED;
         });
     },
-    filesChange(fieldName, fileList) {
+    filesChange(fileList) {
           const img2 = document.getElementById("img");
           const file3 =fileList[0];
           var reader = new FileReader();
-        
+         /*
           reader.onloadend = function () {
           img2.src = reader.result;
            }
@@ -262,8 +269,8 @@ export default {
         reader.readAsDataURL(file3);
           } else {
           img.src = "";
-      }
-      
+      }*/
+          img2.src="https://gifimage.net/wp-content/uploads/2017/09/blue-loading-gif-transparent-4.gif"; 
           var formdata  = new FormData();
           url = document.getElementById("url");
           formdata.append("image", fileList[0]);
@@ -275,13 +282,51 @@ export default {
           },
           body:formdata
           }).then(data => data.json()).then(data => {
-            url.innerText =  data.data.link
+              //url.innerText =  data.data.link;
+              this.url = data.data.link;
+              img2.src = data.data.link;
           })
-        
+    },
+    publicar(){
+      console.log("Han hecho click en publicar");
+      let json= {
+        "name": this.name,
+        "age": this.age,
+        "sterile": this.sterile,
+        "type": this.type,
+        "sex": this.sex,
+        "breed": this.breed,
+        "size": this.size,
+        "vaccines": this.vaccines,
+        "message": this.message,
+        "url": this.url 
+      };
+      console.log(json);
+      let token = localStorage.token;
+      axios.post("https://unpetlife.herokuapp.com/api/auth/login",json, {
+        headers:{
+          "Authorization" : `Bearer ${token}`
+        }
+      }).then(data => {
+                if(data.status == 200){
+                    console.log("correcto")
+                }
+            }).catch((error) => {
+                this.error = true
+                if (error.response.status === 400 || error.response.status === 401 ) {
+                    this.error_msg = "Credenciales incorrectas";
+                    this.email = null;
+                    this.password = null;
+                }
+                
+                else {
+                    this.error_msg = "¡Parece que hubo un error de comunicación con el servidor!";
+                }
+            });
     },
     upload(formData) {  
         const img = document.getElementById("img");
-        const url = document.getElementById("url");
+        var url = document.getElementById("url");
         const file2 = document.getElementById("file");
         file2.addEventListener("change", ev => {
           const formdata = new FormData();
