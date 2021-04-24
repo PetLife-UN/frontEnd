@@ -171,27 +171,32 @@
         <label for="image" class="col-sm-3 control-label">Fotografia</label>
         <div class="dropbox col-sm-4">
           <input type="file" name:="image" :disabled="isSaving"
-          @change="filesChange($event.target.files)"
-          accept="image/*"
+          @change="filesChange($event.target.files)" accept="image/*"
           class="input-file" id="file">
           <p v-if="isInitial">
             Arrastre la fotografia de la mascota
             <br />
-            O haga click para seleccionar la imagen
+            O haga click.
           </p>
-          <p v-if="isSaving">Imagenes subidas {{ fileCount }} archivos...</p>
+          <p v-if="isSaving">Imagen subida. <br> Arrastre o click para cambiar. </p>
+          <p v-if="isLoading">Subiendo imagen</p>
         </div>
-        <div class="col-sm-5">  
-          <img src="https://infocusmfg.com/wp-content/uploads/2015/10/brown-basket-400x400.png" id="img" alt="Image" >
-          
+        <div class="col-sm-5">
+          <img
+            src="https://infocusmfg.com/wp-content/uploads/2015/10/brown-basket-400x400.png"
+            id="img"
+            alt="Image"
+          />
         </div>
       </div>
       <div class="form-group row justify-content-md-center">
         <div class="col-3">
-          <button class="btn btn-primary" @click="publicar" type="button">Publicar</button>
+          <button class="btn btn-primary" @click="publicar" type="button" :disabled="isDisable"  >
+            Publicar
+          </button>
         </div>
         <div class="col-3">
-          <button type="button" class="btn btn-danger">Cancelar</button>
+          <button type="button" class="btn btn-danger" @click="cancelar">Cancelar</button>
         </div>
       </div>
     </form>
@@ -203,26 +208,23 @@ import axios from "axios";
 var url = document.getElementById("url");
 const STATUS_INITIAL = 0,
   STATUS_SAVING = 1,
-  STATUS_SUCCESS = 2,
-  STATUS_FAILED = 3;
+  STATUS_LOADING = 2;
 export default {
   name: "animalRegForm",
   data() {
     return {
-      uploadedFiles: [],
-      uploadError: null,
-      currentStatus: null,
-      unloadFieldName: "photos",
+      currentStatus: STATUS_INITIAL,
       name: "",
       age: "",
       sterile: "",
-      type:"",
+      type: "",
       sex: "",
-      breed:"",
-      size:"",
-      vaccines:"",
-      message:"",
-      url:""
+      breed: "",
+      size: "",
+      vaccines: "",
+      message: "",
+      url: "",
+      active: false,
     };
   },
   computed: {
@@ -232,36 +234,25 @@ export default {
     isSaving() {
       return this.currentStatus === STATUS_SAVING;
     },
-    isSuccess() {
-      return this.currentStatus === STATUS_SUCCESS;
+    isLoading(){
+      return this.currentStatus === STATUS_LOADING;
     },
-    isFailed() {
-      return this.currentStatus === STATUS_FAILED;
-    },
+    isDisable(){
+      return this.checkData();
+    }
   },
   methods: {
     reset() {
       this.currentStatus = STATUS_INITIAL;
-      this.uploadedFiles = [];
-      this.uploadError = null;
-    },
-    save(formData) {
-      this.currentStatus = STATUS_SAVING;
-      this.upload(formData)
-        .then((x) => {
-          this.uploadedFiles = [].concat(x);
-          this.currentStatus = STATUS_SUCCESS;
-        })
-        .catch((err) => {
-          this.uploadError = err.response;
-          this.currentStatus = STATUS_FAILED;
-        });
     },
     filesChange(fileList) {
-          const img2 = document.getElementById("img");
+      this.currentStatus = STATUS_LOADING;
+      const img2 = document.getElementById("img");
+      /*
+          Por si se maneja a segunda opción
+
           const file3 =fileList[0];
           var reader = new FileReader();
-         /*
           reader.onloadend = function () {
           img2.src = reader.result;
            }
@@ -270,26 +261,28 @@ export default {
           } else {
           img.src = "";
       }*/
-          img2.src="https://gifimage.net/wp-content/uploads/2017/09/blue-loading-gif-transparent-4.gif"; 
-          var formdata  = new FormData();
-          url = document.getElementById("url");
-          formdata.append("image", fileList[0]);
+      img2.src ="https://gifimage.net/wp-content/uploads/2017/09/blue-loading-gif-transparent-4.gif";
+      var formdata = new FormData();
+      url = document.getElementById("url");
+      formdata.append("image", fileList[0]);
 
-          fetch("https://api.imgur.com/3/image", {
-          method:"POST",
-          headers:{
-            Authorization: "Client-ID 396329b896dcfdd"
-          },
-          body:formdata
-          }).then(data => data.json()).then(data => {
-              //url.innerText =  data.data.link;
-              this.url = data.data.link;
-              img2.src = data.data.link;
-          })
+      fetch("https://api.imgur.com/3/image", {
+        method: "POST",
+        headers: {
+          Authorization: "Client-ID 396329b896dcfdd",
+        },
+        body: formdata,
+      })
+        .then((data) => data.json())
+        .then((data) => {
+          //url.innerText =  data.data.link;
+          this.url = data.data.link;
+          img2.src = data.data.link;
+          this.currentStatus = STATUS_SAVING;
+        });
     },
-    publicar(){
-      console.log("Han hecho click en publicar");
-      let json= {
+    publicar() {
+      let json = {
         "name": this.name,
         "age": this.age,
         "sterile": this.sterile,
@@ -299,50 +292,54 @@ export default {
         "size": this.size,
         "vaccines": this.vaccines,
         "message": this.message,
-        "url": this.url 
+        "url": this.url,
       };
       console.log(json);
       let token = localStorage.token;
-      axios.post("https://unpetlife.herokuapp.com/api/auth/login",json, {
-        headers:{
-          "Authorization" : `Bearer ${token}`
-        }
-      }).then(data => {
-                if(data.status == 200){
-                    console.log("correcto")
-                }
-            }).catch((error) => {
-                this.error = true
-                if (error.response.status === 400 || error.response.status === 401 ) {
-                    this.error_msg = "Credenciales incorrectas";
-                    this.email = null;
-                    this.password = null;
-                }
-                
-                else {
-                    this.error_msg = "¡Parece que hubo un error de comunicación con el servidor!";
-                }
-            });
-    },
-    upload(formData) {  
-        const img = document.getElementById("img");
-        var url = document.getElementById("url");
-        const file2 = document.getElementById("file");
-        file2.addEventListener("change", ev => {
-          const formdata = new FormData();
-          formdata.append("image", ev.target.files[0])
-          fetch("https://api.imgur.com/3/image/", {
-          method:"post",
-          headers:{
-            Authorization: "Client-ID 1c5017417c5c518"
+      axios
+        .post("https://unpetlife.herokuapp.com/api/publish-pet", json, {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-          body:formdata}).then(data => data.json()).then(data => console.log(data))
         })
+        .then((data) => {
+          if (data.status == 200) {
+            console.log("correcto");
+            this.currentStatus= STATUS_INITIAL;
+            this.name = null;
+            this.age = null;
+            this.sterile = null;
+            this.type = null;
+            this.sex = null;
+            this.breed = null;
+            this.size = null;
+            this.vaccines = null;
+            this.message = null;
+            this.url = null; 
+            this.$router.push('profile');
+          }
+        })
+        .catch((error) => {
+          this.error = true;
+          if (error.response.status === 400 || error.response.status === 401) {
+            this.error_msg = "Credenciales incorrectas";
+          } else {
+            this.error_msg =
+              "¡Parece que hubo un error de comunicación con el servidor!";
+          }
+        });
+    },
+    cancelar(){
+      this.$router.push('profile');
+    },
+    checkData(){
+        return (this.name === "" || this.age === "" || this.sterile === ""  || this.type === ""  || this.sex === ""  || this.breed === ""  || this.size === ""  || this.vaccines === ""  || this.message === ""  || this.url === "")
+    },
+    mounted() {
+      this.reset();
+    },
   },
-  mounted() {
-    this.reset();
-  },
-}};
+};
 </script>
 
 <style scoped>
@@ -350,18 +347,18 @@ export default {
   margin-block: 15px;
 }
 .dropbox {
-  outline: 2px dashed grey; /* the dash box */
+  outline: 2px dashed grey; 
   outline-offset: -10px;
   background: lightcyan;
   color: dimgray;
   padding: 10px 10px;
-  min-height: 200px; /* minimum height */
+  min-height: 100px; 
   position: relative;
   cursor: pointer;
 }
 
 .input-file {
-  opacity: 0; /* invisible but it's there! */
+  opacity: 0; 
   width: 100%;
   height: 200px;
   position: absolute;
@@ -369,11 +366,11 @@ export default {
 }
 
 .dropbox:hover {
-  background: lightblue; /* when mouse over to the drop zone, change color */
+  background: lightblue; 
 }
 
 .dropbox p {
-  font-size: 1.2em;
+  font-size: 0.9em;
   text-align: center;
   padding: 50px 0;
 }
