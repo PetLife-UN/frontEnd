@@ -283,16 +283,16 @@ export default {
     },
     publicar() {
       let json = {
-        "name": this.name,
-        "age": this.age,
-        "sterile": this.sterile,
-        "type": this.type,
-        "sex": this.sex,
-        "breed": this.breed,
-        "size": this.size,
-        "vaccines": this.vaccines,
-        "message": this.message,
-        "url": this.url,
+        "nombre": this.name,
+        "edad": this.age,
+        "esteril": this.sterile,
+        "tipo": this.type,
+        "sexo": this.sex,
+        "raza": this.breed,
+        "tamano": this.size,
+        "vacunada": this.vaccines,
+        "descripcion": this.message,
+        "link_foto": this.url,
       };
       console.log(json);
       let token = localStorage.token;
