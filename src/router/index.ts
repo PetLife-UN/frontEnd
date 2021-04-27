@@ -4,6 +4,8 @@ import Signup from '../views/register/Signup.vue'
 import Home from '../views/home/Home.vue'
 import Profile from '../views/profile/Profile.vue'
 import AnimalReg from "../views/animalReg/AnimalReg.vue"
+import Adopta from '../views/adopta/Adopta.vue'
+import Info_mascota from '../views/adopta/Info_mascota.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -28,6 +30,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/animalreg',
     name: 'AnimalReg',
     component: AnimalReg
+  },
+  {
+    path: '/adopta/:idPage',
+    name: 'Adopta',
+    component: Adopta
+  },
+  {
+    path: '/info_mascota/:idPet',
+    name: 'Info_mascota',
+    component: Info_mascota
   }
 ]
 

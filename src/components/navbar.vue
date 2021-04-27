@@ -44,6 +44,50 @@
                 </button>
             </div>
 
+            <div class="btn-block btn-inicio">
+                <button 
+                    class="boton" 
+                    type="button" 
+                    v-on:click="goHome"
+                    data-paso="inicio">
+
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        class="icon icon-tabler icon-tabler-user" 
+                        viewBox="0 0 24 24">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <rect x="5" y="3" width="14" height="18" rx="2" />
+                        <line x1="9" y1="7" x2="15" y2="7" />
+                        <line x1="9" y1="11" x2="15" y2="11" />
+                        <line x1="9" y1="15" x2="13" y2="15" />
+                    </svg>
+                    Inicio
+                </button>
+            </div>
+
+            <div class="btn-block btn-adopta">
+                <button 
+                    class="boton" 
+                    type="button" 
+                    v-on:click="goAdopta"
+                    data-paso="adopta">
+
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        class="icon icon-tabler icon-tabler-user" 
+                        viewBox="0 0 24 24">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <rect x="5" y="3" width="14" height="18" rx="2" />
+                        <line x1="9" y1="7" x2="15" y2="7" />
+                        <line x1="9" y1="11" x2="15" y2="11" />
+                        <line x1="9" y1="15" x2="13" y2="15" />
+                    </svg>
+                    Adopta
+                </button>
+            </div>
+
+
+
             <div class="btn-block btn-registro">
                 <button 
                     class="boton" 
@@ -85,21 +129,6 @@
             </div>
         </nav>
     </header>
-
-    <!-- <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <header class="mb-auto">
-            <div>
-            <h3 class="float-md-start mb-0">PetLife</h3>
-            <nav class="nav nav-masthead justify-content-center float-md-end">
-                <a class="nav-link active" aria-current="page" href="#" @click="goHome">Inicio</a>
-                <a class="nav-link" href="#">Acerca</a>
-                <a class="nav-link" href="#" @click="goLogin">Login</a>
-                <a class="nav-link" href="#" @click="goSignup">Registrarse</a>
-            </nav>
-            </div>
-        </header>
-    </div>
-     -->
 </template>
 
 
@@ -108,13 +137,16 @@ export default {
     name:"navbar",
     methods:{
         goHome(){
-            this.$router.push(' ');
+            this.$router.push('/');
         },
         goLogin(){
-            this.$router.push('login');
+            this.$router.push('/login');
         },
         goSignup(){
-            this.$router.push('signup');
+            this.$router.push('/signup');
+        },
+        goAdopta(){
+            this.$router.push('/adopta/1');
         }
 
     }

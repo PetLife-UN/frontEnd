@@ -67,7 +67,8 @@ export default {
                 "username" : this.email,
                 "password" : this.password
             };
-            axios.post("https://unpetlife.herokuapp.com/api/auth/login",json)
+            //axios.post("https://unpetlife.herokuapp.com/api/auth/login",json)
+            axios.post("http://localhost:8080/api/auth/login",json)
             .then(data => {
                 if(data.status == 200){
                     localStorage.token = data.data.token;
