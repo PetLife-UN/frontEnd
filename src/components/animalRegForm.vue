@@ -120,7 +120,7 @@
                 name="vaccines"
                 id="vaccineYes"
                 v-model="vaccines"
-                value="yes"
+                value="true"
               />
               Si
             </label>
@@ -133,7 +133,7 @@
                 name="vaccines"
                 id="vaccineNo"
                 v-model="vaccines"
-                value="no"
+                value="false"
               />
               No
             </label>
@@ -146,7 +146,7 @@
                 name="vaccines"
                 id="vaccineUnknown"
                 v-model="vaccines"
-                value="unknown"
+                value="false"
               />
               Lo desconoce
             </label>
@@ -295,11 +295,11 @@ export default {
         "link_foto": this.url,
       };
       console.log(json);
-      let token = localStorage.token;
+      const token = localStorage.token;
       axios
-        .post("https://unpetlife.herokuapp.com/api/publish-pet", json, {
+        .post("https://unpetlife.herokuapp.com/api/publish/new-publish", json, {
           headers: {
-            Authorization: `Bearer ${token}`,
+            'Authorization': `Bearer ${token}`
           },
         })
         .then((data) => {
@@ -321,7 +321,7 @@ export default {
         })
         .catch((error) => {
           this.error = true;
-          if (error.response.status === 400 || error.response.status === 401) {
+          if (error.response.status === 400 || error.response.status === 401 || error.response === 403) {
             this.error_msg = "Credenciales incorrectas";
           } else {
             this.error_msg =
