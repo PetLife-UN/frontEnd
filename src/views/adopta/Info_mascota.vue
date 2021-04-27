@@ -1,15 +1,14 @@
 <template>
     <div>
         <navbar/>
-        <br>
-        <br>
         <div class="container-fluid contenedor_info">
+            <br>
+            <br>
             <div class = "container">
                 <button type="button" class="btn  button_volver" v-on:click="volverMascotas()">Volver a mascotas</button>
             </div>
             <br>
             <br>
-
             <div class ="container infoMascota">
                 <div class="row">
                     
@@ -47,7 +46,7 @@
                                             <img src="../../assets/icons/bird_96px.png">
                                         </div>
                                         <div v-else-if="mascota.tipo === 'Equino'">
-                                            <img src="../../assets/icons/cat_96px.png">
+                                            <img src="../../assets/icons/horse_96px.png">
                                         </div>
                                         <div v-else>
                                             <img src="../../assets/icons/other_96px.png">
@@ -100,6 +99,9 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <br>
+            <br>
         </div>
 
 
@@ -140,7 +142,8 @@ export default {
     },
     mounted:function(){
         this.idPet = this.$route.params.idPet;
-        axios.get("http://localhost:8080/api/pet/consultaPet?idPet="+this.idPet).then( data =>{
+        //axios.get("http://localhost:8080/api/pet/consultaPet?idPet="+this.idPet).then( data =>{
+        axios.get("https://unpetlife.herokuapp.com/api/pet/consultaPet?idPet="+this.idPet).then(data =>{
             this.mascota.id = data.data.id;
             this.mascota.nombre = data.data.nombre;
             this.mascota.edad = data.data.edad;

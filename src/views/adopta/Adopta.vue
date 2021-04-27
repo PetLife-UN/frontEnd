@@ -49,7 +49,7 @@
                                             <img src="../../assets/icons/bird_96px.png">
                                         </div>
                                         <div v-else-if="mascota.tipo === 'Equino'">
-                                            <img src="../../assets/icons/cat_96px.png">
+                                            <img src="../../assets/icons/horse_96px.png">
                                         </div>
                                         <div v-else>
                                             <img src="../../assets/icons/other_96px.png">
@@ -121,7 +121,8 @@ export default {
     mounted:function(){
         this.pagina = this.$route.params.idPage;
         console.log("Page actual ",this.pagina);
-        axios.get("http://localhost:8080/api/pet/consulta?page="+(this.pagina-1)+"&size="+this.size).then( data =>{
+        //axios.get("http://localhost:8080/api/pet/consulta?page="+(this.pagina-1)+"&size="+this.size).then( data =>{
+        axios.get("https://unpetlife.herokuapp.com/api/pet/consulta?page="+(this.pagina-1)+"&size="+this.size).then( data =>{
             this.Listamascota = data.data.content;
             this.totalPages = data.data.totalPages;
             console.log(data);

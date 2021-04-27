@@ -63,7 +63,7 @@ export default {
     }
     .rigths{
         min-height: 50px;
-        background-color: black;
+        background-color: rgb(54, 54, 54);
         text-align: center;
     }
     .rig{
