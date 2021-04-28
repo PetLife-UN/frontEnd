@@ -1,29 +1,18 @@
-<template lang="">
-    <navbar/>
-    <div>
-        
-        <div id="inicio" class="video seccion mostrar-seccion">
-            <div class="overlay">
-                <div class="contenedor contenido-video">
-                    <h2>Adopta
-                        <span>NO COMPRES</span>
-                    </h2>
-                </div>
-            </div>
-            <video controls autoplay muted loop>
-                <source src="../../video/video1.mp4" type="video/mp4">
-                <source src="../../video/video1.ogg" type="video/ogg">
-                <source src="../../video/video1.webm" type="video/webm">
-            </video>                
-        
-        </div>
+<template>
 
+
+    
+    
+
+    <navbar/>
+    <div >
+        
+        
+        
         <div class="album py-5 bg-light">
 
-            <div class ="container">
-                <h1 class="titulo_home">
-                Tenemos distintas mascotas esperando ser adoptadas
-                </h1>
+            <div class ="container bg-light">
+                <p class=" h1 titulo_adopcion">ADOPCIÓN DE MASCOTAS</p>
             </div>
             <br>
             <div class="container">
@@ -85,8 +74,19 @@
                 </div>
             </div>
         </div>
-        
 
+
+        <div class ="container-fluid bg-light">
+            <div class="btn-toolbar justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group btn-group-lg" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-secondary" v-for="page in parseInt(totalPages)" :key="page" v-on:click="gotoPage(page)">{{page}}</button>
+                    <br>
+                </div>
+                
+            </div>
+            <br>
+            <br>
+        </div>
 
     </div>
 </template>
@@ -94,28 +94,35 @@
 
 import navbar from "@/components/navbar"
 import axios from 'axios';
+
+
 export default {
     data(){
         return{
             Listamascota:null,
-            size:3,
+            pagina:null,
+            size:6,
             totalPages:0
         }
     },
     components:{
         navbar,
-        
     },
+    
     methods:{
         verInfo(idPet){
             this.$router.push("/Info_mascota/"+idPet)
         },
+        gotoPage(idPage){
+            this.$router.push("/adopta/"+idPage)
+            console.log("Boton")
+        }
     },
     mounted:function(){
         this.pagina = this.$route.params.idPage;
         console.log("Page actual ",this.pagina);
-        //axios.get("http://localhost:8080/api/pet/consulta?page="+(0)+"&size="+this.size).then( data =>{
-        axios.get("https://unpetlife.herokuapp.com/api/pet/consulta?page="+(0)+"&size="+this.size).then( data =>{
+        //axios.get("http://localhost:8080/api/pet/consulta?page="+(this.pagina-1)+"&size="+this.size).then( data =>{
+        axios.get("https://unpetlife.herokuapp.com/api/pet/consulta?page="+(this.pagina-1)+"&size="+this.size).then( data =>{
             this.Listamascota = data.data.content;
             this.totalPages = data.data.totalPages;
             console.log(data);
@@ -126,9 +133,28 @@ export default {
 }
 
 </script>
-<style>
-    /*@import 'css/app.css';*/
-    .titulo_home{
-        color:#2d6bbb;
+<style >
+    .thin {
+        font-weight: 200;
+    }
+    .button_adopta{
+        background-color: #64B8FF;
+        font-size: 18px;
+    }
+    .carta_mascota{
+        line-height: 15px;
+    }
+    .titulo_adopcion{
+        color: #4B8BDD;
+        font-weight: bold;
+    }
+    .imagen_catalogo{
+        object-fit: cover;
+        max-width: 100%;
+        height: 250px;
+
+    }
+    .titulo_masc h2{ 
+        color:#437ecc;
     }
 </style>
