@@ -14,12 +14,6 @@
         </div>
 
     </div>
-    
-    <div class="float-md-left bg-primary">
-        <p>
-            Texto inferior
-        </p>
-    </div>
 </template>
 <script>
 
