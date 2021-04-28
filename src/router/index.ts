@@ -3,12 +3,28 @@ import Login from '../views/login/Login.vue'
 import Signup from '../views/register/Signup.vue'
 import Home from '../views/home/Home.vue'
 import Profile from '../views/profile/Profile.vue'
+import Rpassword from '../views/recover/Contraseña.vue'
+import Activate from '../views/recover/activate.vue'
+import User from '../views/user/User.vue'
 import AnimalReg from "../views/animalReg/AnimalReg.vue"
 import Adopta from '../views/adopta/Adopta.vue'
 import Info_mascota from '../views/adopta/Info_mascota.vue'
+
 const routes: Array<RouteRecordRaw> = [
+ 
+  {
+    path: '/activate/:id',
+    name: 'Activate',
+    component: Activate
+  },
+  {
+    path: '/user',
+    name: 'User',
+    component: User
+  },
   {
     path: '/',
+    name: 'Home',
     component: Home
   },
   {
@@ -27,6 +43,12 @@ const routes: Array<RouteRecordRaw> = [
     component: Profile
   },
   {
+
+    path: '/password/:id',
+    name: 'Password',
+    component: Rpassword
+  },
+  {
     path: '/animalreg',
     name: 'AnimalReg',
     component: AnimalReg
@@ -40,6 +62,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/info_mascota/:idPet',
     name: 'Info_mascota',
     component: Info_mascota
+
   }
 ]
 

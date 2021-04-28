@@ -14,22 +14,26 @@
         </div>
 
     </div>
-
 </template>
 <script>
 
+// if('a' == 'a'){
+//     console.log('hola mundo');
+// }
+
 import menuLogin from "@/components/menuLogin"
 import navbar from "@/components/navbar"
+
 export default {
+
     name: "Login",
     components:{
         navbar,
         menuLogin
+    },
+    methods:{
     }
 }
 </script>
 <style>
-    .alto{
-        height:800px;
-    }
 </style>
