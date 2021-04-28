@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -449,24 +450,6 @@ p {
   stroke-linejoin: round;
 }
 
-.contenedor .menu {
-  margin: 1rem 0rem 1rem 2rem;
-  border: none;
-  background-color: unset;
-  justify-content: left;
-}
-
-.contenedor .menu .icon-tabler-menu {
-  stroke: #000000;
-  width: 44px;
-  height: 44px;
-  stroke-width: 2.5px;
-}
-
-.contenedor .menu .icon-tabler-menu:hover {
-  stroke: #ffffff;
-}
-
 .contenedor .titulo {
   -webkit-text-fill-color: #64B8FF;
   -webkit-text-stroke: 3px black;
@@ -577,10 +560,11 @@ p {
 }
 
 .mostrar-seccion {
-  display: block !important;
+  display: block;
 }
 
 .video {
+  z-index: 10;
   position: relative;
   max-height: 50rem;
   overflow: hidden;
@@ -759,6 +743,41 @@ p {
   border-color: red;
 }
 
+.centrado {
+  margin: 15% 2rem;
+}
+
+.centrado .boton2 {
+  margin-top: 0rem;
+  margin-right: 2rem;
+  padding: 1.3rem;
+  font-size: 3rem;
+  color: black;
+  font-family: "Merienda", cursive;
+  font-weight: 300;
+  border: none;
+  border-radius: 3rem;
+  background-color: white;
+}
+
+.centrado .olvidar {
+  display: flex;
+  justify-content: flex-start;
+  margin: 1rem 0;
+}
+
+.centrado .olvidar .boton3 {
+  text-decoration: underline;
+  margin: 0;
+  background-color: unset;
+  color: #A400AA;
+  border: none;
+}
+
+.centrado .olvidar .boton3:hover {
+  color: red;
+}
+
 .ingresar {
   display: grid;
   grid-gap: 2rem;
@@ -787,7 +806,129 @@ p {
   font-size: 2rem;
 }
 
-.ingresar .boton2 {
+ul {
+  list-style: none;
+}
+
+.centrar {
+  display: flex;
+  text-align: center;
+  margin: auto 0rem auto 2rem;
+  border: none;
+  background-color: unset;
+  justify-content: left;
+}
+
+.opcion:hover {
+  display: block;
+}
+
+.opcion .vmenu {
+  position: relative;
+}
+
+.opcion .vmenu ul {
+  margin: 0rem 0 0 -3rem;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#64b8ff+0,54c8e5+46,64b8ff+100 */
+  background: #64b8ff;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64b8ff', endColorstr='#64b8ff',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+  position: absolute;
+  display: none;
+  border-radius: 3.5rem;
+  padding: 2rem 2rem 2rem 4rem;
+}
+
+.opcion .vmenu .icon-tabler-menu {
+  stroke: #000000;
+  width: 44px;
+  height: 44px;
+  stroke-width: 2.5px;
+}
+
+.opcion .vmenu:hover ul {
+  display: block !important;
+  z-index: 30;
+}
+
+.opcion .vmenu:hover .icon-tabler-menu {
+  stroke: #ffffff;
+}
+
+.opcion .vmenu .home, .opcion .vmenu a {
+  color: white;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  min-width: 100px;
+  border: none;
+  background-color: unset;
+  font-size: 3rem;
+  color: #2E4E91;
+  font-family: "Gloria Hallelujah", cursive;
+  font-weight: 600;
+}
+
+.opcion .vmenu .home:hover, .opcion .vmenu a:hover {
+  color: #F45770;
+}
+
+.recuperar {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#64b8ff+0,54c8e5+46,64b8ff+100 */
+  background: #64b8ff;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64b8ff', endColorstr='#64b8ff',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+  padding: 5rem 4rem;
+  margin: 1rem 7% 2rem;
+  border-radius: 5rem;
+}
+
+.recuperar h2 {
+  margin: auto;
+  font-size: 3rem;
+  color: #2E4E91;
+  font-family: "Gloria Hallelujah", cursive;
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
+.recuperar .contraseña h3 {
+  font-size: 3rem;
+  color: #2E4E91;
+  font-family: "Gloria Hallelujah", cursive;
+  font-weight: 600;
+  margin: 2rem 1rem;
+}
+
+.recuperar .contraseña input {
+  width: 99%;
+  padding: 1rem;
+  margin: auto;
+  border-radius: 2rem;
+  border: none;
+  font-size: 2rem;
+}
+
+.recuperar .contraseña .error {
+  border: solid;
+  border-color: red;
+}
+
+.recuperar .boton .boton2 {
   margin-top: 2rem;
   margin-right: 2rem;
   padding: 1.3rem;
@@ -798,6 +939,29 @@ p {
   border: none;
   border-radius: 3rem;
   background-color: white;
+}
+
+.activacion {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#64b8ff+0,54c8e5+46,64b8ff+100 */
+  background: #64b8ff;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64b8ff', endColorstr='#64b8ff',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+  padding: 4rem 5rem;
+}
+
+.activacion h2 {
+  font-size: 3rem;
+  color: #2E4E91;
+  font-family: "Gloria Hallelujah", cursive;
+  font-weight: 600;
+  margin-bottom: 2rem;
 }
 
 /*# sourceMappingURL=app.css.map */

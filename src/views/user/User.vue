@@ -1,15 +1,15 @@
 <template lang="">
     <navbar/>
     <div class="container emp-profile">
-        <h1 class="py-5 text-center">Bienvenido </h1>
-        <img src="./../../assets/husky-1-unscreen.gif">
+        <h1 class="py-5 text-center">Usuario</h1>
+        <img src="../../gif/husky_1.gif">
     </div>
 </template>
 
 <script>
 import navbar from "@/components/navbar"
 export default {
-    name: "Profile",
+    name: "User",
     components:{
         navbar
     }

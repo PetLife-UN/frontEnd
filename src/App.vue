@@ -1,5 +1,5 @@
 <template>
-  <router-view/>
+	<router-view/>
 </template>
 
 
@@ -8,8 +8,5 @@
 </style>
 
 <script>
-  // import bundle from 'bundle.js' 
-  // @import 'js/bundle.js'
-  // import * as mykey from '../src/js/bundle.js';
-
+	
 </script>
