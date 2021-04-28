@@ -69,8 +69,8 @@ export default {
             this.$router.push('/');
         },
         userToken(){
-            return false;
-            // return localStorage.token;
+            // return false;
+            return localStorage.token;
         }
         // goLogin(){
         //     this.$router.push('login');
