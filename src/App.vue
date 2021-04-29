@@ -1,6 +1,8 @@
 <template>
-  <router-view/>
+
+  <router-view :key ="$route.path"/>
   <footer-component/>
+
 </template>
 
 
@@ -9,6 +11,7 @@
 </style>
 
 <script>
+
   import footerComponent from '@/components/footer.vue'
   // import bundle from 'bundle.js' 
   // @import 'js/bundle.js'
@@ -18,4 +21,5 @@
       footerComponent
     }
   }
+
 </script>

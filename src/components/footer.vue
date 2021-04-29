@@ -1,13 +1,17 @@
 <template>
     <div class="footer">
+        <br>
         <div class="container">
             <div class="row">
+                
                 <div class="col-sm-1 element">
+                    <br>
                     <br>
                     <img src="https://image.flaticon.com/icons/png/512/35/35145.png" alt="casaHuella">
                 </div>
                 <div class="col-sm-4 element">
-                    <h4 style="text-align: left">Medios de comunicación</h4>
+                    <h4 style="text-align: left" class="titulos_footer">Medios de comunicación</h4>
+                        <br>
                         <ul class="list-unstyled">
                             <i class="fa fa-phone fa-lg"></i> : +57 6 69 87 25<br />
                             <i class="fa fa-mobile fa-lg"></i> : +57 315 6 69 87 83<br />
@@ -15,7 +19,7 @@
                         </ul>
                 </div>
                 <div class="col-sm-3 element">
-                    <h4 style="text-align: left">Redes Sociales</h4>
+                    <h4 style="text-align: left" class="titulos_footer">Redes Sociales</h4>
                         <ul class="list-unstyled">
                             <a class="btn btn-block btn-social-icon btn-facebook" href="http://www.facebook.com"><i class="fa fa-facebook fa-lg"> PetLife Facebook</i></a> <br/>
                             <a class="btn btn-block btn-social btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-lg"> PetLife Twitter</i></a> <br/>
@@ -24,13 +28,13 @@
                         </ul>                     
                 </div>
                 <div class="col-sm-3 element">
-                    <h4 style="text-align: left">Vinculos importantes</h4>
+                    <h4 style="text-align: left" class="titulos_footer">Vinculos importantes</h4>
                         <ul class="list-unstyled">
-                            <i class="fa fa-paw fa-lg"><a href="http://www.proteccionanimalbogota.gov.co/transparencia/tramites-servicios/adopciones-animales-compa%C3%B1%C3%ADa" class="links">Protección animal</a></i>
-                            <i class="fa fa-paw fa-lg"><a href="https://www.puppis.com.co/adopcion" class="links">Puppies</a></i>
-                            <i class="fa fa-paw fa-lg"><a href="https://www.adopcionesbogota.com/" class="links">Adopciones en Bogotá</a></i>
-                            <i class="fa fa-paw fa-lg"><a href="https://www.adoptanocompres.org/" class="links">Adopta no compres</a></i>
-                            <i class="fa fa-paw fa-lg"><a href="https://huellitas.social/" class="links">Huellitas sin hogar</a></i>
+                            <i class="fa fa-paw fa-lg"><a href="http://www.proteccionanimalbogota.gov.co/transparencia/tramites-servicios/adopciones-animales-compa%C3%B1%C3%ADa" class="links">   Protección animal</a></i><br>
+                            <i class="fa fa-paw fa-lg"><a href="https://www.puppis.com.co/adopcion" class="links">   Puppies</a></i><br>
+                            <i class="fa fa-paw fa-lg"><a href="https://www.adopcionesbogota.com/" class="links">   Adopciones en Bogotá</a></i><br>
+                            <i class="fa fa-paw fa-lg"><a href="https://www.adoptanocompres.org/" class="links">   Adopta no compres</a></i><br>
+                            <i class="fa fa-paw fa-lg"><a href="https://huellitas.social/" class="links">   Huellitas sin hogar</a></i><br>
 
                             
 
@@ -38,6 +42,7 @@
                 </div>
             </div>
         </div>
+        <br>
         <div class="justify-content-center rigths off">
             <br> <h4 class="rig"> © PetLife 2021, Todos los derechos reservados</h4>
         </div>
@@ -53,11 +58,12 @@ export default {
 <style scoped>
     .footer{
         margin-top: 1rem;
-        background-color: #3E57BA;
+        background-color: #64B8FF;
+        font-family: Arial, Helvetica, sans-serif;
     }
     .rigths{
         min-height: 50px;
-        background-color: black;
+        background-color: rgb(54, 54, 54);
         text-align: center;
     }
     .rig{
@@ -69,5 +75,11 @@ export default {
     }
     .links{
         color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+    }
+    .titulos_footer{
+        font-size: 20px;
+        font-weight: 700;
     }
 </style>

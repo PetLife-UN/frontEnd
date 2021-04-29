@@ -2,7 +2,7 @@
     <main class="form-signup">
         <form v-on:submit.prevent="signup">  
             <h2 class="texto_centrado sub">Registro</h2>   
-            <!-- <h1 class="h3 mb-3 fw-normal">Registrar usuario</h1> -->
+            
             <div class="registrar">
 
                 <label 
@@ -83,6 +83,7 @@
                     <button 
                         @click="RegistraUsuario"
                         class="boton2" 
+                        id="BURegistro"
                         type="submit"
                         data-paso="1">
                         Registrarse
@@ -97,6 +98,7 @@
 </template>
 
 <script>
+
 import axios from 'axios';
 // import * as mykey from '../js/bundle.js';
 let paso = false;
@@ -152,12 +154,11 @@ export default {
                     "role": []
                 };
                 axios.post("https://unpetlife.herokuapp.com/api/auth/register",json)
+                //axios.post("http://localhost:8080/api/auth/register",json)
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                     if(data.status == 200){
                         this.register_success = true;
-
-                        
                         this.name = null;
                         this.surname = null;
                         this.email = null;
