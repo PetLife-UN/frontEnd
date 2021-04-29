@@ -9,9 +9,9 @@
                 <div class="col-sm-4 element">
                     <h4 style="text-align: left">Medios de comunicación</h4>
                         <ul class="list-unstyled">
-                            <i class="fab fa-phone fa-lg"></i> : +57 6 69 87 25<br />
-                            <i class="fab fa-mobile fa-lg"></i> : +57 315 6 69 87 83<br />
-                            <i class="fab fa-envelope fa-lg"></i> : petlife2@gmail.com <br/>
+                            <i class="fa fa-phone fa-lg"></i> : +57 6 69 87 25<br />
+                            <i class="fa fa-mobile fa-lg"></i> : +57 315 6 69 87 83<br />
+                            <i class="fa fa-envelope fa-lg"></i> : petlife2@gmail.com <br/>
                         </ul>
                 </div>
                 <div class="col-sm-3 element">
