@@ -69,7 +69,7 @@ export default {
 		if (paso()) {
 			const json ={
 				"token" : actual,
-				"username" : this.Contraseña
+				"password" : this.Contraseña
 			}
 			console.log(actual)
 			axios.put("https://unpetlife.herokuapp.com/api/passrecover/changePassword", json).then(data =>{
