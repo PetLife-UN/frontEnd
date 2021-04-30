@@ -36,7 +36,7 @@
                     id="floatingEmail" 
                     style="text-transform:lowercase;"
                     placeholder="Dirección de correo" 
-                    maxlength="30"
+                    maxlength="80"
                     v-model="email">
                 
                 <label
@@ -151,7 +151,7 @@ export default {
                     "name" : this.name,
                     "surname" : this.surname,
                     "cellPhoneNumber":this.cellPhoneNumber,
-                    "role": []
+                    "role": [""]
                 };
                 axios.post("https://unpetlife.herokuapp.com/api/auth/register",json)
                 //axios.post("http://localhost:8080/api/auth/register",json)

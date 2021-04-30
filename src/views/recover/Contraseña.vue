@@ -71,6 +71,11 @@ export default {
 				"token" : actual,
 				"username" : this.Contraseña
 			}
+			console.log(actual)
+			axios.put("https://unpetlife.herokuapp.com/api/passrecover/changePassword", json).then(data =>{
+				console.log(data)
+			})
+
 		}
 	},
 	errorcontraseña(){
