@@ -29,12 +29,6 @@ export default {
         goUser(){
             this.$router.push('/user');
         }
-        // goLogin(){
-        //     this.$router.push('login');
-        // },
-        // goSignup(){
-        //     this.$router.push('signup');
-        // }
     }
 }
 </script>

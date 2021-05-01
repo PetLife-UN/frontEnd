@@ -13,7 +13,7 @@ import Info_mascota from '../views/adopta/Info_mascota.vue'
 const routes: Array<RouteRecordRaw> = [
  
   {
-    path: '/activate/:id',
+    path: '/activate/:token',
     name: 'Activate',
     component: Activate
   },

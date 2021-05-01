@@ -11,9 +11,9 @@
                 </div>
             </div>
             <video controls autoplay muted loop>
-                <source src="../../video/video1.mp4" type="video/mp4">
-                <source src="../../video/video1.ogg" type="video/ogg">
-                <source src="../../video/video1.webm" type="video/webm">
+                <source src="../../assets/video/video1.mp4" type="video/mp4">
+                <source src="../../assets/video/video1.ogg" type="video/ogg">
+                <source src="../../assets/video/video1.webm" type="video/webm">
             </video>                
         
         </div>
@@ -35,7 +35,7 @@
                                 <br>
                                 <div class = "row">
                                     <div class = "col-9 titulo_masc">
-                                        <h2>{{mascota.nombre}}</h2>
+                                        <h2>{{mascota.nombre.substring(0,15)}}</h2>
                                         <br>
                                         <p>{{mascota.tipo}}  -  {{mascota.edad}} años</p>
                                         <p> {{mascota.raza}}</p>

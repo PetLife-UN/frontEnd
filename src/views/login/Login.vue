@@ -9,7 +9,7 @@
             
             <img 
                 class="flip" 
-                src="../../gif/husky_1.gif" 
+                src="../../assets/gif/husky_1.gif" 
                 alt="perro saludo">
         </div>
 
