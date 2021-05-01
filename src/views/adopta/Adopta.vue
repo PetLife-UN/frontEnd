@@ -24,7 +24,7 @@
                                 <br>
                                 <div class = "row">
                                     <div class = "col-9 titulo_masc">
-                                        <h2>{{mascota.nombre}}</h2>
+                                        <h2>{{mascota.nombre.substring(0,15)}}</h2>
                                         <br>
                                         <p>{{mascota.tipo}}  -  {{mascota.edad}} años</p>
                                         <p> {{mascota.raza}}</p>

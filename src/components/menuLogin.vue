@@ -85,6 +85,7 @@ export default {
             };
             alert('He olvidaridado mi contraseña');
             // this.$router.push('/password');
+            //axios.post(`http://localhost:8080/api/passrecover/sendLink/${this.email}`,json);
             axios.post(`https://unpetlife.herokuapp.com/api/passrecover/sendLink/${this.email}`,json);
         },
         IngresaUsuario(){
