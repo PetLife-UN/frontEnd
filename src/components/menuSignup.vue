@@ -1,87 +1,135 @@
 <template>
     <main class="form-signup">
         <form v-on:submit.prevent="signup">  
-            <h2 class="texto_centrado sub">Registro</h2>   
-            
-            <div class="registrar">
+            <h1 class="texto_centrado sub">Registro</h1>   
+            <br>
+            <div class="registrar ">
+                <div class = "container">
+                    <div class ="row">
+                        <div class = "col-6">
+                            <div class = "datos_contenedor">
+                                <label 
+                                    for="floatingName">Nombre</label>
+                                <input 
+                                    v-on:click="errorNombre"
+                                    type="text" 
+                                    class="form-control" 
+                                    id="floatingName" 
+                                    placeholder="Nombre" 
+                                    maxlength="50"
+                                    v-model="name">
+                                <div class="error_msg" v-if="e_nombre" >Verifica el nombre ingresado</div>
+                                <br>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "datos_contenedor">
+                                <label 
+                                    for="floatingSurame">Apellido</label>
+                                <input 
+                                    v-on:click="errorApellido"
+                                    type="text" 
+                                    class="form-control"
+                                    id="floatingSurame" 
+                                    placeholder="Apellido" 
+                                    maxlength="50"
+                                    v-model="surname">
+                                <div class="error_msg" v-if="e_apellido" >Verifica el apellido ingresado</div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class = "datos_contenedor">
+                    <label 
+                        for="floatingEmail"> Dirección de correo </label>
+                    <input 
+                        v-on:click="errorEmail"
+                        v-on:keyup="errorEmail"
+                        type="email" 
+                        class="form-control"
+                        id="floatingEmail" 
+                        placeholder="Dirección de correo" 
+                        maxlength="80"
+                        v-model="email">
+                        <div class="error_msg" v-if="e_email" >Verifica el email ingresado</div>
+                    <br>
+                </div>
+                
+                <div class = "datos_contenedor">
+                    <label
+                        for="floatingcellPhoneNumber">Teléfono</label>
+                    <input 
+                        v-on:click="errorCelular"
+                        type="number" 
+                        class="form-control" 
+                        id="floatingcellPhoneNumber" 
+                        placeholder="Teléfono" 
+                        maxlength="10" 
+                        oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        v-model="cellPhoneNumber">
+                        <div class="error_msg" v-if="e_phone" >Verifica el teléfono ingresado</div>
+                    <br>
+                </div>
+                
+                <div class = "container">
+                    <div class ="row">
+                        <div class = "col-6">
+                             <div class = "datos_contenedor">
+                                <label 
+                                    for="floatingPassword">Contraseña</label>
+                                <input 
+                                    v-on:click="errorContraseña"
+                                    type="password" 
+                                    class="form-control" 
+                                    id="floatingPassword" 
+                                    maxlength="40"
+                                    placeholder="Contraseña" 
+                                    v-model="password">
+                                    <div class="error_msg" v-if="e_password" >Contraseña muy corta  </div>
+                                    <br>
+                            </div>
 
-                <label 
-                    for="floatingName">Nombre</label>
-                <input 
-                    type="text" 
-                    @click="errorNombre"
-                    class="form-control" 
-                    id="floatingName" 
-                    placeholder="Nombre" 
-                    maxlength="20"
-                    v-model="name">
-                
-                <label 
-                    for="floatingSurame">Apellido</label>
-                <input 
-                    @click="errorApellido"
-                    type="text" 
-                    class="form-control"
-                    id="floatingSurame" 
-                    placeholder="Apellido" 
-                    maxlength="20"
-                    v-model="surname">
-                
-                <label 
-                    for="floatingEmail"> Email </label>
-                <input 
-                    @click="errorEmail"
-                    type="email" 
-                    class="form-control"
-                    id="floatingEmail" 
-                    style="text-transform:lowercase;"
-                    placeholder="Dirección de correo" 
-                    maxlength="80"
-                    v-model="email">
-                
-                <label
-                for="floatingcellPhoneNumber">Teléfono</label>
-                <input 
-                    @click="errorCelular"
-                    type="number" 
-                    class="form-control" 
-                    id="floatingcellPhoneNumber" 
-                    placeholder="Teléfono" 
-                    maxlength="10" 
-                    oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                    v-model="cellPhoneNumber">
-                
-                <label 
-                    for="floatingPassword">Contraseña</label>
-                <input 
-                    @click="errorContraseña"
-                    type="password" 
-                    class="form-control" 
-                    id="floatingPassword" 
-                    maxlength="20"
-                    placeholder="Password" 
-                    v-model="password">
-                
-                <label 
-                    for="floatingRpassword">Repetir contraseña</label>
-                <input 
-                    @click="errorRepetir"
-                    type="password" 
-                    class="form-control" 
-                    id="floatingRpassword" 
-                    maxlength="20"
-                    placeholder="Password" 
-                    v-model="rpassword">
+                        </div>
+                        <div class = "col-6">
+                            <div class = "datos_contenedor">
+                                <label 
+                                    for="floatingRpassword">Repetir contraseña</label>
+                                <input 
+                                    v-on:click="errorRepetir"
+                                    type="password" 
+                                    class="form-control" 
+                                    id="floatingRpassword" 
+                                    maxlength="40"
+                                    placeholder="Repetir contraseña" 
+                                    v-model="rpassword">
+                                    <div class="error_msg" v-if="e_vpassword" >Las contraseñas no son iguales</div>
+                                    <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="alert alert-danger" role="alert" v-if="error">
+
+                
+                
+                
+                <br>
+                <br>
+                <div class="alert alert-danger" role="alert" v-if="error_registro">
                     {{error_msg}}
                 </div>
                 <div class="alert alert-success" role="alert" v-if="register_success">
-                    Registro exitoso!
+                    Usuario registrado exitosamente
+                    <br>
+                    Revisa tu correo para activarlo
                 </div>
+
                 <div class="texto_derecha">
                     <button 
-                        @click="RegistraUsuario"
+                        v-on:click="signup"
                         class="boton2" 
                         id="BURegistro"
                         type="submit"
@@ -90,7 +138,7 @@
                     </button>
                 </div>
             </div>
-            <!-- <button class="w-100 btn btn-lg btn-primary" type="submit">Registrarse</button> -->
+            
         </form>    
 
     </main>
@@ -100,51 +148,145 @@
 <script>
 
 import axios from 'axios';
-// import * as mykey from '../js/bundle.js';
-let paso = false;
 export default {
     name: "menuSignup",
 
     data(){
         return{
+            //Datos del usuario de registro
             name:"",
             surname:"",
             email:"",
             cellPhoneNumber:"",
             password:"",
             rpassword:"",
-            error:false,
-            error_msg:"",
+            //Variables de control de registro
+            error_msg:"Error de conexión con el servidor",
+            registro_msg:"Usuario registrado exitosamente\
+             Revisa tu correo para activarlo",
             register_success:false,
+            error_registro:false,
+            msg_back:"",
+            //Control de mensajes de error_registro de datos ingresados
+            e_nombre : false,
+            e_apellido : false,
+            e_email : false,
+            e_phone : false,
+            e_password : false,
+            e_vpassword : false,
+            
         }
     },
     methods:{
-        RegistraUsuario() {
-            revisarContraseña();
-        },
         errorNombre() {
-            limpiar('#floatingName');
+            this.limpiar('#floatingName');
+            this.e_nombre=false;
         },
         errorApellido() {
-            limpiar('#floatingSurame');
+            this.limpiar('#floatingSurame');
+            this.e_apellido=false;
         },
         errorCelular() {
-            limpiar('#floatingcellPhoneNumber');
+            this.limpiar('#floatingcellPhoneNumber');
+            this.e_phone = false;
         },
         errorEmail() {
-            limpiar('#floatingEmail');
+            this.limpiar('#floatingEmail');
+            this.e_email = false;
         },
         errorContraseña() {
-            limpiar('#floatingPassword');
+            this.limpiar('#floatingPassword');
+            this.e_password = false;
         },
         errorRepetir() {
-            limpiar('#floatingRpassword');
+            this.limpiar('#floatingRpassword');
+            this.e_password = false;
+            this.e_vpassword = false;
         },
+
+
+        revisarDatosIngresados() {
+            const nombre = document.querySelector('#floatingName');
+            const apellido = document.querySelector('#floatingSurame');
+            const celular = document.querySelector('#floatingcellPhoneNumber');
+            const email = document.querySelector('#floatingEmail');
+            const contraseña = document.querySelector('#floatingPassword');
+            const repetir = document.querySelector('#floatingRpassword');
+            //Pasar el correo a minúsculas
+            email.value = email.value.toLowerCase()
+
+            while (document.querySelector('.error') != null) {
+                document.querySelector('.error').classList.remove('error');
+            }
+            let list_errors = '';
+            
+            if (nombre.value.length === 0 || /\d/.test(nombre.value)) {
+                list_errors = list_errors + 'Nombre incorrecto\n';
+                nombre.classList.add('error');
+                this.e_nombre = true
+            }
+            if (apellido.value.length === 0 || /\d/.test(apellido.value)) {
+                list_errors = list_errors + 'Apellido incorrecto\n';
+                apellido.classList.add('error');
+                this.e_apellido = true
+            }
+            if (celular.value.length < 8) {
+                list_errors = list_errors + 'Numero incorrecto\n';
+                celular.classList.add('error');
+                this.e_phone = true;
+            }
+
+            let fal = 0;
+            for (var i = 0; i < email.value.length; i++) {
+                if(email.value[i]=='@'){
+                    fal++;
+                }
+            }
+            
+            if (email.value.length < 5 || fal!=1) {
+                list_errors = list_errors + 'E-mail mira incorrecto\n';
+                email.classList.add('error');
+                this.e_email = true;
+            }else {
+                const al = email.value.split('@');
+                if(al[0].length ==0 || al[1].length ==0){
+                    list_errors = list_errors + 'E-mail incorrecto\n';
+                    email.classList.add('error');
+                    this.e_email = true;
+                } 
+            }
+            if (contraseña.value.length < 8) {
+                list_errors = list_errors + 'Contraseña minimo de 8 datos\n';
+                contraseña.classList.add('error');
+                repetir.classList.add('error');
+                this.e_password = true;
+            }
+            else if (contraseña.value != repetir.value) {
+                list_errors = list_errors + 'Contraseñas no son iguales\n';
+                repetir.classList.add('error');
+                this.e_vpassword = true;
+            }
+
+
+            if (list_errors.length != 0) {
+                return false
+            }
+            else {
+                return true
+            }
+        },
+
+        limpiar(a) {
+            const error_registro = document.querySelector(a);
+            error_registro.classList.remove('error');
+        },
+
         signup(){
-            if(paso){
-                paso=false;
+            if(this.revisarDatosIngresados()){
+
                 this.register_success = false;
-                this.error = false;
+                this.error_registro = false;
+
                 let json ={
                     "email" : this.email,
                     "password" : this.password,
@@ -153,12 +295,16 @@ export default {
                     "cellPhoneNumber":this.cellPhoneNumber,
                     "role": [""]
                 };
+
                 axios.post("https://unpetlife.herokuapp.com/api/auth/register",json)
                 //axios.post("http://localhost:8080/api/auth/register",json)
                 .then(data => {
-                    // console.log(data)
+                    
+                    //this.msg_back = data.data.message
                     if(data.status == 200){
+                        //Mensaje de registro exitoso
                         this.register_success = true;
+                        //Eliminar datos guardados del usuario
                         this.name = null;
                         this.surname = null;
                         this.email = null;
@@ -169,92 +315,50 @@ export default {
                         this.rol = null;
                         
                     }
-                }).catch((error) => {
-                    this.error = true
-                    if (error.response.status === 400 || error.response.status === 401 ) {
-                        this.error_msg = "Credenciales incorrectas";
-                    }
-                    
-                    else {
-                        this.error_msg = "¡Parece que hubo un error de comunicación con el servidor!";
+                }).catch((error_registro) => {
+                    //console.log(error_registro.response)
+                    //console.log(this.msg_back)
+                    this.error_registro = true
+                    this.msg_back = error_registro.response.data.message
+
+                    let email = document.querySelector('#floatingEmail');
+
+                    switch (this.msg_back){
+                        case "Error: Email is already in use!":
+                            this.error_msg = "El email ingresado ya se encuentra registrado"
+                            email.classList.add('error');
+                            this.e_email = true;
+                            break;
+                        default:
+                            this.error_msg = this.error_registro;
+                            break;
+
                     }
                 });
+            }
+            else{
+                this.error_registro = true
+                this.error_msg = "Algunos datos ingresados son erroneos"
             }
         }
     }
 }
 
-function revisarContraseña() {
-    const nombre = document.querySelector('#floatingName');
-    const apellido = document.querySelector('#floatingSurame');
-    const celular = document.querySelector('#floatingcellPhoneNumber');
-    const estado = document.querySelector('#Estado');
-    const ciudad = document.querySelector('#floatingCiudad');
-    const email = document.querySelector('#floatingEmail');
-    const contraseña = document.querySelector('#floatingPassword');
-    const repetir = document.querySelector('#floatingRpassword');
 
-    while (document.querySelector('.error') != null) {
-        document.querySelector('.error').classList.remove('error');
-        // statement
-    }
-
-    let spring = '';
-    // console.log(document.querySelector('.error'));
-    if (nombre.value.length < 5) {
-        spring = spring + 'Nombre incorrecto\n';
-        nombre.classList.add('error');
-    }
-    if (apellido.value.length < 5) {
-        spring = spring + 'Apellido incorrecto\n';
-        apellido.classList.add('error');
-    }
-    if (celular.value.length < 8) {
-        spring = spring + 'Numero incorrecto\n';
-        celular.classList.add('error');
-    }
-
-    let fal = 0;
-    for (var i = 0; i < email.value.length; i++) {
-        if(email.value[i]=='@'){
-            fal++;
-        }
-    }
-    
-    if (email.value.length < 5 || fal!=1) {
-
-        spring = spring + 'E-mail mira incorrecto\n';
-        email.classList.add('error');
-    }else {
-        const al = email.value.split('@');
-        if(al[0].length ==0 || al[1].length ==0){
-            spring = spring + 'E-mail incorrecto\n';
-            email.classList.add('error');
-        } 
-    }
-    if (contraseña.value.length < 8) {
-        spring = spring + 'Contraseña minimo de 8 datos\n';
-        contraseña.classList.add('error');
-    }
-    else if (contraseña.value != repetir.value) {
-        spring = spring + 'Contraseñas no son iguales\n';
-        repetir.classList.add('error');
-    }
-    if (spring.length != 0) {
-        window.alert(spring);
-    }
-    else {
-        paso=true;
-    }
-}
-
-function limpiar(a) {
-    const error = document.querySelector(a);
-    error.classList.remove('error');
-}
 </script>
 
 
 <style>
+    .datos_contenedor{
+        position: relative;
+    }
+    .error_msg{
+        position: absolute;
+        bottom: -5px;
+        left: 15px;
+        color: rgb(192, 59, 59);
+        font-size: 17px;
+        font-weight: 400;
+    }
     
 </style>

@@ -1,57 +1,52 @@
 <template>
     <main class="form-login">
         <form v-on:submit.prevent="login">
-            <h2 class="texto_centrado sub">{{ Ingreso }}</h2>
+            <h2 class="texto_centrado sub"> Ingreso </h2>
             <div class="centrado">
-            <div class="ingresar">
-                
-                <div class="orden">
-                    <p class="texto texto_izquierda">{{ Email }}</p>
-                    <input 
-                        type="email" 
-                        id="floatingInput" 
-                        class="form-control" 
-                        maxlength="60"
-                        placeholder="name@example.com"
-                        v-model="email">
+                <div class="ingresar">
+                    <div class="orden">
+                        <p class="texto texto_izquierda">Email</p>
+                        <input 
+                            type="email" 
+                            id="floatingInput" 
+                            class="form-control" 
+                            maxlength="60"
+                            placeholder="name@example.com"
+                            v-model="email">
+                    </div>
+                    <div class="orden">
+                        <p class="texto texto_izquierda">Contraseña</p>
+                        <input 
+                            type="password" 
+                            id="floatingPassword" 
+                            class="form-control" 
+                            maxlength="20"
+                            placeholder="Contraseña"
+                            v-model="password">
+                    </div>
                 </div>
-                
-                <div class="orden">
-                    <p class="texto texto_izquierda">{{ Password }}</p>
-                    <input 
-                        type="password" 
-                        id="floatingPassword" 
-                        class="form-control" 
-                        maxlength="20"
-                        placeholder="Password"
-                        v-model="password">
-                </div>
-
-                <div class="alert alert-danger" role="alert" v-if="error">
-                    {{ error_msg }}
-                </div>
-
-                
-            </div>
-
+                <br>
                 <div class="olvidar">
                     <button
                         @click="OlbidarC"
                         class="boton3"
                         type="submit"
-                        data-paso="4"
-                        >
+                        data-paso="4">
                         Has olvidado tu contraseña
                     </button>
                 </div>
-                
+
+                <div class="alert alert-danger" role="alert" v-if="error_login">
+                    {{ error_login_msg }}
+                </div>
+
                 <div class="texto_derecha">
                     <button 
                         @click="IngresaUsuario"
                         class="boton2" 
                         type="submit"
                         data-paso="1">
-                        {{ Boton }}
+                        Acceder
                     </button>
                 </div>
             </div>
@@ -68,14 +63,12 @@ export default {
 
     data(){
         return{
-            Ingreso: 'Ingreso',
-            Email: 'Correo',
-            Password: 'Contraseña',
-            Boton: 'Acceder',
+            //Datos del usuario de ingreso
             usuario:"",
             password:"",
-            error:false,
-            error_msg:""
+            //Variables de control de inicio
+            error_login:false,
+            error_login_msg:"error_login de conexión con el servidor"
         }
     },
     methods:{
@@ -83,7 +76,7 @@ export default {
             let json ={
                 "username" : this.email
             };
-            alert('He olvidaridado mi contraseña');
+            alert('He olvidado mi contraseña');
             // this.$router.push('/password');
             //axios.post(`http://localhost:8080/api/passrecover/sendLink/${this.email}`,json);
             axios.post(`https://unpetlife.herokuapp.com/api/passrecover/sendLink/${this.email}`,json);
@@ -98,20 +91,26 @@ export default {
             .then(data => {
                 if(data.status == 200){
                     localStorage.token = data.data.token;
-                    
-                    this.$router.push('profile');
+                    this.$router.push('/');
 
                 }
-            }).catch((error) => {
-                this.error = true
-                if (error.response.status === 400 || error.response.status === 401 ) {
-                    this.error_msg = "Credenciales incorrectas";
-                    this.email = null;
-                    this.password = null;
-                }
-                
-                else {
-                    this.error_msg = "¡Parece que hubo un error de comunicación con el servidor!";
+            }).catch((error_login) => {
+                this.error_login = true
+                this.msg_back = error_login.response.data.message
+                console.log(this.msg_back)
+                switch (this.msg_back){
+                    case "Usuario no registrado":
+                        this.error_login_msg = "El correo ingresado no se encuentra registrado"
+                        break;
+                    case "Error: Unauthorized":
+                        this.error_login_msg = "La Contraseña ingresada es errónea"
+                        break;
+                    case "Usuario no activado":
+                        this.error_login_msg = "El usuario no está activado, actívalo desde tu correo electrónico"
+                        break;
+                    default:
+                        this.error_login_msg = this.msg_back;
+                        break;
                 }
             });
         }

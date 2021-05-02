@@ -159,8 +159,6 @@
 
 <script>
 
-import navuser from "@/components/navuser"
-import navnew from "@/components/navnew"
 
 
 export default {
