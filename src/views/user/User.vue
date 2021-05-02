@@ -2,7 +2,7 @@
     <navbar/>
     <div class="container emp-profile">
         <h1 class="py-5 text-center">Usuario</h1>
-        <img src="../../gif/husky_1.gif">
+        <img src="../../assets/gif/husky_1.gif">
     </div>
 </template>
 

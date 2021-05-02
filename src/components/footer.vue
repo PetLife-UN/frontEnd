@@ -13,9 +13,9 @@
                     <h4 style="text-align: left" class="titulos_footer">Medios de comunicación</h4>
                         <br>
                         <ul class="list-unstyled">
-                            <i class="fab fa-phone fa-lg"></i> : +57 6 69 87 25<br />
-                            <i class="fab fa-mobile fa-lg"></i> : +57 315 6 69 87 83<br />
-                            <i class="fab fa-envelope fa-lg"></i> : petlife2@gmail.com <br/>
+                            <i class="fa fa-phone fa-lg"></i> : +57 6 69 87 25<br />
+                            <i class="fa fa-mobile fa-lg"></i> : +57 315 6 69 87 83<br />
+                            <i class="fa fa-envelope fa-lg"></i> : petlife2@gmail.com <br/>
                         </ul>
                 </div>
                 <div class="col-sm-3 element">
@@ -44,7 +44,7 @@
         </div>
         <br>
         <div class="justify-content-center rigths off">
-            <br> <h4 class="rig"> © PetLife 2021, Todos los derechos reservados</h4>
+             <h4 class="rig"> © PetLife 2021, Todos los derechos reservados</h4>
         </div>
     </div>
 </template>
@@ -62,9 +62,11 @@ export default {
         font-family: Arial, Helvetica, sans-serif;
     }
     .rigths{
-        min-height: 50px;
+        min-height: 30px;
         background-color: rgb(54, 54, 54);
         text-align: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
     .rig{
         color: white;
