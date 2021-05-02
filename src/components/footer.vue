@@ -44,7 +44,7 @@
         </div>
         <br>
         <div class="justify-content-center rigths off">
-            <br> <h4 class="rig"> © PetLife 2021, Todos los derechos reservados</h4>
+             <h4 class="rig"> © PetLife 2021, Todos los derechos reservados</h4>
         </div>
     </div>
 </template>
@@ -62,9 +62,11 @@ export default {
         font-family: Arial, Helvetica, sans-serif;
     }
     .rigths{
-        min-height: 50px;
+        min-height: 30px;
         background-color: rgb(54, 54, 54);
         text-align: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
     .rig{
         color: white;

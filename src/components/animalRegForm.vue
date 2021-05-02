@@ -12,9 +12,10 @@
             placeholder="Ingrese en nombre la mascota"
           />
         </div>
+          <span v-if="msg.name"  class="offset-md-3 info" >{{msg.name}}</span>
       </div>
       <div class="form-group row">
-        <label for="age" class="col-sm-3 control-label">Edad</label>
+        <label for="age" class="col-sm-3 control-label">Edad * </label>
         <div class="col-sm-9">
           <input
             type="number"
@@ -24,34 +25,72 @@
             placeholder="Ingrese la edad aproximada de la mascota"
           />
         </div>
+        <span v-if="msg.age"  class="offset-md-3 info" >{{msg.age}}</span>
+      </div>
+      <div class="row">
+        <div class="col-3"> ¿El animal es estéril? *</div>
+        <div class="col-9">
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="sterle"
+                id="sterileYes"
+                v-model="sterile"
+                value="Si"
+                 />
+              Si
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="sterile"
+                id="sterileNo"
+                v-model="sterile"
+                value="No"
+              />
+              No
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="sterile"
+                id="sterileUnknown"
+                v-model="sterile"
+                value="Desconocido"
+              />
+              Lo desconoce
+            </label>
+          </div>
+        </div>
       </div>
       <div class="form-group row">
-        <label for="sterile" class="col-sm-3 control-label"
-          >La mascota es esteril?</label
+        <label for="type" class="col-sm-3 control-label">
+          Tipo de mascota * </label
         >
         <div class="col-sm-9">
-          <select class="form-select" id="sterile" v-model="sterile">
-            <option selected hidden>Ingrese el estado de la mascota</option>
-            <option value="si">Si</option>
-            <option value="unknown">Desconocido</option>
-            <option value="no">No</option>
+          <select class="form-select" id="type" v-model="type">
+            <option selected disabled hidden value="">Seleccione el tipo de animal</option>
+            <option value="Canino">Canino</option>
+            <option value="Felino">Felino</option>
+            <option value="Bovino">Bovino</option>
+            <option value="Pez">Pez</option>
+            <option value="Roedor">Roedor</option>
+            <option value="Ave">Ave</option>
+            <option value="Equino">Equino</option>
+            <option value="Otro">Otro</option>
           </select>
         </div>
       </div>
-      <div class="form-group row">
-        <label for="type" class="col-sm-3 control-label">Tipo mascota</label>
-        <div class="col-sm-9">
-          <input
-            type="text"
-            v-model="type"
-            class="form-control"
-            id="type"
-            placeholder="Que tipo de mascota es"
-          />
-        </div>
-      </div>
       <div class="row">
-        <div class="col-3">Sexo</div>
+        <div class="col-3">Sexo *</div>
         <div class="col-9">
           <div class="form-check form-check-inline">
             <label class="form-check-label">
@@ -101,8 +140,8 @@
         >
         <div class="col-sm-9">
           <select class="form-select" id="size" v-model="size">
-            <option selected hidden>Ingrese el tamaño de la mascota</option>
-            <option value="xs">Pequeño</option>
+            <option selected disabled hidden value="">Ingrese el tamaño de la mascota * </option>
+            <option value="xs">Pequeño (de 5 a 100 klg)</option>
             <option value="sm">Mediano-Pequeño</option>
             <option value="ml">Mediano-grande</option>
             <option value="lg">Grande</option>
@@ -110,7 +149,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-3">Tiene las vacunas al día?</div>
+        <div class="col-3">¿Tiene las vacunas al día? *</div>
         <div class="col-9">
           <div class="form-check form-check-inline">
             <label class="form-check-label">
@@ -155,7 +194,7 @@
       </div>
       <div class="form-group row">
         <label for="message" class="col-sm-3 control-label"
-          >Mensaje de adopción</label
+          >Mensaje de adopción * </label
         >
         <div class="col-sm-9">
           <textarea
@@ -163,12 +202,12 @@
             class="form-control"
             id="message"
             placeholder="Comportamiento del animal, gustos, es amabel con los niños, se adapta a espacios pequeños..."
-            rows="7"
+            rows="8"
           />
         </div>
       </div>
       <div class="form-group row">
-        <label for="image" class="col-sm-3 control-label">Fotografia</label>
+        <label for="image" class="col-sm-3 control-label">Fotografia * </label>
         <div class="dropbox col-sm-4">
           <input type="file" name:="image" :disabled="isSaving"
           @change="filesChange($event.target.files)" accept="image/*"
@@ -200,6 +239,7 @@
         </div>
       </div>
     </form>
+    <span class="offset-sm-3">Los campos marcados con astericos (*) son obligatorios</span>
   </div>
 </template>
 
@@ -225,6 +265,7 @@ export default {
       message: "",
       url: "",
       active: false,
+      msg: []
     };
   },
   computed: {
@@ -248,19 +289,6 @@ export default {
     filesChange(fileList) {
       this.currentStatus = STATUS_LOADING;
       const img2 = document.getElementById("img");
-      /*
-          Por si se maneja a segunda opción
-
-          const file3 =fileList[0];
-          var reader = new FileReader();
-          reader.onloadend = function () {
-          img2.src = reader.result;
-           }
-           if (file3) {
-        reader.readAsDataURL(file3);
-          } else {
-          img.src = "";
-      }*/
       img2.src ="https://gifimage.net/wp-content/uploads/2017/09/blue-loading-gif-transparent-4.gif";
       var formdata = new FormData();
       url = document.getElementById("url");
@@ -334,16 +362,43 @@ export default {
       this.$router.push('profile');
     },
     checkData(){
-        return (this.name === "" || this.age === "" || this.sterile === ""  || this.type === ""  || this.sex === ""  || this.breed === ""  || this.size === ""  || this.vaccines === ""  || this.message === ""  || this.url === "")
+        return (this.msg['age'] !== '' || this.sterile === ""  || this.type === ""  || this.sex === ""   || this.size === ""  || this.vaccines === ""  || this.message === ""  || this.url === "")
     },
     mounted() {
       this.reset();
     },
+    nameVal(value){
+      if(value === ""){
+        this.msg['name'] = 'Si no se asigna un nombre, el nuevo dueño lo hara';
+      }else{
+        this.msg['name'] = '';
+      }
+    },
+    ageVal(value){
+      if(value < 0 || value > 99){
+        this.msg['age'] = 'Por favor verifique la edad ingresada' 
+      }else{
+        this.msg['age'] = '';
+      }
+    }
   },
+  watch:{
+    name(value){
+      this.name = value;
+      this.nameVal(value);
+    },
+    age(value){
+      this.age = value;
+      this.ageVal(value);
+    }
+  }
 };
 </script>
 
 <style scoped>
+.form-control, .form-select{
+  font-size: 1.7rem;
+}
 .form-group {
   margin-block: 15px;
 }
@@ -374,5 +429,12 @@ export default {
   font-size: 0.9em;
   text-align: center;
   padding: 50px 0;
+}
+.info{
+  font-size: 12 px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-weight: 100;
+  color: red;
 }
 </style>
