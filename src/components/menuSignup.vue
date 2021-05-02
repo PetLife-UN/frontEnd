@@ -330,7 +330,7 @@ export default {
                             this.e_email = true;
                             break;
                         default:
-                            this.error_msg = this.error_registro;
+                            this.error_msg = this.msg_back;
                             break;
 
                     }
@@ -338,7 +338,7 @@ export default {
             }
             else{
                 this.error_registro = true
-                this.error_msg = "Algunos datos ingresados son erroneos"
+                this.error_msg = "Algunos datos ingresados son erróneos"
             }
         }
     }
