@@ -12,6 +12,7 @@ import Info_mascota from '../views/adopta/Info_mascota.vue'
 import userPets from '../views/user/userPets.vue'
 import ApliAdopcion from '../views/apliAdopcion/ApliAdopcion.vue' 
 import ConsultaApli from '../views/apliAdopcion/ConsultaApli.vue' 
+import ApliAdopcion from '../views/apliAdopcion/ApliAdopcion.vue' 
 
 const routes = [
   {
@@ -81,6 +82,7 @@ const routes = [
     name: 'ConsultaApli',
     component: ConsultaApli
   },
+  
 ]
 
 const router = createRouter({
