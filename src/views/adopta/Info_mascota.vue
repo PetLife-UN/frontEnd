@@ -93,7 +93,7 @@
                         </div>
 
                             <div class = "container container_but_adoptar">
-                                <button type="button" class="btn  button_adoptar" disabled>Adoptar</button>
+                                <button type="button" class="btn button_adoptar" @click="adoptar(this.idPet)">Adoptar</button>
                             </div>
 
                     </div>
@@ -138,6 +138,9 @@ export default {
     methods:{
         volverMascotas(){
             this.$router.go(-1);
+        },
+        adoptar(idPet){
+            this.$router.push({path:"/apply/"+idPet, params:{id_pet: idPet}});
         }
     },
     mounted:function(){

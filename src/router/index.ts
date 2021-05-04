@@ -9,6 +9,7 @@ import User from '../views/user/User.vue'
 import AnimalReg from "../views/animalReg/AnimalReg.vue"
 import Adopta from '../views/adopta/Adopta.vue'
 import Info_mascota from '../views/adopta/Info_mascota.vue'
+import ApliAdopcion from '../views/apliAdopcion/ApliAdopcion.vue' 
 
 const routes: Array<RouteRecordRaw> = [
  
@@ -62,7 +63,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/info_mascota/:idPet',
     name: 'Info_mascota',
     component: Info_mascota
-
+  },
+  {
+    path: '/apply/:idPet',
+    name: 'Aplicar_Adopcion',
+    component: ApliAdopcion
   }
 ]
 
