@@ -8,6 +8,7 @@
 
 <style>
   @import 'assets/styles/app.css';
+  
 </style>
 
 <script>
