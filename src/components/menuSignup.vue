@@ -286,6 +286,7 @@ export default {
 
                 this.register_success = false;
                 this.error_registro = false;
+                this.error_msg = "Error de conexión con el servidor"
 
                 let json ={
                     "email" : this.email,
@@ -296,11 +297,10 @@ export default {
                     "role": [""]
                 };
 
-                axios.post("https://unpetlife.herokuapp.com/api/auth/register",json)
-                //axios.post("http://localhost:8080/api/auth/register",json)
+                //axios.post("https://unpetlife.herokuapp.com/api/auth/register",json)
+                axios.post("http://localhost:8080/api/auth/register",json)
                 .then(data => {
                     
-                    //this.msg_back = data.data.message
                     if(data.status == 200){
                         //Mensaje de registro exitoso
                         this.register_success = true;
@@ -315,23 +315,19 @@ export default {
                         this.rol = null;
                         
                     }
-                }).catch((error_registro) => {
-                    //console.log(error_registro.response)
-                    //console.log(this.msg_back)
+                }).catch((error) => {
                     this.error_registro = true
-                    this.msg_back = error_registro.response.data.message
-
+                    var msg_back = error.response.data.message
                     let email = document.querySelector('#floatingEmail');
-
-                    switch (this.msg_back){
-                        case "Error: Email is already in use!":
-                            this.error_msg = "El email ingresado ya se encuentra registrado"
-                            email.classList.add('error');
-                            this.e_email = true;
-                            break;
-                        default:
-                            this.error_msg = this.msg_back;
-                            break;
+                    switch (msg_back){
+                    case "Error: Email is already in use!":
+                        this.error_msg = "El email ingresado ya se encuentra registrado"
+                        email.classList.add('error');
+                        this.e_email = true;
+                        break;
+                    default:
+                        this.error_msg = msg_back;
+                        break;
 
                     }
                 });

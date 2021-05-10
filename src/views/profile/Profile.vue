@@ -11,6 +11,9 @@
                     </div>
                     <div class = "col-6 menu_botones">
                         <button type="button" class ="btn" v-on:click="goRegister">Registrar mascota para adopción</button>
+                        <br>
+                        <br>
+                        <button type="button" class ="btn" v-on:click="goApliAdopcion">Consulta solicitudes de adopción</button>
                     </div>
                 </div>
             </div>
@@ -34,6 +37,9 @@ export default {
   methods:{
       goRegister(){
           this.$router.push('animalreg')
+      },
+      goApliAdopcion(){
+          this.$router.push('/profile/consultaapli')
       }
   }
 };

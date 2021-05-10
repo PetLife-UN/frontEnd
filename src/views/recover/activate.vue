@@ -30,8 +30,8 @@ export default {
     },
     mounted:function(){
         this.token = this.$route.params.token
-        //axios.post("http://localhost:8080/api/auth/activate/"+this.token).then( data =>{
-        axios.post("https://unpetlife.herokuapp.com/api/auth/activate/"+this.token).then(data =>{
+        axios.post("http://localhost:8080/api/auth/activate/"+this.token).then( data =>{
+        //axios.post("https://unpetlife.herokuapp.com/api/auth/activate/"+this.token).then(data =>{
             console.log(data)
         })
 

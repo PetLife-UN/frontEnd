@@ -149,8 +149,8 @@ export default {
     },
     mounted:function(){
         this.idPet = this.$route.params.idPet;
-        //axios.get("http://localhost:8080/api/pet/consultaPet?idPet="+this.idPet).then( data =>{
-        axios.get("https://unpetlife.herokuapp.com/api/pet/consultaPet?idPet="+this.idPet).then(data =>{
+        axios.get("http://localhost:8080/api/pet/consultaPet?idPet="+this.idPet).then( data =>{
+        //axios.get("https://unpetlife.herokuapp.com/api/pet/consultaPet?idPet="+this.idPet).then(data =>{
             this.mascota.id = data.data.id;
             this.mascota.nombre = data.data.nombre;
             this.mascota.edad = data.data.edad;
@@ -181,11 +181,6 @@ export default {
         margin-left: auto;
         margin-right: auto;
     }
-    /*@media (min-width: 1200px) {
-        .container.infoMascota{
-            max-width: 100%;
-        }
-    }*/
     .barra_lateral{
         width:3%;
         background-color: #4B8BDD ;
@@ -208,10 +203,6 @@ export default {
     .columna_info_basica{
         background-color: #f3f3f3 ;
     }
-    /*.contenedor_titulo{
-        background-color: #4B8BDD ;
-        
-    }*/
     .contenedor_titulo p{
         font-size: 25px;
         color:rgb(24, 23, 23);

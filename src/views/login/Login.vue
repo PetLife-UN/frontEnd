@@ -17,10 +17,6 @@
 </template>
 <script>
 
-// if('a' == 'a'){
-//     console.log('hola mundo');
-// }
-
 import menuLogin from "@/components/menuLogin"
 import navbar from "@/components/navbar"
 
