@@ -39,7 +39,7 @@ export default {
           this.$router.push('animalreg')
       },
       goApliAdopcion(){
-          this.$router.push('/profile/consultaapli')
+          this.$router.push('/profile/consultaapli/1')
       }
   }
 };
@@ -48,7 +48,7 @@ export default {
 <style >
     .profile_body {
         min-height: 500px;
-
+    
     }
     .menu_botones button{
         background-color: #4B8BDD;

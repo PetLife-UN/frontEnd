@@ -54,8 +54,10 @@
                                     </div>
                                 </div>
                                 <br>
-                                
+                                <br>
                                 <img class="imageninfoMascota" v-bind:src="mascota.links_foto" v-bind:alt="mascota.id">
+                                <br>
+                                <br>
                                 <br>
                                 <br>
                             </div>
@@ -163,7 +165,7 @@ export default {
             this.mascota.vacunada = data.data.vacunada;
             this.mascota.links_foto = data.data.links_foto;
             this.mascota.adoptado = data.data.adoptado;
-            console.log(data.data);
+            //console.log(data.data);
         })
     }
 }
@@ -213,7 +215,7 @@ export default {
         font-weight: 600;
     }
     .button_adoptar{
-        background-color: #1a1a1a;
+        background-color: #474747;
         color:#ffffff;
         font-size: 25px;
         padding: 5px 32px;

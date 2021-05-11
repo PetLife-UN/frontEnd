@@ -1,16 +1,26 @@
 <template>
     <div class = "popup-infoApli">
         <div class ="popup-inner">
-            <h1>Bro momento</h1>
-            <button>
-                bro momento
+            <h1>Información de solicitud</h1>
+            <button v-on:click="TogglePopup()">
+                Cerrar
             </button>
+            {{aplicationInfo}}
+
+            <button v-on:click="TogglePopup()">
+                Eliminar petición
+            </button>
+            <button v-on:click="TogglePopup()">
+                Terminar proceso de adopción
+            </button>
+            
         </div>
     </div>
 </template>
 <script>
 export default {
-    
+    props: ['TogglePopup',
+    'aplicationInfo']
 }
 </script>
 <style >
@@ -28,7 +38,10 @@ export default {
 
     }
     .popup-infoApli .popup-inner{
-        background-color: red;
+        background-color:white;
         padding: 32px;
+        width:1200px;
+        height: 680px;
+        
     }
 </style>

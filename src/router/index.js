@@ -78,7 +78,7 @@ const routes = [
     component: ApliAdopcion
   },
   {
-    path: '/profile/consultaapli',
+    path: '/profile/consultaapli/:numPage',
     name: 'ConsultaApli',
     component: ConsultaApli
   },
