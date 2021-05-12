@@ -1,26 +1,46 @@
 <template>
-    <div class = "popup-infoApli">
-        <div class ="popup-inner">
+    <div class = "popup-infoApli" >
+        <div class ="popup-inner" ref="popup_info">
             <h1>Información de solicitud</h1>
             <button v-on:click="TogglePopup()">
                 Cerrar
             </button>
             {{aplicationInfo}}
 
-            <button v-on:click="TogglePopup()">
+            <button v-on:click="Test()">
                 Eliminar petición
             </button>
-            <button v-on:click="TogglePopup()">
+            <button v-on:click="test()">
                 Terminar proceso de adopción
             </button>
             
+
+
+
         </div>
     </div>
+    
 </template>
 <script>
+import { ref } from 'vue'
+import {onClickOutside} from '@vueuse/core'
 export default {
-    props: ['TogglePopup',
-    'aplicationInfo']
+
+    props: {
+        TogglePopup:Function,
+        aplicationInfo:Object,
+    },
+    setup(props) {
+        
+        const popup_info = ref(null)
+
+        onClickOutside(popup_info, (event)=>props.TogglePopup())
+
+        return { 
+            popup_info 
+        }
+    },
+
 }
 </script>
 <style >

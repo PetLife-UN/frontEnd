@@ -5,17 +5,10 @@
             <br>
             <button type="button" class="btn  button_volver" v-on:click="volver()">Volver</button>
         </div>
-
         <h2 class="py-5 text-center">SOLICITUDES DE ADOPCIÓN </h2>
-        
         <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" />
-        
-        
-        
         <br>
         <br>
-        
-        
         <div class = "container">
             <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
                 <div class="col-lg-5 col-md-12 col_infoapli">
@@ -48,12 +41,9 @@
                             <img src="../../assets/icons/sad_64px.png">
                         </div>
                     </div>
-                    
-                    
                     <p><mark class="titulo_soli">Canal comunicación:  </mark></p>
                     <p>    &nbsp; {{apli.communication}}</p>
                     <div class="text_info_id_apli">Id #{{apli.id}}</div>
-                    
                     <button type="button" class="btn button_verinfo_apli" v-on:click="()=>TogglePopup('buttonTrigger',apli)">Información completa</button>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col_img_apli">
@@ -61,13 +51,8 @@
                 </div>
             </div>
         </div> 
-
         <br>
         <br>
-        
-      
-
-
         <nav >
             <ul class="pagination justify-content-center">
                 <li class=" buttons_pagination" v-on:click="gobackPage()">
@@ -83,7 +68,6 @@
         </nav>
         <br>
         <br>
-
     </div>
 </template>
 <script>
@@ -148,7 +132,6 @@ export default {
             this.pagina =  this.pagina - - 1
             this.$router.push("/profile/consultaapli/"+this.pagina)
         },
-       
     },
     mounted:function(){
         const token = localStorage.token;
@@ -232,8 +215,7 @@ export default {
         background-color: #313131;
         color:#ffffff;
     }
-    
-
+    /* Botones de paginación */
     .buttons_pagination .page-link-back{
         border-radius: 5px 0px 0px 5px;
     }

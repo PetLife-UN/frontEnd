@@ -2,7 +2,6 @@
     <navbar/>
     <div >
         <div class="album py-5 bg-light">
-
             <div class ="container bg-light">
                 <p class=" h1 titulo_adopcion">ADOPCIÓN DE MASCOTAS</p>
             </div>
@@ -48,7 +47,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                             <div class="container">
                                 <div class="row">
@@ -59,9 +57,6 @@
                             </div>
                             <br>
                         </div>
-                        
-                        
-
                     </div>
                 </div>
             </div>
@@ -82,8 +77,6 @@
                 </ul>
             </nav>
         </div>
-        
-
     </div>
 </template>
 <script>
