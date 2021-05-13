@@ -1,16 +1,13 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import { createStore } from 'vuex'
 import axios from "axios";
-import { resolve } from "core-js/fn/promise";
 
-Vue.use(Vuex);
 
-export default new Vuex.Store({
+export default createStore({
 	state: {
 		statusMessage: "",
 		token: localStorage.getItem("token") || "",
 		user: {},
-		error,
+		error: false
 	},
 	mutations: {
 		login_request(state) {
@@ -19,24 +16,24 @@ export default new Vuex.Store({
 		login_success(state, token, email) {
 			state.token = token;
 			state.user = email;
-			status.statusMessage = "success";
+			state.statusMessage = "success";
 		},
 		not_registered_user(state) {
-			status.statusMessage =
+			state.statusMessage =
 				"El correo ingresado no se encuentra registrado";
-			status.error = true;
+            state.error = true;
 		},
 		credentials_error(state) {
-			status.statusMessage = "La Contraseña ingresada es errónea";
-			status.error = true;
+			state.statusMessage = "La Contraseña ingresada es errónea";
+			state.error = true;
 		},
 		non_activated(state) {
-			status.statusMessage =
+			state.statusMessage =
 				"El usuario no está activado, actívalo desde tu correo electrónico";
-			status.error = true;
+            state.error = true;
 		},
 		default_error(state, error) {
-			this.statusMessage = error;
+			state.statusMessage = error;
 		},
 		logout(state) {
 			state.status = "";
@@ -51,8 +48,7 @@ export default new Vuex.Store({
 					url: "https://unpetlife.herokuapp.com/api/auth/login",
 					data: jsonData,
 					method: "POST",
-				});
-			})
+				})
 				.then((response) => {
 					const token = response.data.data.token;
 					const email = response.data.data.email;
@@ -80,7 +76,8 @@ export default new Vuex.Store({
 					}
 					localStorage.removeItem("token");
 					reject(error);
-				});
+				})
+            });
 		},
 		logout({ commit }) {
 			return new Promise((resolve, reject) => {
@@ -91,5 +88,9 @@ export default new Vuex.Store({
 			});
 		},
 	},
-	getters: {},
+	getters: {
+        isLoggedIn: state => !!state.token,
+        authStatus: state => state.statusMessage,
+        errorBoolean: state => state.error
+    },
 });
