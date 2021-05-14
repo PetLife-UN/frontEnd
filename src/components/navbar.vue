@@ -152,6 +152,28 @@
                 
             </div>
 
+            <div class="btn-block btn-profile" v-if="userToken()">
+        
+                <button
+                    class="boton" 
+                    type="button" 
+                    v-on:click="goLogout"
+                    data-paso="logout">
+
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        class="icon icon-tabler icon-tabler-user" 
+                        viewBox="0 0 24 24">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <circle cx="12" cy="7" r="4" />
+                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                    </svg>
+                    Salir
+                </button>
+
+                
+            </div>
+
         </nav>
     </header>
 </template>
@@ -160,10 +182,22 @@
 <script>
 
 
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 export default {
     name:"navbar",
-    
+    setup(){
+        const store = useStore()
+        function logOut(data){
+            store.dispatch("logout", data)
+            .then(() => {
+                this.$router.push('/login');
+            })
+            .catch(err => console.log(err))
+        }
+        return {logOut}
+    },
     components:{
 
     },
@@ -171,6 +205,9 @@ export default {
         
         userToken(){
             return localStorage.token;
+        },
+        goLogout(){
+            this.logOut();
         },
         goHome(){
             this.$router.push('/');

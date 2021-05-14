@@ -41,22 +41,25 @@ export default createStore({
 		},
 	},
 	actions: {
-		login({ commit }, jsonData) {
+		login({ commit }, json) {
+            console.log(json)
 			return new Promise((resolve, reject) => {
 				commit("login_request");
 				axios({
 					url: "https://unpetlife.herokuapp.com/api/auth/login",
-					data: jsonData,
+					data: json,
 					method: "POST",
 				})
 				.then((response) => {
-					const token = response.data.data.token;
-					const email = response.data.data.email;
+					const token = response.data.token;
+					const email = response.data.email;
 					localStorage.setItem("token", token);
 					axios.defaults.headers.common["Authorization"] =
 						"Bearer  ${token}";
 					commit("login_success", token, email);
+                    console.log("sucess")
 					resolve(response);
+                    
 				})
 				.catch((error) => {
 					const errorMsg = error.response.data.message;

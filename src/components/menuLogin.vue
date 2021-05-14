@@ -1,6 +1,6 @@
 <template>
     <main class="form-login">
-        <form v-on:submit.prevent="login">
+        <form v-on:submit.prevent="login2">
             <h2 class="texto_centrado sub"> Ingreso </h2>
             <div class="centrado">
                 <div class="ingresar">
@@ -28,7 +28,7 @@
                 <br>
                 <div class="olvidar">
                     <button
-                        @click="OlbidarC"
+                        @click="OlvidarC"
                         class="boton3"
                         type="submit"
                         data-paso="4">
@@ -36,8 +36,8 @@
                     </button>
                 </div>
 
-                <div class="alert alert-danger" role="alert" v-if="error_login">
-                    {{ error_login_msg }}
+                <div class="alert alert-danger" role="alert" v-if="this.errorB && !this.loggedIn">
+                    {{ errorMsg }}
                 </div>
 
                 <div class="texto_derecha">
@@ -57,63 +57,54 @@
 <script>
 
 import axios from 'axios';
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 export default {
     name: "menuLogin",
+    setup(){
+        const store = useStore()
+        const errorMsg = computed(() => store.getters.authStatus)
+        const errorB = computed(() => store.getters.errorBoolean)
+        const loggedIn = computed(() => store.getters.isLoggedIn)
 
+        function login(data){
+            store.dispatch("login", data)
+            .then(() => {
+                this.$router.push('/');
+            })
+            .catch(err => console.log(err))
+        }
+
+        return {errorMsg, errorB, loggedIn, login}
+
+        
+    },
     data(){
         return{
             //Datos del usuario de ingreso
             usuario:"",
             password:"",
-            //Variables de control de inicio
-            error_login:false,
-            error_login_msg:"error_login de conexión con el servidor"
         }
     },
     methods:{
-        OlbidarC(){
+        OlvidarC(){
             let json ={
                 "username" : this.email
             };
             alert('He olvidado mi contraseña');
             // this.$router.push('/password');
-            axios.post(`http://localhost:8080/api/passrecover/sendLink/${this.email}`,json);
-            //axios.post(`https://unpetlife.herokuapp.com/api/passrecover/sendLink/${this.email}`,json);
+            //axios.post(`http://localhost:8080/api/passrecover/sendLink/${this.email}`,json);
+            axios.post(`https://unpetlife.herokuapp.com/api/passrecover/sendLink/${this.email}`,json);
         },
         IngresaUsuario(){
-            let json ={
+           let json ={
                 "username" : this.email,
                 "password" : this.password
             };
-            //axios.post("https://unpetlife.herokuapp.com/api/auth/login",json)
-            axios.post("http://localhost:8080/api/auth/login",json)
-            .then(data => {
-                if(data.status == 200){
-                    localStorage.token = data.data.token;
-                    this.$router.push('/');
-
-                }
-            }).catch((error_login) => {
-                this.error_login = true
-                this.msg_back = error_login.response.data.message
-                console.log(this.msg_back)
-                switch (this.msg_back){
-                    case "Usuario no registrado":
-                        this.error_login_msg = "El correo ingresado no se encuentra registrado"
-                        break;
-                    case "Error: Unauthorized":
-                        this.error_login_msg = "La Contraseña ingresada es errónea"
-                        break;
-                    case "Usuario no activado":
-                        this.error_login_msg = "El usuario no está activado, actívalo desde tu correo electrónico"
-                        break;
-                    default:
-                        this.error_login_msg = this.msg_back;
-                        break;
-                }
-            });
+            this.login(json)
         }
+        
     }
 }
 
