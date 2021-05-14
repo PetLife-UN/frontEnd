@@ -325,8 +325,8 @@ export default {
       console.log(json);
       const token = localStorage.token;
       axios
-        //.post("http://localhost:8080/api/publish/new-publish", json, {
-        .post("https://unpetlife.herokuapp.com/api/publish/new-publish", json, {
+        .post("http://localhost:8080/api/publish/new-publish", json, {
+        //.post("https://unpetlife.herokuapp.com/api/publish/new-publish", json, {
           headers: {
             'Authorization': `Bearer ${token}`
           },

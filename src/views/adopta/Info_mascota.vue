@@ -54,8 +54,10 @@
                                     </div>
                                 </div>
                                 <br>
-                                
+                                <br>
                                 <img class="imageninfoMascota" v-bind:src="mascota.links_foto" v-bind:alt="mascota.id">
+                                <br>
+                                <br>
                                 <br>
                                 <br>
                             </div>
@@ -93,7 +95,7 @@
                         </div>
 
                             <div class = "container container_but_adoptar">
-                                <button type="button" class="btn  button_adoptar" disabled>Adoptar</button>
+                                <button type="button" class="btn button_adoptar" @click="adoptar(this.idPet)">Adoptar</button>
                             </div>
 
                     </div>
@@ -137,7 +139,10 @@ export default {
     },
     methods:{
         volverMascotas(){
-            this.$router.go(-1)
+            this.$router.go(-1);
+        },
+        adoptar(idPet){
+            this.$router.push({path:"/apply/"+idPet, params:{id_pet: idPet}});
         }
     },
     mounted:function(){
@@ -156,7 +161,7 @@ export default {
             this.mascota.vacunada = data.data.vacunada;
             this.mascota.links_foto = data.data.links_foto;
             this.mascota.adoptado = data.data.adoptado;
-            console.log(data.data);
+            //console.log(data.data);
         })
     }
 }
@@ -174,11 +179,6 @@ export default {
         margin-left: auto;
         margin-right: auto;
     }
-    /*@media (min-width: 1200px) {
-        .container.infoMascota{
-            max-width: 100%;
-        }
-    }*/
     .barra_lateral{
         width:3%;
         background-color: #4B8BDD ;
@@ -201,10 +201,6 @@ export default {
     .columna_info_basica{
         background-color: #f3f3f3 ;
     }
-    /*.contenedor_titulo{
-        background-color: #4B8BDD ;
-        
-    }*/
     .contenedor_titulo p{
         font-size: 25px;
         color:rgb(24, 23, 23);
@@ -215,7 +211,7 @@ export default {
         font-weight: 600;
     }
     .button_adoptar{
-        background-color: #1a1a1a;
+        background-color: #474747;
         color:#ffffff;
         font-size: 25px;
         padding: 5px 32px;

@@ -10,9 +10,10 @@ import AnimalReg from "../views/animalReg/AnimalReg.vue"
 import Adopta from '../views/adopta/Adopta.vue'
 import Info_mascota from '../views/adopta/Info_mascota.vue'
 import userPets from '../views/user/userPets.vue'
+import ConsultaApli from '../views/apliAdopcion/ConsultaApli.vue' 
+import ApliAdopcion from '../views/apliAdopcion/ApliAdopcion.vue' 
 
 const routes = [
- 
   {
     path: '/activate/:token',
     name: 'Activate',
@@ -69,7 +70,18 @@ const routes = [
     path: '/user/userPet',
     name: 'userPet',
     component: userPets
-  }
+  },
+  {
+    path: '/apply/:idPet',
+    name: 'Aplicar_Adopcion',
+    component: ApliAdopcion
+  },
+  {
+    path: '/profile/consultaapli/:numPage',
+    name: 'ConsultaApli',
+    component: ConsultaApli
+  },
+  
 ]
 
 const router = createRouter({
