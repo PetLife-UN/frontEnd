@@ -147,8 +147,8 @@ export default {
     },
     mounted:function(){
         this.idPet = this.$route.params.idPet;
-        axios.get("http://localhost:8080/api/pet/consultaPet?idPet="+this.idPet).then( data =>{
-        //axios.get("https://unpetlife.herokuapp.com/api/pet/consultaPet?idPet="+this.idPet).then(data =>{
+        //axios.get("http://localhost:8080/api/pet/consultaPet?idPet="+this.idPet).then( data =>{
+        axios.get("https://unpetlife.herokuapp.com/api/pet/consultaPet?idPet="+this.idPet).then(data =>{
             this.mascota.id = data.data.id;
             this.mascota.nombre = data.data.nombre;
             this.mascota.edad = data.data.edad;

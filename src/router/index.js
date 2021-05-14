@@ -10,7 +10,6 @@ import AnimalReg from "../views/animalReg/AnimalReg.vue"
 import Adopta from '../views/adopta/Adopta.vue'
 import Info_mascota from '../views/adopta/Info_mascota.vue'
 import userPets from '../views/user/userPets.vue'
-import ApliAdopcion from '../views/apliAdopcion/ApliAdopcion.vue' 
 import ConsultaApli from '../views/apliAdopcion/ConsultaApli.vue' 
 import ApliAdopcion from '../views/apliAdopcion/ApliAdopcion.vue' 
 
