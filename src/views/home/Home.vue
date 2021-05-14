@@ -110,13 +110,13 @@ export default {
     },
     mounted:function(){
         this.pagina = this.$route.params.idPage;
-        console.log("Page actual ",this.pagina);
-        //axios.get("http://localhost:8080/api/pet/consulta?page="+(0)+"&size="+this.size).then( data =>{
-        axios.get("https://unpetlife.herokuapp.com/api/pet/consulta?page="+(0)+"&size="+this.size).then( data =>{
+        //console.log("Page actual ",this.pagina);
+        axios.get("http://localhost:8080/api/pet/consulta?page="+(0)+"&size="+this.size).then( data =>{
+        //axios.get("https://unpetlife.herokuapp.com/api/pet/consulta?page="+(0)+"&size="+this.size).then( data =>{
             this.Listamascota = data.data.content;
             this.totalPages = data.data.totalPages;
-            console.log(data);
-            console.log("total_pages:",data.data.totalPages);
+            //console.log(data);
+            //console.log("total_pages:",data.data.totalPages);
         })
         
     }

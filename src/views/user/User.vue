@@ -9,13 +9,12 @@
 <script>
 import navbar from "@/components/navbar"
 export default {
-    name: "User",
-    components:{
-        navbar
-    }
+	name: "User",
+	components: {
+		navbar
+	}
 }
 
 </script>
 <style lang="">
-    
 </style>

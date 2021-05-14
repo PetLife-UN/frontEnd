@@ -11,6 +11,12 @@
                     </div>
                     <div class = "col-6 menu_botones">
                         <button type="button" class ="btn" v-on:click="goRegister">Registrar mascota para adopción</button>
+                        <br>
+                        <br>
+                        <button type="button" class ="btn" v-on:click="goApliAdopcion">Consulta solicitudes de adopción</button>
+                        <br>
+                        <br>
+                        <button type="button" class ="btn" v-on:click="goUserPets">Ver mis publicaciones</button>
                     </div>
                 </div>
             </div>
@@ -34,15 +40,20 @@ export default {
   methods:{
       goRegister(){
           this.$router.push('animalreg')
+      },
+      goApliAdopcion(){
+          this.$router.push('/profile/consultaapli/1')
+      },
+      goUserPets(){
+          this.$router.push('/user/userPet')
       }
   }
 };
-
 </script>
 <style >
     .profile_body {
         min-height: 500px;
-
+    
     }
     .menu_botones button{
         background-color: #4B8BDD;
