@@ -1,9 +1,9 @@
 <template>
     <div class="container" >
         <div class="row">
-            <div class="col-12 col-sm-10 col-md-8 offset-sm-1 offset-md-2">
+            <div class="col-12 col-sm-10 col-md-8  offset-sm-1">
                 <div id="format" class="mt-5">
-                    <form class="border border-dark rounded form-inline"  v-on:submit.prevent="onSubmit" style="background-color: aliceblue" >
+                    <form class="border border-dark rounded form-inline"  v-on:submit.prevent="onSubmit" style="background-color: aliceblue; margin-bottom: 2rem;" >
                         <h2 class="col-12 text-center text-danger mt-3 mb-5">Formulario de solicitud de Adopción</h2>
                         <div class="form-group col-12 row">
                             <label class="control-label col-sm-4 offset-sm-1" for="name">Nombre Completo * </label>
@@ -447,9 +447,11 @@ export default {
             if(!(this.adjustmentPeriod)){
                 this.adjustmentPeriodTime= "";
             }
+            //var date = new Date();
             //let fecha = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
             //let hora = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
             //let dateTime = fecha+' '+hora;
+            
             var date = new Date().toISOString("en-US", {timeZone: "America/Bogota"})
             let json = {
                 "name": this.name,
@@ -481,8 +483,13 @@ export default {
                 "date":date,
                 "pet_id": this.idPet
             }
+<<<<<<< HEAD
             //axios.post("https://unpetlife.herokuapp.com/api/apply/form/"+this.idPet, json,)
             axios.post("http://localhost:8080/api/apply/form/"+this.idPet, json,)
+=======
+            //axios.post("https://unpetlife.herokuapp.com/api/apply/"+this.idPet, json,)
+            axios.post("http://localhost:8080/api/apply/"+this.idPet, json,)
+>>>>>>> 6e0197b (pequeños arreglos en las vistas de aplicar a adopción)
             .then((data) => {
                 if (data.status == 200) {
                     console.log("El registro fue correcto");

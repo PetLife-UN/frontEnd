@@ -1,15 +1,13 @@
 <template>
     <navbar/>
-    <div class="row ">
-        <div class="container">
-            <pet-preview  :idPet="$route.params.idPet" /> 
-        </div>
-        <div class="container">
+    <div class="row" style="background: #dfe6e9"> 
+        <div class="col-sm-9">
             <application-form  class="col-sm-12" :idPet="$route.params.idPet"/>
-        </div>
-        
+        </div> 
+        <div class="justify-content-center col-sm-3">
+            <pet-preview  :idPet="$route.params.idPet" /> 
+        </div> 
     </div>
-    <h2>{{$route.params.idPet}}</h2>
 </template>
 
 <script>
