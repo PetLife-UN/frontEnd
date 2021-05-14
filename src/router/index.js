@@ -13,12 +13,7 @@ import userPets from '../views/user/userPets.vue'
 import ApliAdopcion from '../views/apliAdopcion/ApliAdopcion.vue' 
 import ConsultaApli from '../views/apliAdopcion/ConsultaApli.vue' 
 
-<<<<<<< HEAD:src/router/index.js
 const routes = [
- 
-=======
-const routes: Array<RouteRecordRaw> = [
->>>>>>> a879335 (Cambios finales solicitudes de adopción, solucion popup):src/router/index.ts
   {
     path: '/activate/:token',
     name: 'Activate',

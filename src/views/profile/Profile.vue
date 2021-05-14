@@ -14,6 +14,9 @@
                         <br>
                         <br>
                         <button type="button" class ="btn" v-on:click="goApliAdopcion">Consulta solicitudes de adopción</button>
+                        <br>
+                        <br>
+                        <button type="button" class ="btn" v-on:click="goUserPets">Ver mis publicaciones</button>
                     </div>
                 </div>
             </div>
@@ -40,10 +43,12 @@ export default {
       },
       goApliAdopcion(){
           this.$router.push('/profile/consultaapli/1')
+      },
+      goUserPets(){
+          this.$router.push('/user/userPet')
       }
   }
 };
-
 </script>
 <style >
     .profile_body {

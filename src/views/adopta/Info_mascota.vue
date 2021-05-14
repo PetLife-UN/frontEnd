@@ -139,14 +139,10 @@ export default {
     },
     methods:{
         volverMascotas(){
-<<<<<<< HEAD
-            this.$router.go(-1)
-=======
             this.$router.go(-1);
         },
         adoptar(idPet){
             this.$router.push({path:"/apply/"+idPet, params:{id_pet: idPet}});
->>>>>>> 7a0706a (Aplicar solicitud para adopción completa y funcional., sin diseño)
         }
     },
     mounted:function(){
