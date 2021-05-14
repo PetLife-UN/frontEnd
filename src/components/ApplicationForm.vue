@@ -483,13 +483,8 @@ export default {
                 "date":date,
                 "pet_id": this.idPet
             }
-<<<<<<< HEAD
             //axios.post("https://unpetlife.herokuapp.com/api/apply/form/"+this.idPet, json,)
             axios.post("http://localhost:8080/api/apply/form/"+this.idPet, json,)
-=======
-            //axios.post("https://unpetlife.herokuapp.com/api/apply/"+this.idPet, json,)
-            axios.post("http://localhost:8080/api/apply/"+this.idPet, json,)
->>>>>>> 6e0197b (pequeños arreglos en las vistas de aplicar a adopción)
             .then((data) => {
                 if (data.status == 200) {
                     console.log("El registro fue correcto");
