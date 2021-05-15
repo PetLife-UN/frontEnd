@@ -1,35 +1,45 @@
 <template>
     <main class="form-login">
-        <form v-on:submit.prevent="login">
-            <h2 class="texto_centrado sub">Ingreso</h2>
+        <form v-on:submit.prevent="login2">
+            <h2 class="texto_centrado sub"> Ingreso </h2>
+            <div class="centrado">
+                <div class="ingresar">
+                    <div class="orden">
+                        <p class="texto texto_izquierda">Email</p>
+                        <input 
+                            type="email" 
+                            id="floatingInput" 
+                            class="form-control" 
+                            maxlength="60"
+                            placeholder="name@example.com"
+                            v-model="email">
+                    </div>
+                    <div class="orden">
+                        <p class="texto texto_izquierda">Contraseña</p>
+                        <input 
+                            type="password" 
+                            id="floatingPassword" 
+                            class="form-control" 
+                            maxlength="20"
+                            placeholder="Contraseña"
+                            v-model="password">
+                    </div>
+                </div>
+                <br>
+                <div class="olvidar">
+                    <button
+                        @click="OlvidarC"
+                        class="boton3"
+                        type="submit"
+                        data-paso="4">
+                        Has olvidado tu contraseña
+                    </button>
+                </div>
 
-            <div class="ingresar">
-                <div class="orden">
-                    <p class="texto texto_izquierda">Correo</p>
-                    <input 
-                        type="email" 
-                        id="floatingInput" 
-                        class="form-control" 
-                        maxlength="60"
-                        placeholder="name@example.com"
-                        v-model="email">
-                </div>
-                
-                <div class="orden">
-                    <p class="texto texto_izquierda">Contraseña</p>
-                    <input 
-                        type="password" 
-                        id="floatingPassword" 
-                        class="form-control" 
-                        maxlength="20"
-                        placeholder="Password"
-                        v-model="password">
+                <div class="alert alert-danger" role="alert" v-if="this.errorB && !this.loggedIn">
+                    {{ errorMsg }}
                 </div>
 
-                <div class="alert alert-danger" role="alert" v-if="error">
-                    {{error_msg}}
-                </div>
-                
                 <div class="texto_derecha">
                     <button 
                         @click="IngresaUsuario"
@@ -42,56 +52,60 @@
             </div>
         </form>
     </main>
-
-
-
 </template>
 
 <script>
+
 import axios from 'axios';
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 export default {
     name: "menuLogin",
+    setup(){
+        const store = useStore()
+        const errorMsg = computed(() => store.getters.authStatus)
+        const errorB = computed(() => store.getters.errorBoolean)
+        const loggedIn = computed(() => store.getters.isLoggedIn)
 
+        function login(data){
+            store.dispatch("login", data)
+            .then(() => {
+                this.$router.push('/');
+            })
+            .catch(err => console.log(err))
+        }
+
+        return {errorMsg, errorB, loggedIn, login}
+
+        
+    },
     data(){
         return{
+            //Datos del usuario de ingreso
             usuario:"",
             password:"",
-            error:false,
-            error_msg:"",
         }
     },
     methods:{
-        login(){
+        OlvidarC(){
             let json ={
+                "username" : this.email
+            };
+            alert('He olvidado mi contraseña');
+            // this.$router.push('/password');
+            //axios.post(`http://localhost:8080/api/passrecover/sendLink/${this.email}`,json);
+            axios.post(`https://unpetlife.herokuapp.com/api/passrecover/sendLink/${this.email}`,json);
+        },
+        IngresaUsuario(){
+           let json ={
                 "username" : this.email,
                 "password" : this.password
             };
-            axios.post("https://unpetlife.herokuapp.com/api/auth/login",json)
-            .then(data => {
-                if(data.status == 200){
-                    localStorage.token = data.data.token;
-                    this.$router.push('profile');
-                }
-            }).catch((error) => {
-                this.error = true
-                if (error.response.status === 400 || error.response.status === 401 ) {
-                    this.error_msg = "Credenciales incorrectas";
-                    this.email = null;
-                    this.password = null;
-                }
-                
-                else {
-                    this.error_msg = "¡Parece que hubo un error de comunicación con el servidor!";
-                }
-            });
+            this.login(json)
         }
+        
     }
 }
 
 </script>
-
-
-<style>
-    
-</style>

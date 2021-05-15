@@ -1,0 +1,43 @@
+.espacio_trabajo {
+	margin: 2rem 5%;
+
+	.subtitulo {
+		background-color: white;
+		// margin: auto;
+		margin-bottom: 2rem;
+		border-radius: 10rem;
+
+		.titulo_home {
+
+			@include tipografia($Merienda, 2.2rem, $azulado, 300);
+			padding: 2rem;
+			font-weight: 500;
+
+			@include media600{
+				font-size: 2.8rem;
+			}
+		}
+	}
+
+	.tres_mascotas {
+		// display: flex;
+		.card {
+			border: 1px solid #ccc;
+			box-shadow: 7px 7px 15px #592A08; 
+			.card-img-top {
+				// max-width: 10%;
+				height: 100%;
+				position: inherit;
+				// padding: 0 auto;
+				margin: auto;
+				padding: .2rem;
+			}
+		}
+
+		.cboton {
+			margin-bottom: 2.5rem;
+		}
+	}
+
+
+}

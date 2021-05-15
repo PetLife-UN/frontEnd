@@ -1,17 +1,15 @@
+// const { createApp } = Vue;
+
 // Ingreso de los datos
-const ingreso = Vue.createApp({
+export const ingreso = Vue.createApp({
 	data() {
 		return {
-			Email: 'Usuario',
+			Ingreso: 'Ingreso',
+			Email: 'Correo',
 			Password: 'Contraseña',
-			boton: 'Ingresar'
-		}
-	},
-	methods: {
-		IngresaUsuario() {
-			console.log('ingresar');
+			Boton: 'Acceder'
 		}
 	}
 });
-
-ingreso.mount('.ingresar');
+// window.vueApp = ingreso;
+ingreso.mount('#ingresado');

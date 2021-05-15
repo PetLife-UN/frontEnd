@@ -5,7 +5,7 @@
         <div class="selcion">
             
             <img 
-                src="../../gif/husky_1.gif" 
+                src="../../assets/gif/husky_1.gif" 
                 alt="perro saludo">
             
             <div class="informacion pregistro">
@@ -14,11 +14,6 @@
         </div>
     </div>
 
-    <div class="float-md-left bg-primary">
-        <p>
-            Texto inferior
-        </p>
-    </div>
 </template>
 <script>
 

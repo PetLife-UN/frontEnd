@@ -1,15 +1,24 @@
 <template>
-  <router-view/>
+  
+  <router-view :key ="$route.path"/>
+  <footer-component/>
+
 </template>
 
 
 <style>
-  @import 'css/app.css';
+  @import 'assets/styles/app.css';
+  
 </style>
 
 <script>
-  // import bundle from 'bundle.js' 
-  // @import 'js/bundle.js'
-  // import * as mykey from '../src/js/bundle.js';
+
+  import footerComponent from '@/components/footer.vue'
+
+  export default{
+    components:{
+      footerComponent
+    }
+  }
 
 </script>
