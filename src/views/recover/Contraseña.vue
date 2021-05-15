@@ -72,11 +72,10 @@ export default {
 				"password" : this.Contraseña
 			}
 			console.log(actual)
-			axios.put("http://localhost:8080/api/passrecover/changePassword", json).then(data =>{
-			//axios.put("https://unpetlife.herokuapp.com/api/passrecover/changePassword", json).then(data =>{
+			//axios.put("http://localhost:8080/api/passrecover/changePassword", json).then(data =>{
+			axios.put("https://unpetlife.herokuapp.com/api/passrecover/changePassword", json).then(data =>{
 				console.log(data)
 			})
-
 		}
 	},
 	errorcontraseña(){

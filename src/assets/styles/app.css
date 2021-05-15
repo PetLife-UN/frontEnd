@@ -437,7 +437,6 @@ p {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64b8ff', endColorstr='#64b8ff',GradientType=1 );
   /* IE6-9 fallback on horizontal gradient */
   margin: 1.5rem 0;
-  border-radius: 10rem;
 }
 
 .contenedor .main {
@@ -481,8 +480,7 @@ p {
 }
 
 .contenedor .tabs {
-  display: flex;
-  justify-content: flex-end;
+  display: block;
   align-items: center;
   padding: 1rem;
   width: 100%;
@@ -495,10 +493,12 @@ p {
 }
 
 .contenedor .btn-block {
-  margin: 0;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .contenedor .boton {
+  margin-top: 1rem;
   padding: 1rem;
   font-size: 2rem;
   color: black;
@@ -528,7 +528,22 @@ p {
   stroke: red;
 }
 
-@media (max-width: 710px) {
+@media (min-width: 600px) {
+  .contenedor .tabs {
+    display: flex;
+  }
+}
+
+@media (min-width: 900px) {
+  .contenedor .header {
+    border-radius: 10rem;
+  }
+  .contenedor .tabs {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 900px) {
   .contenedor .header {
     display: block;
     align-items: center;
@@ -648,6 +663,47 @@ p {
   }
 }
 
+.espacio_trabajo {
+  margin: 2rem 5%;
+}
+
+.espacio_trabajo .subtitulo {
+  background-color: white;
+  margin-bottom: 2rem;
+  border-radius: 10rem;
+}
+
+.espacio_trabajo .subtitulo .titulo_home {
+  font-size: 2.2rem;
+  color: #6FABF9;
+  font-family: "Merienda", cursive;
+  font-weight: 300;
+  padding: 2rem;
+  font-weight: 500;
+}
+
+@media (min-width: 600px) {
+  .espacio_trabajo .subtitulo .titulo_home {
+    font-size: 2.8rem;
+  }
+}
+
+.espacio_trabajo .tres_mascotas .card {
+  border: 1px solid #ccc;
+  box-shadow: 7px 7px 15px #592A08;
+}
+
+.espacio_trabajo .tres_mascotas .card .card-img-top {
+  height: 100%;
+  position: inherit;
+  margin: auto;
+  padding: .2rem;
+}
+
+.espacio_trabajo .tres_mascotas .cboton {
+  margin-bottom: 2.5rem;
+}
+
 .selcion {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -726,8 +782,13 @@ p {
   font-size: 1.7rem;
 }
 
+.registrar .espacio {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
 .registrar .boton2 {
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-right: 2rem;
   padding: 1.3rem;
   font-size: 3rem;

@@ -113,20 +113,14 @@
                 </div>
 
 
-                
-                
-                
-                <br>
-                <br>
-                <div class="alert alert-danger" role="alert" v-if="error_registro">
+                <div class="alert alert-danger espacio" role="alert" v-if="error">
                     {{error_msg}}
                 </div>
-                <div class="alert alert-success" role="alert" v-if="register_success">
-                    Usuario registrado exitosamente
-                    <br>
-                    Revisa tu correo para activarlo
+                
+                <div class="alert alert-success espacio" role="alert" v-if="register_success">
+                    Registro exitoso!
                 </div>
-
+                
                 <div class="texto_derecha">
                     <button 
                         v-on:click="signup"

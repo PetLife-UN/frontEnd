@@ -14,8 +14,13 @@
 		font-size: 1.7rem;
 	}
 
+	.espacio{
+		margin-top: 1rem;
+		margin-bottom: 0;
+	}
+
 	.boton2 {
-		margin-top: 2rem;
+		margin-top: 1rem;
 		margin-right: 2rem;
 		padding: 1.3rem;
 		@include tipografia($Merienda, 3rem, black, 300);
