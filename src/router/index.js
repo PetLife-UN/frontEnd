@@ -12,6 +12,7 @@ import Info_mascota from '../views/adopta/Info_mascota.vue'
 import userPets from '../views/user/userPets.vue'
 import ConsultaApli from '../views/apliAdopcion/ConsultaApli.vue' 
 import ApliAdopcion from '../views/apliAdopcion/ApliAdopcion.vue' 
+import store from '@/store/index';
 
 const routes = [
   {
@@ -22,7 +23,10 @@ const routes = [
   {
     path: '/user',
     name: 'User',
-    component: User
+    component: User,
+    meta: {
+        requiresAuth: true
+    }
   },
   {
     path: '/',
@@ -42,7 +46,10 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
+    meta: {
+        requiresAuth: true
+    }
   },
   {
 
@@ -53,7 +60,10 @@ const routes = [
   {
     path: '/animalreg',
     name: 'AnimalReg',
-    component: AnimalReg
+    component: AnimalReg,
+    meta: {
+        requiresAuth: true
+    }
   },
   {
     path: '/adopta/:idPage',
@@ -69,7 +79,10 @@ const routes = [
   {
     path: '/user/userPet',
     name: 'userPet',
-    component: userPets
+    component: userPets,
+    meta: {
+        requiresAuth: true
+    }
   },
   {
     path: '/apply/:idPet',
@@ -89,4 +102,17 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+    if(to.matched.some(record => record.meta.requiresAuth)) {
+      if (store.getters.isLoggedIn) {
+        next()
+        return
+      }
+      next('/login')
+    } else {
+      next()
+    }
+})
+
 export default router
+
