@@ -67,7 +67,7 @@ export default createStore({
 						case "Usuario no registrado":
 							commit("not_registered_user");
 							break;
-						case "Error: Unauthorized":
+						case "Error: Unauthorized Bad Credentials":
 							commit("credentials_error");
 							break;
 						case "Usuario no activado":
