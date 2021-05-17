@@ -50,9 +50,6 @@ export default {
 		const token = localStorage.token;
 		axios
 			.get("https://unpetlife.herokuapp.com/api/pet/getUserPets", {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
 			})
 			.then((data) => {
 				this.json = data.data;

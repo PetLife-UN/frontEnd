@@ -54,8 +54,7 @@ export default createStore({
 					const token = response.data.token;
 					const email = response.data.email;
 					localStorage.setItem("token", token);
-					axios.defaults.headers.common["Authorization"] =
-						"Bearer  ${token}";
+					axios.defaults.headers.common["Authorization"] = 'Bearer ' +token;
 					commit("login_success", token, email);
                     console.log("sucess")
 					resolve(response);
