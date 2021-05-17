@@ -800,7 +800,7 @@ p {
 }
 
 .espacio_trabajo .tres_mascotas .card .card-img-top:hover {
-  border: 10px solid #eee;
+  border: 10px solid #6FABF9;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
@@ -819,7 +819,7 @@ p {
 }
 
 .espacio_trabajo .tres_mascotas .card .imgmascota:hover {
-  border: 5px solid #eee;
+  border: 5px solid #B6B6B6;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
@@ -911,6 +911,14 @@ p {
     width: -webkit-fill-available;
     border-radius: 1rem;
   }
+}
+
+.espacio_trabajo .pagination {
+  margin: 2rem;
+}
+
+.espacio_trabajo .pagination .buttons_pagination {
+  background-color: white;
 }
 
 .selcion {

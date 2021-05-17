@@ -106,9 +106,11 @@
 				// padding: 0 auto;
 				margin: auto;
 				padding: .2rem;
+				// border: 10px solid black;
 
 				&:hover{
-					border: 10px solid #eee;
+
+					border: 10px solid $azulado;
 					-webkit-transition: all 0.5s ease-out;
 					-moz-transition: all 0.5s ease;
 					-ms-transition: all 0.5s ease;
@@ -126,7 +128,7 @@
 
 				&:hover{
 
-					border: 5px solid #eee;
+					border: 5px solid #B6B6B6;
 					-webkit-transition: all 0.5s ease-out;
 					-moz-transition: all 0.5s ease;
 					-ms-transition: all 0.5s ease;
@@ -209,5 +211,12 @@
 		}
 	}
 
+	.pagination {
+		margin: 2rem;
+		// background-color: white;
+		.buttons_pagination {
+			background-color: white;
 
+		}	
+	}
 }
