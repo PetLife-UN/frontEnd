@@ -38,7 +38,7 @@ function css() {
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'expanded'}))
     .pipe(sourcemaps.write('.'))
-    .pipe( dest('./src/css') );
+    .pipe( dest('./src/assets/styles') );
 }
 
 function javascript() {
@@ -53,14 +53,14 @@ function javascript() {
 function imagenes() {
     return src(paths.imagenes)
         .pipe(cache(imagemin({ optimizationLevel: 3})))
-        .pipe(dest('src/img'))
+        .pipe(dest('src/assets/img'))
         .pipe(notify({ message: 'Imagen Completada'}));
 }
 
 function versionWebp() {
     return src(paths.imagenes)
         .pipe( webp() )
-        .pipe(dest('src/img'))
+        .pipe(dest('src/assets/img'))
         .pipe(notify({ message: 'Imagen Completada'}));
 }
 
@@ -69,7 +69,7 @@ function versionGif() {
     // return;
     return src(paths.gif)
         .pipe( imagemin([imagemingif({interlaced: true})]))
-        .pipe(dest('src/gif'))
+        .pipe(dest('src/assets/gif'))
         .pipe(notify({ message: 'gif Completada'}));
 }
 
