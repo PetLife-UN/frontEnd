@@ -85,6 +85,11 @@
     }
 }
 
+@mixin media1400 {
+    @media (min-width: 1400px) {
+        @content;
+    }
+}
 // estilo
 // Needs latest Compass, add '@import "compass"' to your scss
 // Permalink - use to edit and share this gradient:

@@ -30,6 +30,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 vista" v-for="mascota in Listamascota" :key = "mascota.idPet"> 
                     <div class="card mb-4 box-shadow" 
                         :class="mascotas(mascota.id)">
+                        
                         <img class="card-img-top imagen_catalogo" v-bind:src="mascota.links_foto" v-bind:alt="mascota.id">
                         <div class="card-body carta_mascota">
                             
@@ -92,7 +93,6 @@ export default {
         verInfo(idPet){
             this.$router.push("/Info_mascota/"+idPet)
         },
-
         mascotas(i) {
             if(i%2==0){
                 return {
