@@ -16,14 +16,89 @@
 			@include media600{
 				font-size: 2.8rem;
 			}
+
+			@include media1000{
+				font-size: 3.5rem;
+			}
 		}
 	}
 
 	.tres_mascotas {
 		// display: flex;
+		.vista {
+			width: 100%;
+			margin-bottom: 2rem;
+			.datos_mascota {
+				display: grid;
+				grid-template-columns: 3fr 1fr;
+				@include media1200 {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			.name {
+				@include tipografia($Aclonica, 3rem, $azul, 600);
+				width: fit-content;
+			}
+			.titulo_masc {
+				width: auto;
+				p {
+					@include tipografia($Aclonica, 1.8rem, #373535, 500);
+				}
+			}
+			@include media600 {
+				.name {
+					@include tipografia($Aclonica, 3.5rem, $azul, 600);
+				}
+				.titulo_masc {
+					p {
+						@include tipografia($Aclonica, 2.2rem, #373535, 500);
+					}
+				}	
+			}
+			@include media1000 {
+				.name {
+					// margin-top: 5%;
+					@include tipografia($Aclonica, 3rem, $azul, 600);
+				}
+				.titulo_masc {
+					p {
+						@include tipografia($Aclonica, 1.8rem, #373535, 500);
+					}
+				}	
+			}
+		}
 		.card {
+			height: 100%;
 			border: 1px solid #ccc;
 			box-shadow: 7px 7px 15px #592A08; 
+
+			.titulo_masc {
+				margin-left: 2rem;
+				@include media1200 {
+					margin-left: 0;
+					margin-top: 5%;
+				}
+				h2 {
+					margin-bottom: 1rem;
+					.mirar {
+						display: none;
+
+						&:hover {
+							.mirar {
+								display: block;
+							}
+						}
+					}
+					
+					&:hover {
+						.mirar {
+							display: block;
+						}
+					}
+				}
+			}
+
 			.card-img-top {
 				// max-width: 10%;
 				height: 100%;
@@ -31,11 +106,106 @@
 				// padding: 0 auto;
 				margin: auto;
 				padding: .2rem;
+
+				&:hover{
+					border: 10px solid #eee;
+					-webkit-transition: all 0.5s ease-out;
+					-moz-transition: all 0.5s ease;
+					-ms-transition: all 0.5s ease;
+				}
+			}
+			.icono {
+				width: auto;
+				text-align: center;
+				display: none;
+				@include media400 {
+					display: block;
+				}
+			}
+			.imgmascota {
+
+				&:hover{
+
+					border: 5px solid #eee;
+					-webkit-transition: all 0.5s ease-out;
+					-moz-transition: all 0.5s ease;
+					-ms-transition: all 0.5s ease;
+				}
 			}
 		}
 
 		.cboton {
 			margin-bottom: 2.5rem;
+			// margin-right: 2rem;
+			text-align: center;
+
+			button {
+
+				padding: 1rem 5rem;
+				border-radius: 10rem;
+				// background-color: red;
+				@include degragado-azul;
+				@include tipografia($Merienda, 2.2rem, white, 300);
+				font-weight: 600;
+				
+				&:hover {
+					@include degragado-rojo;
+				}
+
+			}
+		}
+
+		@include media1000 {
+
+			justify-content: space-between;
+
+			.vista {
+				flex: 0 0 calc( 50% - 0rem );
+			}
+		}
+
+		@include media1200 {
+			.card {
+				display: grid;
+			}
+			.carta_mascota {
+				padding-bottom: 0;
+			}
+			.datos_mascota {
+				grid-template-rows: 55% 45%;
+			}
+			.derecha {
+				grid-template-columns: 2fr 1fr;
+				.imagen_catalogo {
+					// grid-column: 2 / 3;
+					grid-row: 1 / 3;
+				}
+				.carta_mascota {
+					grid-row: 1 / 2;
+				}
+			}
+
+			.izquierda {
+				grid-template-columns: 1fr 2fr;
+				.imagen_catalogo {
+					grid-column: 2 / 3;
+					grid-row: 1 / 3;
+				}
+				.carta_mascota {
+					grid-row: 1 / 2;
+				}
+			}			
+			.cboton {
+				margin: 0 1rem;
+				// margin-bottom: 0;
+				button{
+					padding: 2% 0;
+					// padding-left: 0;
+					// padding-right: 0;
+					width: -webkit-fill-available;
+					border-radius: 1rem;
+				}
+			}
 		}
 	}
 

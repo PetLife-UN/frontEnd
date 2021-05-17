@@ -32,21 +32,25 @@
                         :class="mascotas(mascota.id)">
                         <img class="card-img-top imagen_catalogo" v-bind:src="mascota.links_foto" v-bind:alt="mascota.id">
                         <div class="card-body carta_mascota">
-                            <br>
-                            <div class = "row">
+                            
+                            <div class = "datos_mascota">
                                 <div class = "col-9 titulo_masc">
-                                    <h2>{{mascota.nombre}}</h2>
-                                    <br>
+                                    <h2 :class="nombre(mascota.nombre)">{{tamanio(mascota.nombre)}}
+                                        <span :class="completo(mascota.nombre.length)">
+                                            {{adicion(mascota.nombre)}}
+                                        </span>
+                                    </h2>
+
                                     <p>{{mascota.tipo}}  -  {{mascota.edad}} años</p>
-                                    <p> {{mascota.raza}}</p>
+                                    <p> {{mascota.raza}} </p>
                                 </div>
-                                <div class = "col-3">
-                                    <img :src="imagen(mascota.tipo)">
+                                <div class = "col-3 icono">
+                                    <img class="imgmascota" :src="imagen(mascota.tipo)">
                                 </div>
                             </div>
                             
                         </div>
-                        <div class="cboton texto_centrado">
+                        <div class="cboton">
                             <button class="btn btn-lg button_adopta" v-on:click="verInfo(mascota.id)">Ver mas</button>
 
                         </div>
@@ -67,6 +71,8 @@
 
 import navbar from "@/components/navbar"
 import axios from 'axios';
+
+var datos = '';
 export default {
     data(){
         return{
@@ -90,7 +96,7 @@ export default {
         mascotas(i) {
             if(i%2==0){
                 return {
-                    'izqierda':true
+                    'izquierda':true
                 }
             }
             else{
@@ -99,10 +105,7 @@ export default {
                 }
             }
         },
-        imagen(i){
-            // console.log('hola a todos');
-            console.log(typeof i);
-            // return 
+        imagen(i) {
             switch (i) {
                 case 'Canino':
                     return "/img/dog_96px.10c85eac.png"
@@ -120,6 +123,40 @@ export default {
                     return "data:image/png;base64,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"
                 default:
                     return "/img/other_96px.b6466e87.png"
+            }
+        },
+        nombre(name) {
+            if(name.length>9){
+                return "max-9 name"
+            }
+            else{
+                return "min-9 name"
+            }
+        },
+        tamanio(nombre) {
+            if(nombre.length < 18) {
+                return nombre
+            }
+            else{
+                datos = nombre.split(" ");
+                // console.log(datos);
+                return `${datos[0]} ${datos[1]}`
+            }
+        },
+        completo(e) {
+            if(e >= 18){
+                return 'mirar'
+            }
+            
+        },
+        adicion(nombre) {
+            if(nombre.length>18){
+                let aux = '';
+                for (var i = 2; i < datos.length; i++) {
+                    aux = aux + ' ' + datos[i];
+                }
+                return aux
+                
             }
         }
     },
@@ -140,7 +177,7 @@ export default {
 </script>
 <style>
     /*@import 'css/app.css';*/
-    .titulo_home{
+    /* .titulo_home{
         color:#2d6bbb;
-    }
+    } */
 </style>
