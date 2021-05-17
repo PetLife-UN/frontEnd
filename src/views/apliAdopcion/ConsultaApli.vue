@@ -138,7 +138,7 @@ export default {
         this.pagina = this.$route.params.numPage;
         axios
         //.get("http://localhost:8080/api/apply/getApplicationUserPage?page="+(this.pagina-1)+"&size="+(this.size) ,{
-        .get("http://localhost:8080/api/apply/getApplicationUserPage?page="+(this.pagina-1)+"&size="+(this.size) ,{
+        .get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?page="+(this.pagina-1)+"&size="+(this.size) ,{
             headers:{
                 'Authorization': `Bearer ${token}`
             }
