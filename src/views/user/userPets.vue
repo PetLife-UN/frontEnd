@@ -1,11 +1,13 @@
 <template lang="">
 	<navbar />
-	<div v-if="!this.errorBool">
+	<div v-if="!this.errorBool" class="espacio_trabajo">
+		<div class ="subtitulo">
+			<h1 class="titulo_home texto_centrado">
+				Mascotas Publicadas
+			</h1>
+		</div>
+
 		<div class="album py-5">
-			<div class="container ">
-				<p class=" h1 ">Mascotas Publicadas</p>
-			</div>
-			<br />
 			<div class="container">
 				<div class="row">
 					<petCardUser
