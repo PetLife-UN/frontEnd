@@ -106,3 +106,13 @@
     background: linear-gradient(45deg,  rgba(67,206,224,0.5) 0%,rgba(183,222,237,0.5) 40%,rgba(183,222,237,0.5) 62%,rgba(67,206,224,0.5) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8043cee0', endColorstr='#8043cee0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
+
+@mixin degragado-rojo {
+
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#a90329+0,ce0407+22,c40003+78,6d0019+100 */
+    background: #a90329; /* Old browsers */
+    background: -moz-linear-gradient(left,  #a90329 0%, #ce0407 22%, #c40003 78%, #6d0019 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #a90329 0%,#ce0407 22%,#c40003 78%,#6d0019 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #a90329 0%,#ce0407 22%,#c40003 78%,#6d0019 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=1 ); /* IE6-9 */
+}
