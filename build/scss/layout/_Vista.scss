@@ -9,7 +9,7 @@
 
 		.titulo_home {
 
-			@include tipografia($Merienda, 2.2rem, $azulado, 300);
+			@include tipografia($Merienda, 2.5rem, $azulado, 300);
 			padding: 2rem;
 			font-weight: 500;
 
@@ -18,7 +18,12 @@
 			}
 
 			@include media1000{
+				font-weight: 600;
 				font-size: 3.5rem;
+			}
+
+			@include media1200{
+				font-size: 3.8rem;
 			}
 		}
 	}
@@ -31,7 +36,7 @@
 			.datos_mascota {
 				display: grid;
 				grid-template-columns: 3fr 1fr;
-				@include media1200 {
+				@include media1400 {
 					grid-template-columns: 1fr;
 				}
 			}
@@ -72,7 +77,9 @@
 			height: 100%;
 			border: 1px solid #ccc;
 			box-shadow: 7px 7px 15px #592A08; 
-
+			.carta_mascota {
+				line-height: 15px;
+			}
 			.titulo_masc {
 				margin-left: 2rem;
 				@include media1200 {
@@ -100,6 +107,8 @@
 			}
 
 			.card-img-top {
+
+				object-fit: cover;
 				// max-width: 10%;
 				height: 100%;
 				position: inherit;
@@ -107,7 +116,7 @@
 				margin: auto;
 				padding: .2rem;
 				// border: 10px solid black;
-
+				max-width: fit-content;
 				&:hover{
 
 					border: 10px solid $azulado;
@@ -166,7 +175,7 @@
 			}
 		}
 
-		@include media1200 {
+		@include media1400 {
 			.card {
 				display: grid;
 			}
@@ -198,7 +207,7 @@
 				}
 			}			
 			.cboton {
-				margin: 0 1rem;
+				margin: auto 1rem 2rem;
 				// margin-bottom: 0;
 				button{
 					padding: 2% 0;
@@ -211,12 +220,37 @@
 		}
 	}
 
+	.paginas {
+		padding: auto;
+		// background-color: red;
+		text-align: -webkit-center;
+	}
+
 	.pagination {
+
 		margin: 2rem;
+		padding: 1rem 5%;
+		border-radius: 10rem;
+		// background-color:red;
+		@include degragado-azul;
+		width: min-content;
 		// background-color: white;
 		.buttons_pagination {
-			background-color: white;
+			@include degragado-azul;
+			// background-color: white;
 
-		}	
+		}
+		.page-link {
+			font-size: 2rem;
+			font-weight: 600;
+			&:hover {
+				background-color: white;
+				color: #525252;
+			}
+		}
+		.no-mirar {
+			display: none;	
+		}
+
 	}
 }

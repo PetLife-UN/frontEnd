@@ -30,6 +30,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 vista" v-for="mascota in Listamascota" :key = "mascota.idPet"> 
                     <div class="card mb-4 box-shadow" 
                         :class="mascotas(mascota.id)">
+                        
                         <img class="card-img-top imagen_catalogo" v-bind:src="mascota.links_foto" v-bind:alt="mascota.id">
                         <div class="card-body carta_mascota">
                             
@@ -92,7 +93,6 @@ export default {
         verInfo(idPet){
             this.$router.push("/Info_mascota/"+idPet)
         },
-
         mascotas(i) {
             if(i%2==0){
                 return {
@@ -161,14 +161,14 @@ export default {
         }
     },
     mounted:function(){
-        this.pagina = this.$route.params.idPage;
+        // this.pagina = this.$route.params.idPage;
         //console.log("Page actual ",this.pagina);
         //axios.get("http://localhost:8080/api/pet/consulta?page="+(0)+"&size="+this.size).then( data =>{
         axios.get("https://unpetlife.herokuapp.com/api/pet/consulta?page="+(0)+"&size="+this.size).then( data =>{
             this.Listamascota = data.data.content;
             this.totalPages = data.data.totalPages;
-            //console.log(data);
-            //console.log("total_pages:",data.data.totalPages);
+            // console.log(this.Listamascota);
+            // console.log("total_pages:",data.data.totalPages);
         })
         // console.log(mascota.id);
     }
@@ -176,8 +176,4 @@ export default {
 
 </script>
 <style>
-    /*@import 'css/app.css';*/
-    /* .titulo_home{
-        color:#2d6bbb;
-    } */
 </style>

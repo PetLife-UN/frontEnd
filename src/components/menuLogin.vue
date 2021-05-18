@@ -92,7 +92,7 @@ export default {
             let json ={
                 "username" : this.email
             };
-            alert('He olvidado mi contraseña');
+            // alert('He olvidado mi contraseña');
             // this.$router.push('/password');
             //axios.post(`http://localhost:8080/api/passrecover/sendLink/${this.email}`,json);
             axios.post(`https://unpetlife.herokuapp.com/api/passrecover/sendLink/${this.email}`,json);
