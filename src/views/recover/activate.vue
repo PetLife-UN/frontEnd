@@ -1,18 +1,11 @@
 <template lang="">
-	<navbar/>
-	<div class="activacion">
-		<h2 class="texto_centrado">
-            {{actual}}
-            El registro ha sido exitoso
-		</h2>
-        <p></p>
-	</div>
+	<home/>
 </template>
 
 <script>
 import navbar from "@/components/navbar"
 import axios from 'axios';
-
+import home from "@/views/home/Home"
 export default {
     name: "Activate",
     methods:{
@@ -24,7 +17,8 @@ export default {
         }
     },
     components:{
-        navbar
+    
+        home
     },
     mounted:function(){
         this.token = this.$route.params.token

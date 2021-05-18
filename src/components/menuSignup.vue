@@ -18,6 +18,7 @@
                                     placeholder="Nombre" 
                                     maxlength="50"
                                     v-model="name">
+                                
                                 <div class="error_msg" v-if="e_nombre" >Verifica el nombre ingresado</div>
                                 <br>
                             </div>
@@ -113,7 +114,7 @@
                 </div>
 
 
-                <div class="alert alert-danger espacio" role="alert" v-if="error">
+                <div class="alert alert-danger espacio" role="alert" v-if="error_registro">
                     {{error_msg}}
                 </div>
                 
@@ -312,6 +313,7 @@ export default {
                 }).catch((error) => {
                     this.error_registro = true
                     var msg_back = error.response.data.message
+                    console.log(msg_back)
                     let email = document.querySelector('#floatingEmail');
                     switch (msg_back){
                     case "Error: Email is already in use!":

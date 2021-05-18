@@ -7,7 +7,9 @@ export default createStore({
 		statusMessage: "",
 		token: localStorage.getItem("token") || "",
 		user: {},
-		error: false
+		error: false,
+		errorRecoverPassword: false,
+		successRecoverPassword: false,
 	},
 	mutations: {
 		login_request(state) {
@@ -17,6 +19,8 @@ export default createStore({
 			state.token = token;
 			state.user = email;
 			state.statusMessage = "success";
+			state.error = false;
+			
 		},
 		not_registered_user(state) {
 			state.statusMessage =
@@ -34,10 +38,23 @@ export default createStore({
 		},
 		default_error(state, error) {
 			state.statusMessage = error;
+			state.error = true;
 		},
 		logout(state) {
 			state.status = "";
 			state.token = "";
+		},
+		email_sent_recover(state){
+			state.successRecoverPassword = true;
+			state.errorRecoverPassword = false;
+		},
+		error_sent_recover(state){
+			state.errorRecoverPassword = true;
+			state.successRecoverPassword = false;
+		},
+		goback_recover(state){
+			state.successRecoverPassword = false;
+			state.errorRecoverPassword = false;
 		},
 	},
 	actions: {
@@ -47,6 +64,7 @@ export default createStore({
 				commit("login_request");
 				axios({
 					url: "https://unpetlife.herokuapp.com/api/auth/login",
+					//url: "http://localhost:8080/api/auth/login",
 					data: json,
 					method: "POST",
 				})
@@ -66,7 +84,7 @@ export default createStore({
 						case "Usuario no registrado":
 							commit("not_registered_user");
 							break;
-						case "Error: Unauthorized Bad Credentials":
+						case "Error: Unauthorized Bad credentials":
 							commit("credentials_error");
 							break;
 						case "Usuario no activado":
@@ -89,10 +107,41 @@ export default createStore({
 				resolve();
 			});
 		},
+		//Recuperar contraseña
+		recoverPassword({ commit }, json){
+			//console.log(json)
+			return new Promise((resolve, reject)=>{
+				axios({
+					url: "https://unpetlife.herokuapp.com/api/passrecover/sendLink/${this.email}",
+					//url: "http://localhost:8080/api/passrecover/sendLink/"+json.username,
+					data: json,
+					method: "POST",
+				})
+				.then((response)=>{
+					commit("email_sent_recover");
+					console.log("Correo enviado");
+					resolve(response);
+				})
+				.catch((error)=>{
+					commit("error_sent_recover");
+					reject(error);
+				})
+			})
+		},
+		goBackRecover({ commit }) {
+			return new Promise((resolve, reject) => {
+				commit("goback_recover");
+				resolve();
+			});
+		},
+
 	},
 	getters: {
         isLoggedIn: state => !!state.token,
         authStatus: state => state.statusMessage,
-        errorBoolean: state => state.error
+        errorBoolean: state => state.error,
+		recoverStatus: state => state.messageRecover,
+		errorSentRecover: state => state.errorRecoverPassword,
+		successSentRecover: state => state.successRecoverPassword,
     },
 });

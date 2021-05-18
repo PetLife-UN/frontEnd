@@ -26,15 +26,7 @@
                     </div>
                 </div>
                 <br>
-                <div class="olvidar">
-                    <button
-                        @click="OlvidarC"
-                        class="boton3"
-                        type="submit"
-                        data-paso="4">
-                        Has olvidado tu contraseña
-                    </button>
-                </div>
+                
 
                 <div class="alert alert-danger" role="alert" v-if="this.errorB && !this.loggedIn">
                     {{ errorMsg }}
@@ -47,6 +39,15 @@
                         type="submit"
                         data-paso="1">
                         Acceder
+                    </button>
+                </div>
+                <div class="olvidar">
+                    <button
+                        @click="TogglePopup()"
+                        class="boton3"
+                        type="submit"
+                        data-paso="4">
+                        ¿Has olvidado tu contraseña?
                     </button>
                 </div>
             </div>
@@ -62,6 +63,9 @@ import { computed } from 'vue'
 
 export default {
     name: "menuLogin",
+    props: {
+        TogglePopup:Function,
+    },
     setup(){
         const store = useStore()
         const errorMsg = computed(() => store.getters.authStatus)
@@ -88,23 +92,13 @@ export default {
         }
     },
     methods:{
-        OlvidarC(){
-            let json ={
-                "username" : this.email
-            };
-            alert('He olvidado mi contraseña');
-            // this.$router.push('/password');
-            //axios.post(`http://localhost:8080/api/passrecover/sendLink/${this.email}`,json);
-            axios.post(`https://unpetlife.herokuapp.com/api/passrecover/sendLink/${this.email}`,json);
-        },
         IngresaUsuario(){
-           let json ={
+            let json ={
                 "username" : this.email,
                 "password" : this.password
             };
             this.login(json)
         }
-        
     }
 }
 

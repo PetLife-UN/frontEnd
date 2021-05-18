@@ -5,7 +5,7 @@
 
         <div class ="subtitulo">
             <h1 class="titulo_home texto_centrado">
-                Adopcion de mascotas
+                Adopción de mascotas
             </h1>
         </div>
         
