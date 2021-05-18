@@ -809,6 +809,7 @@ p {
   position: inherit;
   margin: auto;
   padding: .2rem;
+  max-width: fit-content;
 }
 
 .espacio_trabajo .tres_mascotas .card .card-img-top:hover {

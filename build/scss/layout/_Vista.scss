@@ -107,6 +107,7 @@
 			}
 
 			.card-img-top {
+
 				object-fit: cover;
 				// max-width: 10%;
 				height: 100%;
@@ -115,7 +116,7 @@
 				margin: auto;
 				padding: .2rem;
 				// border: 10px solid black;
-
+				max-width: fit-content;
 				&:hover{
 
 					border: 10px solid $azulado;
