@@ -92,7 +92,10 @@ const routes = [
   {
     path: '/profile/consultaapli/:numPage',
     name: 'ConsultaApli',
-    component: ConsultaApli
+    component: ConsultaApli,
+    meta: {
+      requiresAuth: true
+    }
   },
   
 ]
