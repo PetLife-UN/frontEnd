@@ -146,8 +146,8 @@ export default {
           .then( data =>{
             this.ListaApli = data.data.content;
             this.totalPages = data.data.totalPages;
-            console.log(this.ListaApli);
-            console.log(this.totalPages)
+            //console.log(this.ListaApli);
+            //console.log(this.totalPages)
         })
     },
 }
