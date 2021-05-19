@@ -14,7 +14,6 @@
                 src="../../assets/gif/husky_1.gif" 
                 alt="perro saludo">
         </div>
-
     </div>
 </template>
 <script>
@@ -29,7 +28,6 @@ export default {
     data(){
         return{
             //Menu recuperacion contraseña
-            
         }
     },
     setup(){

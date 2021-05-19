@@ -31,6 +31,9 @@
                 <div class="alert alert-danger" role="alert" v-if="this.errorB && !this.loggedIn">
                     {{ errorMsg }}
                 </div>
+                <div class="alert alert-success espacio" role="alert" v-if="passChanged">
+                    Contraseña actualizada correctamente!
+                </div>
 
                 <div class="texto_derecha">
                     <button 
@@ -71,6 +74,7 @@ export default {
         const errorMsg = computed(() => store.getters.authStatus)
         const errorB = computed(() => store.getters.errorBoolean)
         const loggedIn = computed(() => store.getters.isLoggedIn)
+        const passChanged = computed(() => store.getters.successChangedPass)
 
         function login(data){
             store.dispatch("login", data)
@@ -80,7 +84,7 @@ export default {
             .catch(err => console.log(err))
         }
 
-        return {errorMsg, errorB, loggedIn, login}
+        return {errorMsg, errorB, loggedIn, login, passChanged}
 
         
     },

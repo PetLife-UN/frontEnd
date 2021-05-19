@@ -8,12 +8,13 @@ export default createStore({
 		token: localStorage.getItem("token") || "",
 		user: {},
 		error: false,
-		errorRecoverPassword: false,
 		successRecoverPassword: false,
+		passChanged: false
 	},
 	mutations: {
 		login_request(state) {
 			state.statusMessage = "performing login";
+			state.passChanged = false;
 		},
 		login_success(state, token, email) {
 			state.token = token;
@@ -46,16 +47,13 @@ export default createStore({
 		},
 		email_sent_recover(state){
 			state.successRecoverPassword = true;
-			state.errorRecoverPassword = false;
-		},
-		error_sent_recover(state){
-			state.errorRecoverPassword = true;
-			state.successRecoverPassword = false;
 		},
 		goback_recover(state){
 			state.successRecoverPassword = false;
-			state.errorRecoverPassword = false;
 		},
+		change_password(state){
+			state.passChanged = true;
+		}
 	},
 	actions: {
 		login({ commit }, json) {
@@ -63,8 +61,8 @@ export default createStore({
 			return new Promise((resolve, reject) => {
 				commit("login_request");
 				axios({
-					url: "https://unpetlife.herokuapp.com/api/auth/login",
 					//url: "http://localhost:8080/api/auth/login",
+					url: "https://unpetlife.herokuapp.com/api/auth/login",
 					data: json,
 					method: "POST",
 				})
@@ -112,8 +110,9 @@ export default createStore({
 			//console.log(json)
 			return new Promise((resolve, reject)=>{
 				axios({
-					url: "https://unpetlife.herokuapp.com/api/passrecover/sendLink/${this.email}",
 					//url: "http://localhost:8080/api/passrecover/sendLink/"+json.username,
+					url: "https://unpetlife.herokuapp.com/api/passrecover/sendLink/"+json.username,
+					
 					data: json,
 					method: "POST",
 				})
@@ -123,7 +122,6 @@ export default createStore({
 					resolve(response);
 				})
 				.catch((error)=>{
-					commit("error_sent_recover");
 					reject(error);
 				})
 			})
@@ -134,6 +132,29 @@ export default createStore({
 				resolve();
 			});
 		},
+		//Cambiar contraseña
+		changePassword({ commit }, json){
+			//console.log(json)
+			return new Promise((resolve, reject)=>{
+
+
+				axios({
+					//url: "http://localhost:8080/api/passrecover/changePassword",
+					url: "https://unpetlife.herokuapp.com/api/passrecover/changePassword",
+					data: json,
+					method: "PUT",
+				})
+				.then((response)=>{
+					commit("change_password");
+					console.log("Contraseña cambiada");
+					resolve(response);
+				})
+				.catch((error)=>{
+					reject(error);
+				})
+
+			})
+		},
 
 	},
 	getters: {
@@ -141,7 +162,7 @@ export default createStore({
         authStatus: state => state.statusMessage,
         errorBoolean: state => state.error,
 		recoverStatus: state => state.messageRecover,
-		errorSentRecover: state => state.errorRecoverPassword,
 		successSentRecover: state => state.successRecoverPassword,
+		successChangedPass: state => state.passChanged,
     },
 });

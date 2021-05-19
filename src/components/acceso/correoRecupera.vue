@@ -21,8 +21,9 @@
                 Revisa tu correo...<br>
                 Hemos enviado un link para que recuperes tu contraseña.
             </div>
-            <div class="alert alert-danger" role="alert" v-if="errorSentRecover">
-                Error en la solicitud, revisa el correo ingresado o intenta más tarde.
+            <div class="alert alert-danger" role="alert" v-if="e_sent_recover">
+                Error en la solicitud... <br>
+                Revisa el correo ingresado o intenta más tarde.
             </div>
             <div class = "container">
                 <div class = "row justify-content-end">
@@ -68,15 +69,14 @@ export default {
     },
     setup(){
         const store = useStore()
-        const errorSentRecover = computed(() => store.getters.errorSentRecover)
         const successSentRecover = computed(() => store.getters.successSentRecover)
         function recoverPassword(data){
             store.dispatch("recoverPassword", data)
             .then(() => {
-                
+                this.e_sent_recover = false;
             })
             .catch(err => {
-                
+                this.e_sent_recover = true;
             })
         }
         function closeBoxMsg(){
@@ -85,7 +85,6 @@ export default {
         return{
             recoverPassword,
             closeBoxMsg,
-            errorSentRecover,
             successSentRecover,
 
         }        
@@ -95,7 +94,9 @@ export default {
     },
     data(){
         return{
-            email:""
+            email:"",
+            //Variables error post
+            e_sent_recover:false,
         }
     },
     methods:{

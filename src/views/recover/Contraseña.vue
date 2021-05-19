@@ -6,7 +6,7 @@
             <div class="informacion pingreso">
 				<div class="recuperar">
 					<h2 class="texto_centrado sub"> Recuperación de contraseña </h2>
-					<p class="texto_cambio_contra">Ingresa tu correo electrónico, enviaremos un email para que puedas cambiar tu contraseña. </p>
+					<p class="texto_cambio_contra">Mantén tu cuenta a salvo utilizando contraseñas seguras. Utilizar símbolos, letras y números pueden proteger tu cuenta.</p>
 					<br>
 					<div class="contraseña texto_Izquierda">
 						<p class="texto_izquierda" >Nueva Contraseña</p>
@@ -19,6 +19,7 @@
 							placeholder="Password" 
 							id="pass" 
 							v-model="Contraseña">
+						<div class="error_msg_change_password" v-if="e_password" >Contraseña muy corta  </div>
 					</div>
 					<div class="contraseña">
 						<p class="texto_izquierda" >Repetir Contraseña</p>
@@ -31,7 +32,14 @@
 							placeholder="Password" 
 							id="repit" 
 							v-model="Repetir">
+						<div class="error_msg_change_password"  v-if="e_repetir" >Las contraseñas no son iguales</div>
 					</div>
+					<br>
+					<br>
+					<div class="alert alert-danger" role="alert" v-if="e_put_password">
+						Error en la solicitud, intenta más tarde.
+					</div>
+
 
 					<div class="boton texto_derecha">
 						<button 
@@ -56,39 +64,63 @@
 
 import navbar from "@/components/navbar"
 import axios from 'axios';
-
-const actual = window.location.pathname.split("/")[2];
+import { useStore } from 'vuex'
 
 export default {
     name: "Password",
+	setup(){
+        const store = useStore()
+        function changePassword(data){
+            store.dispatch("changePassword", data)
+            .then(() => {
+                this.$router.push('/login');
+            })
+            .catch(err => {
+                this.e_put_password = true;
+            })
+        }
+        return{
+            changePassword,
+        }        
+    },
     data(){
         return{
-            // direccion: actual,
-            Boton: "Enviar" 
+			//Token de recuperacion
+			token_r:null,
+            // errores_verificacion contraseñas
+            Boton: "Enviar",
+			e_password:false,
+			e_repetir:false,
+			//errores con axios
+			e_put_password:false,
         }
     },
     components:{
         navbar
     },
+	mounted(){
+		this.token_r = this.$route.params.id;
+		var str = (this.token_r.split("&"))[0];
+		this.token_r = str;
+	},
     methods:{
 		RecuperaContraseña() {
 			if (this.paso()) {
 				const json ={
-					"token" : actual,
+					"token" : this.token_r,
 					"password" : this.Contraseña
 				}
-				console.log(actual)
-				axios.put("http://localhost:8080/api/passrecover/changePassword", json).then(data =>{
-				//axios.put("https://unpetlife.herokuapp.com/api/passrecover/changePassword", json).then(data =>{
-					console.log(data)
-				})
+				console.log(json)
+				this.changePassword(json);
 			}
 		},
 		errorcontraseña(){
-			this.limpiar('#pass')
+			this.limpiar('#pass');
+			this.e_password = false;
 		},
 		errorRepetir(){
-			this.limpiar('#repit')
+			this.limpiar('#repit');
+			this.e_repetir = false;
 		},
 		paso(){
 			const contra = document.querySelector('#pass');
@@ -99,9 +131,11 @@ export default {
 			else {
 				if (contra.value.length < 8) {
 					contra.classList.add('error');
+					this.e_password = true;
 				}
 				else if (contra.value != repet.value) {
 					repet.classList.add('error');
+					this.e_repetir = true;
 				}
 				return false;
 			}
@@ -118,7 +152,7 @@ export default {
 <style>
 	.texto_cambio_contra{
 		size:20px;
-        color:white;
+        color:rgb(36, 36, 36);
         font-weight: 400;
         text-align:left;
 	}
@@ -128,5 +162,13 @@ export default {
 		font-family: "Gloria Hallelujah", cursive;
 		font-weight: 600;
 		margin: 2rem 1rem;
+	}
+	.error_msg_change_password{
+		
+        bottom: -5px;
+        left: 15px;
+        color: rgb(192, 59, 59);
+        font-size: 17px;
+        font-weight: 500;
 	}
 </style>
