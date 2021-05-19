@@ -44,10 +44,13 @@
             </div>
         </div>
        
-        <nav >
+        <nav class="paginas">
             <ul class="pagination justify-content-center">
                 
-                <li class=" buttons_pagination" v-on:click="gobackPage()">
+
+
+                <li class=" buttons_pagination"
+                    v-on:click="gobackPage()">
                     <a class="page-link page-link-back" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" 
                             class="icon icon-tabler icon-tabler-arrow-big-left" 
@@ -64,18 +67,33 @@
                         </svg>
                     </a>
                 </li>
-                
-                <div class ="buttons_pagination " v-for="page in parseInt(totalPages)" :key="page" v-on:click="gotoPage(page)"> 
                     
-                    <li class="page-item">
-                        <a class="page-link page-link-numbers" href="#">
-                            {{page}}
-                        </a>
-                    </li>
-                </div>
+                <li class="page-item buttons_pagination" 
+                    v-for="page in parseInt(totalPages)" :key="page" v-on:click="gotoPage(page)">
+                    
+                    <a class="page-link page-link-numbers" 
+                        href="#">
+                        {{page}}
+                    </a>
+                </li>
+                
                 
                 <li class="buttons_pagination" v-on:click="gonextPage()">
-                    <a class="page-link page-link-next" href="#">&#62;</a>
+                    <a class="page-link page-link-next" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                            class="icon icon-tabler icon-tabler-arrow-big-right" 
+                            width="24" 
+                            height="24" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="2" 
+                            stroke="currentColor" 
+                            fill="none" 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z"></path>
+                        </svg>
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -87,13 +105,14 @@
 import navbar from "@/components/navbar"
 import axios from 'axios';
 
+const actual = window.location.pathname.split("/");
 var datos = '';
 export default {
     data(){
         return{
             Listamascota:null,
             pagina:null,
-            size:4,
+            size:10,
             totalPages:0
         }
     },
@@ -191,8 +210,6 @@ export default {
                 
             }
         }
-
-
     },
     mounted:function(){
         this.pagina = this.$route.params.idPage;
@@ -209,47 +226,5 @@ export default {
 
 </script>
 <style >
-    .thin {
-        font-weight: 200;
-    }
-    .button_adopta{
-        background-color: #64B8FF;
-        font-size: 18px;
-    }
-    .carta_mascota{
-        line-height: 15px;
-    }
-    .titulo_adopcion{
-        color: #4B8BDD;
-        font-weight: bold;
-    }
-    .imagen_catalogo{
-        object-fit: cover;
-        max-width: 100%;
-        height: 250px;
 
-    }
-    .titulo_masc h2{ 
-        color:#437ecc;
-    }
-
-
-    .buttons_pagination .page-link-back{
-        border-radius: 5px 0px 0px 5px;
-    }
-    .buttons_pagination .page-link-next{
-        border-radius: 0px 5px 5px 0px;
-    }
-    .buttons_pagination .page-link{
-        width:35px;
-        text-align: center;
-        font-size: 15px;
-        align-content: center;
-        background-color: #525252;
-        color:#FFFFFF;
-        font-weight: 500;
-    }
-    .buttons_pagination .page-link:hover{
-        background-color: #363636;
-    }
 </style>

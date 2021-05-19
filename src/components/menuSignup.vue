@@ -291,9 +291,8 @@ export default {
                     "cellPhoneNumber":this.cellPhoneNumber,
                     "role": [""]
                 };
-
-                axios.post("https://unpetlife.herokuapp.com/api/auth/register",json)
                 // axios.post("http://localhost:8080/api/auth/register",json)
+                axios.post("https://unpetlife.herokuapp.com/api/auth/register",json)
                 .then(data => {
                     
                     if(data.status == 200){

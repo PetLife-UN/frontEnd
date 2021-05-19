@@ -141,10 +141,11 @@
         <div class="col-sm-9">
           <select class="form-select" id="size" v-model="size">
             <option selected disabled hidden value="">Ingrese el tamaño de la mascota * </option>
-            <option value="xs">Pequeño (de 5 a 100 klg)</option>
-            <option value="sm">Mediano-Pequeño</option>
-            <option value="ml">Mediano-grande</option>
-            <option value="lg">Grande</option>
+            <option value="Muy pequeño (menos de 5 Kg)">Muy pequeño (menos de 5 Kg)</option>
+            <option value="Pequeño (de 6 a 14 Kg)">Pequeño (de 6 a 14 Kg)</option>
+            <option value="Mediano (de 15 a 25 Kg)">Mediano (de 15 a 25 Kg)</option>
+            <option value="Grande (de 26 a 50 kg)">Grande (de 26 a 50 kg)</option>
+            <option value="Muy Grande (mayor a 50 kg)">Muy Grande (mayor a 50 kg)</option>
           </select>
         </div>
       </div>
@@ -325,8 +326,8 @@ export default {
       console.log(json);
       const token = localStorage.token;
       axios
-        .post("http://localhost:8080/api/publish/new-publish", json, {
-        //.post("https://unpetlife.herokuapp.com/api/publish/new-publish", json, {
+        //.post("http://localhost:8080/api/publish/new-publish", json, {
+        .post("https://unpetlife.herokuapp.com/api/publish/new-publish", json, {
           headers: {
             'Authorization': `Bearer ${token}`
           },
