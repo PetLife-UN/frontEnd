@@ -69,7 +69,10 @@ export default createStore({
 				.then((response) => {
 					const token = response.data.token;
 					const email = response.data.email;
+					const hoy = new Date();
+					const fechahoy =hoy.getDate()+'/'+(hoy.getMonth()+1)+"/"+ hoy.getFullYear();
 					localStorage.setItem("token", token);
+					localStorage.setItem("horaultima", fechahoy);
 					axios.defaults.headers.common["Authorization"] = 'Bearer ' +token;
 					commit("login_success", token, email);
                     console.log("sucess")
@@ -101,6 +104,7 @@ export default createStore({
 			return new Promise((resolve, reject) => {
 				commit("logout");
 				localStorage.removeItem("token");
+				localStorage.removeItem("horaultima")
 				delete axios.defaults.headers.common["Authorization"];
 				resolve();
 			});
