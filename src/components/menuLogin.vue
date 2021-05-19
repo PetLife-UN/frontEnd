@@ -107,3 +107,8 @@ export default {
 }
 
 </script>
+<style>
+    .olvidar{
+        font-size: 20px;
+    }
+</style>
