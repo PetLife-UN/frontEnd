@@ -7,16 +7,21 @@ export default createStore({
 		statusMessage: "",
 		token: localStorage.getItem("token") || "",
 		user: {},
-		error: false
+		error: false,
+		successRecoverPassword: false,
+		passChanged: false
 	},
 	mutations: {
 		login_request(state) {
 			state.statusMessage = "performing login";
+			state.passChanged = false;
 		},
 		login_success(state, token, email) {
 			state.token = token;
 			state.user = email;
 			state.statusMessage = "success";
+			state.error = false;
+			
 		},
 		not_registered_user(state) {
 			state.statusMessage =
@@ -34,11 +39,21 @@ export default createStore({
 		},
 		default_error(state, error) {
 			state.statusMessage = error;
+			state.error = true;
 		},
 		logout(state) {
 			state.status = "";
 			state.token = "";
 		},
+		email_sent_recover(state){
+			state.successRecoverPassword = true;
+		},
+		goback_recover(state){
+			state.successRecoverPassword = false;
+		},
+		change_password(state){
+			state.passChanged = true;
+		}
 	},
 	actions: {
 		login({ commit }, json) {
@@ -46,6 +61,7 @@ export default createStore({
 			return new Promise((resolve, reject) => {
 				commit("login_request");
 				axios({
+					//url: "http://localhost:8080/api/auth/login",
 					url: "https://unpetlife.herokuapp.com/api/auth/login",
 					data: json,
 					method: "POST",
@@ -53,7 +69,10 @@ export default createStore({
 				.then((response) => {
 					const token = response.data.token;
 					const email = response.data.email;
+					const hoy = new Date();
+					const fechahoy =hoy.getDate()+'/'+(hoy.getMonth()+1)+"/"+ hoy.getFullYear();
 					localStorage.setItem("token", token);
+					localStorage.setItem("horaultima", fechahoy);
 					axios.defaults.headers.common["Authorization"] = 'Bearer ' +token;
 					commit("login_success", token, email);
                     console.log("sucess")
@@ -66,7 +85,7 @@ export default createStore({
 						case "Usuario no registrado":
 							commit("not_registered_user");
 							break;
-						case "Error: Unauthorized Bad Credentials":
+						case "Error: Unauthorized Bad credentials":
 							commit("credentials_error");
 							break;
 						case "Usuario no activado":
@@ -85,14 +104,69 @@ export default createStore({
 			return new Promise((resolve, reject) => {
 				commit("logout");
 				localStorage.removeItem("token");
+				localStorage.removeItem("horaultima")
 				delete axios.defaults.headers.common["Authorization"];
 				resolve();
 			});
 		},
+		//Recuperar contraseña
+		recoverPassword({ commit }, json){
+			//console.log(json)
+			return new Promise((resolve, reject)=>{
+				axios({
+					//url: "http://localhost:8080/api/passrecover/sendLink/"+json.username,
+					url: "https://unpetlife.herokuapp.com/api/passrecover/sendLink/"+json.username,
+					
+					data: json,
+					method: "POST",
+				})
+				.then((response)=>{
+					commit("email_sent_recover");
+					console.log("Correo enviado");
+					resolve(response);
+				})
+				.catch((error)=>{
+					reject(error);
+				})
+			})
+		},
+		goBackRecover({ commit }) {
+			return new Promise((resolve, reject) => {
+				commit("goback_recover");
+				resolve();
+			});
+		},
+		//Cambiar contraseña
+		changePassword({ commit }, json){
+			//console.log(json)
+			return new Promise((resolve, reject)=>{
+
+
+				axios({
+					//url: "http://localhost:8080/api/passrecover/changePassword",
+					url: "https://unpetlife.herokuapp.com/api/passrecover/changePassword",
+					data: json,
+					method: "PUT",
+				})
+				.then((response)=>{
+					commit("change_password");
+					console.log("Contraseña cambiada");
+					resolve(response);
+				})
+				.catch((error)=>{
+					reject(error);
+				})
+
+			})
+		},
+
 	},
 	getters: {
         isLoggedIn: state => !!state.token,
         authStatus: state => state.statusMessage,
-        errorBoolean: state => state.error
+        errorBoolean: state => state.error,
+		recoverStatus: state => state.messageRecover,
+		successSentRecover: state => state.successRecoverPassword,
+		successChangedPass: state => state.passChanged,
     },
 });

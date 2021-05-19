@@ -28,13 +28,18 @@
       
       <div class="celular datos">
         <h3>Celular<span>:</span></h3>
-        <h2>#{{Cell(json)}}</h2>
+        <h2>{{Cell(json)}}</h2>
         <hr>
       </div>
 
       <div class="celular datos">
         <h3>Role<span>:</span></h3>
         <h2>{{Rol(json)}}</h2>
+      </div>
+
+      <div class="celular datos">
+        <h3>Ultima conexion<span>:</span></h3>
+        <h2>{{UltimaCon(json)}}</h2>
       </div>
     </div>
 
@@ -47,7 +52,6 @@
         <button type="button" class ="btn" v-on:click="goUserPets">Ver mis publicaciones</button>
       </div>  
     </div>
-
   </div>
 </template>
 
@@ -95,7 +99,13 @@ export default {
       },
       Rol(js) {
         if(js != null){
+          
           return `${js.roles}`;
+        }
+      },
+      UltimaCon(js){
+        if(js != null){
+          return localStorage.horaultima;
         }
       }
   },
@@ -112,7 +122,7 @@ export default {
         if(data.data != null) {
           this.json = data.data;
         }
-        console.log(this.json);
+        // console.log(this.json);
       })
       .catch((error) => {
         if (error.response.status === 404) {

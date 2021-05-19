@@ -27,12 +27,14 @@
             </div>
 
             <div class="row tres_mascotas">
+
                 <div class="col-lg-4 col-md-6 col-sm-12 vista" v-for="mascota in Listamascota" :key = "mascota.idPet"> 
                     <div class="card mb-4 box-shadow" 
                         :class="mascotas(mascota.id)">
                         
                         <img class="card-img-top imagen_catalogo" v-bind:src="mascota.links_foto" v-bind:alt="mascota.id">
-                        <div class="card-body carta_mascota">
+
+                        <div class="card-body carta_mascota datos_mascota">
                             
                             <div class = "datos_mascota">
                                 <div class = "col-9 titulo_masc">
@@ -74,6 +76,7 @@ import navbar from "@/components/navbar"
 import axios from 'axios';
 
 var datos = '';
+var valor = 1;
 export default {
     data(){
         return{
@@ -94,12 +97,14 @@ export default {
             this.$router.push("/Info_mascota/"+idPet)
         },
         mascotas(i) {
-            if(i%2==0){
+            if(valor%2==0){
+                valor++;
                 return {
                     'izquierda':true
                 }
             }
             else{
+                valor++;
                 return {
                     'derecha':true
                 }

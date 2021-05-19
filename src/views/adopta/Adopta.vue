@@ -5,37 +5,38 @@
 
         <div class ="subtitulo">
             <h1 class="titulo_home texto_centrado">
-                Adopcion de mascotas
+                Adopción de mascotas
             </h1>
         </div>
         
         <div class="row tres_mascotas">
             <div class="col-lg-4 col-md-6 col-sm-12 vista" v-for="mascota in Listamascota" :key = "mascota.idPet">
+
                 <div class="card mb-4 box-shadow" 
                     :class="mascotas(mascota.id)">
 
                     <img class="card-img-top imagen_catalogo" v-bind:src="mascota.links_foto" v-bind:alt="mascota.id">
 
-                    <div class="card-body carta_mascota">
-                        
-                        <div class = "datos_mascota">
-                            <div class = "col-9 titulo_masc">
+                    <div class="card-body carta_mascota datos_mascota">
 
-                                <h2 :class="nombre(mascota.nombre)">{{tamanio(mascota.nombre)}}
-                                    <span :class="completo(mascota.nombre.length)">
-                                        {{adicion(mascota.nombre)}}
-                                    </span>
-                                </h2>
+                        <div class = "col-9 titulo_masc">
+                            <h2 :class="nombre(mascota.nombre)">{{tamanio(mascota.nombre)}}
+                                <span :class="completo(mascota.nombre.length)">
+                                    {{adicion(mascota.nombre)}}
+                                </span>
+                            </h2>
 
-                                <p>{{mascota.tipo}}  -  {{mascota.edad}} años</p>
-                                <p> {{mascota.raza}} </p>
+                            <p>{{mascota.tipo}}  -  {{mascota.edad}} años</p>
+                            <p> {{mascota.raza}} </p>
 
-                            </div>
-                            <div class = "col-3 icono">
-                               <img class="imgmascota" :src="imagen(mascota.tipo)">
-                            </div>
                         </div>
+
+                        <div class = "col-3 icono">
+                           <img class="imgmascota" :src="imagen(mascota.tipo)">
+                        </div>
+
                     </div>
+
                     <div class="cboton">
                         <button class="btn btn-lg button_adopta" v-on:click="verInfo(mascota.id)">Ver mas</button>
                     </div>
@@ -47,8 +48,6 @@
         <nav class="paginas">
             <ul class="pagination justify-content-center">
                 
-
-
                 <li class=" buttons_pagination"
                     v-on:click="gobackPage()">
                     <a class="page-link page-link-back" href="#">
@@ -107,6 +106,7 @@ import axios from 'axios';
 
 const actual = window.location.pathname.split("/");
 var datos = '';
+var valor = 1;
 export default {
     data(){
         return{
@@ -145,15 +145,17 @@ export default {
             this.$router.push("/adopta/"+this.pagina)
         },
         mascotas(i) {
-            if(i%2==0){
+            if(valor%2==0){
+                valor++;
                 return {
                     'izquierda':true
                 }
             }
             else{
+                valor++;
                 return {
                     'derecha':true
-                }
+                } 
             }
         },
         imagen(i) {
