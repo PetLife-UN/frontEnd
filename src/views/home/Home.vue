@@ -27,26 +27,33 @@
             </div>
 
             <div class="row tres_mascotas">
+
                 <div class="col-lg-4 col-md-6 col-sm-12 vista" v-for="mascota in Listamascota" :key = "mascota.idPet"> 
                     <div class="card mb-4 box-shadow" 
                         :class="mascotas(mascota.id)">
+                        
                         <img class="card-img-top imagen_catalogo" v-bind:src="mascota.links_foto" v-bind:alt="mascota.id">
-                        <div class="card-body carta_mascota">
-                            <br>
-                            <div class = "row">
+
+                        <div class="card-body carta_mascota datos_mascota">
+                            
+                            <div class = "datos_mascota">
                                 <div class = "col-9 titulo_masc">
-                                    <h2>{{mascota.nombre}}</h2>
-                                    <br>
+                                    <h2 :class="nombre(mascota.nombre)">{{tamanio(mascota.nombre)}}
+                                        <span :class="completo(mascota.nombre.length)">
+                                            {{adicion(mascota.nombre)}}
+                                        </span>
+                                    </h2>
+
                                     <p>{{mascota.tipo}}  -  {{mascota.edad}} años</p>
-                                    <p> {{mascota.raza}}</p>
+                                    <p> {{mascota.raza}} </p>
                                 </div>
-                                <div class = "col-3">
-                                    <img :src="imagen(mascota.tipo)">
+                                <div class = "col-3 icono">
+                                    <img class="imgmascota" :src="imagen(mascota.tipo)">
                                 </div>
                             </div>
                             
                         </div>
-                        <div class="cboton texto_centrado">
+                        <div class="cboton">
                             <button class="btn btn-lg button_adopta" v-on:click="verInfo(mascota.id)">Ver mas</button>
 
                         </div>
@@ -67,6 +74,9 @@
 
 import navbar from "@/components/navbar"
 import axios from 'axios';
+
+var datos = '';
+var valor = 1;
 export default {
     data(){
         return{
@@ -86,23 +96,21 @@ export default {
         verInfo(idPet){
             this.$router.push("/Info_mascota/"+idPet)
         },
-
         mascotas(i) {
-            if(i%2==0){
+            if(valor%2==0){
+                valor++;
                 return {
-                    'izqierda':true
+                    'izquierda':true
                 }
             }
             else{
+                valor++;
                 return {
                     'derecha':true
                 }
             }
         },
-        imagen(i){
-            // console.log('hola a todos');
-            console.log(typeof i);
-            // return 
+        imagen(i) {
             switch (i) {
                 case 'Canino':
                     return "/img/dog_96px.10c85eac.png"
@@ -121,17 +129,51 @@ export default {
                 default:
                     return "/img/other_96px.b6466e87.png"
             }
+        },
+        nombre(name) {
+            if(name.length>9){
+                return "max-9 name"
+            }
+            else{
+                return "min-9 name"
+            }
+        },
+        tamanio(nombre) {
+            if(nombre.length < 18) {
+                return nombre
+            }
+            else{
+                datos = nombre.split(" ");
+                // console.log(datos);
+                return `${datos[0]} ${datos[1]}`
+            }
+        },
+        completo(e) {
+            if(e >= 18){
+                return 'mirar'
+            }
+            
+        },
+        adicion(nombre) {
+            if(nombre.length>18){
+                let aux = '';
+                for (var i = 2; i < datos.length; i++) {
+                    aux = aux + ' ' + datos[i];
+                }
+                return aux
+                
+            }
         }
     },
     mounted:function(){
-        this.pagina = this.$route.params.idPage;
+        // this.pagina = this.$route.params.idPage;
         //console.log("Page actual ",this.pagina);
         //axios.get("http://localhost:8080/api/pet/consulta?page="+(0)+"&size="+this.size).then( data =>{
         axios.get("https://unpetlife.herokuapp.com/api/pet/consulta?page="+(0)+"&size="+this.size).then( data =>{
             this.Listamascota = data.data.content;
             this.totalPages = data.data.totalPages;
-            //console.log(data);
-            //console.log("total_pages:",data.data.totalPages);
+            // console.log(this.Listamascota);
+            // console.log("total_pages:",data.data.totalPages);
         })
         // console.log(mascota.id);
     }
@@ -139,8 +181,4 @@ export default {
 
 </script>
 <style>
-    /*@import 'css/app.css';*/
-    .titulo_home{
-        color:#2d6bbb;
-    }
 </style>

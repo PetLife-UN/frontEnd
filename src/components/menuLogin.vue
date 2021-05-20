@@ -26,18 +26,13 @@
                     </div>
                 </div>
                 <br>
-                <div class="olvidar">
-                    <button
-                        @click="OlvidarC"
-                        class="boton3"
-                        type="submit"
-                        data-paso="4">
-                        Has olvidado tu contraseña
-                    </button>
-                </div>
+                
 
                 <div class="alert alert-danger" role="alert" v-if="this.errorB && !this.loggedIn">
                     {{ errorMsg }}
+                </div>
+                <div class="alert alert-success espacio" role="alert" v-if="passChanged">
+                    Contraseña actualizada correctamente!
                 </div>
 
                 <div class="texto_derecha">
@@ -47,6 +42,15 @@
                         type="submit"
                         data-paso="1">
                         Acceder
+                    </button>
+                </div>
+                <div class="olvidar">
+                    <button
+                        @click="TogglePopup()"
+                        class="boton3"
+                        type="submit"
+                        data-paso="4">
+                        ¿Has olvidado tu contraseña?
                     </button>
                 </div>
             </div>
@@ -62,11 +66,15 @@ import { computed } from 'vue'
 
 export default {
     name: "menuLogin",
+    props: {
+        TogglePopup:Function,
+    },
     setup(){
         const store = useStore()
         const errorMsg = computed(() => store.getters.authStatus)
         const errorB = computed(() => store.getters.errorBoolean)
         const loggedIn = computed(() => store.getters.isLoggedIn)
+        const passChanged = computed(() => store.getters.successChangedPass)
 
         function login(data){
             store.dispatch("login", data)
@@ -76,7 +84,7 @@ export default {
             .catch(err => console.log(err))
         }
 
-        return {errorMsg, errorB, loggedIn, login}
+        return {errorMsg, errorB, loggedIn, login, passChanged}
 
         
     },
@@ -88,24 +96,19 @@ export default {
         }
     },
     methods:{
-        OlvidarC(){
-            let json ={
-                "username" : this.email
-            };
-            alert('He olvidado mi contraseña');
-            // this.$router.push('/password');
-            //axios.post(`http://localhost:8080/api/passrecover/sendLink/${this.email}`,json);
-            axios.post(`https://unpetlife.herokuapp.com/api/passrecover/sendLink/${this.email}`,json);
-        },
         IngresaUsuario(){
-           let json ={
+            let json ={
                 "username" : this.email,
                 "password" : this.password
             };
             this.login(json)
         }
-        
     }
 }
 
 </script>
+<style>
+    .olvidar{
+        font-size: 20px;
+    }
+</style>

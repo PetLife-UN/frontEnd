@@ -1,29 +1,33 @@
 <template lang="">
 	<navbar />
-	<div v-if="!this.errorBool">
-		<div class="album py-5">
-			<div class="container ">
-				<p class=" h1 ">Mascotas Publicadas</p>
-			</div>
-			<br />
-			<div class="container">
-				<div class="row">
-					<petCardUser
-						v-for="(item, index) in json"
-						v-bind:key="index"
-						v-bind:item="item"
-						v-bind:imageRoute="item.link_foto"
-						v-bind:petDescription="item.descripcion"
-						v-bind:petName="item.nombre"
-                        v-bind:idPet="item.id"
-					/>
-				</div>
-			</div>
+	<div v-if="!this.errorBool" class="espacio_trabajo">
+		<div class ="subtitulo">
+			<h1 class="titulo_home texto_centrado">
+				Mascotas Publicadas
+			</h1>
+		</div>
+
+		<div class="row tres_mascotas">
+			<petCardUser
+				v-for="(item, index) in json"
+				v-bind:key="index"
+				v-bind:item="item"
+				v-bind:imageRoute="item.link_foto"
+				v-bind:petDescription="item.descripcion"
+				v-bind:petName="item.nombre"
+                v-bind:idPet="item.id"
+                v-bind:edad="item.edad"
+                v-bind:tipo="item.tipo"
+                v-bind:raza="item.raza"
+			/>
 		</div>
 	</div>
-	<div v-else>
-		<div class="container">
-			<h1>El usuario no tiene mascotas</h1>
+	
+	<div v-else class="espacio_trabajo">
+		<div class ="subtitulo">
+			<h1 class="titulo_home texto_centrado">
+				El usuario no tiene mascotas
+			</h1>
 		</div>
 	</div>
 </template>
@@ -52,11 +56,11 @@ export default {
 			.get("https://unpetlife.herokuapp.com/api/pet/getUserPets", {
 				headers: {
 					Authorization: `Bearer ${token}`,
-				},
+				}
 			})
 			.then((data) => {
 				this.json = data.data;
-				console.log(this.json);
+				//console.log(this.json);
 			})
 			.catch((error) => {
 				if (error.response.status === 404) {

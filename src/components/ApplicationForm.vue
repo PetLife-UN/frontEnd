@@ -1,7 +1,7 @@
 <template>
     <div class="container" >
         <div class="row">
-            <div class="col-12 col-sm-10 col-md-8  offset-sm-1">
+            <div class="col-12 col-md-10  offset-sm-1">
                 <div id="format" class="mt-5">
                     <form class="border border-dark rounded form-inline"  v-on:submit.prevent="onSubmit" style="background-color: aliceblue; margin-bottom: 2rem;" >
                         <h2 class="col-12 text-center text-danger mt-3 mb-5">Formulario de solicitud de Adopción</h2>
@@ -69,7 +69,7 @@
                             <span v-if="msg.occupation"  class="offset-md-3 info" >{{msg.occupation}}</span>
                         </div>
                         <div class="form-group col-12 row">
-                            <label class="control-label col-sm-4 offset-sm-1" for="familyMembers">Miembors familiares * </label>
+                            <label class="control-label col-sm-4 offset-sm-1" for="familyMembers">Miembros familiares * </label>
                             <div class="col-sm-7">
                                 <input type="number" id="familyMembers" class="form-control " placeholder="Cuantos miembros viven en su familia" v-model="familyMembers" required>
                             </div>
@@ -447,10 +447,6 @@ export default {
             if(!(this.adjustmentPeriod)){
                 this.adjustmentPeriodTime= "";
             }
-            //var date = new Date();
-            //let fecha = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
-            //let hora = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-            //let dateTime = fecha+' '+hora;
             
             var date = new Date().toISOString("en-US", {timeZone: "America/Bogota"})
             let json = {
@@ -483,8 +479,8 @@ export default {
                 "date":date,
                 "pet_id": this.idPet
             }
-            //axios.post("https://unpetlife.herokuapp.com/api/apply/form/"+this.idPet, json,)
-            axios.post("http://localhost:8080/api/apply/form/"+this.idPet, json,)
+            //axios.post("http://localhost:8080/api/apply/form/"+this.idPet, json,)
+            axios.post("https://unpetlife.herokuapp.com/api/apply/form/"+this.idPet, json,)
             .then((data) => {
                 if (data.status == 200) {
                     console.log("El registro fue correcto");
@@ -695,6 +691,9 @@ label{
     border-color: black;
     margin: 4rem;
     color: beige;
-
+}
+#format{
+    -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 11px 16px 26px 7px rgba(2,81,165,0); 
+    box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 11px 16px 26px 7px rgba(2,81,165,0);
 }
 </style>
