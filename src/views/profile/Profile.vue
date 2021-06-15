@@ -105,7 +105,9 @@ export default {
       },
       UltimaCon(js){
         if(js != null){
-          return localStorage.horaultima;
+            var date = new Date(js.lastLogin);
+            date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+            return `${date.toLocaleString()}`;
         }
       }
   },
