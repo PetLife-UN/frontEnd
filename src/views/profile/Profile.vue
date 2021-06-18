@@ -111,7 +111,12 @@ export default {
   },
   mounted:function(){
     var token = localStorage.token;
-   
+    //Actualizar los datos de usuario put https://unpetlife.herokuapp.com/api/user/modifyUserDetails
+    // {
+    // "name": "Juan Camilo",
+    // "surname": "Villota",
+    // "cellPhoneNumber": "3144463105"
+    // } 
     axios
       .get("https://unpetlife.herokuapp.com/api/user/getUserDetails", {
           headers: {

@@ -22,7 +22,7 @@
 			/>
 		</div>
 	</div>
-	
+
 	<div v-else class="espacio_trabajo">
 		<div class ="subtitulo">
 			<h1 class="titulo_home texto_centrado">
