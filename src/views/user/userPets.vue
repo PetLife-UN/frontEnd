@@ -60,7 +60,7 @@ export default {
 			})
 			.then((data) => {
 				this.json = data.data;
-				console.log(this.json);
+				//console.log(this.json);
 			})
 			.catch((error) => {
 				if (error.response.status === 404) {

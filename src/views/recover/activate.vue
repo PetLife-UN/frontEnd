@@ -104,12 +104,12 @@ export default {
             method: "POST",
         })
         .then((response)=>{
-            console.log(response);
+            //console.log(response);
             this.success_activacion=true;
             this.e_activacion=false;
         })
         .catch((error)=>{
-            console.log(error);
+            //console.log(error);
             this.e_activacion=true;
             this.success_activacion=false;
             this.e_message=error.response.data.message;

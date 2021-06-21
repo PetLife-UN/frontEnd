@@ -312,7 +312,7 @@ export default {
                 }).catch((error) => {
                     this.error_registro = true
                     var msg_back = error.response.data.message
-                    console.log(msg_back)
+                    //console.log(msg_back)
                     let email = document.querySelector('#floatingEmail');
                     switch (msg_back){
                     case "Error: Email is already in use!":

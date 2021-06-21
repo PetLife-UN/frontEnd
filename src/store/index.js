@@ -70,12 +70,12 @@ export default createStore({
 					const token = response.data.token;
 					const email = response.data.email;
 					const hoy = new Date();
-					const fechahoy =hoy.getDate()+'/'+(hoy.getMonth()+1)+"/"+ hoy.getFullYear();
+					const fechahoy = hoy.getDate()+'/'+(hoy.getMonth()+1)+"/"+ hoy.getFullYear() + "-" +  hoy.getHours() + ":" + hoy.getMinutes();
 					localStorage.setItem("token", token);
 					localStorage.setItem("horaultima", fechahoy);
 					axios.defaults.headers.common["Authorization"] = 'Bearer ' +token;
 					commit("login_success", token, email);
-                    console.log("sucess")
+                    //console.log("sucess")
 					resolve(response);
                     
 				})
@@ -122,7 +122,7 @@ export default createStore({
 				})
 				.then((response)=>{
 					commit("email_sent_recover");
-					console.log("Correo enviado");
+					//console.log("Correo enviado");
 					resolve(response);
 				})
 				.catch((error)=>{
@@ -150,7 +150,7 @@ export default createStore({
 				})
 				.then((response)=>{
 					commit("change_password");
-					console.log("Contraseña cambiada");
+					//console.log("Contraseña cambiada");
 					resolve(response);
 				})
 				.catch((error)=>{
