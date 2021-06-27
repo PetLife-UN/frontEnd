@@ -45,11 +45,47 @@
 					}
 				}
 			}
+
+			.cambiar {
+				display: flex;
+				flex-direction: column;
+				.Horizontal {
+					display: block;
+				}
+				.vertical {
+					display: none;
+					width: 2rem;
+				}					
+
+				@include media700 {
+					display: flex;
+					flex-direction: row;
+					justify-content: flex-start;
+					.Horizontal {
+						display: none;
+					}
+					.vertical {
+						display: block;
+						margin: auto 0.7rem;
+					}					
+				}
+				.form-control {
+					width: 99%;
+					padding: .5rem 1rem;
+					margin: auto;
+					border-radius: 5rem;
+					border-style: 5rem;
+					// border: none;
+					@include tipografia($Aclonica, 2rem, $gris2, 500);
+					border-color: $azul-claro;
+					font-size: 2rem;
+
+				}
+			}
 		}
 	}
 	.botones {
 		.menu_botones {
-
 			width: 100%;
 		}
 		.btn {
@@ -74,6 +110,10 @@
 				@include degragado-azul;
 				color: white;
 			}
+		}
+		.cambios {
+			display: flex;
+			justify-content: flex-start;
 		}
 	}
 }

@@ -1357,6 +1357,49 @@ ul {
   }
 }
 
+.separacion .usuario .datos .cambiar {
+  display: flex;
+  flex-direction: column;
+}
+
+.separacion .usuario .datos .cambiar .Horizontal {
+  display: block;
+}
+
+.separacion .usuario .datos .cambiar .vertical {
+  display: none;
+  width: 2rem;
+}
+
+@media (min-width: 700px) {
+  .separacion .usuario .datos .cambiar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .separacion .usuario .datos .cambiar .Horizontal {
+    display: none;
+  }
+  .separacion .usuario .datos .cambiar .vertical {
+    display: block;
+    margin: auto 0.7rem;
+  }
+}
+
+.separacion .usuario .datos .cambiar .form-control {
+  width: 99%;
+  padding: .5rem 1rem;
+  margin: auto;
+  border-radius: 5rem;
+  border-style: 5rem;
+  font-size: 2rem;
+  color: #828282;
+  font-family: "Aclonica", sans-serif;
+  font-weight: 500;
+  border-color: #64B8FF;
+  font-size: 2rem;
+}
+
 .separacion .botones .menu_botones {
   width: 100%;
 }
@@ -1397,6 +1440,11 @@ ul {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64b8ff', endColorstr='#64b8ff',GradientType=1 );
   /* IE6-9 fallback on horizontal gradient */
   color: white;
+}
+
+.separacion .botones .cambios {
+  display: flex;
+  justify-content: flex-start;
 }
 
 /*# sourceMappingURL=app.css.map */

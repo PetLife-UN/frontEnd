@@ -198,8 +198,6 @@ export default {
             this.e_password = false;
             this.e_vpassword = false;
         },
-
-
         revisarDatosIngresados() {
             const nombre = document.querySelector('#floatingName');
             const apellido = document.querySelector('#floatingSurame');
@@ -261,8 +259,6 @@ export default {
                 repetir.classList.add('error');
                 this.e_vpassword = true;
             }
-
-
             if (list_errors.length != 0) {
                 return false
             }
