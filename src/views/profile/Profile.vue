@@ -97,7 +97,7 @@
             Cancelar
           </button>
         </div>
-        
+
       </div>  
     </div>
   </div>
@@ -211,7 +211,7 @@ export default {
           let json = {
             "name" : B_nombre,
             "surname" : B_apellido,
-            cellPhoneNumber : celular.value
+            "cellPhoneNumber" : celular.value
           }
 
 
