@@ -78,42 +78,43 @@
 					// border: none;
 					@include tipografia($Aclonica, 2rem, $gris2, 500);
 					border-color: $azul-claro;
-					font-size: 2rem;
-
+					// font-size: 2rem;
 				}
 			}
 		}
 	}
-	.botones {
-		.menu_botones {
-			width: 100%;
-		}
-		.btn {
-			display: block;
-			background-color: white;
-			color: $azulado;
-			margin: 1rem;
-			
-			padding: 1.2rem 2rem;
-			border-radius: 5rem;
-			@include tipografia($Merienda, 2.2rem, $gris2, 600);
-			
-			@include maxima768 {
-				width: 100%;
-			}
+}
 
-			&:hover {
-				border: 5px solid #B6B6B6;
-				-webkit-transition: all 0.5s ease-out;
-				-moz-transition: all 0.5s ease;
-				-ms-transition: all 0.5s ease;
-				@include degragado-azul;
-				color: white;
-			}
+.botones {
+	
+	width: 100%;
+	
+	.btn {
+		display: block;
+		background-color: white;
+		color: $azulado;
+		margin: 1rem;
+		
+		padding: 1.2rem 2rem;
+		border-radius: 5rem;
+		@include tipografia($Merienda, 2.2rem, $gris2, 600);
+		
+		@include maxima768 {
+			width: -webkit-fill-available;
 		}
-		.cambios {
-			display: flex;
-			justify-content: flex-start;
+
+		&:hover {
+			border: 5px solid #B6B6B6;
+			-webkit-transition: all 0.5s ease-out;
+			-moz-transition: all 0.5s ease;
+			-ms-transition: all 0.5s ease;
+			@include degragado-azul;
+			color: white;
 		}
 	}
+	.cambios {
+		display: flex;
+		justify-content: flex-start;
+	}
 }
+// }

@@ -1,247 +1,357 @@
 <template>
-  <div class="container col-8">
-    <form>
-      <div class="form-group row">
-        <label for="name" class="col-sm-3 control-label">Nombre</label>
-        <div class="col-sm-9">
-          <input
-            type="text"
-            v-model="name"
-            class="form-control"
-            id="name"
-            placeholder="Ingrese en nombre la mascota"
-          />
-        </div>
-          <span v-if="msg.name"  class="offset-md-3 info" >{{msg.name}}</span>
+  <form class="rmascota">
+    
+    <div class="mascotas_registro">
+
+      <h2 class="intro texto_izquierda">
+        Datos De Mascota
+      </h2>
+
+      <div class="datos nombre">
+        
+        <h3 for="name" 
+          class="">
+          Nombre*
+        </h3>
+
+        <input
+          type="text"
+          class="inscribir mayuscula form-control"
+          id="name"
+          placeholder="Nombre Mascota"
+          v-model="name">
+
+        <p v-if="msg.name"
+          class="info">
+          {{msg.name}}
+        </p>
       </div>
-      <div class="form-group row">
-        <label for="age" class="col-sm-3 control-label">Edad * </label>
-        <div class="col-sm-9">
-          <input
-            type="number"
-            v-model="age"
-            class="form-control"
-            id="age"
-            placeholder="Ingrese la edad aproximada de la mascota"
-          />
-        </div>
-        <span v-if="msg.age"  class="offset-md-3 info" >{{msg.age}}</span>
+      
+      <div class="datos tipo">
+        
+        <h3 
+          for="type" 
+          class="">
+          Tipo* 
+        </h3>
+        
+        <select 
+          class="seleccion inscribir form-control"
+          id="type" 
+          v-model="type">
+          
+          <option 
+            selected 
+            disabled 
+            hidden 
+            value="">
+            Tipo de Mascota
+          </option>
+          
+          <option value="Canino">Canino</option>
+          <option value="Felino">Felino</option>
+          <option value="Bovino">Bovino</option>
+          <option value="Pez">Pez</option>
+          <option value="Roedor">Roedor</option>
+          <option value="Ave">Ave</option>
+          <option value="Equino">Equino</option>
+          <option value="Otro">Otro</option>
+        </select>
       </div>
-      <div class="row">
-        <div class="col-3"> ¿El animal es estéril? *</div>
-        <div class="col-9">
-          <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sterle"
-                id="sterileYes"
-                v-model="sterile"
-                value="Si"
-                 />
-              Si
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sterile"
-                id="sterileNo"
-                v-model="sterile"
-                value="No"
-              />
-              No
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sterile"
-                id="sterileUnknown"
-                v-model="sterile"
-                value="Desconocido"
-              />
-              Lo desconoce
-            </label>
-          </div>
-        </div>
+
+      <div class="datos raza">
+        
+        <h3 
+          for="type" 
+          class="">
+          Raza
+        </h3>
+
+        <input
+          type="text"
+          v-model="breed"
+          class="inscribir mayuscula form-control"
+          id="breed"
+          placeholder="Raza de la Mascota">
       </div>
-      <div class="form-group row">
-        <label for="type" class="col-sm-3 control-label">
-          Tipo de mascota * </label
-        >
-        <div class="col-sm-9">
-          <select class="form-select" id="type" v-model="type">
-            <option selected disabled hidden value="">Seleccione el tipo de animal</option>
-            <option value="Canino">Canino</option>
-            <option value="Felino">Felino</option>
-            <option value="Bovino">Bovino</option>
-            <option value="Pez">Pez</option>
-            <option value="Roedor">Roedor</option>
-            <option value="Ave">Ave</option>
-            <option value="Equino">Equino</option>
-            <option value="Otro">Otro</option>
-          </select>
-        </div>
+
+      <div class="datos peso">
+        
+        <h3 for="size" 
+          class="">
+          Peso*
+        </h3>
+        
+        <select 
+          class="seleccion inscribir form-control" 
+          id="size" 
+          v-model="size">
+          <option 
+            selected 
+            disabled 
+            hidden 
+            class="opciones" 
+            value="">
+            Peso de la Mascota
+          </option>
+          <option value=" (menos de 5 Kg)">Chico(-5Kg)</option>
+          <option value="Pequeño (de 6 a 14 Kg)">Pequeño(6 a 14Kg)</option>
+          <option value="Mediano (de 15 a 25 Kg)">Mediano(15 a 25Kg)</option>
+          <option value="Grande (de 26 a 50 kg)">Grande(26 a 50kg)</option>
+          <option value="Muy Grande (mayor a 50 kg)">Enorme(+50 kg)</option>
+        </select>
       </div>
-      <div class="row">
-        <div class="col-3">Sexo *</div>
-        <div class="col-9">
-          <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sex"
-                id="male"
-                v-model="sex"
-                value="male"
-              />
-              Macho
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sex"
-                id="female"
-                v-model="sex"
-                value="female"
-              />
-              Hembra
-            </label>
-          </div>
-        </div>
+
+      <div class="datos edad">
+        
+        <h3 for="age" 
+          class="">
+          Edad* 
+        </h3>
+        
+        <input
+          type="number"
+          v-model="age"
+          class="seleccion inscribir form-control"
+          id="age"
+          placeholder="Edad de la mascota"/>
+        
+        <p v-if="msg.age"
+          class="offset-md-3 info">
+          {{msg.age}}
+        </p>
       </div>
-      <div class="form-group row">
-        <label for="type" class="col-sm-3 control-label"
-          >Raza de la mascota</label
-        >
-        <div class="col-sm-9">
-          <input
-            type="text"
-            v-model="breed"
-            class="form-control"
-            id="breed"
-            placeholder="Conoce la raza de la mascota, escribala"
-          />
+      
+      <div class="datos esteril">
+        
+        <h3 class="">
+          Esterilizado*
+        </h3>
+        
+        <div 
+          @click="esteril"
+          class="progress">
+          <div class="bar" id="Ebar"></div >
+          <h4 class="percent" id="Epercent">No se</h4>
         </div>
+
+        <!-- <div class="col-9">
+          
+          <h4 class="form-check-label">
+            
+            <input
+              class="form-check-input"
+              type="radio"
+              name="sterle"
+              id="sterileYes"
+              v-model="sterile"
+              value="Si">
+            Si
+          </h4>
+          
+          <h4 class="form-check-label">
+          
+            <input
+              class="form-check-input"
+              type="radio"
+              name="sterile"
+              id="sterileNo"
+              v-model="sterile"
+              value="No">
+            No
+          </h4>
+
+          <h4 class="form-check-label">
+            
+            <input
+              class="form-check-input"
+              type="radio"
+              name="sterile"
+              id="sterileUnknown"
+              v-model="sterile"
+              value="Desconocido">
+            Desconosco
+          </h4>
+        </div> -->
       </div>
-      <div class="form-group row">
-        <label for="size" class="col-sm-3 control-label">
-          Tamaño del animal</label
-        >
-        <div class="col-sm-9">
-          <select class="form-select" id="size" v-model="size">
-            <option selected disabled hidden value="">Ingrese el tamaño de la mascota * </option>
-            <option value="Muy pequeño (menos de 5 Kg)">Muy pequeño (menos de 5 Kg)</option>
-            <option value="Pequeño (de 6 a 14 Kg)">Pequeño (de 6 a 14 Kg)</option>
-            <option value="Mediano (de 15 a 25 Kg)">Mediano (de 15 a 25 Kg)</option>
-            <option value="Grande (de 26 a 50 kg)">Grande (de 26 a 50 kg)</option>
-            <option value="Muy Grande (mayor a 50 kg)">Muy Grande (mayor a 50 kg)</option>
-          </select>
+
+      <div class="datos sexo">
+        
+        <h3 class="col-3">
+          Sexo*
+        </h3>
+
+        <div 
+          @click="Sexo"
+          class="progress">
+          <div class="bar" id="Sbar"></div >
+          <h4 class="percent" id="Spercent">-</h4>
         </div>
+
+        <!-- <div class="col-9">
+          <h4 class="form-check-label">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="sex"
+              id="male"
+              v-model="sex"
+              value="male">
+            Macho
+          </h4>
+          
+          <h4 class="form-check-label">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="sex"
+              id="female"
+              v-model="sex"
+              value="female">
+            Hembra
+          </h4>
+        </div> -->
       </div>
-      <div class="row">
-        <div class="col-3">¿Tiene las vacunas al día? *</div>
-        <div class="col-9">
-          <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="vaccines"
-                id="vaccineYes"
-                v-model="vaccines"
-                value="true"
-              />
-              Si
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="vaccines"
-                id="vaccineNo"
-                v-model="vaccines"
-                value="false"
-              />
-              No
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="vaccines"
-                id="vaccineUnknown"
-                v-model="vaccines"
-                value="false"
-              />
-              Lo desconoce
-            </label>
-          </div>
+
+      <div class="datos vacuna">
+
+        <h3 class="">
+          ¿Vacunas al día?*
+        </h3>
+        
+        <div 
+          @click="Vacuna"
+          class="progress">
+          <div class="bar" id="Vbar"></div >
+          <h4 class="percent" id="Vpercent">No se</h4>
         </div>
+
+      <!--   <div class="col-9">
+          <h4 class="form-check-label">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="vaccines"
+              id="vaccineYes"
+              v-model="vaccines"
+              value="true">
+            Si
+          </h4>
+
+          <h4 class="form-check-label">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="vaccines"
+              id="vaccineNo"
+              v-model="vaccines"
+              value="false">
+            No
+          </h4>
+          
+          <h4 class="form-check-label">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="vaccines"
+              id="vaccineUnknown"
+              v-model="vaccines"
+              value="false">
+            Desconosco
+          </h4>
+        </div> -->
       </div>
-      <div class="form-group row">
-        <label for="message" class="col-sm-3 control-label"
-          >Mensaje de adopción * </label
-        >
-        <div class="col-sm-9">
-          <textarea
-            v-model="message"
-            class="form-control"
-            id="message"
-            placeholder="Comportamiento del animal, gustos, es amabel con los niños, se adapta a espacios pequeños..."
-            rows="8"
-          />
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="image" class="col-sm-3 control-label">Fotografia * </label>
-        <div class="dropbox col-sm-4">
-          <input type="file" name:="image" :disabled="isSaving"
-          @change="filesChange($event.target.files)" accept="image/*"
-          class="input-file" id="file">
+
+      <div class="datos imagen">
+      
+        <h3 
+          for="image" 
+          class="">
+          Fotografia*
+        </h3>
+
+        <div class="dropbox">
+          <input 
+            type="file" 
+            name:="image" 
+            :disabled="isSaving"
+            @change="filesChange($event.target.files)" 
+            accept="image/*"
+            class="input-file" 
+            id="file">
+
           <p v-if="isInitial">
             Arrastre la fotografia de la mascota
-            <br />
-            O haga click.
+            <br>
+            <span>
+              O haga click.
+            </span>
           </p>
-          <p v-if="isSaving">Imagen subida. <br> Arrastre o click para cambiar. </p>
-          <p v-if="isLoading">Subiendo imagen</p>
+          
+          <p v-if="isSaving">
+            Imagen subida. 
+            <br>
+            <span>
+              Arrastre o click para cambiar.
+            </span>
+          </p>
+          
+          <p v-if="isLoading">
+            Subiendo imagen
+          </p>
         </div>
-        <div class="col-sm-5">
-          <img
-            src="https://infocusmfg.com/wp-content/uploads/2015/10/brown-basket-400x400.png"
-            id="img"
-            alt="Image"
-          />
-        </div>
+
+        <img
+          src="https://infocusmfg.com/wp-content/uploads/2015/10/brown-basket-400x400.png"
+          id="img"
+          class=""
+          alt="Image">
       </div>
-      <div class="form-group row justify-content-md-center">
-        <div class="col-3">
-          <button class="btn btn-primary" @click="publicar" type="button" :disabled="isDisable"  >
-            Publicar
-          </button>
-        </div>
-        <div class="col-3">
-          <button type="button" class="btn btn-danger" @click="cancelar">Cancelar</button>
-        </div>
+
+      <div class="datos Mensaje">
+        
+        <h3 
+          for="message" 
+          class="">
+          Mensaje de adopción*
+        </h3>
+
+        <textarea
+          v-model="message"
+          class="form-control seleccion"
+          id="message"
+          placeholder="Comportamiento del animal, gustos, es amabel con los niños, se adapta a espacios pequeños..."
+          rows="8">
+        </textarea>
       </div>
-    </form>
-    <span class="offset-sm-3">Los campos marcados con astericos (*) son obligatorios</span>
-  </div>
+      <div class="datos Mensaje texto_centrado">
+
+        <h3 class="texto_centrado">
+          Los campos marcados con astericos (*) son obligatorios
+        </h3>
+      </div>
+
+      <div class="datos botones">
+    
+        <button 
+          class="btn btn-primary publicar" 
+          @click="publicar" 
+          type="button" 
+          :disabled="isDisable">
+          Publicar
+        </button>
+
+        <button 
+          type="button" 
+          class="btn btn-danger cancelar" 
+          @click="cancelar">
+          Cancelar
+        </button>
+      </div>
+
+    </div>
+  
+  </form>
 </template>
 
 <script>
@@ -257,12 +367,12 @@ export default {
       currentStatus: STATUS_INITIAL,
       name: "",
       age: "",
-      sterile: "",
+      sterile: "Desconosco",
       type: "",
       sex: "",
       breed: "",
       size: "",
-      vaccines: "",
+      vaccines: "Desconosco",
       message: "",
       url: "",
       active: false,
@@ -310,7 +420,75 @@ export default {
           this.currentStatus = STATUS_SAVING;
         });
     },
+    esteril() {
+      const a1 = document.querySelector('#Ebar');
+      const a2 = document.querySelector('#Epercent');
+      // console.log(this.sterile);
+      switch (a2.innerHTML) {
+        case "No se":
+          this.sterile="No";
+          a2.innerHTML = "No";
+          a1.style.width = "0%";
+          break;
+        case "No":
+          this.sterile="Si"
+          a2.innerHTML = "Si";
+          a1.style.width = "100%";
+          break;
+        case "Si":
+          this.sterile="Desconosco"
+          a2.innerHTML = "No se";
+          a1.style.width = "50%";
+          break;
+      }
+    },
+    Sexo() {
+      const a1 = document.querySelector('#Sbar');
+      const a2 = document.querySelector('#Spercent');
+      // console.log(this.sterile);
+      switch (a2.innerHTML) {
+        case "Macho":
+          this.sex="Hembra"
+          a2.innerHTML = "Hembra";
+          a1.style.width = "100%";
+          break;
+        default:
+          this.sex="Macho";
+          a2.innerHTML = "Macho";
+          a1.style.width = "0%";
+          break;
+      }
+    },
+    Vacuna() {
+      const a1 = document.querySelector('#Vbar');
+      const a2 = document.querySelector('#Vpercent');
+      // console.log(this.sterile);
+      switch (a2.innerHTML) {
+        case "No se":
+          // this.vaccines="No";
+          a2.innerHTML = "No";
+          a1.style.width = "0%";
+          break;
+        case "No":
+          // this.vaccines="Si"
+          a2.innerHTML = "Si";
+          a1.style.width = "100%";
+          break;
+        case "Si":
+          // this.vaccines="Desconosco"
+          a2.innerHTML = "No se";
+          a1.style.width = "50%";
+          break;
+      }
+    },
     publicar() {
+      const v2 = document.querySelector('#Vpercent');
+      const s2 = document.querySelector('#Spercent');
+      const e2 = document.querySelector('#Epercent');
+      this.sex = s2.innerHTML;
+      this.vaccines= v2.innerHTML;
+      this.sterile = s2.innerHTML;
+      // console.log("salida");
       let json = {
         "nombre": this.name,
         "edad": this.age,
@@ -323,7 +501,7 @@ export default {
         "descripcion": this.message,
         "link_foto": this.url,
       };
-      console.log(json);
+      // console.log(json);
       const token = localStorage.token;
       axios
         //.post("http://localhost:8080/api/publish/new-publish", json, {
@@ -360,6 +538,14 @@ export default {
         });
     },
     cancelar(){
+      // console.log(`${this.msg['age']}`);
+      // console.log(`${this.sterile}`);
+      // console.log(`${this.type}`);
+      // console.log(`${this.sex}`);
+      // console.log(`${this.size}`);
+      // console.log(`${this.vaccines}`);
+      // console.log(`${this.message}`);
+      // console.log(`${this.url}`);
       this.$router.push('profile');
     },
     checkData(){
@@ -396,46 +582,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.form-control, .form-select{
-  font-size: 1.7rem;
-}
-.form-group {
-  margin-block: 15px;
-}
-.dropbox {
-  outline: 2px dashed grey; 
-  outline-offset: -10px;
-  background: lightcyan;
-  color: dimgray;
-  padding: 10px 10px;
-  min-height: 100px; 
-  position: relative;
-  cursor: pointer;
-}
+<style>
 
-.input-file {
-  opacity: 0; 
-  width: 100%;
-  height: 200px;
-  position: absolute;
-  cursor: pointer;
-}
-
-.dropbox:hover {
-  background: lightblue; 
-}
-
-.dropbox p {
-  font-size: 0.9em;
-  text-align: center;
-  padding: 50px 0;
-}
-.info{
-  font-size: 12 px;
-  font-family: 'Times New Roman', Times, serif;
-  font-style: italic;
-  font-weight: 100;
-  color: red;
-}
 </style>

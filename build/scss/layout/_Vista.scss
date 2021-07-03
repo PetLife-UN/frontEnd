@@ -9,16 +9,16 @@
 
 		.titulo_home {
 
-			@include tipografia($Merienda, 2.5rem, $azulado, 300);
+			@include tipografia($Merienda, 2.5rem, $azulado, 600);
 			padding: 2rem;
-			font-weight: 500;
 
 			@include media600{
 				font-size: 2.8rem;
 			}
-
+			@include media768{
+				font-size: 3rem;
+			}
 			@include media1000{
-				font-weight: 600;
 				font-size: 3.5rem;
 			}
 

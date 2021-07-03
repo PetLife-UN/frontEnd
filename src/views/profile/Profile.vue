@@ -15,10 +15,13 @@
     <div class="usuario">
 
       <div class="nombre datos">
+        
         <h3>Usuario<span>:</span></h3>
+        
         <div v-if="show">
           <h2>{{Nombre(json)}}</h2>
         </div>
+        
         <div class="cambiar" v-else>
           <input 
             v-on:click="errorNombre"
@@ -28,8 +31,10 @@
             placeholder="Nombre" 
             maxlength="50"
             v-model="json.name">
+          
           <hr class="vertical" width="3" size="500">
           <hr class="Horizontal">
+          
           <input 
             v-on:click="errorApellido"
             type="text" 
@@ -67,11 +72,11 @@
         <hr>
       </div>
 
-      <div class="celular datos">
+      <!-- <div class="celular datos">
         <h3>Role<span>:</span></h3>
         <h2>{{Rol(json)}}</h2>
         <hr>
-      </div>
+      </div> -->
 
       <div class="celular datos">
         <h3>Ultima conexion<span>:</span></h3>
@@ -80,25 +85,23 @@
     </div>
 
     <div class="botones">
-      <div class = "col-6 menu_botones">
 
-        <button type="button" class ="btn" v-on:click="goRegister">Registrar mascota para adopción</button>
+      <button type="button" class ="btn" v-on:click="goRegister">Registrar mascota para adopción</button>
 
-        <button type="button" class ="btn" v-on:click="goApliAdopcion">Consulta solicitudes de adopción</button>
+      <button type="button" class ="btn" v-on:click="goApliAdopcion">Consulta solicitudes de adopción</button>
 
-        <button type="button" class ="btn" v-on:click="goUserPets">Ver mis publicaciones</button>
+      <button type="button" class ="btn" v-on:click="goUserPets">Ver mis publicaciones</button>
 
-        <div class="cambios">
-          <button type="button" class ="btn" v-on:click="show = !show; editado()">
-            <span v-if="show">Editar Datos</span>
-            <span v-else>Actualizar</span>
-          </button>
-          <button v-if="!show" type="button" class ="btn" v-on:click="show = !show; cancelar()">
-            Cancelar
-          </button>
-        </div>
+      <div class="cambios">
+        <button type="button" class ="btn" v-on:click="show = !show; editado()">
+          <span v-if="show">Editar Datos</span>
+          <span v-else>Actualizar</span>
+        </button>
+        <button v-if="!show" type="button" class ="btn" v-on:click="show = !show; cancelar()">
+          Cancelar
+        </button>
+      </div>
 
-      </div>  
     </div>
   </div>
 </template>
@@ -200,22 +203,29 @@ export default {
           celular.classList.add('error');
           this.e_phone = true;
         }
-        // console.log(`${this.e_nombre}  ${this.e_apellido}  ${this.e_phone}`);
+        console.log(`${this.json.name} != ${B_nombre} || ${this.json.surname} != ${B_apellido} || ${this.json.cellPhoneNumber} != ${celular.value}`);
+
+        // console.log("no autualizacion");
         if(this.e_nombre || this.e_apellido || this.e_phone) {
+          console.log("no autualizacion");
+
           this.show = !this.show;
         }
-        else if (this.json.name != B_nombre || this.json.surname != B_apellido || this.json.cellPhoneNumber != celular.value) {
+        else if (A_nombre != B_nombre || A_apellido != B_apellido || A_numero != celular.value) {
           
-          console.log("autualizacion")
+          console.log("autualizacion");
           
           let json = {
             "name" : B_nombre,
             "surname" : B_apellido,
             "cellPhoneNumber" : celular.value
           }
-
-
-          // Actualizar los datos de usuario put https://unpetlife.herokuapp.com/api/user/modifyUserDetails
+          axios.put("https://unpetlife.herokuapp.com/api/user/modifyUserDetails",json, {
+            
+            headers: {
+              Authorization: `Bearer ${token}`,
+            }
+          })
           // {
           // "name": "Juan Camilo",
           // "surname": "Villota",
@@ -284,7 +294,6 @@ export default {
 <style >
     .profile_body {
         min-height: 500px;
-    
     }
     .menu_botones button{
         background-color: #4B8BDD;

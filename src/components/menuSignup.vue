@@ -2,48 +2,39 @@
     <main class="form-signup">
         <form v-on:submit.prevent="signup">  
             <h1 class="texto_centrado sub">Registro</h1>   
-            <br>
-            <div class="registrar ">
-                <div class = "container">
-                    <div class ="row">
-                        <div class = "col-6">
-                            <div class = "datos_contenedor">
-                                <label 
-                                    for="floatingName">Nombre</label>
-                                <input 
-                                    v-on:click="errorNombre"
-                                    type="text" 
-                                    class="form-control" 
-                                    id="floatingName" 
-                                    placeholder="Nombre" 
-                                    maxlength="50"
-                                    v-model="name">
-                                
-                                <div class="error_msg" v-if="e_nombre" >Verifica el nombre ingresado</div>
-                                <br>
-                            </div>
-                        </div>
-                        <div class = "col-6">
-                            <div class = "datos_contenedor">
-                                <label 
-                                    for="floatingSurame">Apellido</label>
-                                <input 
-                                    v-on:click="errorApellido"
-                                    type="text" 
-                                    class="form-control"
-                                    id="floatingSurame" 
-                                    placeholder="Apellido" 
-                                    maxlength="50"
-                                    v-model="surname">
-                                <div class="error_msg" v-if="e_apellido" >Verifica el apellido ingresado</div>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
+            <div class="registrar">
+                
+                <div class = "datos_contenedor pnombre">
+                    <label 
+                        for="floatingName">Nombre</label>
+                    <input 
+                        v-on:click="errorNombre"
+                        type="text" 
+                        class="form-control mas" 
+                        id="floatingName" 
+                        placeholder="Nombre" 
+                        maxlength="50"
+                        v-model="name">
+                    
+                    <p class="error_msg" v-if="e_nombre" >Verifica el nombre ingresado</p>
+                </div>
+                        
+                        
+                <div class = "datos_contenedor papellido">
+                    <label 
+                        for="floatingSurame">Apellido</label>
+                    <input 
+                        v-on:click="errorApellido"
+                        type="text" 
+                        class="form-control mas"
+                        id="floatingSurame" 
+                        placeholder="Apellido" 
+                        maxlength="50"
+                        v-model="surname">
+                    <p class="error_msg" v-if="e_apellido" >Verifica el apellido ingresado</p>
                 </div>
                 
-                
-                <div class = "datos_contenedor">
+                <div class = "datos_contenedor pemail">
                     <label 
                         for="floatingEmail"> Dirección de correo </label>
                     <input 
@@ -55,11 +46,10 @@
                         placeholder="Dirección de correo" 
                         maxlength="80"
                         v-model="email">
-                        <div class="error_msg" v-if="e_email" >Verifica el email ingresado</div>
-                    <br>
+                    <p class="error_msg" v-if="e_email" >Verifica el email ingresado</p>
                 </div>
                 
-                <div class = "datos_contenedor">
+                <div class = "datos_contenedor pcelular">
                     <label
                         for="floatingcellPhoneNumber">Teléfono</label>
                     <input 
@@ -71,58 +61,46 @@
                         maxlength="10" 
                         oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         v-model="cellPhoneNumber">
-                        <div class="error_msg" v-if="e_phone" >Verifica el teléfono ingresado</div>
-                    <br>
-                </div>
-                
-                <div class = "container">
-                    <div class ="row">
-                        <div class = "col-6">
-                             <div class = "datos_contenedor">
-                                <label 
-                                    for="floatingPassword">Contraseña</label>
-                                <input 
-                                    v-on:click="errorContraseña"
-                                    type="password" 
-                                    class="form-control" 
-                                    id="floatingPassword" 
-                                    maxlength="40"
-                                    placeholder="Contraseña" 
-                                    v-model="password">
-                                    <div class="error_msg" v-if="e_password" >Contraseña muy corta  </div>
-                                    <br>
-                            </div>
-
-                        </div>
-                        <div class = "col-6">
-                            <div class = "datos_contenedor">
-                                <label 
-                                    for="floatingRpassword">Repetir contraseña</label>
-                                <input 
-                                    v-on:click="errorRepetir"
-                                    type="password" 
-                                    class="form-control" 
-                                    id="floatingRpassword" 
-                                    maxlength="40"
-                                    placeholder="Repetir contraseña" 
-                                    v-model="rpassword">
-                                    <div class="error_msg" v-if="e_vpassword" >Las contraseñas no son iguales</div>
-                                    <br>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="error_msg" v-if="e_phone" >Verifica el teléfono ingresado</p>
                 </div>
 
+                <div class = "datos_contenedor pcontra">
+                    <label 
+                        for="floatingPassword">Contraseña</label>
+                    <input 
+                        v-on:click="errorContraseña"
+                        type="password" 
+                        class="form-control" 
+                        id="floatingPassword" 
+                        maxlength="40"
+                        placeholder="Contraseña" 
+                        v-model="password">
+                    <p class="error_msg" v-if="e_password" >Contraseña muy corta</p>
+                </div>
 
-                <div class="alert alert-danger espacio" role="alert" v-if="error_registro">
+                <div class = "datos_contenedor prepit">
+                    <label 
+                        for="floatingRpassword">Repetir contraseña</label>
+                    <input 
+                        v-on:click="errorRepetir"
+                        type="password" 
+                        class="form-control" 
+                        id="floatingRpassword" 
+                        maxlength="40"
+                        placeholder="Repetir contraseña" 
+                        v-model="rpassword">
+                    <p class="error_msg" v-if="e_vpassword" >Las contraseñas no son iguales</p>
+                </div>
+
+                <p class="alert alert-danger espacio" role="alert" v-if="error_registro">
                     {{error_msg}}
-                </div>
+                </p>
                 
-                <div class="alert alert-success espacio" role="alert" v-if="register_success">
+                <p class="alert alert-success espacio" role="alert" v-if="register_success">
                     Registro exitoso!
-                </div>
+                </p>
                 
-                <div class="texto_derecha">
+                <div class="texto_derecha botonf">
                     <button 
                         v-on:click="signup"
                         class="boton2" 
@@ -336,16 +314,5 @@ export default {
 
 
 <style>
-    .datos_contenedor{
-        position: relative;
-    }
-    .error_msg{
-        position: absolute;
-        bottom: -5px;
-        left: 15px;
-        color: rgb(192, 59, 59);
-        font-size: 17px;
-        font-weight: 400;
-    }
     
 </style>
