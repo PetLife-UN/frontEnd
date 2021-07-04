@@ -32,7 +32,10 @@
                     <div class="card mb-4 box-shadow" 
                         :class="mascotas(mascota.id)">
                         
-                        <img class="card-img-top imagen_catalogo" v-bind:src="mascota.links_foto" v-bind:alt="mascota.id">
+                        <img 
+                            class="card-img-top imagen_catalogo"
+                            v-bind:src="mascota.links_foto" 
+                            v-bind:alt="mascota.id">
 
                         <div class="card-body carta_mascota datos_mascota">
                             

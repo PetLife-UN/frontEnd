@@ -105,10 +105,6 @@
             <br>
             <br>
         </div>
-
-
-
-
     </div>
 </template>
 <script>

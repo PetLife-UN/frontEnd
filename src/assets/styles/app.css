@@ -813,7 +813,9 @@ p {
   position: inherit;
   margin: auto;
   padding: .2rem;
-  max-width: fit-content;
+  max-width: 40rem;
+  max-height: 40rem;
+  border: 5px solid #828282;
 }
 
 .espacio_trabajo .tres_mascotas .card .card-img-top:hover {
@@ -1760,7 +1762,7 @@ ul {
 
 .rmascota .mascotas_registro .datos img {
   max-height: 25rem;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .rmascota .mascotas_registro .info {
@@ -1790,7 +1792,7 @@ ul {
 }
 
 .rmascota .mascotas_registro .botones .publicar {
-  color: #828282;
+  color: black;
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#99d9f7+0,aadeff+100 */
   background: #99d9f7;
   /* Old browsers */
@@ -1820,17 +1822,17 @@ ul {
 }
 
 .rmascota .mascotas_registro .botones .cancelar {
-  color: #828282;
-  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#a90329+0,ce0407+22,c40003+78,6d0019+100 */
-  background: #a90329;
+  color: black;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff2323+0,ff4f4f+50,f22e2e+100 */
+  background: #ff2323;
   /* Old browsers */
-  background: -moz-linear-gradient(left, #a90329 0%, #ce0407 22%, #c40003 78%, #6d0019 100%);
+  background: -moz-linear-gradient(left, #ff2323 0%, #ff4f4f 50%, #f22e2e 100%);
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, #a90329 0%, #ce0407 22%, #c40003 78%, #6d0019 100%);
+  background: -webkit-linear-gradient(left, #ff2323 0%, #ff4f4f 50%, #f22e2e 100%);
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, #a90329 0%, #ce0407 22%, #c40003 78%, #6d0019 100%);
+  background: linear-gradient(to right, #ff2323 0%, #ff4f4f 50%, #f22e2e 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=1 );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff2323', endColorstr='#f22e2e',GradientType=1 );
   /* IE6-9 */
 }
 

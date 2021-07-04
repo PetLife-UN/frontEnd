@@ -306,6 +306,7 @@
           id="img"
           class=""
           alt="Image">
+
       </div>
 
       <div class="datos Mensaje">

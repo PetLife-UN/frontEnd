@@ -116,7 +116,9 @@
 				margin: auto;
 				padding: .2rem;
 				// border: 10px solid black;
-				max-width: fit-content;
+				max-width: 40rem;
+    			max-height: 40rem;
+				border: 5px solid $gris2;
 				&:hover{
 
 					border: 10px solid $azulado;

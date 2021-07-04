@@ -171,7 +171,7 @@
 			}
 			img {
 				max-height: 25rem;
-				margin: auto;
+				margin: 0 auto;
 				// outline: 2px solid $azulado; 
 			}
 		
@@ -198,7 +198,7 @@
 		}
 		.botones {
 			.publicar {
-				color: $gris2;
+				color: black;
 				@include degragado-azul2;
 				&:hover{
 					color: white;
@@ -206,8 +206,8 @@
 				}
 			}
 			.cancelar {
-				color: $gris2;
-				@include degragado-rojo;
+				color: black;
+				@include degragado-rojo3;
 				&:hover{
 					color: white;
 					@include degragado-rojo2;
