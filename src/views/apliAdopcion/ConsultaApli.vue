@@ -1,9 +1,12 @@
 <template >
     <navbar/>
+    
     <div class = "container-fluid bg-light cuerpo_consultaApli">
         <div class = "container">
             <br>
             <button type="button" class="btn  button_volver" v-on:click="volver()">Volver</button>
+            <button type="button" class="btn " v-on:click="test()">Test</button>
+            Test:{{visible}}
         </div>
         <h2 class="py-5 text-center">SOLICITUDES DE ADOPCIÓN </h2>
         <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" />
@@ -11,43 +14,29 @@
         <br>
         <div class = "container">
             <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
-                <div class="col-lg-5 col-md-12 col_infoapli">
-                    <div class ="row g-0">
-                        <div class ="col-1 marca_lateral"/>
-                        <div class ="col-1 marca_lateral_inv"/> 
-                        <div class ="col-10 fila_info_apli">
-                            <br>
-                            <p><mark class="titulo_soli">Nombre: </mark>{{apli.name.substring(0,50)}}</p>
-                            <p><mark class="titulo_soli">Email: </mark>{{apli.email.substring(0,40)}}</p>
-                            <div class ="row">
-                                <div class = "col-8">
-                                    <p><mark class="titulo_soli">Teléfono móvil: </mark>{{apli.movilNumber}}</p>
-                                    <p><mark class="titulo_soli">Ubicación: </mark>{{apli.city}} ({{apli.department}})</p>
-                                    <p><mark class="titulo_soli">Edad:  </mark>{{apli.age}} años</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="text_info_id_apli">Publicación #{{apli.id}}</div>
+                <div class = "lateral_bar_consultasol"></div>
+                <div class = "row g-0 content_consultasol ">
+                    <div class="col-5 col_infoapli">
+                        <br>
+                        <p><mark class="titulo_soli">Nombre: </mark>{{apli.name.substring(0,50)}}</p>
+                        <p><mark class="titulo_soli">Email: </mark>{{apli.email.substring(0,40)}}</p>
+                        <p><mark class="titulo_soli">Teléfono móvil: </mark>{{apli.movilNumber}}</p>
+                        <p v-if=" apli.telNumber != 'No aplica' "><mark class="titulo_soli">Teléfono Fijo: </mark>{{apli.telNumber}}</p>
+                        <p><mark class="titulo_soli">Ubicación: </mark>{{apli.city}} ({{apli.department}})</p>
+                        <p><mark class="titulo_soli">Dirección: </mark>{{apli.address}}</p>
                     </div>
-                </div>
-                <div class = "col-lg-4 col-md-6 col-sm-6 container_extra_info">
-                    <br>
-                    <br>
-                    <div class ="contenedor_agreement ">
-                        <p><mark class="titulo_soli">Familia de acuerdo: </mark> </p>
-                        <div  class = "img_agreement"  v-if="apli.familyAgreement == true">
-                            <img src="../../assets/icons/happy_64px.png">
-                        </div>
-                        <div class = "img_agreement" v-else>
-                            <img src="../../assets/icons/sad_64px.png">
-                        </div>
+                    <div class = "col-4 container_extra_info">
+                        <br>
+                        <p><mark class="titulo_soli">Familia de acuerdo: </mark> <img v-bind:src="ICON_TIPO[apli.familyAgreement]"></p>
+                        <p><mark class="titulo_soli">Canal comunicación: </mark>{{apli.communication}}</p>
+                        <p><mark class="titulo_soli">Edad:  </mark>{{apli.age}} años</p>
+
+                        <button type="button" class="btn button_verinfo_apli" v-on:click="()=>TogglePopup('buttonTrigger',apli)">Información completa</button>
                     </div>
-                    <p><mark class="titulo_soli">Canal comunicación:  </mark></p>
-                    <p>    &nbsp; {{apli.communication}}</p>
-                    <div class="text_info_id_apli">Id #{{apli.id}}</div>
-                    <button type="button" class="btn button_verinfo_apli" v-on:click="()=>TogglePopup('buttonTrigger',apli)">Información completa</button>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col_img_apli">
-                    <img class="card-img-top imagen_apli" v-bind:src="apli.pet.link_foto" v-bind:alt="apli.pet.id">
+                    <div class = "col-3 ">
+                        <img class="card-img-top imagen_apli" v-bind:src="apli.pet.link_foto" v-bind:alt="apli.pet.id">
+                    </div>
                 </div>
             </div>
         </div> 
@@ -78,13 +67,20 @@ import axios from 'axios'
 import {ref} from 'vue'
 export default {
     data(){
+        const ICON_DEFAULT = require('../../assets/icons/sad_64px.png')
+        const ICON_TIPO = {
+            true:require('../../assets/icons/happy_64px.png'),
+            false:require('../../assets/icons/sad_64px.png'),
+        }
         return{
             ListaApli:null,
             infoApli,
             buttonTrigger:false,
             pagina:1,
             size:5,
-            totalPages:0
+            totalPages:0,
+            visible:false,
+            ICON_TIPO,
         }
     },
     setup(){
@@ -132,13 +128,34 @@ export default {
             this.pagina =  this.pagina - - 1
             this.$router.push("/profile/consultaapli/"+this.pagina)
         },
+        test(){
+            this.visible = !this.visible;
+            this.updateValues();
+        },
+        updateValues(){
+            const token = localStorage.token;
+            this.pagina = this.$route.params.numPage;
+            axios
+            .get("http://localhost:8080/api/apply/getApplicationUserPage?adopted=false&visible="+(this.visible)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
+            //.get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?page="+(this.pagina-1)+"&size="+(this.size) ,{
+                headers:{
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then( data =>{
+                this.ListaApli = data.data.content;
+                this.totalPages = data.data.totalPages;
+                //console.log(this.ListaApli);
+                //console.log(this.totalPages)
+            })
+        },
     },
     mounted:function(){
         const token = localStorage.token;
         this.pagina = this.$route.params.numPage;
         axios
-        //.get("http://localhost:8080/api/apply/getApplicationUserPage?page="+(this.pagina-1)+"&size="+(this.size) ,{
-        .get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?page="+(this.pagina-1)+"&size="+(this.size) ,{
+        .get("http://localhost:8080/api/apply/getApplicationUserPage?adopted=false&visible="+(this.visible)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
+        //.get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?page="+(this.pagina-1)+"&size="+(this.size) ,{
             headers:{
                 'Authorization': `Bearer ${token}`
             }
@@ -154,56 +171,54 @@ export default {
 </script>
 
 <style>
+    /*Pagina solicitudes de aplicacion*/
     .cuerpo_consultaApli{
         min-height: 600px;
     }
+    /*Contenedor solicitud*/
     .container_apli_info{
         background:#f0eeee;
         position: relative;
     }
-    .col_img_apli{
-        background: #4B8BDD;
+    .container_apli_info p{
+        font-size: 1.9rem;
     }
+    /*Barra lateral*/
+    .lateral_bar_consultasol{
+        background: #4B8BDD;
+        width:30px;
+        height: 100%;
+        position:absolute;
+        top:0px;
+        left: 0px;
+    }
+    /*Contenedor solicitud */
+    .content_consultasol{
+        
+        padding:0px 0px 0px 40px;
+        height:100%;
+    }
+
     .imagen_apli{
         object-fit: cover;
-        max-width: 100%;
-        height: 225px;
-        
+        height: 260px;
+        width:100%;
     }
-    .marca_lateral{
-        width:30px;
-        background: #4B8BDD;
-    }
-    .marca_lateral_inv{
-        width:30px;
-        background: transparent;
-    }
-    .fila_info_apli{
-        position: relative;
-    }
+    /*Titulo id */
     .text_info_id_apli{
         position: absolute;
         top: 0px;
-        right: 20px;
+        right: 546px;
         font-size: 25px;
         color:#5f5f5f;
     }
-    .container_extra_info{
-        position: relative;
-    }
-    .contenedor_agreement{
-        position: relative;
-    }
-    .img_agreement{
-        position: absolute;
-        top: -15px;
-        left: 260px;
-    }
+    /*Titulo solicitud */
     .titulo_soli{
         background-color: transparent;
         color: #4179c2 ;
         font-weight: 600;
     }
+    /*Boton ver info completa */
     .button_verinfo_apli{
         background-color: #535353;
         color:#ffffff;

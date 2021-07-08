@@ -479,8 +479,8 @@ export default {
                 "date":date,
                 "pet_id": this.idPet
             }
-            //axios.post("http://localhost:8080/api/apply/form/"+this.idPet, json,)
-            axios.post("https://unpetlife.herokuapp.com/api/apply/form/"+this.idPet, json,)
+            axios.post("http://localhost:8080/api/apply/form/"+this.idPet, json,)
+            //axios.post("https://unpetlife.herokuapp.com/api/apply/form/"+this.idPet, json,)
             .then((data) => {
                 if (data.status == 200) {
                     console.log("El registro fue correcto");

@@ -61,8 +61,8 @@ export default createStore({
 			return new Promise((resolve, reject) => {
 				commit("login_request");
 				axios({
-					//url: "http://localhost:8080/api/auth/login",
-					url: "https://unpetlife.herokuapp.com/api/auth/login",
+					url: "http://localhost:8080/api/auth/login",
+					//url: "https://unpetlife.herokuapp.com/api/auth/login",
 					data: json,
 					method: "POST",
 				})
