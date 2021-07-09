@@ -14,8 +14,8 @@
         <br>
         <div class = "container">
             <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
-                <div class="text_info_id_apli">Publicación #{{apli.id}}</div>
-                <div class = "lateral_bar_consultasol"></div>
+                <p class="text_info_id_apli">Publicación #{{apli.id}}</p>
+                <div class = "lateral_bar_consultasol" v-bind:style="{ background: COLOR_TIPO[apli.publicationVisible]}"></div>
                 <div class = "row g-0 content_consultasol ">
                     <div class="col-5 col_infoapli">
                         <br>
@@ -23,15 +23,15 @@
                         <p><mark class="titulo_soli">Email: </mark>{{apli.email.substring(0,40)}}</p>
                         <p><mark class="titulo_soli">Teléfono móvil: </mark>{{apli.movilNumber}}</p>
                         <p v-if=" apli.telNumber != 'No aplica' "><mark class="titulo_soli">Teléfono Fijo: </mark>{{apli.telNumber}}</p>
-                        <p><mark class="titulo_soli">Ubicación: </mark>{{apli.city}} ({{apli.department}})</p>
-                        <p><mark class="titulo_soli">Dirección: </mark>{{apli.address}}</p>
+                        <p><mark class="titulo_soli">Familia de acuerdo: </mark> <img v-bind:src="ICON_TIPO[apli.familyAgreement]"></p>
                     </div>
                     <div class = "col-4 container_extra_info">
                         <br>
-                        <p><mark class="titulo_soli">Familia de acuerdo: </mark> <img v-bind:src="ICON_TIPO[apli.familyAgreement]"></p>
                         <p><mark class="titulo_soli">Canal comunicación: </mark>{{apli.communication}}</p>
                         <p><mark class="titulo_soli">Edad:  </mark>{{apli.age}} años</p>
-
+                        <p><mark class="titulo_soli">Ubicación: </mark>{{apli.city}} ({{apli.department}})</p>
+                        <p><mark class="titulo_soli">Dirección: </mark>{{apli.address}}</p>
+                        <br>
                         <button type="button" class="btn button_verinfo_apli" v-on:click="()=>TogglePopup('buttonTrigger',apli)">Información completa</button>
                     </div>
                     <div class = "col-3 ">
@@ -67,10 +67,13 @@ import axios from 'axios'
 import {ref} from 'vue'
 export default {
     data(){
-        const ICON_DEFAULT = require('../../assets/icons/sad_64px.png')
         const ICON_TIPO = {
             true:require('../../assets/icons/happy_64px.png'),
             false:require('../../assets/icons/sad_64px.png'),
+        }
+        const COLOR_TIPO = {
+            true:"#4B8BDD",
+            false:"#FF4C4C",
         }
         return{
             ListaApli:null,
@@ -81,6 +84,7 @@ export default {
             totalPages:0,
             visible:false,
             ICON_TIPO,
+            COLOR_TIPO,
         }
     },
     setup(){
@@ -185,12 +189,21 @@ export default {
     }
     /*Barra lateral*/
     .lateral_bar_consultasol{
-        background: #4B8BDD;
         width:30px;
         height: 100%;
         position:absolute;
         top:0px;
         left: 0px;
+    }
+    /*Titulo id */
+    .text_info_id_apli{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        padding: 0px 350px 0px 0px;
+        font-size: 20px;
+        color:#5f5f5f;
+        text-align: end;
     }
     /*Contenedor solicitud */
     .content_consultasol{
@@ -203,14 +216,6 @@ export default {
         object-fit: cover;
         height: 260px;
         width:100%;
-    }
-    /*Titulo id */
-    .text_info_id_apli{
-        position: absolute;
-        top: 0px;
-        right: 546px;
-        font-size: 25px;
-        color:#5f5f5f;
     }
     /*Titulo solicitud */
     .titulo_soli{

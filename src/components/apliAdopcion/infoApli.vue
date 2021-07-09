@@ -2,6 +2,23 @@
     <div class = "popup-infoApli" >
         <div class ="popup-inner px-0" ref="popup_info">
 
+                    
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class = "lateral_bar_solicitud">
             </div>
             <img 
@@ -10,7 +27,7 @@
                 src="../../assets/icons/exit_64px.png" 
                 alt="perro saludo">
             <div class ="row content_solicitud">
-                <div class = "col-3 info_solicitud_estado bg-light">
+                <div class = "col-4 info_solicitud_estado bg-light">
                     <br>
                     <div class = "row">
                         <img class="card-img-top imagen_apli" v-bind:src="aplicationInfo.pet.link_foto" v-bind:alt="aplicationInfo.pet.id">
@@ -32,128 +49,29 @@
                         
                         id: {{aplicationInfo.id}}
                         Visible: {{visible}}
-                        <p><mark class="subtitulo_info_soli">Fecha de publicación: </mark>{{dateYear+"/"+dateMonth+"/"+dateDay+"   -   "+dateHour +":"+dateMinutes+":"+dateSeconds}}</p>
-        
-                        
                         
 
                     </div>
-                    <div class = "row ">
-                        <div class="dropdown">
-                            <button class="dropbtn">{{visible}}</button>
-                            <div class="dropdown-content">
-                                <a v-on:click="test1"> Link 1</a>
-                                <a v-on:click="test2">Link 2</a>
-                            </div>
-                        </div>
-                    </div>  
                 </div>
-                <div class = "col-9 content_info_solicitud">
-                    <h3 class="titulo_info_solicitud">Información adoptante</h3>
-                    <div class = "row">
-                        
-                        <div class = "col-6">
-                            <p><mark class="subtitulo_info_soli">Nombre: </mark>{{aplicationInfo.name}}</p>
-                            <p><mark class="subtitulo_info_soli">Edad: </mark>{{aplicationInfo.age}} años</p>
-                        </div>
-                        <div class = "col-6">
-                            <p><mark class="subtitulo_info_soli">Ciudad: </mark>{{aplicationInfo.city}} ({{aplicationInfo.department}})</p>
-                            <p><mark class="subtitulo_info_soli">Dirección: </mark>{{aplicationInfo.address}}</p>
-                            
-                            <p><mark class="subtitulo_info_soli">Ocupación: </mark>{{aplicationInfo.occupation}}</p>
-                        </div>
-                    </div>
-                    <h3 class="titulo_info_solicitud">Información de contacto</h3>
-                    <p></p>
-                    <div class = "row">
-                        <div class = "col-6">
-                            <p><mark class="subtitulo_info_soli">Email: </mark><a href>{{aplicationInfo.email}}</a></p>
-                            <p><mark class="subtitulo_info_soli">Teléfono celular: </mark>{{aplicationInfo.movilNumber}}</p>
-                        </div>
-                        <div class = "col-6">
-                            <p><mark class="subtitulo_info_soli">Teléfono fijo: </mark>{{aplicationInfo.telNumber}}</p>
-                            <p><mark class="subtitulo_info_soli">Medio de comunicación principal: </mark>{{aplicationInfo.communication}}</p>
-                        </div>
-                    </div>
-                    <h3 class="titulo_info_solicitud">Información de solicitud</h3>
-                    <p></p>
-                    <div class = "row">
-                        <div class = "col-4">
-                            <p><mark class="subtitulo_info_soli">Familia de acuerdo: </mark>{{aplicationInfo.familyAgreement}}</p>
-                        </div>
-                        <div class = "col-4">
-                            <p><mark class="subtitulo_info_soli">Familia de acuerdo: </mark>{{aplicationInfo.familyAgreement}}</p>
-                        </div>
-                        <div class = "col-4">
-                            <p><mark class="subtitulo_info_soli">Familia de acuerdo: </mark>{{aplicationInfo.familyAgreement}}</p>
-                        </div>
-                        <div class = "col-4">
-                            <p><mark class="subtitulo_info_soli">Miembros familiares: </mark>{{aplicationInfo.familyMembers}}</p>
-                        </div>
-                        <div class = "col-4">
-                            <p><mark class="subtitulo_info_soli">Edad promedio familia: </mark>{{aplicationInfo.averageAge}} años</p>
-                        </div>
-                        <div class = "col-4">
-                            <p><mark class="subtitulo_info_soli">Alergias en la familia: </mark>{{aplicationInfo.allergies == true ? 'Sí': 'No'}}</p>
-                        </div>
-                        <div class = "col-3">
-                            <mark class="subtitulo_info_soli">Razón de adopción: </mark>
-                        </div>
-                        <div class = "col-8 bg-light border contenedor_razon">
-                            {{aplicationInfo.reason.substring(0,110)}}
-                        </div>
-                        <div class = "col-4">
-                            <br>
-                            <p><mark class="subtitulo_info_soli">¿Dónde dormirá? </mark>{{aplicationInfo.restingPlace}}</p>
-                            <p><mark class="subtitulo_info_soli">Acepta tiempo de adaptación: </mark>{{aplicationInfo.adjustmentPeriod == true ? 'Sí': 'No'}}</p>
-                        </div>
-                        <div class = "col-4">
-                            <br>
-                            <p><mark class="subtitulo_info_soli">¿Quién lo cuidará? </mark>{{aplicationInfo.careOption}}</p>
-                            <p v-if=" aplicationInfo.adjustmentPeriod == true  "><mark class="subtitulo_info_soli" >¿Cuánto tiempo? </mark>{{aplicationInfo.adjustmentPeriodTime}}</p>
-                        </div>
-                        <div class = "col-4">
-                            <br>
-                            <p><mark class="subtitulo_info_soli">Seguimiento de la mascota: </mark>{{aplicationInfo.followingAgreement == true ? 'Sí': 'No'}}</p>
-                            <p><mark class="subtitulo_info_soli">Experiencia con mascotas: </mark>{{aplicationInfo.animalExperience == true ? 'Sí': 'No'}}</p>
-                        </div>
-                        <p></p>
-                        <div class = "col-6" v-if=" aplicationInfo.animalExperience == true  ">
-                            <p><mark class="subtitulo_info_soli">Mascotas anteriores: </mark>{{aplicationInfo.experienceType}}</p>
-                            <p><mark class="subtitulo_info_soli">Estado de la mascota: </mark>{{aplicationInfo.experienceNow}}</p>
-                        </div>
-                        <div class = "col-6" v-if=" aplicationInfo.animalExperience == true ">
-                            <p><mark class="subtitulo_info_soli">Edad de la mascota: </mark>{{aplicationInfo.experienceLife}} años</p>
-                            <p><mark class="subtitulo_info_soli">Razón del estado: </mark>{{aplicationInfo.experienceReason}}s</p>
-                        </div>
-                    </div>
-                    assdasdasdasasdadasd
-                    <button class="open-button" v-on:click="openForm()">Open Form</button>
-
-                    <div class="form-popup" id="myForm">
-                    <form action="/action_page.php" class="form-container">
-                        <h1>Login</h1>
-
-                        <label for="email"><b>Email</b></label>
-                        <input type="text" placeholder="Enter Email" name="email" required>
-
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
-
-                        <button type="submit" class="btn">Login</button>
-                        <button type="button" class="btn cancel" v-on:click="closeForm()">Close</button>
-                    </form>
-                    </div>
-
-
-                </div>
-
-
                 
+                <div class = "col-8 content_info_solicitud">
+
+                <div id="mySidenav" class="sidenav">
+                    <a href="#" id="about"><img src="../../assets/icons/contact_96px.png"></a>
+                    <a href="#" id="blog"><img src="../../assets/icons/report_card_96px.png"></a>
+                </div>
+                <div class = "info_solicitud">
+                    <h1 class="titulo_info_solicitud">Información de solicitud</h1>
+                    <p v-if="activePage == 'contacto'"> Contacto </p>
+                    <p v-if="activePage == 'solicitud'"> Solicitud </p>
+                </div>
+                    
+
+
+
+
+                </div>
             </div>
-
-
-            sdadsasd
         </div>
     </div>
     
@@ -186,6 +104,7 @@ export default {
             dateMinutes: datePublication[4],
             dateSeconds: datePublication[5],
             ico,
+            activePage:"contacto",
         }
     },
     props: {
@@ -227,7 +146,7 @@ export default {
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 99;
+        z-index: 20;
         background-color: rgba(0, 0, 0, 0.5);
         display:flex;
         align-items:center;
@@ -277,6 +196,7 @@ export default {
         font-weight: 400;
     }
     .info_solicitud_estado{
+        z-index: 21;
         height: 100%;
         padding: 0 15px 0 20px;
         
@@ -297,6 +217,7 @@ export default {
     }
     /*Lateral derecho información solicitud */
     .content_info_solicitud{
+        position: relative;
         background: white;
         padding: 20px 20px 20px 40px;
     }
@@ -307,51 +228,44 @@ export default {
     .contenedor_razon{
         padding:5px 20px 5px 20px;
     }
-    /*Dropdown button css*/ 
-    .info_solicitud_estado .dropbtn{
-        background-color: #4CAF50;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-        min-width: 160px;
+    .info_solicitud{
+        padding:0px 0px 0px 30px;
     }
-
-    .info_solicitud_estado .dropdown {
-        position: relative;
-        display: inline-block;
+    /*Hover sidenav */
+    #mySidenav a {
+        z-index: inherit;
+        position: absolute;
+        width: 200px;
+        left: -140px;
+        transition: 0.3s;
+        padding: 5px;
+        text-decoration: none;
+        text-align: end;
+        font-size: 20px;
+        color: white;
+        border-radius: 0 5px 5px 0;
         
     }
-
-    .info_solicitud_estado .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
+    #mySidenav img{
+        height: 50px;
+    }
+    #mySidenav a:hover {
+        left: 0;
     }
 
-    .info_solicitud_estado .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
+    #about {
+        top: 20px;
+        background-color: #424242;
     }
 
-    .info_solicitud_estado .dropdown-content a:hover {
-        background-color: #f1f1f1
+    #blog {
+        top: 90px;
+        background-color: #4B8BDD;
     }
 
-    .info_solicitud_estado .dropdown:hover .dropdown-content {
-        display: block;
-    }
 
-    .info_solicitud_estado .dropdown:hover .dropbtn {
-        background-color: #3e8e41;
-    }
-    /*Slider*/
+
+
 
     /* The switch - the box around the slider */
     .switch {
@@ -415,74 +329,7 @@ export default {
     .slider.round:before {
     border-radius: 50%;
     }
-    /*Popup text */
+
+
     
-
-    /* Button used to open the contact form - fixed at the bottom of the page */
-    .open-button {
-    background-color: #555;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    opacity: 0.8;
-    position: fixed;
-    bottom: 23px;
-    right: 28px;
-    width: 280px;
-    }
-
-    /* The popup form - hidden by default */
-    .form-popup {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    right: 15px;
-    border: 3px solid #f1f1f1;
-    z-index: 9;
-    }
-
-    /* Add styles to the form container */
-    .form-container {
-    max-width: 300px;
-    padding: 10px;
-    background-color: white;
-    }
-
-    /* Full-width input fields */
-    .form-container input[type=text], .form-container input[type=password] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
-    }
-
-    /* When the inputs get focus, do something */
-    .form-container input[type=text]:focus, .form-container input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-    }
-
-    /* Set a style for the submit/login button */
-    .form-container .btn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom:10px;
-    opacity: 0.8;
-    }
-
-    /* Add a red background color to the cancel button */
-    .form-container .cancel {
-    background-color: red;
-    }
-
-    /* Add some hover effects to buttons */
-    .form-container .btn:hover, .open-button:hover {
-    opacity: 1;
-    }
 </style>
