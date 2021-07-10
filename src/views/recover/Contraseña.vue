@@ -110,7 +110,7 @@ export default {
 					"token" : this.token_r,
 					"password" : this.Contraseña
 				}
-				console.log(json)
+				// console.log(json)
 				this.changePassword(json);
 			}
 		},

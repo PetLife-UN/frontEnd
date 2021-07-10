@@ -678,7 +678,7 @@ label{
     margin-right: 40px;
 }
 .info{
-    font-size: 12 px;
+    font-size: 12px;
     font-family: 'Times New Roman', Times, serif;
     font-style: oblique;
     font-weight: 100;
