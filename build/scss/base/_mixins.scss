@@ -6,6 +6,12 @@
     font-weight: $grosor;
 }
 
+@mixin media330 {
+    @media (min-width: 333px) {
+        @content;
+    }
+}
+
 @mixin media400 {
     @media (min-width: 400px) {
         @content;
@@ -14,6 +20,12 @@
 
 @mixin media500 {
     @media (min-width: 500px) {
+        @content;
+    }
+}
+
+@mixin media550 {
+    @media (min-width: 550px) {
         @content;
     }
 }
@@ -52,20 +64,14 @@
     }
 }
 
-@mixin media800 {
-    @media (min-width: 800px) {
-        @content;
-    }
-}
-
-@mixin maxima900 {
-    @media (max-width: 900px) {
-        @content;
-    }
-}
-
 @mixin media768 {
     @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin media800 {
+    @media (min-width: 800px) {
         @content;
     }
 }
@@ -88,9 +94,20 @@
     }
 }
 
+@mixin maxima900 {
+    @media (max-width: 900px) {
+        @content;
+    }
+}
 
 @mixin media1000 {
     @media (min-width: 1000px) {
+        @content;
+    }
+}
+
+@mixin media1010 {
+    @media (min-width: 1030px) {
         @content;
     }
 }

@@ -14,8 +14,9 @@
 	}
 
 	.mascotas_registro {
-		background-color: white;
+		
 		display: grid;
+		background-color: white;
 		max-width: 200rem;
 		grid-gap: 2rem;
 		// grid-column-gap: 2rem;
@@ -77,9 +78,6 @@
 				background-color: white;
 				border-color: $azul-claro;
 
-			}
-			.mayuscula {
-				text-transform: capitalize;
 			}
 			.seleccion {
 				option {

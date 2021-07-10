@@ -292,14 +292,4 @@ export default {
 };
 </script>
 <style >
-    .profile_body {
-        min-height: 500px;
-    }
-    .menu_botones button{
-        background-color: #4B8BDD;
-        color:#ffffff;
-        font-size: 25px;
-        padding: 5px 32px;
-        text-align: center;
-    }
 </style>
