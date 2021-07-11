@@ -112,6 +112,12 @@
     }
 }
 
+@mixin media1100 {
+    @media (min-width: 1100px) {
+        @content;
+    }
+}
+
 @mixin media1200 {
     @media (min-width: 1200px) {
         @content;

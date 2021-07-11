@@ -30,6 +30,8 @@
 
 	.tres_mascotas {
 		// display: flex;
+		// margin: auto;
+		// max-width: 30rem;
 		.vista {
 			width: 100%;
 			margin-bottom: 2rem;
@@ -171,13 +173,19 @@
 		@include media1000 {
 
 			justify-content: space-between;
-
+			margin: auto;
+   			// max-width: 100rem;
 			.vista {
 				flex: 0 0 calc( 50% - 0rem );
 			}
 		}
+		@include media1100 {
+			max-width: 100rem;
+		}
+
 
 		@include media1400 {
+			max-width: 130rem;	
 			.card {
 				display: grid;
 			}
