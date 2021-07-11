@@ -73,7 +73,7 @@ export default {
         }
         const COLOR_TIPO = {
             true:"#4B8BDD",
-            false:"#FF4C4C",
+            false:"#d9534f",
         }
         return{
             ListaApli:null,

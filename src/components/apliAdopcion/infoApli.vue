@@ -1,41 +1,59 @@
 <template>
     <div class = "popup-infoApli" >
         <div class ="popup-inner px-0" ref="popup_info">
-            <div class = "lateral_bar_solicitud">
+            <div class = "lateral_bar_solicitud" v-bind:style="{ background: COLOR_TIPO[aplicationInfo.publicationVisible]}">
             </div>
             <img 
                 class="button_exit_solicitud" 
-                v-on:click="TogglePopup()"
+                v-on:click="exitApli()"
                 src="../../assets/icons/exit_64px.png" 
                 alt="perro saludo">
             <div class ="row content_solicitud">
                 <div class = "col-4 info_solicitud_estado bg-light">
                     <br>
+                    <br>
                     <div class = "row">
                         <img class="card-img-top imagen_apli" v-bind:src="aplicationInfo.pet.link_foto" v-bind:alt="aplicationInfo.pet.id">
+                        <br>
                         <div class="row">
                             <div class = "col-9">
                                 <p></p>
-                                <p class = "titulo_name_mascote">{{aplicationInfo.pet.nombre}} </p>
+                                <span class = "titulo_name_mascote">{{aplicationInfo.pet.nombre}}</span>
                                 <p class="subtitulo_name_mascote">{{aplicationInfo.pet.tipo}} - {{aplicationInfo.pet.edad}} años</p>
                             </div>
                             <div class = "col-3">
                                 <img class = "ico_pet_sol" v-bind:src="ico" alt="ImgPet">
                             </div>
                         </div>
-                        
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
-                        
-                        id: {{aplicationInfo.id}}
-                        Visible: {{visible}}
-                        
-
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <p class="subtitulo_propiedades_sol">Ajustes de solicitud</p>
+                        <br>
+                        <div class = "row g-0">
+                            <div class = "col-1">
+                            </div>
+                            <div class = "col-8">
+                                Solicitud visible
+                            </div>
+                            <div class = "col-1 linea_separador">
+                                |
+                            </div>
+                            <div class = "col-2">
+                                <label class="switch">
+                                    <input type="checkbox" id="visibleCheck" v-on:click="ChangeVisibleState()"> 
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class = "msg_modify" v-if="modifyConfig">Los cambios serán visibles al salir de la solicitud.</div>
                     </div>
                 </div>
-                
                 <div class = "col-8 content_info_solicitud">
                     <div id="mySidenav" class="sidenav">
                         <a v-on:click="changeactivePage('contacto')" id="about">Contacto    <img src="../../assets/icons/contact_96px.png"></a>
@@ -108,11 +126,6 @@
                         <div class = "solicitud" v-if="activePage == 'solicitud'">  
                             <h3 class="subtitulo_info_solicitud">Información de solicitud</h3>
                             <p></p>
-                            
-                            
-                            <br>
-                            
-                            
                             <div class="row g-0">
                                 <div class="col"><p><mark class="subtitulo_info_soli">Fecha publicación: </mark>{{dateDay+"/"+dateMonth+"/"+dateYear}} {{(dateHour%12)+":"+dateMinutes}}{{(dateHour>=12)?" p.m.":" a.m."}}</p></div>
                                 <div class="col"><p><mark class="subtitulo_info_soli">Id publicación: </mark>{{aplicationInfo.id}}</p></div>
@@ -123,32 +136,42 @@
                                 <div class="col"><p><mark class="subtitulo_info_soli">Edad promedio familia: </mark>{{aplicationInfo.averageAge}} años</p></div>
                                 <div class="col"><p><mark class="subtitulo_info_soli">Alergias en la familia: </mark>{{aplicationInfo.allergies == true ? 'Sí': 'No'}}</p></div>
                                 <div class="w-100"></div>
+                                <p></p>
                                 <div class="col-3"><p><mark class="subtitulo_info_soli">Razón de adopción: </mark></p></div>
-                                <div class="col bg-light border contenedor_razon"><p>{{aplicationInfo.reason.substring(0,110)}}</p></div>
+                                <div class="col border contenedor_razon"><p>{{aplicationInfo.reason.substring(0,110)}}</p></div>
+                                <div class="w-100"></div>
+                                <p></p>
                                 <div class="w-100"></div>
                                 <div class="col"><p><mark class="subtitulo_info_soli">Familia de acuerdo: </mark>{{(aplicationInfo.familyAgreement==true)?"Sí":"No"}}</p></div>
                                 <div class="col"><p><mark class="subtitulo_info_soli">Acepta tiempo adaptación: </mark>{{aplicationInfo.adjustmentPeriod == true ? 'Sí': 'No'}}</p></div>
                                 <div class="col"><p v-if=" aplicationInfo.adjustmentPeriod == true  "><mark class="subtitulo_info_soli" >¿Cuánto tiempo? </mark>{{aplicationInfo.adjustmentPeriodTime}}</p></div>
                                 <div class="w-100"></div>
+                                <p></p>
                                 <div class="col"><p><mark class="subtitulo_info_soli">¿Dónde dormirá? </mark></p></div>
-                                <div class="col-3 bg-light border contenedor_razon"><p>{{aplicationInfo.restingPlace.substring(0,30)}}</p></div>
+                                <div class="col-3 border contenedor_razon"><p>{{aplicationInfo.restingPlace.substring(0,30)}}</p></div>
                                 <div class="col"><p><mark class="subtitulo_info_soli">¿Quién lo cuidará? </mark></p></div>
-                                <div class="col-3 bg-light border contenedor_razon"><p>{{aplicationInfo.careOption.substring(0,30)}}</p></div>
+                                <div class="col-3 border contenedor_razon"><p>{{aplicationInfo.careOption.substring(0,30)}}</p></div>
                                 <div class="w-100"></div>
+                                <p></p>
                                 <div class="col"><p><mark class="subtitulo_info_soli">Seguimiento de la mascota: </mark>{{aplicationInfo.followingAgreement == true ? 'Sí': 'No'}}</p></div>
                                 <div class="col"><p><mark class="subtitulo_info_soli">Experiencia con mascotas: </mark>{{aplicationInfo.animalExperience == true ? 'Sí': 'No'}}</p></div>
                                 <div class="w-100"></div>
-                            </div>
-                                
-                            
-
-
-                            
-                            
-                            <p><mark class="subtitulo_info_soli">Mascotas anteriores: </mark>{{aplicationInfo.experienceType}}</p>
-                            <p><mark class="subtitulo_info_soli">Estado de la mascota: </mark>{{aplicationInfo.experienceNow}}</p>
-                            <p><mark class="subtitulo_info_soli">Edad de la mascota: </mark>{{aplicationInfo.experienceLife}} años</p>
-                            <p><mark class="subtitulo_info_soli">Razón del estado: </mark>{{aplicationInfo.experienceReason}}s</p>
+                                <div class = "exp_mascota" v-if=" aplicationInfo.animalExperience == true">
+                                    <div class="row g-0">
+                                        <div class="col"><p><mark class="subtitulo_info_soli">Mascotas anteriores: </mark></p></div>
+                                        <div class="col-3 border contenedor_razon"><p>{{aplicationInfo.experienceType.substring(0,40)}}</p></div>
+                                        <div class="col"><p><mark class="subtitulo_info_soli">Edad de la mascota: </mark></p></div>
+                                        <div class="col-3 contenedor_razon_noCol"><p>{{aplicationInfo.experienceLife}}  años</p></div>
+                                        <div class="w-100"></div>
+                                        <p></p>
+                                        <div class="col"><p><mark class="subtitulo_info_soli">Estado de la mascota: </mark></p></div>
+                                        <div class="col-3 border contenedor_razon"><p>{{aplicationInfo.experienceNow.substring(0,40)}}</p></div>
+                                        <div class="col"><p><mark class="subtitulo_info_soli">Razón del estado: </mark></p></div>
+                                        <div class="col-3 border contenedor_razon"><p>{{aplicationInfo.experienceReason.substring(0,40)}}</p></div>
+                                        <div class="w-100"></div>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
                     </div>
                 </div>
@@ -159,6 +182,7 @@
 </template>
 <script>
 import { ref } from 'vue'
+import axios from "axios";
 import {onClickOutside} from '@vueuse/core'
 export default {
     data(){
@@ -180,6 +204,10 @@ export default {
             'Email':require('../../assets/icons/email_126px.png'),
             'Telefono celular':require('../../assets/icons/android_126px.png'),
         }
+        const COLOR_TIPO = {
+            true:"#4B8BDD",
+            false:"#d9534f",
+        }
         return {
             visible,
             datePublication,
@@ -192,6 +220,8 @@ export default {
             ico,
             activePage:"contacto",
             ICON_CANAL,
+            COLOR_TIPO,
+            modifyConfig:false,
         }
     },
     props: {
@@ -199,21 +229,16 @@ export default {
         aplicationInfo:Object,
     },
     setup(props) {
-        
         const popup_info = ref(null)
-
         onClickOutside(popup_info, (event)=>props.TogglePopup())
-
         return { 
             popup_info 
         }
     },
     methods:{
-        test1(){
-            this.visible = false;
-        },
-        test2(){
-            this.visible = true;
+        ChangeVisibleState(){
+            this.modifyConfig = !this.modifyConfig;
+            this.visible = !this.visible;
         },
         openForm(){
             document.getElementById("myForm").style.display = "block";
@@ -224,7 +249,37 @@ export default {
         },
         changeactivePage(value){
             this.activePage = value;
+        },
+        exitApli(){
+            if(this.modifyConfig){
+                const json ={
+					"id" : this.aplicationInfo.id,
+                    "publicationVisible" : this.visible,
+				}
+                axios({
+					url: "http://localhost:8080/api/auth/login",
+					//url: "https://unpetlife.herokuapp.com/api/auth/login",
+					data: json,
+					method: "POST",
+				})
+				.then((response) => {
+					
+                    
+				})
+				.catch((error) => {
+					
+				})
+
+
+
+
+            }  
+            
+            this.TogglePopup();
         }
+    },
+    mounted:function(){
+        document.getElementById("visibleCheck").checked = this.visible;
     },
 
 }
@@ -277,9 +332,10 @@ export default {
     }
     /*Lateral izquierdo info mascota */
     .titulo_name_mascote{
-        font-size: 25px;
+        font-size: 35px;
         text-align:left;
         font-weight: 600;
+        color:#0f0f0f;
     }
     .subtitulo_name_mascote{
         font-size: 18px;
@@ -295,7 +351,18 @@ export default {
     .ico_pet_sol{
         width:80px;
     }
-    
+    .subtitulo_propiedades_sol{
+        font-size: 20px;
+        text-align:left;
+        color:#333333;
+        font-weight: 500;
+    }
+    .linea_separador{
+        color:#b3b3b3;
+    }
+    .msg_modify{
+        color: #4179c2;
+    }
     /*Lateral derecho información solicitud */
     .content_info_solicitud{
         position: relative;
@@ -322,6 +389,9 @@ export default {
         color:#333333;
     }
     /*Contacto */
+    .contacto{
+        height: 490px;
+    }
     .contacto .subtitulo_info_soli{
         background-color: transparent;
         color: #4179c2 ;
@@ -361,7 +431,7 @@ export default {
 
     /*Solicitud */
     .solicitud{
-        
+        height: 490px;
     }
     .solicitud p{
         font-size: 15px;
@@ -374,8 +444,19 @@ export default {
         font-size: 15px;
     }
     .contenedor_razon{
+        background: rgb(240, 240, 240);
         margin-right: 10px;
-        padding:5px 20px 5px 20px;
+        padding:2px 20px 2px 10px;
+    }
+    .contenedor_razon_noCol{
+        margin-right: 10px;
+        padding:2px 20px 2px 10px;
+    }
+    .contenedor_razon p{
+        font-size: 14px;
+    }
+    .solicitud .exp_mascota{
+        
     }
     /*Hover sidenav */
     #mySidenav a {
@@ -409,72 +490,59 @@ export default {
         top: 90px;
         background-color: #4B8BDD;
     }
-
-
-
-
-
-    /* The switch - the box around the slider */
+    /* Switch para desactivar publicacion*/
     .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
     }
-
-    /* Hide default HTML checkbox */
     .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+        opacity: 0;
+        width: 0;
+        height: 0;
     }
-
-    /* The slider */
     .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
     }
-
     .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
     }
 
     input:checked + .slider {
-    background-color: #2196F3;
+        background-color: #4B8BDD;
     }
-
     input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+        box-shadow: 0 0 1px #4B8BDD;
     }
-
     input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
     }
-
     /* Rounded sliders */
     .slider.round {
-    border-radius: 34px;
+        border-radius: 34px;
     }
 
     .slider.round:before {
-    border-radius: 50%;
+        border-radius: 50%;
     }
 
 
