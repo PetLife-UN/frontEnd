@@ -208,7 +208,7 @@ export default {
     /*Contenedor solicitud */
     .content_consultasol{
         
-        padding:0px 0px 0px 40px;
+        padding:0px 0px 0px 60px;
         height:100%;
     }
 

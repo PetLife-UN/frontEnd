@@ -1,24 +1,6 @@
 <template>
     <div class = "popup-infoApli" >
         <div class ="popup-inner px-0" ref="popup_info">
-
-                    
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
             <div class = "lateral_bar_solicitud">
             </div>
             <img 
@@ -55,21 +37,120 @@
                 </div>
                 
                 <div class = "col-8 content_info_solicitud">
+                    <div id="mySidenav" class="sidenav">
+                        <a v-on:click="changeactivePage('contacto')" id="about">Contacto    <img src="../../assets/icons/contact_96px.png"></a>
+                        <a v-on:click="changeactivePage('solicitud')" id="blog">Solicitud   <img src="../../assets/icons/report_card_96px.png"></a>
+                    </div>
+                    <div class = "info_solicitud">
+                        <h1 class="titulo_info_solicitud">Solicitud de adopción</h1>
+                        <br>
+                        <div class = "contacto" v-if="activePage == 'contacto'"> 
+                            <h3 class="subtitulo_info_solicitud">Información adoptante</h3>
+                            <p></p>
+                            <p><mark class="subtitulo_info_soli">Nombre: </mark>{{aplicationInfo.name}}</p>
+                            <p><mark class="subtitulo_info_soli">Edad: </mark>{{aplicationInfo.age}} años</p>
+                            <p><mark class="subtitulo_info_soli">Ciudad: </mark>{{aplicationInfo.city}} ({{aplicationInfo.department}})</p>
+                            <p><mark class="subtitulo_info_soli">Dirección: </mark>{{aplicationInfo.address}}</p>
+                            <p><mark class="subtitulo_info_soli">Ocupación: </mark>{{aplicationInfo.occupation}}</p>
+                            <p></p>
+                            <h3 class="subtitulo_info_solicitud">Información de contacto</h3>
+                            <br>
+                            <div class = "container_contact">
+                                <div class = "info_contacto">
+                                    <div class = "row">
+                                        <div class = "col-auto ico_contact">
+                                            <img src="../../assets/icons/email_126px.png">
+                                        </div>
+                                        <div class = "col-auto info_contact">
+                                            <span class = "info_title">Email:</span>
+                                            <p class = "info_detalle"><a href>{{aplicationInfo.email}}</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class = "info_contacto">
+                                    <div class = "row">
+                                        <div class = "col-auto ico_contact">
+                                            <img src="../../assets/icons/android_126px.png">
+                                        </div>
+                                        <div class = "col-auto info_contact">
+                                            <span class = "info_title">Teléfono celular:</span>
+                                            <p class = "info_detalle">{{aplicationInfo.movilNumber}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class = "container_contact">
+                                <div class = "info_contacto" v-if=" aplicationInfo.telNumber != 'No aplica' ">
+                                    <div class = "row">
+                                        <div class = "col-auto ico_contact">
+                                            <img src="../../assets/icons/phone_126px.png">
+                                        </div>
+                                        <div class = "col-auto info_contact">
+                                            <span class = "info_title">Teléfono fijo:</span>
+                                            <p class = "info_detalle">{{aplicationInfo.telNumber}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class = "info_contacto">
+                                    <div class = "row">
+                                        <div class = "col-auto ico_contact">
+                                            <img v-bind:src="ICON_CANAL[aplicationInfo.communication]">
+                                        </div>
+                                        <div class = "col-auto info_contact">
+                                            <span class = "info_title">Canal de comunicación:</span>
+                                            <p class = "info_detalle">{{aplicationInfo.communication}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "solicitud" v-if="activePage == 'solicitud'">  
+                            <h3 class="subtitulo_info_solicitud">Información de solicitud</h3>
+                            <p></p>
+                            
+                            
+                            <br>
+                            
+                            
+                            <div class="row g-0">
+                                <div class="col"><p><mark class="subtitulo_info_soli">Fecha publicación: </mark>{{dateDay+"/"+dateMonth+"/"+dateYear}} {{(dateHour%12)+":"+dateMinutes}}{{(dateHour>=12)?" p.m.":" a.m."}}</p></div>
+                                <div class="col"><p><mark class="subtitulo_info_soli">Id publicación: </mark>{{aplicationInfo.id}}</p></div>
+                                <div class="w-100"></div>
+                                <div class="col"><p><mark class="subtitulo_info_soli">Familia de acuerdo: </mark>{{(aplicationInfo.familyAgreement==true)?"Sí":"No"}}</p></div>
+                                <div class="col"><p><mark class="subtitulo_info_soli">Miembros familiares: </mark>{{aplicationInfo.familyMembers}}</p></div>
+                                <div class="w-100"></div>
+                                <div class="col"><p><mark class="subtitulo_info_soli">Edad promedio familia: </mark>{{aplicationInfo.averageAge}} años</p></div>
+                                <div class="col"><p><mark class="subtitulo_info_soli">Alergias en la familia: </mark>{{aplicationInfo.allergies == true ? 'Sí': 'No'}}</p></div>
+                                <div class="w-100"></div>
+                                <div class="col-3"><p><mark class="subtitulo_info_soli">Razón de adopción: </mark></p></div>
+                                <div class="col bg-light border contenedor_razon"><p>{{aplicationInfo.reason.substring(0,110)}}</p></div>
+                                <div class="w-100"></div>
+                                <div class="col"><p><mark class="subtitulo_info_soli">Familia de acuerdo: </mark>{{(aplicationInfo.familyAgreement==true)?"Sí":"No"}}</p></div>
+                                <div class="col"><p><mark class="subtitulo_info_soli">Acepta tiempo adaptación: </mark>{{aplicationInfo.adjustmentPeriod == true ? 'Sí': 'No'}}</p></div>
+                                <div class="col"><p v-if=" aplicationInfo.adjustmentPeriod == true  "><mark class="subtitulo_info_soli" >¿Cuánto tiempo? </mark>{{aplicationInfo.adjustmentPeriodTime}}</p></div>
+                                <div class="w-100"></div>
+                                <div class="col"><p><mark class="subtitulo_info_soli">¿Dónde dormirá? </mark></p></div>
+                                <div class="col-3 bg-light border contenedor_razon"><p>{{aplicationInfo.restingPlace.substring(0,30)}}</p></div>
+                                <div class="col"><p><mark class="subtitulo_info_soli">¿Quién lo cuidará? </mark></p></div>
+                                <div class="col-3 bg-light border contenedor_razon"><p>{{aplicationInfo.careOption.substring(0,30)}}</p></div>
+                                <div class="w-100"></div>
+                                <div class="col"><p><mark class="subtitulo_info_soli">Seguimiento de la mascota: </mark>{{aplicationInfo.followingAgreement == true ? 'Sí': 'No'}}</p></div>
+                                <div class="col"><p><mark class="subtitulo_info_soli">Experiencia con mascotas: </mark>{{aplicationInfo.animalExperience == true ? 'Sí': 'No'}}</p></div>
+                                <div class="w-100"></div>
+                            </div>
+                                
+                            
 
-                <div id="mySidenav" class="sidenav">
-                    <a href="#" id="about"><img src="../../assets/icons/contact_96px.png"></a>
-                    <a href="#" id="blog"><img src="../../assets/icons/report_card_96px.png"></a>
-                </div>
-                <div class = "info_solicitud">
-                    <h1 class="titulo_info_solicitud">Información de solicitud</h1>
-                    <p v-if="activePage == 'contacto'"> Contacto </p>
-                    <p v-if="activePage == 'solicitud'"> Solicitud </p>
-                </div>
-                    
 
-
-
-
+                            
+                            
+                            <p><mark class="subtitulo_info_soli">Mascotas anteriores: </mark>{{aplicationInfo.experienceType}}</p>
+                            <p><mark class="subtitulo_info_soli">Estado de la mascota: </mark>{{aplicationInfo.experienceNow}}</p>
+                            <p><mark class="subtitulo_info_soli">Edad de la mascota: </mark>{{aplicationInfo.experienceLife}} años</p>
+                            <p><mark class="subtitulo_info_soli">Razón del estado: </mark>{{aplicationInfo.experienceReason}}s</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,6 +175,11 @@ export default {
         const ico = ICON_TIPO[this.aplicationInfo.pet.tipo] || ICON_DEFAULT
         const datePublication = this.aplicationInfo.date.split(/[:,T,\-,\\.]+/)
         const visible = this.aplicationInfo.publicationVisible;
+        const ICON_CANAL = {
+            'Telefono Fijo':require('../../assets/icons/phone_126px.png'),
+            'Email':require('../../assets/icons/email_126px.png'),
+            'Telefono celular':require('../../assets/icons/android_126px.png'),
+        }
         return {
             visible,
             datePublication,
@@ -105,6 +191,7 @@ export default {
             dateSeconds: datePublication[5],
             ico,
             activePage:"contacto",
+            ICON_CANAL,
         }
     },
     props: {
@@ -134,6 +221,9 @@ export default {
 
         closeForm() {
             document.getElementById("myForm").style.display = "none";
+        },
+        changeactivePage(value){
+            this.activePage = value;
         }
     },
 
@@ -174,6 +264,7 @@ export default {
         position:absolute;
         right:10px;
         top:10px;
+        z-index: 99;
     }
     .button_exit_solicitud:hover{
         width:41px;
@@ -203,40 +294,95 @@ export default {
     }
     .ico_pet_sol{
         width:80px;
-
     }
-    /*Titulo solicitudes */
-    .titulo_info_solicitud{
-        font-size: 20px;
-        text-align:left;
-    }
-    .subtitulo_info_soli{
-        background-color: transparent;
-        color: #4179c2 ;
-        font-weight: 600;
-    }
+    
     /*Lateral derecho información solicitud */
     .content_info_solicitud{
         position: relative;
         background: white;
-        padding: 20px 20px 20px 40px;
-    }
-    .content_info_solicitud p{
-        font-size:15px;
-        color:rgb(0, 0, 0);
-    }
-    .contenedor_razon{
-        padding:5px 20px 5px 20px;
+        padding: 20px 60px 20px 60px;
     }
     .info_solicitud{
         padding:0px 0px 0px 30px;
+    }
+    .contact_info_span{
+        width: 400px;
+        background: #4B8BDD;
+    }
+    /*Titulo solicitudes */
+    .titulo_info_solicitud{
+        font-size: 35px;
+        color:#333333;
+        text-align:center;
+        margin-right: 50px;
+    }
+    .subtitulo_info_solicitud{
+        font-size: 24px;
+        text-align:left;
+        color:#333333;
+    }
+    /*Contacto */
+    .contacto .subtitulo_info_soli{
+        background-color: transparent;
+        color: #4179c2 ;
+        font-weight: 600;
+        padding-left: 20px;
+    }
+    /*Card icons contact */
+    .container_contact{
+        display: flex;
+        justify-content: center;
+    }
+    .info_contacto{
+        width:300px;
+        display: inline-block;
+        margin: 0 auto;
+    }
+    .info_contacto img{
+        width: 70px;
+        height: 70px;
+    }
+    .info_contacto .ico_contact{
+        background: #4B8BDD;
+        border-radius: 10px 10px 10px 10px;
+    }
+    .info_contacto .info_contact{
+        padding: 5px 0px 0px 10px;
+    }
+    .info_contacto .info_title{
+        color: #0f0f0f;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .info_contacto .info_detalle{
+        font-size: 15px;
+        font-weight: 400;
+    }
+
+    /*Solicitud */
+    .solicitud{
+        
+    }
+    .solicitud p{
+        font-size: 15px;
+        display: inline-block;
+    }
+    .solicitud .subtitulo_info_soli{
+        background-color: transparent;
+        color: #4179c2 ;
+        font-weight: 600;
+        font-size: 15px;
+    }
+    .contenedor_razon{
+        margin-right: 10px;
+        padding:5px 20px 5px 20px;
     }
     /*Hover sidenav */
     #mySidenav a {
         z-index: inherit;
         position: absolute;
-        width: 200px;
-        left: -140px;
+        width: 150px;
+        left: -90px;
         transition: 0.3s;
         padding: 5px;
         text-decoration: none;
@@ -244,6 +390,7 @@ export default {
         font-size: 20px;
         color: white;
         border-radius: 0 5px 5px 0;
+        font-weight: 600;
         
     }
     #mySidenav img{
