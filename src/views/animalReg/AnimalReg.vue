@@ -1,12 +1,19 @@
 <template>
+    
     <navbar/>
-    <div class="container">
-        <h1>Registra la mascota a dar en adopción </h1>
-        <div class = "container">
-            <button type="button" class="btn  button_volver" v-on:click="volver()">Volver a mascotas</button>
+    
+    <div class="espacio_trabajo">
+        <div class="subtitulo">
+            <h2 class="titulo_home texto_centrado">
+                Registro de mascota a dar en adopción
+            </h2>        
         </div>
-        <animalRegForm/> 
+        
+        <div class = "botones">
+            <button type="button" class="btn  button_volver" v-on:click="volver()">Volver al Usuario</button>
+        </div>
     </div>
+    <animalRegForm/> 
 </template>
 
 <script>
@@ -26,10 +33,4 @@ export default {
 </script>
 
 <style scoped>
-    h1{
-        height: 15rem;
-        color: black;
-        text-shadow: 15px;
-        text-emphasis: inherit;
-    }
 </style>
