@@ -889,6 +889,21 @@ p {
   /* IE6-9 */
 }
 
+.espacio_trabajo .tres_mascotas .borrar {
+  margin: auto;
+  position: absolute;
+}
+
+.espacio_trabajo .tres_mascotas .borrar .boton_borrar {
+  border: none;
+  border-radius: 10rem;
+  padding: .5rem;
+}
+
+.espacio_trabajo .tres_mascotas .borrar .boton_borrar:hover {
+  background-color: #AEAEAE;
+}
+
 @media (min-width: 1000px) {
   .espacio_trabajo .tres_mascotas {
     justify-content: space-between;

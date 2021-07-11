@@ -170,6 +170,20 @@
 			}
 		}
 
+		.borrar {
+			margin: auto;
+			position: absolute;
+			
+			.boton_borrar {
+				border: none;
+				border-radius: 10rem;
+				padding: .5rem;
+				&:hover {
+					background-color: $gris3;
+				}
+			}
+		}
+
 		@include media1000 {
 
 			justify-content: space-between;
