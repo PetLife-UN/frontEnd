@@ -9,7 +9,7 @@
             Test:{{visible}}
         </div>
         <h2 class="py-5 text-center">SOLICITUDES DE ADOPCIÓN </h2>
-        <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" />
+        <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" :updateValues = "updateValues()" />
         <br>
         <br>
         <div class = "container">
@@ -82,7 +82,7 @@ export default {
             pagina:1,
             size:5,
             totalPages:0,
-            visible:false,
+            visible:true,
             ICON_TIPO,
             COLOR_TIPO,
         }
@@ -99,11 +99,13 @@ export default {
         const TogglePopup = (trigger, apli) =>{
             popupTriggers.value[trigger] = !popupTriggers.value[trigger]
             AplicaInfoEnviar.aplicationInfo = apli
-        }
+            
+        };
+
         return{
             popupTriggers,
-            TogglePopup,
             AplicaInfoEnviar,
+            TogglePopup,
         }
     },
     components:{
@@ -142,34 +144,15 @@ export default {
             axios
             .get("http://localhost:8080/api/apply/getApplicationUserPage?adopted=false&visible="+(this.visible)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
             //.get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?page="+(this.pagina-1)+"&size="+(this.size) ,{
-                headers:{
-                    'Authorization': `Bearer ${token}`
-                }
             })
             .then( data =>{
                 this.ListaApli = data.data.content;
                 this.totalPages = data.data.totalPages;
-                //console.log(this.ListaApli);
-                //console.log(this.totalPages)
             })
         },
     },
     mounted:function(){
-        const token = localStorage.token;
-        this.pagina = this.$route.params.numPage;
-        axios
-        .get("http://localhost:8080/api/apply/getApplicationUserPage?adopted=false&visible="+(this.visible)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
-        //.get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?page="+(this.pagina-1)+"&size="+(this.size) ,{
-            headers:{
-                'Authorization': `Bearer ${token}`
-            }
-        })
-          .then( data =>{
-            this.ListaApli = data.data.content;
-            this.totalPages = data.data.totalPages;
-            //console.log(this.ListaApli);
-            //console.log(this.totalPages)
-        })
+        this.updateValues();
     },
 }
 </script>

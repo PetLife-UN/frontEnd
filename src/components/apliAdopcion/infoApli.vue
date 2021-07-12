@@ -184,6 +184,7 @@
 import { ref } from 'vue'
 import axios from "axios";
 import {onClickOutside} from '@vueuse/core'
+
 export default {
     data(){
         const ICON_DEFAULT = require('../../assets/icons/other_96px.png')
@@ -227,12 +228,12 @@ export default {
     props: {
         TogglePopup:Function,
         aplicationInfo:Object,
+        updateValues:Function,
     },
     setup(props) {
         const popup_info = ref(null)
-        onClickOutside(popup_info, (event)=>props.TogglePopup())
-        return { 
-            popup_info 
+        return{
+            popup_info,
         }
     },
     methods:{
@@ -243,7 +244,6 @@ export default {
         openForm(){
             document.getElementById("myForm").style.display = "block";
         },
-
         closeForm() {
             document.getElementById("myForm").style.display = "none";
         },
@@ -257,29 +257,20 @@ export default {
                     "publicationVisible" : this.visible,
 				}
                 axios({
-					url: "http://localhost:8080/api/auth/login",
-					//url: "https://unpetlife.herokuapp.com/api/auth/login",
+					url: "http://localhost:8080/api/apply/modifyApplicationVis",
+					//url: "https://unpetlife.herokuapp.com/api/apply/modifyApplicationVis",
 					data: json,
-					method: "POST",
+					method: "PUT",
 				})
-				.then((response) => {
-					
-                    
-				})
-				.catch((error) => {
-					
-				})
-
-
-
-
-            }  
-            
+            }
+             
             this.TogglePopup();
         }
+        
     },
     mounted:function(){
         document.getElementById("visibleCheck").checked = this.visible;
+        onClickOutside(this.popup_info, (event)=>this.exitApli());
     },
 
 }
