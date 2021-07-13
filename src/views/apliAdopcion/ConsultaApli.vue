@@ -8,11 +8,34 @@
             <button type="button" class="btn " v-on:click="test()">Test</button>
             Test:{{visible}}
         </div>
-        <h2 class="py-5 text-center">SOLICITUDES DE ADOPCIÓN </h2>
-        <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" :updateValues = "updateValues()" />
-        <br>
-        <br>
+        
+        <p class="titulo_solicitud_adop">
+            Solicitudes de Adopción
+        </p>
+
+
+
+        <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" :updateValues = "updateValues"  />
+
+        <div class = "container bg-success">
+            <div class = "row g-0">
+                <div class = "col-8">
+                    as
+                </div>
+                <div class = "col-4">
+                    <div class="custom-select">
+                        <select>
+                            <option value="0">Select car:</option>
+                            <option value="1">Audi</option>
+                            <option value="2">BMW</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class = "container">
+            <div  >{{listSize}}</div>
+            <img src="../../assets/img/dog_confused.png" v-if="listSize==0">
             <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
                 <p class="text_info_id_apli">Publicación #{{apli.id}}</p>
                 <div class = "lateral_bar_consultasol" v-bind:style="{ background: COLOR_TIPO[apli.publicationVisible]}"></div>
@@ -85,6 +108,7 @@ export default {
             visible:true,
             ICON_TIPO,
             COLOR_TIPO,
+            listSize:0,
         }
     },
     setup(){
@@ -99,7 +123,6 @@ export default {
         const TogglePopup = (trigger, apli) =>{
             popupTriggers.value[trigger] = !popupTriggers.value[trigger]
             AplicaInfoEnviar.aplicationInfo = apli
-            
         };
 
         return{
@@ -148,6 +171,7 @@ export default {
             .then( data =>{
                 this.ListaApli = data.data.content;
                 this.totalPages = data.data.totalPages;
+                this.listSize = (this.ListaApli == null)?0:this.ListaApli.length;
             })
         },
     },
@@ -162,6 +186,16 @@ export default {
     .cuerpo_consultaApli{
         min-height: 600px;
     }
+    .titulo_solicitud_adop{
+        font-size: 40px;
+        text-align: center;
+        color: #6FABF9;
+        font-family: "Merienda", cursive;
+        font-weight: bold;
+    }
+
+
+
     /*Contenedor solicitud*/
     .container_apli_info{
         background:#f0eeee;

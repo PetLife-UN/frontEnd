@@ -262,8 +262,10 @@ export default {
 					data: json,
 					method: "PUT",
 				})
+                .then( data =>{
+                    this.updateValues();
+                })
             }
-             
             this.TogglePopup();
         }
         
