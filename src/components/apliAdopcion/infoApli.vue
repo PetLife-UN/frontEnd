@@ -56,8 +56,8 @@
                 </div>
                 <div class = "col-8 content_info_solicitud">
                     <div id="mySidenav" class="sidenav">
-                        <a v-on:click="changeactivePage('contacto')" id="about">Contacto    <img src="../../assets/icons/contact_96px.png"></a>
-                        <a v-on:click="changeactivePage('solicitud')" id="blog">Solicitud   <img src="../../assets/icons/report_card_96px.png"></a>
+                        <a v-on:click="changeactivePage('contacto')" id="contacto">Contacto    <img src="../../assets/icons/contact_96px.png"></a>
+                        <a v-on:click="changeactivePage('solicitud')" id="solicitud">Solicitud   <img src="../../assets/icons/report_card_96px.png"></a>
                     </div>
                     <div class = "info_solicitud">
                         <h1 class="titulo_info_solicitud">Solicitud de adopción</h1>
@@ -474,12 +474,12 @@ export default {
         left: 0;
     }
 
-    #about {
+    #contacto {
         top: 20px;
         background-color: #424242;
     }
 
-    #blog {
+    #solicitud {
         top: 90px;
         background-color: #4B8BDD;
     }

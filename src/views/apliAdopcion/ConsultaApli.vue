@@ -5,8 +5,6 @@
         <div class = "container">
             <br>
             <button type="button" class="btn  button_volver" v-on:click="volver()">Volver</button>
-            <button type="button" class="btn " v-on:click="test()">Test</button>
-            Test:{{visible}}
         </div>
         
         <p class="titulo_solicitud_adop">
@@ -14,28 +12,31 @@
         </p>
 
 
-
+        
         <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" :updateValues = "updateValues"  />
 
-        <div class = "container bg-success">
-            <div class = "row g-0">
-                <div class = "col-8">
-                    as
-                </div>
-                <div class = "col-4">
-                    <div class="custom-select">
-                        <select>
-                            <option value="0">Select car:</option>
-                            <option value="1">Audi</option>
-                            <option value="2">BMW</option>
-                        </select>
+        <div class = "container ">
+            <div class = "container_search">
+
+                <span class ="subtitle_dropdown"> Mostrar publicaciones:  </span>
+                <div class="dropdown" ref="dropbtn">
+                   
+                    <button v-on:click="showDrop()" class="dropbtn" >{{FIL_VIS_INV[filtroVis]}}<img class = "arror_drop" src="../../assets/icons/expand_arrow_24px.png" ></button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a v-on:click="changeVisFilter('Visibles')"> Visibles</a>
+                        <a v-on:click="changeVisFilter('Ocultas')">Ocultas</a>
+                        <a v-on:click="changeVisFilter('Todas')">Todas</a>
                     </div>
                 </div>
             </div>
         </div>
+        <br>
         <div class = "container">
-            <div  >{{listSize}}</div>
-            <img src="../../assets/img/dog_confused.png" v-if="listSize==0">
+            <div class = "container_img_notresults" v-if="listSize==0">
+                <img src="../../assets/img/dog_confused.png" >
+                <p class="title_notfound">No se han encontrado resultados</p>
+                <p class="subtitle_notfound">Parece que no tienes solicitudes con esos parámetros</p>
+            </div>
             <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
                 <p class="text_info_id_apli">Publicación #{{apli.id}}</p>
                 <div class = "lateral_bar_consultasol" v-bind:style="{ background: COLOR_TIPO[apli.publicationVisible]}"></div>
@@ -65,7 +66,7 @@
         </div> 
         <br>
         <br>
-        <nav >
+        <nav v-if="listSize!=0">
             <ul class="pagination justify-content-center">
                 <li class=" buttons_pagination" v-on:click="gobackPage()">
                     <a class="page-link page-link-back" href="#">&#60;</a>
@@ -88,8 +89,19 @@ import navbar from "@/components/navbar"
 import infoApli from "@/components/apliAdopcion/infoApli"
 import axios from 'axios'
 import {ref} from 'vue'
+import {onClickOutside} from '@vueuse/core'
 export default {
     data(){
+        const FIL_VIS = {
+            'Visibles':true,
+            'Ocultas':false,
+            'Todas':"",
+        }
+        const FIL_VIS_INV = {
+            true:'Visibles',
+            false:'Ocultas',
+            "":'Todas',
+        }
         const ICON_TIPO = {
             true:require('../../assets/icons/happy_64px.png'),
             false:require('../../assets/icons/sad_64px.png'),
@@ -105,10 +117,12 @@ export default {
             pagina:1,
             size:5,
             totalPages:0,
-            visible:true,
             ICON_TIPO,
             COLOR_TIPO,
             listSize:0,
+            FIL_VIS,
+            FIL_VIS_INV,
+            filtroVis:true,
         }
     },
     setup(){
@@ -124,11 +138,12 @@ export default {
             popupTriggers.value[trigger] = !popupTriggers.value[trigger]
             AplicaInfoEnviar.aplicationInfo = apli
         };
-
+        const dropbtn = ref(null);
         return{
             popupTriggers,
             AplicaInfoEnviar,
             TogglePopup,
+            dropbtn,
         }
     },
     components:{
@@ -157,15 +172,15 @@ export default {
             this.pagina =  this.pagina - - 1
             this.$router.push("/profile/consultaapli/"+this.pagina)
         },
-        test(){
-            this.visible = !this.visible;
+        changeVisFilter(filterVis){
+            this.filtroVis = this.FIL_VIS[filterVis]
             this.updateValues();
+            document.getElementById("myDropdown").classList.remove("show");
         },
         updateValues(){
-            const token = localStorage.token;
             this.pagina = this.$route.params.numPage;
             axios
-            .get("http://localhost:8080/api/apply/getApplicationUserPage?adopted=false&visible="+(this.visible)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
+            .get("http://localhost:8080/api/apply/getApplicationUserPage?adopted=false&visible="+(this.filtroVis)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
             //.get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?page="+(this.pagina-1)+"&size="+(this.size) ,{
             })
             .then( data =>{
@@ -174,11 +189,22 @@ export default {
                 this.listSize = (this.ListaApli == null)?0:this.ListaApli.length;
             })
         },
+        showDrop() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        },
+        closeDrop(){
+            document.getElementById("myDropdown").classList.remove("show");
+        }
+        
     },
     mounted:function(){
         this.updateValues();
+        onClickOutside(this.dropbtn, (event)=>this.closeDrop());
     },
 }
+
+
+
 </script>
 
 <style>
@@ -193,13 +219,91 @@ export default {
         font-family: "Merienda", cursive;
         font-weight: bold;
     }
+    .container_img_notresults{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width:70%;
+        text-align: center;
+        margin-top: 20px;
+        border-radius: 25px;
+        padding: 0px 0px 20px 0px;
+    }
+    .container_img_notresults img{
+        background: #ffffff;
+        display: block;
+        width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 100%;
+    }
+    .title_notfound{
+        font-size: 35px;
+        font-weight: 600;
+        color:rgb(77, 77, 77);
+    }
+    .subtitle_notfound{
+        font-size: 18px;
+    }
+    /*Barra de busqueda primera version */
+    .container_search{
 
+    }
+    .subtitle_dropdown{
+        font-weight: 600;
+    }
+    .arror_drop{
+        width:30px;
+    }
+    .dropbtn {
+        background: transparent;
+        color: #000000;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropbtn:hover, .dropbtn:focus {
+        background-color: #e0e0e0;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 100%;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        background-color: #e0e0e0;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown a:hover {
+        background-color: #ddd;
+    }
+
+    .show {
+        display: block;
+    }
 
 
     /*Contenedor solicitud*/
     .container_apli_info{
         background:#f0eeee;
         position: relative;
+        max-height: 260px;
     }
     .container_apli_info p{
         font-size: 1.9rem;
