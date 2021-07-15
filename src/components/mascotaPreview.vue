@@ -35,8 +35,8 @@ export default {
   },
   mounted: function ()  {
     axios
-        .get("http://localhost:8080/api/pet/consultaPet?idPet="+this.idPet)
-        //.get("https://unpetlife.herokuapp.com/api/pet/consultaPet?idPet=" + this.idPet)
+        //.get("http://localhost:8080/api/pet/consultaPet?idPet="+this.idPet)
+        .get("https://unpetlife.herokuapp.com/api/pet/consultaPet?idPet=" + this.idPet)
         .then((data) => {
         this.link = data.data.links_foto;
         this.age = data.data.edad;

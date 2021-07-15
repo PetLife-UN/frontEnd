@@ -99,8 +99,8 @@ export default {
 		var str = (this.token.split("&"))[0];
 		this.token = str;
         axios({
-            url: "http://localhost:8080/api/auth/activate/"+this.token,
-            //url: "https://unpetlife.herokuapp.com/api/auth/activate/"+this.token,
+            //url: "http://localhost:8080/api/auth/activate/"+this.token,
+            url: "https://unpetlife.herokuapp.com/api/auth/activate/"+this.token,
             method: "POST",
         })
         .then((response)=>{

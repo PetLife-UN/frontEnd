@@ -257,8 +257,8 @@ export default {
                     "publicationVisible" : this.visible,
 				}
                 axios({
-					url: "http://localhost:8080/api/apply/modifyApplicationVis",
-					//url: "https://unpetlife.herokuapp.com/api/apply/modifyApplicationVis",
+					//url: "http://localhost:8080/api/apply/modifyApplicationVis",
+					url: "https://unpetlife.herokuapp.com/api/apply/modifyApplicationVis",
 					data: json,
 					method: "PUT",
 				})

@@ -215,8 +215,8 @@ export default {
     },
     mounted:function(){
         this.pagina = this.$route.params.idPage;
-        axios.get("http://localhost:8080/api/pet/consulta?page="+(this.pagina-1)+"&size="+this.size).then( data =>{
-        //axios.get("https://unpetlife.herokuapp.com/api/pet/consulta?page="+(this.pagina-1)+"&size="+this.size).then( data =>{
+        //axios.get("http://localhost:8080/api/pet/consulta?page="+(this.pagina-1)+"&size="+this.size).then( data =>{
+        axios.get("https://unpetlife.herokuapp.com/api/pet/consulta?page="+(this.pagina-1)+"&size="+this.size).then( data =>{
             this.Listamascota = data.data.content;
             this.totalPages = data.data.totalPages;
             //console.log(data);
