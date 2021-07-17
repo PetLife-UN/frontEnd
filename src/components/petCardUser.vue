@@ -171,7 +171,9 @@ export default {
 					headers: {
 						Authorization: `Bearer ${token}`,
 					}
-				})
+				}).then((data) => {
+                    this.$router.go();
+                })
                 .catch((error) => {
 					console.log(error);
 				});
