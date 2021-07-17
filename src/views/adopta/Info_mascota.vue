@@ -1,115 +1,118 @@
 <template>
-    <div>
-        <navbar/>
-        <div class="container-fluid contenedor_info">
-            <br>
-            <br>
-            <div class = "container">
-                <button type="button" class="btn  button_volver" v-on:click="volverMascotas()">Volver a mascotas</button>
-            </div>
-            <br>
-            <br>
-            <div class ="container infoMascota">
-                <div class="row">
-                    
-                    <div class="col-md-6 col-sm-12 columna_info_basica">
-                        <div class="row">
-                            <div class ="col-md-1 barra_lateral" >
-                            </div>
-                            <div class ="col-md-11 " >
-                                <h1>Información de la mascota</h1>
-                                <br>
-                                <br>
-                                <div class ="row">
-                                    <div class = "col-9">
-                                        
-                                        <p class ="text_name">{{mascota.nombre}}</p>
-                                        <p class ="text_tipo">{{mascota.tipo}}  -  {{mascota.edad}} años</p>
-                                    </div>
-                                    <div class = "col-3">
-                                        <div v-if="mascota.tipo === 'Canino'">
-                                            <img src="../../assets/icons/dog_96px.png">
-                                        </div>
-                                        <div v-else-if="mascota.tipo === 'Felino'">
-                                            <img src="../../assets/icons/cat_96px.png">
-                                        </div>
-                                        <div v-else-if="mascota.tipo === 'Bovino'">
-                                            <img src="../../assets/icons/cow_96px.png">
-                                        </div>
-                                        <div v-else-if="mascota.tipo === 'Pez'">
-                                            <img src="../../assets/icons/fish_96px.png">
-                                        </div>
-                                        <div v-else-if="mascota.tipo === 'Roedor'">
-                                            <img src="../../assets/icons/hamster_96px.png">
-                                        </div>
-                                        <div v-else-if="mascota.tipo === 'Ave'">
-                                            <img src="../../assets/icons/bird_96px.png">
-                                        </div>
-                                        <div v-else-if="mascota.tipo === 'Equino'">
-                                            <img src="../../assets/icons/horse_96px.png">
-                                        </div>
-                                        <div v-else>
-                                            <img src="../../assets/icons/other_96px.png">
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <br>
-                                <img class="imageninfoMascota" v-bind:src="mascota.links_foto" v-bind:alt="mascota.id">
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    
-                    <div class="col-md-6 col-sm-12 info_detallada">
+    
+  <navbar/>
+    
+  <div class="espacio_trabajo">
+    <div class="subtitulo">
+      <h2 class="titulo_home texto_centrado">
+          Información de la Mascota
+      </h2>        
+    </div>
+    
+    <div class = "botones">
+      <button type="button" class="btn  button_volver" v-on:click="volverMascotas()">Volver a Mascotas</button>
+    </div>
+  </div>
 
-                        <br>
-                        <div class ="mensaje_mascota">
-                            <p>¡Hola! Soy {{mascota.nombre}}, un {{mascota.tipo.toLowerCase()}} de {{mascota.edad}} años que quiere ser adoptado. Soy buen compañero y me gusta jugar, mi actual dueño me describe como: </p>
-                            <h3>"{{mascota.descripcion}}"</h3>
-                            <br>
-                            <p>Mis datos completos están abajo, por si eres una persona interesada en adoptarme. </p>
-                        </div>
-                        <br>
-                        <div class ="container-fluid contenedor_información">
-                            <h3>Información completa</h3>
-                            <br>
-                            <p><mark class="titulo_info">Nombre:</mark>{{mascota.nombre}}</p>
-                            <div class ="row">
-                                <div class ="col-6">
-                                    <p><mark class="titulo_info">Animal: </mark>{{mascota.tipo}}</p>
-                                    <p><mark class="titulo_info">Edad: </mark>{{mascota.edad}} años</p>
-                                    <p><mark class="titulo_info">Sexo: </mark>{{mascota.sexo}}</p>
-                                    <p><mark class="titulo_info">Tamaño: </mark>{{mascota.tamano}}</p>
-                                </div>
-                                <div class = "col-6"> 
-                                    <p><mark class="titulo_info">Esterilizado: </mark>{{mascota.esteril}}</p>
-                                    <p><mark class="titulo_info">Raza: </mark>{{mascota.raza}}</p>
-                                    <p><mark class="titulo_info">Vacunas al día: </mark>{{mascota.vacunada}}</p>
-                                </div>
-                            </div>
-                        </div>
+  <div class="info_mascota">
+    
+    <div class="imagen">
+      <img class="imageninfoMascota" v-bind:src="mascota.links_foto" v-bind:alt="mascota.id">
+    </div>
 
-                            <div class = "container container_but_adoptar">
-                                <button type="button" class="btn button_adoptar" @click="adoptar(this.idPet)">Adoptar</button>
-                            </div>
+    <div class="informacion">
+      <div class="logo">
+      
+        <img class="icono" src="../../assets/img/icono.png">
+      
+        <h1 class="titulo texto_centrado texto">Pet 
+          <span>Life</span>
+        </h1>
+      
+      </div>
+      
+      <div class="primera datos">
+        
+        <h3 class="nombre izquierda">
+          Nombre.  
+          <span class="mayuscula">{{mascota.nombre}}</span>
+        </h3>
+        
+        <h3 class="especie derecha">
+          Especie.
+          <span class="mayuscula">{{mascota.tipo}}</span>
+        </h3>
 
-                    </div>
-                </div>
-            </div>
-            <br>
-            <br>
-            <br>
+      </div>
+      
+      <div class="segunda datos">
+        
+        <h3 class="edad izquierda">
+          Edad
+          <span class="anios">{{mascota.edad}}</span>
+          años
+        </h3>
+      
+        <h3 class="raza derecha">
+          Raza.
+          <span class="mayuscula">{{mascota.raza}}</span>
+        </h3>
+
+      </div>
+
+      <div class="tercera datos">
+        
+        <div class="img-tamaño izquierda">
+          
+          <h3 class="tamaño">
+            Tamaño. 
+          </h3>
+          
+          <h3 class="tipo">
+            {{Tamanio(mascota.tamano)}}
+          </h3>
+
+          <!-- <img class="animal" v-bind:src="imagen(mascota.tipo)"> -->
+          <img v-if="mascota.tipo=='Felino'" class="animal" src="../../assets/img/silueta_cat.png">
+          <img v-else-if="mascota.tipo=='Canino'" class="animal" src="../../assets/img/silueta_dog.png">
+          <img v-else-if="mascota.tipo=='Roedor'" class="animal" src="../../assets/img/silueta_hamster.png">
+          <img v-else-if="mascota.tipo=='Pez'" class="animal" src="../../assets/img/silueta_pez.png">
+          <img v-else-if="mascota.tipo=='Bovino'" class="animal" src="../../assets/img/silueta_vaca.png">
+          <img v-else-if="mascota.tipo=='Ave'" class="animal" src="../../assets/img/silueta_ave.png">
+          <img v-else-if="mascota.tipo=='Equino'" class="animal" src="../../assets/img/silueta_caballo.png">
+          <img v-else class="animal" src="../../assets/img/silueta_dino.png">
+          <img class="modelo" src="../../assets/img/cuerpo2.png">
         </div>
 
+        <div class="ultimos derecha">
+          
+          <h3 class="sexo mayuscula">{{mascota.sexo}}
+          </h3>
 
+          <h3 class="esteril mayuscula">
+            <!-- Esteril. -->
+            <span v-if="mascota.esteril == 'Si'" class="mayuscula">Esteril</span>
+            <!-- <span v-else class="mayuscula"></span> -->
+          </h3>
 
+          <h3 class="vacuna">
+            <!-- Vacunas. -->
+            <span v-if="mascota.vacunada" class="mayuscula">vacuna</span>
+          </h3>
+        </div>
+
+      </div>
+      <div class="botones">
+
+        <button 
+          type="button" 
+          class="btn button_adoptar" 
+          @click="adoptar(this.idPet)">Adoptar</button>
+      </div>
 
     </div>
+
+  </div>
 </template>
 <script>
 import navbar from "@/components/navbar"
@@ -143,6 +146,10 @@ export default {
         },
         adoptar(idPet){
             this.$router.push({path:"/apply/"+idPet, params:{id_pet: idPet}});
+        },
+        Tamanio(tamano){
+            const tam = tamano.split("(");
+            return tam[0];
         }
     },
     mounted:function(){
@@ -172,12 +179,7 @@ export default {
         font-size: 18px;
     }
     .imageninfoMascota{
-        object-fit: cover;
-        width: 600px;
-        height: 400px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+        
     }
     .barra_lateral{
         width:3%;
