@@ -165,13 +165,15 @@ export default {
 			}
 		},
 		Borrar(idPet) {
-            const token = localStorage.token;
+            var token = localStorage.token;
 			axios.
 				put("https://unpetlife.herokuapp.com/api/pet/deletePet"+"?id=" +idPet ,{
 					headers: {
 						Authorization: `Bearer ${token}`,
 					}
-				})
+				}).then((data) => {
+                    this.$router.go();
+                })
                 .catch((error) => {
 					console.log(error);
 				});
