@@ -366,6 +366,10 @@ template {
   text-align: left;
 }
 
+.mayuscula {
+  text-transform: capitalize;
+}
+
 /** Media Queries **/
 html {
   font-size: 62.5%;
@@ -378,6 +382,7 @@ html {
 
 body {
   background-color: #4B8BDD;
+  background-image: url("../img/icono2.png");
   font-size: 1.6rem;
 }
 
@@ -677,9 +682,8 @@ p {
   font-size: 2.5rem;
   color: #6FABF9;
   font-family: "Merienda", cursive;
-  font-weight: 300;
+  font-weight: 600;
   padding: 2rem;
-  font-weight: 500;
 }
 
 @media (min-width: 600px) {
@@ -688,9 +692,14 @@ p {
   }
 }
 
+@media (min-width: 768px) {
+  .espacio_trabajo .subtitulo .titulo_home {
+    font-size: 3rem;
+  }
+}
+
 @media (min-width: 1000px) {
   .espacio_trabajo .subtitulo .titulo_home {
-    font-weight: 600;
     font-size: 3.5rem;
   }
 }
@@ -809,7 +818,9 @@ p {
   position: inherit;
   margin: auto;
   padding: .2rem;
-  max-width: fit-content;
+  max-width: 40rem;
+  max-height: 40rem;
+  border: 5px solid #828282;
 }
 
 .espacio_trabajo .tres_mascotas .card .card-img-top:hover {
@@ -878,16 +889,41 @@ p {
   /* IE6-9 */
 }
 
+.espacio_trabajo .tres_mascotas .borrar {
+  margin: auto;
+  position: absolute;
+}
+
+.espacio_trabajo .tres_mascotas .borrar .boton_borrar {
+  border: none;
+  border-radius: 10rem;
+  padding: .5rem;
+}
+
+.espacio_trabajo .tres_mascotas .borrar .boton_borrar:hover {
+  background-color: #AEAEAE;
+}
+
 @media (min-width: 1000px) {
   .espacio_trabajo .tres_mascotas {
     justify-content: space-between;
+    margin: auto;
   }
   .espacio_trabajo .tres_mascotas .vista {
     flex: 0 0 calc( 50% - 0rem);
   }
 }
 
+@media (min-width: 1100px) {
+  .espacio_trabajo .tres_mascotas {
+    max-width: 100rem;
+  }
+}
+
 @media (min-width: 1400px) {
+  .espacio_trabajo .tres_mascotas {
+    max-width: 130rem;
+  }
   .espacio_trabajo .tres_mascotas .card {
     display: grid;
   }
@@ -1038,8 +1074,20 @@ p {
   /* Internet Explorer */
 }
 
+.registrar {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 2rem;
+}
+
+.registrar .datos_contenedor {
+  position: relative;
+  margin: 1rem 0;
+}
+
 .registrar .texto, .registrar label {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   color: white;
   font-family: "Gloria Hallelujah", cursive;
   font-weight: 600;
@@ -1047,15 +1095,41 @@ p {
 }
 
 .registrar input {
+  font-size: 2.8rem;
+  color: black;
+  font-family: "Merienda", cursive;
+  font-weight: 600;
   width: 99%;
-  padding: 1rem;
+  padding: 1rem 2rem;
   margin: 0;
   border-radius: 2rem;
   border: none;
-  font-size: 1.7rem;
+  font-size: 2rem;
+}
+
+.registrar .mas {
+  text-transform: capitalize;
+}
+
+.registrar .error_msg {
+  position: relative;
+  margin: 0;
+  margin-top: 1rem;
+  text-align: left;
+  padding: 1rem;
+  max-width: fit-content;
+  font-size: 17px;
+  font-weight: 400;
+  border: solid;
+  border-radius: 2rem;
+  font-size: 2.2rem;
+  color: #c03b3b;
+  font-family: "Gloria Hallelujah", cursive;
+  font-weight: 500;
 }
 
 .registrar .espacio {
+  position: relative;
   margin-top: 1rem;
   margin-bottom: 0;
 }
@@ -1075,6 +1149,54 @@ p {
 .registrar .error {
   border: solid;
   border-color: red;
+}
+
+.registrar .pnombre, .registrar .pcontra {
+  grid-column: 1 / 3;
+}
+
+@media (min-width: 700px) {
+  .registrar .pnombre, .registrar .pcontra {
+    grid-column: 1 / 2;
+  }
+}
+
+@media (min-width: 890px) {
+  .registrar .pnombre, .registrar .pcontra {
+    grid-column: 1 / 3;
+  }
+}
+
+@media (min-width: 1305px) {
+  .registrar .pnombre, .registrar .pcontra {
+    grid-column: 1 / 2;
+  }
+}
+
+.registrar .papellido, .registrar .prepit {
+  grid-column: 1 / 3;
+}
+
+@media (min-width: 700px) {
+  .registrar .papellido, .registrar .prepit {
+    grid-column: 2 / 3;
+  }
+}
+
+@media (min-width: 890px) {
+  .registrar .papellido, .registrar .prepit {
+    grid-column: 1 / 3;
+  }
+}
+
+@media (min-width: 1305px) {
+  .registrar .papellido, .registrar .prepit {
+    grid-column: 2 / 3;
+  }
+}
+
+.registrar .pemail, .registrar .pcelular, .registrar .espacio, .registrar .botonf {
+  grid-column: 1 / 3;
 }
 
 .centrado {
@@ -1357,11 +1479,53 @@ ul {
   }
 }
 
-.separacion .botones .menu_botones {
+.separacion .usuario .datos .cambiar {
+  display: flex;
+  flex-direction: column;
+}
+
+.separacion .usuario .datos .cambiar .Horizontal {
+  display: block;
+}
+
+.separacion .usuario .datos .cambiar .vertical {
+  display: none;
+  width: 2rem;
+}
+
+@media (min-width: 700px) {
+  .separacion .usuario .datos .cambiar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .separacion .usuario .datos .cambiar .Horizontal {
+    display: none;
+  }
+  .separacion .usuario .datos .cambiar .vertical {
+    display: block;
+    margin: auto 0.7rem;
+  }
+}
+
+.separacion .usuario .datos .cambiar .form-control {
+  width: 99%;
+  padding: .5rem 1rem;
+  margin: auto;
+  border-radius: 5rem;
+  border-style: 5rem;
+  font-size: 2rem;
+  color: #828282;
+  font-family: "Aclonica", sans-serif;
+  font-weight: 500;
+  border-color: #64B8FF;
+}
+
+.botones {
   width: 100%;
 }
 
-.separacion .botones .btn {
+.botones .btn {
   display: block;
   background-color: white;
   color: #6FABF9;
@@ -1375,12 +1539,12 @@ ul {
 }
 
 @media (max-width: 768px) {
-  .separacion .botones .btn {
-    width: 100%;
+  .botones .btn {
+    width: -webkit-fill-available;
   }
 }
 
-.separacion .botones .btn:hover {
+.botones .btn:hover {
   border: 5px solid #B6B6B6;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease;
@@ -1397,6 +1561,771 @@ ul {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64b8ff', endColorstr='#64b8ff',GradientType=1 );
   /* IE6-9 fallback on horizontal gradient */
   color: white;
+}
+
+.botones .cambios {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.rmascota {
+  display: flex;
+  margin: 1rem auto;
+  flex-direction: column;
+  padding: 0 3rem;
+}
+
+@media (min-width: 400px) {
+  .rmascota {
+    padding: 0 10%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .rmascota {
+    width: 110rem;
+  }
+}
+
+.rmascota .mascotas_registro {
+  display: grid;
+  background-color: white;
+  max-width: 200rem;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(1, 1fr);
+  padding: 3rem;
+  border: #AEAEAE 5px solid;
+  border-radius: 5rem;
+  margin-bottom: 5rem;
+  -webkit-box-shadow: 28px 24px 45px -2px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 28px 24px 45px -2px rgba(0, 0, 0, 0.7);
+  box-shadow: 28px 24px 45px -2px rgba(0, 0, 0, 0.7);
+}
+
+@media (min-width: 400px) {
+  .rmascota .mascotas_registro {
+    padding: 3rem 5rem;
+  }
+}
+
+@media (min-width: 580px) {
+  .rmascota .mascotas_registro {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.rmascota .mascotas_registro .intro {
+  font-size: 2.5rem;
+  color: black;
+  font-family: "Merienda", cursive;
+  font-weight: 300;
+  margin: .5rem 0 0.5rem;
+}
+
+@media (min-width: 500px) {
+  .rmascota .mascotas_registro .intro {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 580px) {
+  .rmascota .mascotas_registro .intro {
+    grid-column: 1 / 3;
+  }
+}
+
+@media (min-width: 1200px) {
+  .rmascota .mascotas_registro .intro {
+    font-size: 4rem;
+  }
+}
+
+.rmascota .mascotas_registro .datos {
+  display: flex;
+  flex-direction: column;
+}
+
+.rmascota .mascotas_registro .datos h3 {
+  text-align: left;
+  font-size: 1.8rem;
+  color: #656565;
+  font-family: "Merienda", cursive;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .rmascota .mascotas_registro .datos h3 {
+    font-size: 2.2rem;
+  }
+}
+
+.rmascota .mascotas_registro .datos .inscribir {
+  width: 99%;
+  padding: .5rem 1rem;
+  margin: 0 auto;
+  border-radius: 5rem;
+  border: #4B8BDD 3px solid;
+  font-size: 1.7rem;
+  color: #828282;
+  font-family: "Aclonica", sans-serif;
+  font-weight: 500;
+  background-color: white;
+  border-color: #64B8FF;
+}
+
+@media (min-width: 500px) {
+  .rmascota .mascotas_registro .datos .inscribir {
+    font-size: 2rem;
+  }
+}
+
+.rmascota .mascotas_registro .datos .seleccion option {
+  border: #4B8BDD 3px solid;
+}
+
+.rmascota .mascotas_registro .datos textarea {
+  width: 99%;
+  resize: none;
+  padding: .5rem 1rem;
+  margin: 0 auto;
+  border-radius: 2rem;
+  border: 3px solid #4B8BDD;
+  font-size: 1.8rem;
+  color: #828282;
+  font-family: "Aclonica", sans-serif;
+  font-weight: 500;
+  background-color: white;
+  border-color: #64B8FF;
+  height: 12rem;
+}
+
+.rmascota .mascotas_registro .datos .progress {
+  padding: 0rem 0rem 2.5rem;
+  border: 2px solid #4B8BDD;
+  position: relative;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#99d9f7+0,aadeff+100 */
+  background: #99d9f7;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #99d9f7 0%, #aadeff 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #99d9f7 0%, #aadeff 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #99d9f7 0%, #aadeff 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99d9f7', endColorstr='#aadeff',GradientType=0 );
+  /* IE6-9 */
+  border-radius: 5rem;
+  height: 4.5rem;
+  cursor: pointer;
+}
+
+.rmascota .mascotas_registro .datos .progress .bar {
+  background-color: white;
+  padding: 1rem 1rem 3.5rem 0;
+  width: 50%;
+  height: 20px;
+  transition: width 150ms;
+  background: #64b8ff;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64b8ff', endColorstr='#64b8ff',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+}
+
+.rmascota .mascotas_registro .datos .progress .percent {
+  position: absolute;
+  display: inline-block;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  color: white;
+  font-family: "Aclonica", sans-serif;
+  font-weight: 600;
+  -webkit-text-stroke: 1px #4B8BDD;
+}
+
+.rmascota .mascotas_registro .datos .dropbox {
+  outline: 2px dashed #6FABF9;
+  outline-offset: -10px;
+  background: lightcyan;
+  color: #64B8FF;
+  padding: 10px 10px;
+  min-height: 100px;
+  position: relative;
+  cursor: pointer;
+}
+
+.rmascota .mascotas_registro .datos .dropbox:hover {
+  background: lightblue;
+}
+
+.rmascota .mascotas_registro .datos .dropbox .input-file {
+  opacity: 0;
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.rmascota .mascotas_registro .datos .dropbox p {
+  font-size: 0.9em;
+  text-align: center;
+  justify-content: center;
+  padding: 0;
+  margin: 8rem 3rem;
+  font-size: 1.5rem;
+  color: #AEAEAE;
+  font-family: "Merienda", cursive;
+  font-weight: 500;
+}
+
+.rmascota .mascotas_registro .datos img {
+  max-height: 25rem;
+  margin: 0 auto;
+}
+
+.rmascota .mascotas_registro .info {
+  font-size: 1.3rem;
+  color: red;
+  font-family: "Merienda", cursive;
+  font-weight: 500;
+  font-style: italic;
+  margin: 0;
+}
+
+.rmascota .mascotas_registro .imagen {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 650px) {
+  .rmascota .mascotas_registro .imagen {
+    grid-template-columns: 40% 60%;
+  }
+  .rmascota .mascotas_registro .imagen h3 {
+    grid-column: 1/3;
+  }
+  .rmascota .mascotas_registro .imagen .dropbox {
+    grid-column: 1/2;
+  }
+}
+
+.rmascota .mascotas_registro .botones .publicar {
+  color: black;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#99d9f7+0,aadeff+100 */
+  background: #99d9f7;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #99d9f7 0%, #aadeff 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #99d9f7 0%, #aadeff 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #99d9f7 0%, #aadeff 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99d9f7', endColorstr='#aadeff',GradientType=0 );
+  /* IE6-9 */
+}
+
+.rmascota .mascotas_registro .botones .publicar:hover {
+  color: white;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#64b8ff+0,54c8e5+46,64b8ff+100 */
+  background: #64b8ff;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64b8ff', endColorstr='#64b8ff',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+}
+
+.rmascota .mascotas_registro .botones .cancelar {
+  color: black;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff2323+0,ff4f4f+50,f22e2e+100 */
+  background: #ff2323;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #ff2323 0%, #ff4f4f 50%, #f22e2e 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #ff2323 0%, #ff4f4f 50%, #f22e2e 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #ff2323 0%, #ff4f4f 50%, #f22e2e 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff2323', endColorstr='#f22e2e',GradientType=1 );
+  /* IE6-9 */
+}
+
+.rmascota .mascotas_registro .botones .cancelar:hover {
+  color: white;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff611e+0,ff0000+50,ff6e00+100 */
+  background: #ff611e;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #ff611e 0%, red 50%, #ff6e00 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ff611e 0%, red 50%, #ff6e00 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ff611e 0%, red 50%, #ff6e00 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff611e', endColorstr='#ff6e00',GradientType=0 );
+  /* IE6-9 */
+}
+
+@media (min-width: 580px) {
+  .rmascota .mascotas_registro .botones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rmascota .mascotas_registro .botones .publicar {
+    grid-column: 1/2;
+  }
+  .rmascota .mascotas_registro .botones .cancelar {
+    grid-column: 2/3;
+  }
+}
+
+@media (min-width: 580px) {
+  .rmascota .mascotas_registro .nombre, .rmascota .mascotas_registro .raza {
+    grid-column: 1/3;
+  }
+}
+
+@media (min-width: 850px) {
+  .rmascota .mascotas_registro .nombre, .rmascota .mascotas_registro .raza {
+    grid-column: 1/2;
+  }
+}
+
+@media (min-width: 580px) {
+  .rmascota .mascotas_registro .tipo, .rmascota .mascotas_registro .peso {
+    grid-column: 1/3;
+  }
+}
+
+@media (min-width: 850px) {
+  .rmascota .mascotas_registro .tipo, .rmascota .mascotas_registro .peso {
+    grid-column: 2/3;
+  }
+}
+
+.rmascota .mascotas_registro .Mensaje, .rmascota .mascotas_registro .imagen, .rmascota .mascotas_registro .botones {
+  grid-column: 1/2;
+}
+
+@media (min-width: 580px) {
+  .rmascota .mascotas_registro .Mensaje, .rmascota .mascotas_registro .imagen, .rmascota .mascotas_registro .botones {
+    grid-column: 1/3;
+  }
+}
+
+.info_mascota {
+  display: grid;
+  grid-column-gap: 0rem;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#99d9f7+0,aadeff+100 */
+  background: #99d9f7;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #99d9f7 0%, #aadeff 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #99d9f7 0%, #aadeff 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #99d9f7 0%, #aadeff 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99d9f7', endColorstr='#aadeff',GradientType=0 );
+  /* IE6-9 */
+  margin: 0rem 5% 5rem 5%;
+  overflow: hidden;
+  border: #828282 4px solid;
+  border-radius: 3rem;
+  -webkit-box-shadow: 28px 24px 45px -2px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 28px 24px 45px -2px rgba(0, 0, 0, 0.7);
+  box-shadow: 28px 24px 45px -2px rgba(0, 0, 0, 0.7);
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 900px) {
+  .info_mascota {
+    grid-template-columns: 65% 35%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .info_mascota {
+    grid-template-columns: 60% 40%;
+    margin: 0rem auto 5rem;
+    max-width: 110rem;
+  }
+}
+
+.info_mascota .imagen {
+  margin: auto;
+  height: 100%;
+}
+
+.info_mascota .imagen .imageninfoMascota {
+  object-fit: cover;
+  height: 100%;
+  position: inherit;
+  margin: auto;
+  padding: .2rem;
+  max-height: 60rem;
+}
+
+.info_mascota .informacion {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 1rem;
+  margin: 1rem 0;
+}
+
+@media (min-width: 900px) {
+  .info_mascota .informacion {
+    border-left: #828282 5px solid;
+  }
+}
+
+.info_mascota .informacion .logo {
+  display: flex;
+  grid-template-columns: 1fr 2fr;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.info_mascota .informacion .logo span {
+  margin-left: 0;
+}
+
+.info_mascota .informacion .logo .icono {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 5rem;
+  border: black 5px solid;
+  display: none;
+}
+
+@media (min-width: 333px) {
+  .info_mascota .informacion .logo .icono {
+    display: block;
+  }
+}
+
+@media (min-width: 900px) {
+  .info_mascota .informacion .logo .icono {
+    display: none;
+  }
+}
+
+@media (min-width: 1030px) {
+  .info_mascota .informacion .logo .icono {
+    display: block;
+  }
+}
+
+.info_mascota .informacion .logo .texto {
+  margin: auto 1rem;
+  font-size: 5rem;
+}
+
+.info_mascota .informacion .logo .texto span {
+  font-size: 4rem;
+}
+
+@media (min-width: 400px) {
+  .info_mascota .informacion .logo .texto {
+    font-size: 6rem;
+  }
+  .info_mascota .informacion .logo .texto span {
+    font-size: 5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .info_mascota .informacion .logo .texto {
+    font-size: 7rem;
+  }
+  .info_mascota .informacion .logo .texto span {
+    font-size: 6rem;
+  }
+}
+
+.info_mascota .informacion .datos {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-row-gap: 1rem;
+  border-top: #828282 4px solid;
+  border-bottom: #828282 4px solid;
+  align-self: center;
+}
+
+@media (min-width: 550px) {
+  .info_mascota .informacion .datos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .info_mascota .informacion .datos {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .info_mascota .informacion .datos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.info_mascota .informacion .datos .izquierda, .info_mascota .informacion .datos .derecha {
+  display: grid;
+  background-color: #e1e1e1;
+  font-size: 2.5rem;
+  color: #6FABF9;
+  font-family: "Aclonica", sans-serif;
+  font-weight: 600;
+  text-align: center;
+}
+
+.info_mascota .informacion .datos .izquierda span, .info_mascota .informacion .datos .derecha span {
+  font-size: 2rem;
+  color: #656565;
+  font-family: "Merienda", cursive;
+  font-weight: 500;
+}
+
+@media (min-width: 333px) {
+  .info_mascota .informacion .datos .izquierda, .info_mascota .informacion .datos .derecha {
+    display: block;
+  }
+}
+
+@media (min-width: 550px) {
+  .info_mascota .informacion .datos .izquierda, .info_mascota .informacion .datos .derecha {
+    display: grid;
+    font-size: 3rem;
+  }
+  .info_mascota .informacion .datos .izquierda span, .info_mascota .informacion .datos .derecha span {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 650px) {
+  .info_mascota .informacion .datos .izquierda, .info_mascota .informacion .datos .derecha {
+    display: block;
+  }
+  .info_mascota .informacion .datos .izquierda span, .info_mascota .informacion .datos .derecha span {
+    margin-left: 1rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .info_mascota .informacion .datos .izquierda, .info_mascota .informacion .datos .derecha {
+    display: grid;
+  }
+}
+
+@media (min-width: 1030px) {
+  .info_mascota .informacion .datos .izquierda, .info_mascota .informacion .datos .derecha {
+    display: block;
+  }
+}
+
+@media (min-width: 1200px) {
+  .info_mascota .informacion .datos .izquierda, .info_mascota .informacion .datos .derecha {
+    display: grid;
+  }
+}
+
+.info_mascota .informacion .datos .izquierda .anios, .info_mascota .informacion .datos .derecha .anios {
+  font-size: 3rem;
+}
+
+.info_mascota .informacion .datos .izquierda {
+  padding: 1rem 1rem 1rem 2rem;
+  border-bottom: #828282 4px solid;
+}
+
+@media (min-width: 550px) {
+  .info_mascota .informacion .datos .izquierda {
+    border-bottom: #828282 0px solid;
+  }
+}
+
+@media (min-width: 900px) {
+  .info_mascota .informacion .datos .izquierda {
+    border-bottom: #828282 4px solid;
+  }
+}
+
+@media (min-width: 1200px) {
+  .info_mascota .informacion .datos .izquierda {
+    border-bottom: #828282 0px solid;
+  }
+}
+
+.info_mascota .informacion .datos .derecha {
+  border-top: #828282 4px solid;
+  padding: 1rem 2rem 1rem 1rem;
+}
+
+@media (min-width: 550px) {
+  .info_mascota .informacion .datos .derecha {
+    border-top: #828282 0px solid;
+  }
+}
+
+@media (min-width: 900px) {
+  .info_mascota .informacion .datos .derecha {
+    border-top: #828282 4px solid;
+  }
+}
+
+@media (min-width: 1200px) {
+  .info_mascota .informacion .datos .derecha {
+    border-top: #828282 0px solid;
+  }
+}
+
+@media (min-width: 1200px) {
+  .info_mascota .informacion .datos .edad {
+    display: block;
+  }
+}
+
+.info_mascota .informacion .datos .img-tamaño {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  padding: 0;
+}
+
+.info_mascota .informacion .datos .img-tamaño .tamaño {
+  font-size: 2.8rem;
+  font-weight: 800;
+  padding: 0;
+  align-self: center;
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.info_mascota .informacion .datos .img-tamaño .tipo {
+  font-size: 2.2rem;
+  color: #656565;
+  font-family: "Merienda", cursive;
+  font-weight: 500;
+  grid-column: 1/2;
+  grid-row: 2/3;
+  text-align: end;
+  padding: 0 2rem 0 0;
+  border-bottom: #828282 3px solid;
+}
+
+.info_mascota .informacion .datos .img-tamaño .animal {
+  grid-column: 1/2;
+  grid-row: 3/4;
+  width: 90%;
+  max-width: 30rem;
+  height: auto;
+  max-width: 20rem;
+  justify-self: right;
+}
+
+.info_mascota .informacion .datos .img-tamaño .modelo {
+  max-width: 10rem;
+  width: 100%;
+  height: auto;
+  margin: 2% 0;
+  grid-column: 2/3;
+  grid-row: 1/4;
+  border-left: #828282 5px solid;
+}
+
+.info_mascota .informacion .datos .ultimos {
+  display: grid;
+  border-left: #828282 3px solid;
+  grid-template-columns: 10rem auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (min-width: 550px) {
+  .info_mascota .informacion .datos .ultimos {
+    grid-template-columns: 6rem auto;
+  }
+}
+
+@media (min-width: 550px) {
+  .info_mascota .informacion .datos .ultimos {
+    grid-template-columns: 10rem auto;
+  }
+}
+
+@media (min-width: 550px) {
+  .info_mascota .informacion .datos .ultimos {
+    grid-template-columns: 6rem auto;
+  }
+}
+
+.info_mascota .informacion .datos .ultimos .sexo {
+  -webkit-transform: rotate(-90deg);
+  grid-column: 1/2;
+  grid-row: 1/3;
+  align-self: center;
+  justify-self: center;
+  margin: revert;
+}
+
+.info_mascota .informacion .datos .ultimos .esteril, .info_mascota .informacion .datos .ultimos .vacuna {
+  margin: 1rem auto 1rem 0;
+  align-self: center;
+}
+
+.info_mascota .informacion .datos .ultimos .esteril span, .info_mascota .informacion .datos .ultimos .vacuna span {
+  font-size: 2.5rem;
+  color: #656565;
+  font-family: "Merienda", cursive;
+  font-weight: 500;
+  font-style: italic;
+}
+
+@media (min-width: 550px) {
+  .info_mascota .informacion .tercera {
+    grid-template-columns: 58% 42%;
+  }
+}
+
+@media (min-width: 900px) {
+  .info_mascota .informacion .tercera {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .info_mascota .informacion .tercera {
+    grid-template-columns: 58% 42%;
+  }
+}
+
+.info_mascota .informacion .botones .btn {
+  width: -webkit-fill-available;
+}
+
+.info_mascota .informacion .botones .btn:hover {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#64b8ff+0,54c8e5+46,64b8ff+100 */
+  background: #64b8ff;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64b8ff', endColorstr='#64b8ff',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
 }
 
 /*# sourceMappingURL=app.css.map */

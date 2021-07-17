@@ -1,6 +1,6 @@
 .espacio_trabajo {
 	margin: 2rem 5%;
-
+	// background-image: url("../img/icono2.png");
 	.subtitulo {
 		background-color: white;
 		// margin: auto;
@@ -9,16 +9,16 @@
 
 		.titulo_home {
 
-			@include tipografia($Merienda, 2.5rem, $azulado, 300);
+			@include tipografia($Merienda, 2.5rem, $azulado, 600);
 			padding: 2rem;
-			font-weight: 500;
 
 			@include media600{
 				font-size: 2.8rem;
 			}
-
+			@include media768{
+				font-size: 3rem;
+			}
 			@include media1000{
-				font-weight: 600;
 				font-size: 3.5rem;
 			}
 
@@ -30,6 +30,8 @@
 
 	.tres_mascotas {
 		// display: flex;
+		// margin: auto;
+		// max-width: 30rem;
 		.vista {
 			width: 100%;
 			margin-bottom: 2rem;
@@ -116,7 +118,9 @@
 				margin: auto;
 				padding: .2rem;
 				// border: 10px solid black;
-				max-width: fit-content;
+				max-width: 40rem;
+    			max-height: 40rem;
+				border: 5px solid $gris2;
 				&:hover{
 
 					border: 10px solid $azulado;
@@ -166,16 +170,36 @@
 			}
 		}
 
+		.borrar {
+			margin: auto;
+			position: absolute;
+			
+			.boton_borrar {
+				border: none;
+				border-radius: 10rem;
+				padding: .5rem;
+				&:hover {
+					background-color: $gris3;
+				}
+			}
+		}
+
 		@include media1000 {
 
 			justify-content: space-between;
-
+			margin: auto;
+   			// max-width: 100rem;
 			.vista {
 				flex: 0 0 calc( 50% - 0rem );
 			}
 		}
+		@include media1100 {
+			max-width: 100rem;
+		}
+
 
 		@include media1400 {
+			max-width: 130rem;	
 			.card {
 				display: grid;
 			}
