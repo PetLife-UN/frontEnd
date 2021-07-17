@@ -236,6 +236,12 @@ export default {
           this.json.name = A_nombre;
           this.json.surname = A_apellido;
           this.json.cellPhoneNumber = A_numero;
+      },
+      UltimaCon(js){
+        if(js != null){
+            var date = new Date(js.lastLogin);
+            date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+            return `${date.toLocaleString()}`;
         }
       }
     },
