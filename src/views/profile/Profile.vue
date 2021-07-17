@@ -273,6 +273,7 @@ export default {
 		}
 	},
 	mounted: function () {  
+        let token = localStorage.getItem('token');
 		axios
 			.get("https://unpetlife.herokuapp.com/api/user/getUserDetails", {
 				headers: {
