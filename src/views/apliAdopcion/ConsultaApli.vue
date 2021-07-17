@@ -181,8 +181,8 @@ export default {
             this.pagina = this.$route.params.numPage;
             const token = localStorage.token;
             axios
-            //.get("http://localhost:8080/api/apply/getApplicationUserPage?adopted=false&visible="+(this.filtroVis)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
-            .get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?adopted=false&visible="+(this.filtroVis)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
+            //.get("http://localhost:8080/api/apply/getApplicationUserPage?deleted=false&visible="+(this.filtroVis)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
+            .get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?deleted=false&visible="+(this.filtroVis)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
                 headers: {
                     'Authorization': `Bearer ${token}`
                 },

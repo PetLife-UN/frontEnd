@@ -95,7 +95,7 @@
 					class="btn btn-lg button_adopta"
 					v-on:click="verInfo(idPet)"
 				>
-					Ver mas
+					Ver más
 				</button>
 			</div>
 		</div>
@@ -108,7 +108,7 @@ var datos = '';
 var valor = 1;
 export default {
 	name: "petCardUser",
-	props: ['imageRoute', 'petName', 'petDescription', 'idPet', 'edad', 'tipo', 'raza'],
+	props: ['imageRoute', 'petName', 'petDescription', 'idPet', 'edad', 'tipo', 'raza', 'updateValues'],
 	methods: {
 		verInfo(id) {
 			this.$router.push("/Info_mascota/" + id)
@@ -165,18 +165,19 @@ export default {
 			}
 		},
 		Borrar(idPet) {
-            var token = localStorage.token;
-			axios.
-				put("https://unpetlife.herokuapp.com/api/pet/deletePet"+"?id=" +idPet ,{
-					headers: {
-						Authorization: `Bearer ${token}`,
-					}
-				}).then((data) => {
-                    this.$router.go();
-                })
-                .catch((error) => {
-					console.log(error);
-				});
+			const token=localStorage.token;
+			axios({
+				//url: "http://localhost:8080/api/pet/deletePet?id=" +idPet",
+				url: "https://unpetlife.herokuapp.com/api/pet/deletePet?id=" +idPet,
+				method: "PUT",
+				headers: {
+					'Authorization': `Bearer ${token}`
+				},
+			}).then((data) => {
+				this.updateValues();
+            }).catch((error) => {
+				console.log(error);
+			});
 		}
 	}
 }
