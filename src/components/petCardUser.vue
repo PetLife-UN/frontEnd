@@ -165,7 +165,7 @@ export default {
 			}
 		},
 		Borrar(idPet) {
-            let token = localStorage.token;
+            var token = localStorage.token;
 			axios.
 				put("https://unpetlife.herokuapp.com/api/pet/deletePet"+"?id=" +idPet ,{
 					headers: {
