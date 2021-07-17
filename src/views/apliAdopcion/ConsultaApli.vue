@@ -39,7 +39,7 @@
             </div>
             <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
                 <p class="text_info_id_apli">Publicación #{{apli.id}}</p>
-                <div class = "lateral_bar_consultasol" v-bind:style="{ background: COLOR_TIPO[apli.publicationVisible]}"></div>
+                <div class = "lateral_bar_consultasol" v-bind:style="{ background: COLOR_TIPO[apli.publicationVisible] ||  COLOR_TIPO[true] }"></div>
                 <div class = "row g-0 content_consultasol ">
                     <div class="col-5 col_infoapli">
                         <br>
@@ -179,15 +179,23 @@ export default {
         },
         updateValues(){
             this.pagina = this.$route.params.numPage;
+            const token = localStorage.token;
             axios
             //.get("http://localhost:8080/api/apply/getApplicationUserPage?adopted=false&visible="+(this.filtroVis)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
             .get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?adopted=false&visible="+(this.filtroVis)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
             })
             .then( data =>{
                 this.ListaApli = data.data.content;
                 this.totalPages = data.data.totalPages;
                 this.listSize = (this.ListaApli == null)?0:this.ListaApli.length;
             })
+            .catch((error) => {
+                var msg_back = error.response.data.message
+                console.log(msg_back)
+            });
         },
         showDrop() {
             document.getElementById("myDropdown").classList.toggle("show");
