@@ -251,6 +251,7 @@ export default {
             this.activePage = value;
         },
         exitApli(){
+            const token = localStorage.token;
             if(this.modifyConfig){
                 const json ={
 					"id" : this.aplicationInfo.id,
@@ -261,6 +262,9 @@ export default {
 					url: "https://unpetlife.herokuapp.com/api/apply/modifyApplicationVis",
 					data: json,
 					method: "PUT",
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
 				})
                 .then( data =>{
                     this.updateValues();
