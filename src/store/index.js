@@ -72,7 +72,6 @@ export default createStore({
 					const hoy = new Date();
 					const fechahoy = hoy.getDate()+'/'+(hoy.getMonth()+1)+"/"+ hoy.getFullYear() + "-" +  hoy.getHours() + ":" + hoy.getMinutes();
 					localStorage.setItem("token", token);
-					localStorage.setItem("horaultima", fechahoy);
 					axios.defaults.headers.common["Authorization"] = 'Bearer ' +token;
 					commit("login_success", token, email);
                     //console.log("sucess")
