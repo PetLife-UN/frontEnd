@@ -1,11 +1,16 @@
 <template lang="">
 	<navbar />
 	<div v-if="!this.errorBool" class="espacio_trabajo">
+		
 		<div class ="subtitulo">
 			<h1 class="titulo_home texto_centrado">
 				Mascotas Publicadas
 			</h1>
 		</div>
+
+		<div class = "botones">
+            <button type="button" class="btn  button_volver" v-on:click="volver()">Volver al Usuario</button>
+        </div>
 
 		<div class="row tres_mascotas">
 			<petCardUser
@@ -15,10 +20,10 @@
 				v-bind:imageRoute="item.link_foto"
 				v-bind:petDescription="item.descripcion"
 				v-bind:petName="item.nombre"
-                v-bind:idPet="item.id"
-                v-bind:edad="item.edad"
-                v-bind:tipo="item.tipo"
-                v-bind:raza="item.raza"
+        v-bind:idPet="item.id"
+        v-bind:edad="item.edad"
+        v-bind:tipo="item.tipo"
+        v-bind:raza="item.raza"
 				v-bind:updateValues="updateValues"
 			/>
 		</div>
@@ -27,7 +32,9 @@
 	<div v-else class="espacio_trabajo">
 		<div class ="subtitulo">
 			<h1 class="titulo_home texto_centrado">
-				Mascotas Publicadas
+
+				El Usuario no Tiene Mascotas
+
 			</h1>
 		</div>
 		<div class = "container_img_notresults bg-light" >
@@ -57,6 +64,7 @@ export default {
 		petCardUser,
 	},
 	methods: {
+
 		updateValues(){
 			var token=localStorage.token;
 			axios
@@ -75,6 +83,11 @@ export default {
 					}
 				});
 		},
+
+		volver(){
+            this.$router.go(-1);
+        }
+
 	},
 	mounted: function () {
 		this.updateValues();

@@ -45,8 +45,7 @@
 				</div>
 
 				<div class="col-3 icono">
-					<!-- <img class="imgmascota" :src="imagen(tipo)">
- -->
+					<!-- <img class="imgmascota" :src="imagen(tipo)"> -->
 					<img
 						v-if="tipo == 'Felino'"
 						class="animal imgmascota"
@@ -90,6 +89,7 @@
 				</div>
 			</div>
 			<!-- <h3 class="card-title">{{ petName }}</h3> -->
+
 			<div class="cboton">
 				<button
 					class="btn btn-lg button_adopta"

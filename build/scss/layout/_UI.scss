@@ -21,12 +21,11 @@
 		stroke-linecap: round;
 		stroke-linejoin: round;
 	}
-
 	
 	.titulo {
 		-webkit-text-fill-color: $azul-claro;
 		-webkit-text-stroke: 3px black;
-		font-size: 20rem;
+		// font-size: 20rem;
 		margin: 1rem;
 		align-items: center;
 		
@@ -38,7 +37,14 @@
 			-webkit-text-fill-color: $azulado;
 			-webkit-text-stroke: 2px black;
 		}
-
+		@include media900 {
+			font-size: 5.7rem;
+			span{font-size: 5rem;}
+		}
+		@include media1200 {
+			font-size: 7rem;
+			span{font-size: 5.5rem;}
+		}
 		&:hover {
 			// animation: color 3s linear infinite; 
 			-webkit-text-fill-color: $rosado;
@@ -76,25 +82,49 @@
 		border-radius: 5rem;
 		background-color: unset;
 		
+		@include media1000 {
+			font-size: 2.4rem;
+		}
+		@include media1200 {
+			font-size: 2.8rem;
+		}
+		@include media1400 {
+			font-size: 3.2rem;
+		}
+		@include media1500 {
+			font-size: 3.6rem;
+		}
 
 		&:hover {
-			color: red;
+			color: $rojo;
 			.icon-tabler-user {
-				stroke: red;
+				stroke: $rojo;
 			}
 		}
 
 		.icon-tabler-user {
 			width: 36px; 
-			// height: 44px;
+			height: auto;
 			stroke-width: 1.5px;
 			stroke: #000000;
 			margin-right: 0;
+
 			&:hover {
 				stroke: red;
 			}
+			@include media1000 {
+				width: 40px; 
+			}
+			@include media1200 {
+				width: 44px; 
+			}
+			@include media1400 {
+				width: 46px; 
+			}
+			@include media1500 {
+				width: 48px; 
+			}
 		}
-
 	}
 
 	@include media600 {

@@ -5,7 +5,7 @@
     <div class="espacio_trabajo">
         <div class="subtitulo">
             <h2 class="titulo_home texto_centrado">
-                Registro de mascota a dar en adopción
+                Registro de Mascota para Adopción
             </h2>        
         </div>
         

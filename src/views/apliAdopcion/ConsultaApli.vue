@@ -1,5 +1,6 @@
 <template >
     <navbar/>
+
     
     <div class = "container-fluid bg-light cuerpo_consultaApli">
         <div class = "container">
@@ -10,8 +11,6 @@
         <p class="titulo_solicitud_adop">
             Solicitudes de Adopción
         </p>
-
-
         
         <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" :updateValues = "updateValues"  />
 
@@ -68,19 +67,62 @@
         <br>
         <nav v-if="listSize!=0">
             <ul class="pagination justify-content-center">
-                <li class=" buttons_pagination" v-on:click="gobackPage()">
-                    <a class="page-link page-link-back" href="#">&#60;</a>
+                <li class="buttons_pagination" v-on:click="gobackPage()">
+                    <a 
+                        class="page-link page-link-back" 
+                        href="#">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-arrow-big-left"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                                d="M20 15h-8v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h8a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1z"></path>
+                        </svg>
+                    </a>
                 </li>
-                <div class ="buttons_pagination " v-for="page in parseInt(totalPages)" :key="page" v-on:click="gotoPage(page)"> 
-                    <li class="page-item"><a class="page-link page-link-numbers" href="#">{{page}}</a></li>
-                </div>
+
+                <li
+                    class="page-item buttons_pagination"
+                    v-for="page in parseInt(totalPages)"
+                    :key="page"
+                    v-on:click="gotoPage(page)">
+                    <a class="page-link page-link-numbers" href="#">
+                        {{ page }}
+                    </a>
+                </li>
+
                 <li class="buttons_pagination" v-on:click="gonextPage()">
-                    <a class="page-link page-link-next" href="#">&#62;</a>
+                  <a class="page-link page-link-next" href="#">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-arrow-big-right"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z"
+                      ></path>
+                    </svg>
+                  </a>
                 </li>
             </ul>
         </nav>
-        <br>
-        <br>
+    
     </div>
 </template>
 <script>
@@ -219,13 +261,16 @@ export default {
     /*Pagina solicitudes de aplicacion*/
     .cuerpo_consultaApli{
         min-height: 600px;
+        background-color: initial;
     }
+
     .titulo_solicitud_adop{
         font-size: 40px;
         text-align: center;
         color: #6FABF9;
         font-family: "Merienda", cursive;
         font-weight: bold;
+
     }
     .container_img_notresults{
         display: block;
