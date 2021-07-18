@@ -19,14 +19,14 @@
         <h3>Usuario<span>:</span></h3>
         
         <div v-if="show">
-          <h2>{{Nombre(json)}}</h2>
+          <h2 class="mayuscula">{{Nombre(json)}}</h2>
         </div>
         
         <div class="cambiar" v-else>
           <input 
             v-on:click="errorNombre"
             type="text" 
-            class="form-control"
+            class="form-control mayuscula"
             id="floatingName" 
             placeholder="Nombre" 
             maxlength="50"
@@ -38,7 +38,7 @@
           <input 
             v-on:click="errorApellido"
             type="text" 
-            class="form-control " 
+            class="form-control mayuscula" 
             id="floatingSurame" 
             placeholder="Nombre" 
             maxlength="50"

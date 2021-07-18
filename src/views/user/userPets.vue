@@ -1,11 +1,16 @@
 <template lang="">
 	<navbar />
 	<div v-if="!this.errorBool" class="espacio_trabajo">
+		
 		<div class ="subtitulo">
 			<h1 class="titulo_home texto_centrado">
 				Mascotas Publicadas
 			</h1>
 		</div>
+
+		<div class = "botones">
+            <button type="button" class="btn  button_volver" v-on:click="volver()">Volver al Usuario</button>
+        </div>
 
 		<div class="row tres_mascotas">
 			<petCardUser
@@ -26,7 +31,7 @@
 	<div v-else class="espacio_trabajo">
 		<div class ="subtitulo">
 			<h1 class="titulo_home texto_centrado">
-				El usuario no tiene mascotas
+				El Usuario no Tiene Mascotas
 			</h1>
 		</div>
 	</div>
@@ -49,7 +54,11 @@ export default {
 		navbar,
 		petCardUser,
 	},
-	methods: {},
+	methods: {
+		volver(){
+            this.$router.go(-1);
+        }
+	},
 	mounted: function () {
 		const token = localStorage.token;
 		axios

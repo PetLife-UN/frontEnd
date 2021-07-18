@@ -94,11 +94,11 @@
 						value="">
 						Peso de la Mascota
 					</option>
-					<option value=" (menos de 5 Kg)">Chico(-5Kg)</option>
+					<option value="Chico (menos de 5 Kg)">Chico(-5Kg)</option>
 					<option value="Pequeño (de 6 a 14 Kg)">Pequeño(6 a 14Kg)</option>
 					<option value="Mediano (de 15 a 25 Kg)">Mediano(15 a 25Kg)</option>
 					<option value="Grande (de 26 a 50 kg)">Grande(26 a 50kg)</option>
-					<option value="Muy Grande (mayor a 50 kg)">Enorme(+50 kg)</option>
+					<option value="Enorme (mayor a 50 kg)">Enorme(+50 kg)</option>
 				</select>
 			</div>
 
@@ -383,7 +383,7 @@ export default {
 					a1.style.width = "100%";
 					break;
 				case "Si":
-					this.vaccines="Desconosco"
+					this.vaccines="false"
 					a2.innerHTML = "No se";
 					a1.style.width = "50%";
 					break;

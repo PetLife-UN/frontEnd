@@ -1,73 +1,125 @@
 <template >
     <navbar/>
-    <div class = "container-fluid bg-light cuerpo_consultaApli">
-        <div class = "container">
-            <br>
-            <button type="button" class="btn  button_volver" v-on:click="volver()">Volver</button>
+
+    <div class="espacio_trabajo">
+        <div class="subtitulo">
+            <h2 class="titulo_home texto_centrado">
+            Solicitudes de Adopción 
+            </h2>        
         </div>
-        <h2 class="py-5 text-center">SOLICITUDES DE ADOPCIÓN </h2>
-        <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" />
-        <br>
-        <br>
-        <div class = "container">
-            <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
-                <div class="col-lg-5 col-md-12 col_infoapli">
-                    <div class ="row g-0">
-                        <div class ="col-1 marca_lateral"/>
-                        <div class ="col-1 marca_lateral_inv"/> 
-                        <div class ="col-10 fila_info_apli">
-                            <br>
-                            <p><mark class="titulo_soli">Nombre: </mark>{{apli.name.substring(0,50)}}</p>
-                            <p><mark class="titulo_soli">Email: </mark>{{apli.email.substring(0,40)}}</p>
-                            <div class ="row">
-                                <div class = "col-8">
-                                    <p><mark class="titulo_soli">Teléfono móvil: </mark>{{apli.movilNumber}}</p>
-                                    <p><mark class="titulo_soli">Ubicación: </mark>{{apli.city}} ({{apli.department}})</p>
-                                    <p><mark class="titulo_soli">Edad:  </mark>{{apli.age}} años</p>
+
+        <div class = "botones">
+            <button type="button" class="btn  button_volver" v-on:click="volver()">Volver al Usuario</button>
+        </div>
+
+        <div class="container-fluid cuerpo_consultaApli">        
+            <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" />
+
+            <div class = "container">
+                <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
+                    
+                    <div class="col-lg-5 col-md-12 col_infoapli">
+                        <div class ="row g-0">
+                            <div class ="col-1 marca_lateral"/>
+                            <div class ="col-1 marca_lateral_inv"/> 
+                            <div class ="col-10 fila_info_apli">
+                                <br>
+                                <p><mark class="titulo_soli">Nombre: </mark>{{apli.name.substring(0,50)}}</p>
+                                <p><mark class="titulo_soli">Email: </mark>{{apli.email.substring(0,40)}}</p>
+                                <div class ="row">
+                                    <div class = "col-8">
+                                        <p><mark class="titulo_soli">Teléfono móvil: </mark>{{apli.movilNumber}}</p>
+                                        <p><mark class="titulo_soli">Ubicación: </mark>{{apli.city}} ({{apli.department}})</p>
+                                        <p><mark class="titulo_soli">Edad:  </mark>{{apli.age}} años</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class = "col-lg-4 col-md-6 col-sm-6 container_extra_info">
-                    <br>
-                    <br>
-                    <div class ="contenedor_agreement ">
-                        <p><mark class="titulo_soli">Familia de acuerdo: </mark> </p>
-                        <div  class = "img_agreement"  v-if="apli.familyAgreement == true">
-                            <img src="../../assets/icons/happy_64px.png">
+
+                    <div class = "col-lg-4 col-md-6 col-sm-6 container_extra_info">
+                        <br>
+                        <br>
+                        <div class ="contenedor_agreement ">
+                            <p><mark class="titulo_soli">Familia de acuerdo: </mark> </p>
+                            <div  class = "img_agreement"  v-if="apli.familyAgreement == true">
+                                <img src="../../assets/icons/happy_64px.png">
+                            </div>
+                            <div class = "img_agreement" v-else>
+                                <img src="../../assets/icons/sad_64px.png">
+                            </div>
                         </div>
-                        <div class = "img_agreement" v-else>
-                            <img src="../../assets/icons/sad_64px.png">
-                        </div>
+                        <p><mark class="titulo_soli">Canal comunicación:  </mark></p>
+                        <p>    &nbsp; {{apli.communication}}</p>
+                        <div class="text_info_id_apli">Id #{{apli.id}}</div>
+                        <button type="button" class="btn button_verinfo_apli" v-on:click="()=>TogglePopup('buttonTrigger',apli)">Información completa</button>
                     </div>
-                    <p><mark class="titulo_soli">Canal comunicación:  </mark></p>
-                    <p>    &nbsp; {{apli.communication}}</p>
-                    <div class="text_info_id_apli">Id #{{apli.id}}</div>
-                    <button type="button" class="btn button_verinfo_apli" v-on:click="()=>TogglePopup('buttonTrigger',apli)">Información completa</button>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col_img_apli">
+
+                        <img class="card-img-top imagen_apli" v-bind:src="apli.pet.link_foto" v-bind:alt="apli.pet.id">
+                    </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col_img_apli">
-                    <img class="card-img-top imagen_apli" v-bind:src="apli.pet.link_foto" v-bind:alt="apli.pet.id">
-                </div>
-            </div>
-        </div> 
-        <br>
-        <br>
-        <nav >
+            </div> 
+        </div>
+        
+        <nav class="paginas">
             <ul class="pagination justify-content-center">
-                <li class=" buttons_pagination" v-on:click="gobackPage()">
-                    <a class="page-link page-link-back" href="#">&#60;</a>
+                <li class="buttons_pagination" v-on:click="gobackPage()">
+                    <a 
+                        class="page-link page-link-back" 
+                        href="#">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-arrow-big-left"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                                d="M20 15h-8v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h8a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1z"></path>
+                        </svg>
+                    </a>
                 </li>
-                <div class ="buttons_pagination " v-for="page in parseInt(totalPages)" :key="page" v-on:click="gotoPage(page)"> 
-                    <li class="page-item"><a class="page-link page-link-numbers" href="#">{{page}}</a></li>
-                </div>
+
+                <li
+                    class="page-item buttons_pagination"
+                    v-for="page in parseInt(totalPages)"
+                    :key="page"
+                    v-on:click="gotoPage(page)">
+                    <a class="page-link page-link-numbers" href="#">
+                        {{ page }}
+                    </a>
+                </li>
+
                 <li class="buttons_pagination" v-on:click="gonextPage()">
-                    <a class="page-link page-link-next" href="#">&#62;</a>
+                  <a class="page-link page-link-next" href="#">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-arrow-big-right"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z"
+                      ></path>
+                    </svg>
+                  </a>
                 </li>
             </ul>
         </nav>
-        <br>
-        <br>
+    
     </div>
 </template>
 <script>
@@ -154,12 +206,15 @@ export default {
 </script>
 
 <style>
+
     .cuerpo_consultaApli{
         min-height: 600px;
+        background-color: initial;
     }
     .container_apli_info{
         background:#f0eeee;
         position: relative;
+        padding: 1rem;
     }
     .col_img_apli{
         background: #4B8BDD;

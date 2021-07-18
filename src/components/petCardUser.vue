@@ -4,7 +4,6 @@
         <div class="card mb-4 box-shadow" 
 			:class="mascotas()">
 
-
             <img class="card-img-top imagen_catalogo" v-bind:src="imageRoute" v-bind:alt="idPet" />
             
             <div class="borrar">
@@ -30,8 +29,6 @@
 
 			<div class="card-body carta_mascota datos_mascota">
 
-
-
 				<div class = "col-9 titulo_masc mayuscula">
 					<h2 :class="nombre(petName)">{{tamanio(petName)}}
                         <span :class="completo(petName.length)">
@@ -43,8 +40,6 @@
 				</div>
 
 				<div class = "col-3 icono">
-                   <!-- <img class="imgmascota" :src="imagen(tipo)">
- -->
                     <img v-if="tipo=='Felino'" class="animal imgmascota" src="../assets/img/cat_96px.png">
                     <img v-else-if="tipo=='Canino'" class="animal imgmascota" src="../assets/img/dog_96px.png">
                     <img v-else-if="tipo=='Roedor'" class="animal imgmascota" src="../assets/img/hamster_96px.png">

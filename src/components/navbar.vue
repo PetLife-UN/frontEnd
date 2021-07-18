@@ -15,24 +15,6 @@
                             <line x1="4" y1="12" x2="20" y2="12" />
                             <line x1="4" y1="18" x2="20" y2="18" />
                         </svg>
-                        <ul>
-                            <li>
-                                <button @click="goHome"
-                                    aria-current="page"
-                                    href="#"
-                                    class="menu nav-link active home">
-                                    Home
-                                </button>
-                            </li>
-                            
-                            <li>
-                                <a href="">Backend</a>
-                            </li>
-                            
-                            <li>
-                                <a href="">Mobile</a>
-                            </li>
-                        </ul>  
                     </li>
                 </ul>
             </nav>
@@ -53,8 +35,6 @@
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         class="icon icon-tabler icon-tabler-user" 
-                        width="40" 
-                        height="40" 
                         viewBox="0 0 24 24" 
                         stroke-width="2" 
                         stroke="currentColor" 
@@ -81,14 +61,13 @@
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         class="icon icon-tabler icon-tabler-user" 
-                        width="40" 
-                        height="40" 
                         viewBox="0 0 24 24" 
                         stroke-width="2" 
                         stroke="currentColor" 
                         fill="none" 
                         stroke-linecap="round" 
                         stroke-linejoin="round">
+                        
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M10 15l5.586 -5.585a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-3.587 3.586"></path>
                         <path d="M12 13l-3.586 -3.585a2 2 0 1 0 -3.414 -1.415a2 2 0 1 0 1.413 3.414l3.587 3.586"></path>
@@ -110,6 +89,7 @@
                         xmlns="http://www.w3.org/2000/svg" 
                         class="icon icon-tabler icon-tabler-user" 
                         viewBox="0 0 24 24">
+                        
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
                         <path d="M20 12h-13l3 -3m0 6l-3 -3" />
@@ -130,6 +110,7 @@
                         xmlns="http://www.w3.org/2000/svg" 
                         class="icon icon-tabler icon-tabler-user" 
                         viewBox="0 0 24 24">
+                        
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <rect x="5" y="3" width="14" height="18" rx="2" />
                         <line x1="9" y1="7" x2="15" y2="7" />

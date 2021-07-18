@@ -59,7 +59,7 @@
 }
 
 @mixin maxima768 {
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
         @content;
     }
 }
@@ -132,6 +132,18 @@
 
 @mixin media1400 {
     @media (min-width: 1400px) {
+        @content;
+    }
+}
+
+@mixin media1500 {
+    @media (min-width: 1500px) {
+        @content;
+    }
+}
+
+@mixin media1600 {
+    @media (min-width: 1600px) {
         @content;
     }
 }
