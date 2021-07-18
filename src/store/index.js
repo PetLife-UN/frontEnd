@@ -57,7 +57,6 @@ export default createStore({
 	},
 	actions: {
 		login({ commit }, json) {
-            console.log(json)
 			return new Promise((resolve, reject) => {
 				commit("login_request");
 				axios({
