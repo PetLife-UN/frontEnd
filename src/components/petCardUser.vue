@@ -108,7 +108,7 @@ var datos = '';
 var valor = 1;
 export default {
 	name: "petCardUser",
-	props: ['imageRoute', 'petName', 'petDescription', 'idPet', 'edad', 'tipo', 'raza', 'updateValues'],
+	props: ['imageRoute', 'petName', 'petDescription', 'idPet', 'edad', 'tipo', 'raza', 'updateValues','showSnackDelete','hideSnackDelete'],
 	methods: {
 		verInfo(id) {
 			this.$router.push("/Info_mascota/" + id)
@@ -165,6 +165,7 @@ export default {
 			}
 		},
 		Borrar(idPet) {
+			this.showSnackDelete();
 			const token=localStorage.token;
 			axios({
 				//url: "http://localhost:8080/api/pet/deletePet?id=" +idPet",
@@ -174,7 +175,9 @@ export default {
 					'Authorization': `Bearer ${token}`
 				},
 			}).then((data) => {
+				this.hideSnackDelete();
 				this.updateValues();
+				
             }).catch((error) => {
 				console.log(error);
 			});
