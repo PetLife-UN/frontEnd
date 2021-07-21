@@ -165,7 +165,6 @@ export default {
 			if (this.show) {
 				var constante = true;
 				const nombre = document.querySelector('#floatingName');
-				// console.log(nombre.value.length);
 				const apellido = document.querySelector('#floatingSurame');
 				const celular = document.querySelector('#floatingcellPhoneNumber');
 
@@ -187,7 +186,6 @@ export default {
 						B_apellido = B_apellido + m[i];
 					}
 				}
-				// console.log(B_nombre.length);
 				while (document.querySelector('.error') != null) {
 					document.querySelector('.error').classList.remove('error');
 				}
@@ -203,11 +201,8 @@ export default {
 					celular.classList.add('error');
 					this.e_phone = true;
 				}
-				console.log(`${this.json.name} != ${B_nombre} || ${this.json.surname} != ${B_apellido} || ${this.json.cellPhoneNumber} != ${celular.value}`);
 
-				// console.log("no autualizacion");
 				if (this.e_nombre || this.e_apellido || this.e_phone) {
-					console.log("no autualizacion");
 
 					this.show = !this.show;
 				}
@@ -289,7 +284,6 @@ export default {
 				if (data.data != null) {
 					this.json = data.data;
 				}
-				// console.log(this.json);
 			})
 			.catch((error) => {
 				if (error.response.status === 404) {
