@@ -81,6 +81,7 @@
           <img v-else-if="mascota.tipo=='Ave'" class="animal" src="../../assets/img/silueta_ave.png">
           <img v-else-if="mascota.tipo=='Equino'" class="animal" src="../../assets/img/silueta_caballo.png">
           <img v-else class="animal" src="../../assets/img/silueta_dino.png">
+          
           <img class="modelo" src="../../assets/img/cuerpo2.png">
         </div>
 
@@ -109,7 +110,15 @@
           class="btn button_adoptar" 
           @click="adoptar(this.idPet)">Adoptar</button>
       </div>
+    </div>
 
+    <div class="mensaje">
+        <h3 class="descripcion">
+            Descripción 
+        </h3>
+        <p>
+            {{mascota.descripcion}}
+        </p>
     </div>
 
   </div>

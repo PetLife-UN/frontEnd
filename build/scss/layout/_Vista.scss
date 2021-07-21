@@ -276,6 +276,7 @@
 			display: none;	
 		}
 	}
+	
 	.filtro {
 		// z-index: 100;
 		cursor:pointer; 
@@ -810,34 +811,6 @@
 	.active {
 		visibility: visible;
 		scrollbar-base-color: #6FABF9; 
-	}
-
-	.popup .form .contenedor-inputs input {
-		width: 100%;
-		margin-bottom: 20px;
-		height: 52px;
-		font-size: 18px;
-		line-height: 52px;
-		text-align: center;
-		border: 1px solid #BBBBBB;
-	}
-
-	.popup .form .btn-submit {
-		padding: 0 20px;
-		height: 40px;
-		line-height: 40px;
-		border: none;
-		color: #fff;
-		background: #5E7DE3;
-		border-radius: 3px;
-		font-family: 'Montserrat', sans-serif;
-		font-size: 16px;
-		cursor: pointer;
-		transition: .3s ease all;
-	}
-
-	.popup .form .btn-submit:hover {
-		background: rgba(94,125,227, .9);
 	}
 
 	/* ------------------------- */

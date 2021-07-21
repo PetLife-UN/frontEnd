@@ -39,6 +39,11 @@
 
 			</h1>
 		</div>
+
+		<div class = "botones">
+            <button type="button" class="btn  button_volver" v-on:click="volver()">Volver al Usuario</button>
+        </div>
+        
 		<div class = "container_img_notresults bg-light" >
 			<img src="../../assets/img/dog_confused.png" >
 			<p class="title_notfound">No se han encontrado resultados</p>
