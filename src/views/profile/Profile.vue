@@ -213,24 +213,29 @@ export default {
 				}
 				else if (A_nombre != B_nombre || A_apellido != B_apellido || A_numero != celular.value) {
 
-					console.log("autualizacion");
-
+					const token=localStorage.token;
 					let json = {
 						"name": B_nombre,
 						"surname": B_apellido,
 						"cellPhoneNumber": celular.value
 					}
-					axios.put("https://unpetlife.herokuapp.com/api/user/modifyUserDetails", json, {
-
+					axios({
+						//url: "http://localhost:8080/api/user/modifyUserDetails",
+						url: "https://unpetlife.herokuapp.com/api/user/modifyUserDetails",
+						method: "PUT",
+						data: json,
 						headers: {
-							Authorization: `Bearer ${token}`,
-						}
-					})
-					// {
-					// "name": "Juan Camilo",
-					// "surname": "Villota",
-					// "cellPhoneNumber": "3144463105"
-					// } 
+							'Authorization': `Bearer ${token}`
+						},
+					}).then((data) => {
+
+					}).catch((error) => {
+						console.log(error);
+					});
+
+
+
+
 				}
 				else {
 					this.json.name = A_nombre;
