@@ -20,10 +20,10 @@
 				v-bind:imageRoute="item.link_foto"
 				v-bind:petDescription="item.descripcion"
 				v-bind:petName="item.nombre"
-        v-bind:idPet="item.id"
-        v-bind:edad="item.edad"
-        v-bind:tipo="item.tipo"
-        v-bind:raza="item.raza"
+				v-bind:idPet="item.id"
+				v-bind:edad="item.edad"
+				v-bind:tipo="item.tipo"
+				v-bind:raza="item.raza"
 				v-bind:updateValues="updateValues"
 			/>
 		</div>
@@ -37,6 +37,11 @@
 
 			</h1>
 		</div>
+
+		<div class = "botones">
+            <button type="button" class="btn  button_volver" v-on:click="volver()">Volver al Usuario</button>
+        </div>
+        
 		<div class = "container_img_notresults bg-light" >
 			<img src="../../assets/img/dog_confused.png" >
 			<p class="title_notfound">No se han encontrado resultados</p>

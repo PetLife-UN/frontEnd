@@ -280,7 +280,7 @@ export default {
 			sex: "",
 			breed: "",
 			size: "",
-			vaccines: "Desconosco",
+			vaccines: "false",
 			message: "",
 			url: "",
 			active: false,

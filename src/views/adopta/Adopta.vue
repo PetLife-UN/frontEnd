@@ -6,7 +6,6 @@
       <h1 class="titulo_home texto_centrado">Adopción de mascotas</h1>
     </div>
     
-    
     <div class="filtro subtitulo">
       
       <ul class="nav">
