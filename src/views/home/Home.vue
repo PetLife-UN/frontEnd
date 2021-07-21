@@ -12,7 +12,7 @@
             </div>
             <video controls autoplay muted loop>
                 <source src="../../assets/video/video1.mp4" type="video/mp4">
-                <source src="../../assets/video/video1.ogg" type="video/ogg">
+                
                 <source src="../../assets/video/video1.webm" type="video/webm">
             </video>                
         
