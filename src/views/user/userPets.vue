@@ -20,11 +20,13 @@
 				v-bind:imageRoute="item.link_foto"
 				v-bind:petDescription="item.descripcion"
 				v-bind:petName="item.nombre"
-        v-bind:idPet="item.id"
-        v-bind:edad="item.edad"
-        v-bind:tipo="item.tipo"
-        v-bind:raza="item.raza"
+				v-bind:idPet="item.id"
+				v-bind:edad="item.edad"
+				v-bind:tipo="item.tipo"
+				v-bind:raza="item.raza"
 				v-bind:updateValues="updateValues"
+				v-bind:showSnackDelete="showSnackDelete"
+				v-bind:hideSnackDelete="hideSnackDelete"
 			/>
 		</div>
 	</div>
@@ -43,6 +45,10 @@
 			<p class="subtitle_notfound">Parece que no tienes mascotas publicadas</p>
         </div>
 	</div>
+	<div id="snackbar_delete">{{msgDelete}}</div>
+
+
+
 </template>
 
 <script>
@@ -57,6 +63,7 @@ export default {
 		return {
 			json: null,
 			errorBool: false,
+			msgDelete: "Eliminando mascota ..."
 		};
 	},
 	components: {
@@ -86,11 +93,71 @@ export default {
 
 		volver(){
             this.$router.go(-1);
-        }
+        },
+
+		showSnackDelete() {
+			this.msgDelete = "Eliminando mascota ..." 
+			var x = document.getElementById("snackbar_delete");
+			x.className = "show";
+			
+		},
+		hideSnackDelete() {
+			var x = document.getElementById("snackbar_delete");
+			this.msgDelete = "Mascota eliminada"
+			setTimeout(function(){ x.className = x.className.replace("show", "");  }, 2000);
+			
+		},
+		
 
 	},
 	mounted: function () {
 		this.updateValues();
 	},
 };
+
+
+
+
 </script>
+
+
+<style>
+
+	#snackbar_delete {
+		visibility: hidden;
+		min-width: 250px;
+		margin-left: -125px;
+		background-color: #fff;
+		border-style: solid;
+		border-color: rgb(77, 77, 77);
+		color: #333;
+		text-align: center;
+		border-radius: 20px;
+		padding: 16px;
+		position: fixed;
+		z-index: 1;
+		left: 50%;
+		bottom: 30px;
+		font-size: 17px;
+	}
+
+	#snackbar_delete.show {
+		visibility: visible;
+		-webkit-animation: fadein 0.5s;
+		animation: fadein 0.5s;
+	}
+
+	@-webkit-keyframes fadein {
+		from {bottom: 0; opacity: 0;} 
+		to {bottom: 30px; opacity: 1;}
+	}
+
+	@keyframes fadein {
+		from {bottom: 0; opacity: 0;}
+		to {bottom: 30px; opacity: 1;}
+	}
+
+
+
+
+</style>

@@ -256,6 +256,7 @@
 			</div>
 
 		</div>
+		<div id="snackbar_addPet">{{msgAdd}}</div>
 	
 	</form>
 </template>
@@ -284,7 +285,8 @@ export default {
 			message: "",
 			url: "",
 			active: false,
-			msg: []
+			msg: [],
+			msgAdd: "Añadiendo mascota ...",
 		};
 	},
 	computed: {
@@ -390,6 +392,7 @@ export default {
 			}
 		},
 		publicar() {
+			this.showSnackAddPet()
 			let json = {
 				"nombre": this.name,
 				"edad": this.age,
@@ -414,6 +417,7 @@ export default {
 				.then((data) => {
 					if (data.status == 200) {
 						// console.log("correcto");
+						this.hideSnackAddPet();
 						this.currentStatus= STATUS_INITIAL;
 						this.name = null;
 						this.age = null;
@@ -460,7 +464,19 @@ export default {
 			}else{
 				this.msg['age'] = '';
 			}
-		}
+		},
+		showSnackAddPet() {
+			this.msgAdd = "Añadiendo mascota ..." 
+			var x = document.getElementById("snackbar_addPet");
+			x.className = "show";
+			
+		},
+		hideSnackAddPet() {
+			var x = document.getElementById("snackbar_addPet");
+			this.msgDelete = "Mascota añadida"
+			setTimeout(function(){ x.className = x.className.replace("show", "");  }, 2000);
+			
+		},
 	},
 	watch:{
 		name(value){
@@ -476,5 +492,39 @@ export default {
 </script>
 
 <style>
+
+	#snackbar_addPet {
+		visibility: hidden;
+		min-width: 250px;
+		margin-left: -125px;
+		background-color: #fff;
+		border-style: solid;
+		border-color: rgb(77, 77, 77);
+		color: #333;
+		text-align: center;
+		border-radius: 20px;
+		padding: 16px;
+		position: fixed;
+		z-index: 1;
+		left: 50%;
+		bottom: 30px;
+		font-size: 17px;
+	}
+
+	#snackbar_addPet.show {
+		visibility: visible;
+		-webkit-animation: fadein 0.5s;
+		animation: fadein 0.5s;
+	}
+
+	@-webkit-keyframes fadein {
+		from {bottom: 0; opacity: 0;} 
+		to {bottom: 30px; opacity: 1;}
+	}
+
+	@keyframes fadein {
+		from {bottom: 0; opacity: 0;}
+		to {bottom: 30px; opacity: 1;}
+	}
 
 </style>
