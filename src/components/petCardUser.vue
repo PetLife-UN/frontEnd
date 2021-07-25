@@ -7,7 +7,7 @@
 				v-bind:alt="idPet"
 			/>
 
-			<div class="borrar">
+			<div class="borrar" v-if=!deleteType>
 				<button class="boton_borrar" v-on:click="Borrar(idPet)">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -90,12 +90,20 @@
 			</div>
 			<!-- <h3 class="card-title">{{ petName }}</h3> -->
 
-			<div class="cboton">
+			<div class="cboton" v-if=!deleteType>
 				<button
 					class="btn btn-lg button_adopta"
 					v-on:click="verInfo(idPet)"
 				>
 					Ver más
+				</button>
+			</div>
+            <div class="cboton" v-else>
+				<button
+					class="btn btn-lg button_adopta"
+					v-on:click="Recuperar(idPet)"
+				>
+					Recuperar
 				</button>
 			</div>
 		</div>
@@ -108,7 +116,7 @@ var datos = '';
 var valor = 1;
 export default {
 	name: "petCardUser",
-	props: ['imageRoute', 'petName', 'petDescription', 'idPet', 'edad', 'tipo', 'raza', 'updateValues','showSnackDelete','hideSnackDelete'],
+	props: ['imageRoute', 'petName', 'petDescription', 'idPet', 'edad', 'tipo', 'raza', 'updateValues','showSnackDelete','hideSnackDelete','deleteType'],
 	methods: {
 		verInfo(id) {
 			this.$router.push("/Info_mascota/" + id)
@@ -181,7 +189,21 @@ export default {
             }).catch((error) => {
 				console.log(error);
 			});
-		}
+		},
+        Recuperar(idPet){
+            const token=localStorage.token;
+			axios({
+				url: "https://unpetlife.herokuapp.com/api/pet/restorePet?id=" +idPet,
+				method: "PUT",
+				headers: {
+					'Authorization': `Bearer ${token}`
+				},
+			}).then((data) => {
+				this.updateValues();
+            }).catch((error) => {
+				console.log(error);
+			});
+        }
 	}
 }
 
