@@ -12,6 +12,21 @@
             <button type="button" class="btn  button_volver" v-on:click="volver()">Volver al Usuario</button>
         </div>
 
+        <div class = "container ">
+            <div class = "container_search">
+
+                <span class ="subtitle_dropdown"> Mostrar publicaciones:  </span>
+                <div class="dropdown" ref="dropbtn">
+                   
+                    <button v-on:click="showDrop()" class="dropbtn" >{{FIL_VIS_INV[filtroVis]}}<img class = "arror_drop" src="../../assets/icons/expand_arrow_24px.png" ></button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a v-on:click="changeVisFilter('Visibles')"> Visibles</a>
+                        <a v-on:click="changeVisFilter('Eliminadas')">Eliminadas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 		<div class="row tres_mascotas">
 			<petCardUser
 				v-for="(item, index) in json"
@@ -27,6 +42,7 @@
 				v-bind:updateValues="updateValues"
 				v-bind:showSnackDelete="showSnackDelete"
 				v-bind:hideSnackDelete="hideSnackDelete"
+                v-bind:deleteType = this.deleteType
 			/>
 		</div>
 	</div>
@@ -60,17 +76,37 @@
 import petCardUser from "@/components/petCardUser";
 import navbar from "@/components/navbar";
 import axios from "axios";
-
+import {ref} from 'vue'
+import {onClickOutside} from '@vueuse/core'
 
 export default {
 	name: "userPetView",
 	data() {
+        const FIL_VIS = {
+            'Visibles':true,
+            'Eliminadas':false,
+        }
+        const FIL_VIS_INV = {
+            true:'Visibles',
+            false:'Eliminadas',
+        }
 		return {
+            FIL_VIS,
+            FIL_VIS_INV,
 			json: null,
 			errorBool: false,
-			msgDelete: "Eliminando mascota ..."
+            deleteType: false,
+			msgDelete: "Eliminando mascota ...",
+            buttonTrigger: false,
+            filtroVis:true,
 		};
 	},
+    setup(){
+        const dropbtn = ref(null);
+        return{
+            dropbtn
+        }
+    },
 	components: {
 		navbar,
 		petCardUser,
@@ -78,8 +114,25 @@ export default {
 	methods: {
 
 		updateValues(){
-			var token=localStorage.token;
-			axios
+            var token=localStorage.token;
+            if(this.deleteType){
+                axios
+				.get("https://unpetlife.herokuapp.com/api/pet/getDeletedUserPets", {
+					headers: {
+						Authorization: `Bearer ${token}`,
+					}
+				})
+				.then((data) => {
+					this.json = data.data;
+					//console.log(this.json);
+				})
+				.catch((error) => {
+					if (error.response.status === 404) {
+						this.errorBool = true;
+					}
+				});
+            }else{
+                axios
 				.get("https://unpetlife.herokuapp.com/api/pet/getUserPets", {
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -94,6 +147,9 @@ export default {
 						this.errorBool = true;
 					}
 				});
+            }
+			
+			
 		},
 
 		volver(){
@@ -112,11 +168,28 @@ export default {
 			setTimeout(function(){ x.className = x.className.replace("show", "");  }, 2000);
 			
 		},
+        showDrop() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        },
+        closeDrop(){
+            document.getElementById("myDropdown").classList.remove("show");
+        },
+        changeVisFilter(filterVis){
+            if(filterVis == 'Eliminadas'){
+                this.deleteType = true;
+            }else{
+                this.deleteType = false;
+            }
+            this.filtroVis = this.FIL_VIS[filterVis]
+            this.updateValues();
+            document.getElementById("myDropdown").classList.remove("show");
+        }
 		
 
 	},
 	mounted: function () {
 		this.updateValues();
+        onClickOutside(this.dropbtn, (event)=>this.closeDrop());
 	},
 };
 
