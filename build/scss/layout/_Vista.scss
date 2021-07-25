@@ -1,6 +1,6 @@
 .espacio_trabajo {
 	margin: 2rem 5%;
-
+	// background-image: url("../img/icono2.png");
 	.subtitulo {
 		background-color: white;
 		// margin: auto;
@@ -9,16 +9,16 @@
 
 		.titulo_home {
 
-			@include tipografia($Merienda, 2.5rem, $azulado, 300);
+			@include tipografia($Merienda, 2.5rem, $azulado, 600);
 			padding: 2rem;
-			font-weight: 500;
 
 			@include media600{
 				font-size: 2.8rem;
 			}
-
+			@include media768{
+				font-size: 3rem;
+			}
 			@include media1000{
-				font-weight: 600;
 				font-size: 3.5rem;
 			}
 
@@ -30,6 +30,9 @@
 
 	.tres_mascotas {
 		// display: flex;
+		// margin: auto;
+		// max-width: 30rem;
+		// z-index: 50;
 		.vista {
 			width: 100%;
 			margin-bottom: 2rem;
@@ -116,7 +119,9 @@
 				margin: auto;
 				padding: .2rem;
 				// border: 10px solid black;
-				max-width: fit-content;
+				max-width: 40rem;
+    			max-height: 40rem;
+				border: 5px solid $gris2;
 				&:hover{
 
 					border: 10px solid $azulado;
@@ -166,16 +171,35 @@
 			}
 		}
 
-		@include media1000 {
+		.borrar {
+			margin: auto;
+			position: absolute;
+			
+			.boton_borrar {
+				border: none;
+				border-radius: 10rem;
+				padding: .5rem;
+				&:hover {
+					background-color: $gris3;
+				}
+			}
+		}
+
+		@include media900 {
 
 			justify-content: space-between;
-
+			margin: auto;
+   			// max-width: 100rem;
 			.vista {
 				flex: 0 0 calc( 50% - 0rem );
 			}
 		}
+		@include media1100 {
+			max-width: 100rem;
+		}
 
 		@include media1400 {
+			max-width: 130rem;	
 			.card {
 				display: grid;
 			}
@@ -251,6 +275,622 @@
 		.no-mirar {
 			display: none;	
 		}
+	}
+	
+	.filtro {
+		// z-index: 100;
+		cursor:pointer; 
+		padding: 2rem .5rem;
+		border: 5px solid $azulado;
+		margin-bottom: 0;
+		display: none;
+		@include media768 {
+			display: block;
+			// position: fixed;
+		}
+		@include media800 {
+			padding: 2rem;
+		}
+		.nav {
+		    justify-content: space-evenly;
+		    // display: none;
+		    
+			.opcion {
+				.texto{
+					@include tipografia($Merienda, 2rem, $azul, 500);
+					cursor: pointer;
+					&:hover {
+						color: $rojo;
+					}
+					@include media768 {
+						font-size: 2.4rem;
+					}
+					@include media900 {
+						font-size: 2.8rem;
+					}
+					@include media1200 {
+						font-size: 3rem;
+					}
+					@include media1400 {
+						font-size: 3.5rem;
+					}
+				}
 
+				.fboton {
+					display: block;
+					background-color: white;
+					color: $azulado;
+					margin: 0 auto;
+					padding: 0 auto;
+					border: none;
+
+					// border-radius: 5rem;
+					// @include tipografia($Merienda, 3.3rem, $azul, 500);
+				}
+				.icon-tabler {
+					margin-right: 0rem;
+					@include media768 {
+						width: 2.8rem;
+						height: auto;
+					}
+					@include media900 {
+						width: 3.4rem;
+					}
+					@include media1200 {
+						width: 3.8rem;
+					}
+					@include media1400 {
+						width: 4rem;
+					}
+				}
+
+				ul {
+					display:none;
+					position:absolute;
+					// min-width:14px;
+				}
+			}
+			
+			.tipo {
+				&:hover > .filtro_animal {
+					z-index: 10;
+					display: grid;
+					grid-gap: 2rem;
+					padding: 3rem;
+					border-bottom-right-radius: 3rem;
+					border-bottom-left-radius: 3rem;
+					border: 5px solid $azulado;
+					border-top: none;
+					// margin-top: 1rem;
+					// border-left: 5rem;
+					margin-left: initial;
+					grid-template-columns: repeat(3, 1fr);
+					background-color: white;
+					
+					button {
+						display: flex;
+						background-color: inherit;
+						border: none;
+						flex-direction: column;
+    					align-items: center;
+						@include tipografia($Gloria, 2.2rem, $gris4, 600);
+
+						@include media768 {
+							font-size: 2.2rem;
+						}
+						@include media900 {
+							font-size: 2.5rem;
+						}
+						@include media1200 {
+							font-size: 2.7rem;
+						}
+						@include media1400 {
+							font-size: 2.8rem;
+						}
+    					.animal {
+    						width: 8rem;
+    						height: auto;
+    						@include media768 {
+								width: 8rem;
+							}
+							@include media900 {
+								width: 8.8rem;
+							}
+							@include media1200 {
+								width: 10rem;
+							}
+							@include media1400 {
+								width: 12rem;
+							}
+    					}
+					}
+					.rojo {
+						color: $rojo;
+					}
+				}
+			}
+
+			.peso {
+				&:hover > .filtro_peso {
+					z-index: 10;
+					display: grid;
+					grid-gap: 2rem;
+					padding: 3rem;
+					border-bottom-right-radius: 3rem;
+					border-bottom-left-radius: 3rem;
+					border: 5px solid $azulado;
+					border-top: none;
+					// margin-top: 1rem;
+					// border-left: 5rem;
+					margin-left: initial;
+					grid-template-columns: repeat(1, 1fr);
+					background-color: white;
+					button {
+						display: flex;
+						background-color: inherit;
+						border: none;
+						flex-direction: column;
+    					align-items: center;
+						@include tipografia($Gloria, 2.4rem, $gris4, 600);
+						
+						@include media768 {
+							font-size: 2.4rem;
+							span{
+								margin-top: .5rem;
+								font-size: 1.8rem;
+							}
+						}
+						@include media900 {
+							font-size: 2.8rem;
+							span{
+								margin-top: .6rem;
+								font-size: 2rem;
+							}
+						}
+						@include media1200 {
+							font-size: 3rem;
+							span{
+								margin-top: .7rem;
+								font-size: 2.2rem;
+							}
+						}
+						@include media1400 {
+							font-size: 3.2rem;
+							span{
+								margin-top: .8rem;
+								font-size: 2.4rem;
+							}
+						}
+						&:hover {
+							color: $rojo;
+						}
+					}
+					.rojo {
+						color: $rojo;
+						&:hover {
+							color: $gris4;
+						}
+					}
+				}
+			}
+			
+			.boton {
+				display: none;
+			}
+		}
+	}
+
+	/* ------------------------- */
+	/* POPUP */
+	/* ------------------------- */
+
+	.overlay {
+		z-index: 10;
+		background: rgba(0,0,0,.3);
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		align-items: center;
+		justify-content: center;
+		display: flex;
+		visibility: hidden;
+		// overflow: hidden;
+		// border-radius: 5rem;
+
+		// background-color: $azul-claro;
+
+		.popup {
+
+			background: #F8F8F8;
+			box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+			border-radius: 3px;
+			padding: 20px;
+			padding-top: 5px;
+			text-align: center;
+			width: 600px;
+			background-color: white;
+
+
+			transition: .3s ease all;
+			transform: scale(0.7);
+			opacity: 0;
+
+			height: 70%;
+			overflow:scroll;
+			overflow-x: hidden;
+			margin: auto 2.7rem;
+
+			// border-radius: 5rem;
+			.superior {
+				display: flex;
+			}
+
+			.borrar {
+				margin: auto;
+				// position: absolute;
+				
+				.boton_borrar {
+					border: none;
+					border-radius: 10rem;
+					padding: 1rem;
+					position: inherit;
+					font-size: 16px;
+					line-height: 16px;
+					display: block;
+					text-align: right;
+					transition: .3s ease all;
+					color: #BBBBBB;
+					margin: auto 0 auto auto;
+					font-size: 1.8rem;
+					&:hover {
+						background-color: $gris3;
+						color: black;
+					}
+				}
+			}
+
+			&::-webkit-scrollbar {
+			    -webkit-appearance: none;
+			}
+			&::-webkit-scrollbar:vertical {
+			    width:10px;
+			}
+			&::-webkit-scrollbar:horizontal {
+			    height: 10px;
+			}
+			&::-webkit-scrollbar-track {
+			    border-radius: 10px;  
+			}
+			&::-webkit-scrollbar-thumb {
+			    background-color: #797979;
+			    border-radius: 20px;
+			    border: 2px solid #f1f2f3;
+			}
+
+			h3 {
+				@include tipografia($Gloria, 3rem, $gris2, 600);
+				margin-bottom: 2rem;
+				opacity: 0;
+				@include media400 {
+					font-size: 3.2rem;
+				}
+				@include media550 {
+					font-size: 3.4rem;
+				}
+				@include media650  {
+					font-size: 3.8rem;
+				}
+				@include media768 {
+					font-size: 4rem;
+				}
+			}
+			h4 {
+				font-weight: 300;
+				opacity: 0;
+			}
+			.al {
+				cursor: default;
+			}
+			.texto{
+				@include tipografia($Merienda, 2.5rem, $azul, 500);
+				// cursor: default;
+
+				@include media400 {
+					font-size: 2.8rem;
+				}
+				@include media550 {
+					font-size: 3rem;
+				}
+				@include media650  {
+					font-size: 3.3rem;
+				}
+				@include media768 {
+					font-size: 3.6rem;
+				}
+			}
+
+			.filtro_animal {
+				// z-index: 10;
+				display: grid;
+				grid-gap: 2rem;
+				padding: 1rem;
+				// border-bottom-right-radius: 3rem;
+				// border-bottom-left-radius: 3rem;
+				// border: 5px solid $azulado;
+				border-top: none;
+				// margin-top: 1rem;
+				// border-left: 5rem;
+				margin-left: initial;
+				background-color: white;
+				
+				grid-template-columns: repeat(2, 1fr);
+				@include media500 {
+					grid-template-columns: repeat(3, 1fr);
+				}
+				button {
+					
+					display: flex;
+					background-color: inherit;
+					border: none;
+					flex-direction: column;
+					align-items: center;
+					
+					@include tipografia($Gloria, 2.2rem, $gris4, 600);
+
+					@include media768 {
+						font-size: 2.2rem;
+					}
+					@include media900 {
+						font-size: 2.5rem;
+					}
+					@include media1200 {
+						font-size: 2.7rem;
+					}
+					@include media1400 {
+						font-size: 2.8rem;
+					}
+					.animal {
+						width: 5rem;
+						height: auto;
+						@include media400 {
+							width: 6rem;
+						}
+						@include media550 {
+							width: 6.5rem;
+						}
+						@include media650  {
+							width: 7rem;
+						}
+						@include media768 {
+							width: 8rem;
+						}
+					}
+				}
+				.rojo {
+					color: $rojo;
+				}
+			}
+			
+			.filtro_peso {
+				display: grid;
+				grid-gap: 2rem;
+				padding: 1rem;
+				// border-bottom-right-radius: 3rem;
+				// border-bottom-left-radius: 3rem;
+				// border: 5px solid $azulado;
+				border-top: none;
+				// margin-top: 1rem;
+				// border-left: 5rem;
+				margin-left: initial;
+				background-color: white;
+				
+				grid-template-columns: repeat(1, 1fr);
+				@include media580 {
+					grid-template-columns: repeat(2, 1fr);
+
+				}
+				
+				button {
+					display: flex;
+					background-color: inherit;
+					border: none;
+					flex-direction: column;
+					align-items: center;
+					@include tipografia($Gloria, 2.4rem, $gris4, 600);
+					
+					@include media768 {
+						font-size: 2.4rem;
+						span{
+							margin-top: .5rem;
+							font-size: 1.8rem;
+						}
+					}
+					@include media900 {
+						font-size: 2.8rem;
+						span{
+							margin-top: .6rem;
+							font-size: 2rem;
+						}
+					}
+					@include media1200 {
+						font-size: 3rem;
+						span{
+							margin-top: .7rem;
+							font-size: 2.2rem;
+						}
+					}
+					@include media1400 {
+						font-size: 3.2rem;
+						span{
+							margin-top: .8rem;
+							font-size: 2.4rem;
+						}
+					}
+					&:hover {
+						color: $rojo;
+					}
+				}
+				.rojo {
+					color: $rojo;
+					&:hover {
+						color: $gris4;
+					}
+				}
+			}
+
+			.boto {
+
+				.fboton {
+					display: block;
+					background-color: white;
+					color: $azulado;
+					margin: 0 auto;
+					padding: 0 auto;
+					border: none;
+					cursor: pointer;
+					// border-radius: 5rem;
+					// @include tipografia($Merienda, 3.3rem, $azul, 500);
+				}
+				.texto {
+					&:hover {
+						color: $rojo;
+					}
+				}
+				.icon-tabler {
+					margin-right: 0rem;
+					width: 2.8rem;
+					@include media400 {
+						width: 3.4rem;
+						height: auto;
+					}
+					@include media550 {
+						width: 3.8rem;
+					}
+					@include media650 {
+						width: 4rem;
+					}
+					@include media768 {
+						width: 4.5rem;
+					}
+				}
+			}
+
+			.form {
+				.contenedor-inputs {
+					opacity: 0;
+					margin-top: 2rem;
+					margin-bottom: 2rem;
+				}
+				hr {
+				    height: 3px;
+				    background-color: black;
+				}
+				.filtrar {
+					display: flex;
+					flex-direction: column;
+					
+					@include media580 {
+						flex-direction: row;
+						justify-content: space-around;
+
+					}
+					
+					button {
+						border: 2px solid $azulado;
+						padding-right: 5rem;
+						padding-left: 5rem;
+					}
+				}
+			}
+		}
+
+	}
+
+	.active {
+		visibility: visible;
+		scrollbar-base-color: #6FABF9; 
+	}
+
+	/* ------------------------- */
+	/* ANIMACIONES */
+	/* ------------------------- */
+	.popup.active {	transform: scale(1); opacity: 1; }
+	.popup.active h3 { animation: entradaTitulo .8s ease .5s forwards; }
+	.popup.active h4 { animation: entradaSubtitulo .8s ease .5s forwards; }
+	.popup.active .contenedor-inputs { animation: entradaInputs 1s linear 1s forwards; }
+
+	@keyframes entradaTitulo {
+		from {
+			opacity: 0;
+			transform: translateY(-25px);
+		}
+
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes entradaSubtitulo {
+		from {
+			opacity: 0;
+			transform: translateY(25px);
+		}
+
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes entradaInputs {
+		from { opacity: 0; }
+		to { opacity: 1; }
+	}
+
+
+
+	.filtrar {
+		display: none;
+		@include media768 {
+			display: flex;
+			justify-content: space-around;
+		}
+	}
+	.fil {
+		display: block;
+		@include media768 {
+			display: none;
+		}	
+	}
+	.boton_filtrar {
+		// margin: .5rem 0 3rem auto;
+		margin-top: 0rem;
+		margin-bottom: 2.5rem;
+		// display: flex;
+		@include media768{
+			margin-top: .5rem;
+		}
+		@include media1200{
+			.btn {
+				font-size: 2.8rem;
+			}
+		}
+		.filt {
+			margin-top: 0;
+			// margin-left: auto;
+			// margin-right: 0;
+			padding-left: 7rem;
+			padding-right: 7rem;
+		}
+		.limpiar {
+			margin-top: 0;
+			// margin-left: 0;
+			// margin-right: auto;
+			padding-left: 7rem;
+			padding-right: 7rem;
+		}
 	}
 }

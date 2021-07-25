@@ -1,17 +1,17 @@
 <template>
-<div class="cardPre border border-dark">
-    <h3> Aplicando para: </h3>
-    <h3>{{this.name}}</h3> 
-    <div class="imgVie">
-        <img class=" img-fluid border border-dark" v-bind:src="this.link" alt="Fotografia de la mascota"/>
-    </div>
-    <div class="container infor" style=" text-align: center;">
-        <p >Tiene {{this.age}} años </p>
-        <p>Es un {{this.type}}</p> 
-        <p>Es {{this.sex}}</p> 
-    </div>
-    <h5 style=" text-align: center;">¿No es la mascota deseada? Vuelva atras <button @click="goBack" class="btn btn-dark"><em class="fa fa-chevron-circle-left"></em></button></h5>
-</div>
+  <div class="cardPre border border-dark">
+      <h3> Aplicando para: </h3>
+      <h3>{{this.name}}</h3> 
+      <div class="imgVie">
+          <img class=" img-fluid border border-dark" v-bind:src="this.link" alt="Fotografia de la mascota"/>
+      </div>
+      <div class="container infor" style=" text-align: center;">
+          <p >Tiene {{this.age}} años </p>
+          <p>Es un {{this.type}}</p> 
+          <p>Es {{this.sex}}</p> 
+      </div>
+      <h5 style=" text-align: center;">¿No es la mascota deseada? Vuelva atras <button @click="goBack" class="btn btn-dark"><em class="fa fa-chevron-circle-left"></em></button></h5>
+  </div>
 </template>
 
 <script>
@@ -34,8 +34,8 @@ export default {
     },
   },
   mounted: function ()  {
-    //axios.get("http://localhost:8080/api/pet/consultaPet?idPet="+this.idPet).then( data =>{
     axios
+        //.get("http://localhost:8080/api/pet/consultaPet?idPet="+this.idPet)
         .get("https://unpetlife.herokuapp.com/api/pet/consultaPet?idPet=" + this.idPet)
         .then((data) => {
         this.link = data.data.links_foto;

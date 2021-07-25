@@ -7,9 +7,37 @@ html {
 }
 body {
     background-color: $azul;
+    background-image: url("../img/icono2.png");
     // font-family: $fuente_principal;
     font-size: 1.6rem;
 }
+
+body::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+body::-webkit-scrollbar:vertical {
+    width:10px;
+    background-color: inherit;
+}
+ 
+body::-webkit-scrollbar-button:increment,body::-webkit-scrollbar-button {
+    display: none;
+}  
+
+body::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: $azul-claro;
+    border-radius: 5rem;
+    border: 2px solid $gris3;
+}
+
+.bloquear {
+    overflow: hidden;
+}
+
 .contenedor {
     width: 100%;
     // max-width: 1200px;
