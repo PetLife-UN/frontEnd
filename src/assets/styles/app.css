@@ -3142,7 +3142,7 @@ ul {
 }
 
 .info_mascota .informacion .datos .ultimos .esteril, .info_mascota .informacion .datos .ultimos .vacuna {
-  margin: 1rem auto 1rem 0;
+  margin: 1rem auto 1rem -1.4rem;
   align-self: center;
 }
 

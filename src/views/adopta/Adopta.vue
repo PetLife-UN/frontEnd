@@ -485,7 +485,7 @@
               class="btn btn-lg button_adopta"
               v-on:click="verInfo(mascota.id)"
             >
-              Ver mas
+              Ver más
             </button>
           </div>
         </div>

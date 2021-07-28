@@ -92,13 +92,15 @@
 
           <h3 class="esteril mayuscula">
             <!-- Esteril. -->
-            <span v-if="mascota.esteril == 'Si'" class="mayuscula">Esteril</span>
+            <span v-if="mascota.esteril == 'Si'" class="mayuscula" style="font-size:2.2rem">Estéril</span>
+            <span v-else class="mayuscula" style="font-size:2.2rem">No Estéril</span>
             <!-- <span v-else class="mayuscula"></span> -->
           </h3>
 
           <h3 class="vacuna">
             <!-- Vacunas. -->
-            <span v-if="mascota.vacunada" class="mayuscula">vacuna</span>
+            <span v-if="mascota.vacunada" class="mayuscula" style="font-size:2.2rem">Vacunad{{(mascota.sexo=="Hembra")?"a":"o"}}</span>
+            <span v-else class="mayuscula" style="font-size:1.7rem">No vacunad{{(mascota.sexo=="Hembra")?"a":"o"}}</span>
           </h3>
         </div>
 
