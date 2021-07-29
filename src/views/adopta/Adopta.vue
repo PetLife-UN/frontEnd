@@ -556,7 +556,7 @@
 import navbar from "@/components/navbar";
 import axios from "axios";
 
-const actual = window.location.pathname.split("/");
+
 var datos = "";
 var valor = 1;
 export default {
@@ -698,7 +698,7 @@ export default {
       }
     },
     verInfo(idPet) {
-      this.$router.push("/Info_mascota/" + idPet);
+      this.$router.push("/info-mascota/" + idPet);
     },
     gotoPage(idPage) {
       this.$router.push("/adopta/" + idPage);

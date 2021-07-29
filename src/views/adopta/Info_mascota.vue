@@ -153,7 +153,7 @@ export default {
     },
     methods:{
         volverMascotas(){
-            this.$router.go(-1);
+          this.$router.push("/adopta/1");
         },
         adoptar(idPet){
             this.$router.push({path:"/apply/"+idPet, params:{id_pet: idPet}});

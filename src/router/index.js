@@ -71,7 +71,7 @@ const routes = [
     component: Adopta
   },
   {
-    path: '/info_mascota/:idPet',
+    path: '/info-mascota/:idPet',
     name: 'Info_mascota',
     component: Info_mascota
 

@@ -132,7 +132,7 @@
 					@click="esteril"
 					class="progress">
 					<div class="bar" id="Ebar"></div >
-					<h4 class="percent" id="Epercent">No se</h4>
+					<h4 class="percent" id="Epercent">No sé</h4>
 				</div>
 
 			</div>
@@ -162,7 +162,7 @@
 					@click="Vacuna"
 					class="progress">
 					<div class="bar" id="Vbar"></div >
-					<h4 class="percent" id="Vpercent">No se</h4>
+					<h4 class="percent" id="Vpercent">No sé</h4>
 				</div>
 
 			</div>
@@ -335,19 +335,19 @@ export default {
 			const a2 = document.querySelector('#Epercent');
 			// console.log(this.sterile);
 			switch (a2.innerHTML) {
-				case "No se":
+				case "No sé":
 					this.sterile="No";
 					a2.innerHTML = "No";
 					a1.style.width = "0%";
 					break;
 				case "No":
-					this.sterile="Si"
-					a2.innerHTML = "Si";
+					this.sterile="Sí"
+					a2.innerHTML = "Sí";
 					a1.style.width = "100%";
 					break;
-				case "Si":
-					this.sterile="Desconosco"
-					a2.innerHTML = "No se";
+				case "Sí":
+					this.sterile="Desconozco"
+					a2.innerHTML = "No sé";
 					a1.style.width = "50%";
 					break;
 			}
@@ -374,19 +374,19 @@ export default {
 			const a2 = document.querySelector('#Vpercent');
 			// console.log(this.sterile);
 			switch (a2.innerHTML) {
-				case "No se":
+				case "No sé":
 					this.vaccines="false";
 					a2.innerHTML = "No";
 					a1.style.width = "0%";
 					break;
 				case "No":
 					this.vaccines="true"
-					a2.innerHTML = "Si";
+					a2.innerHTML = "Sí";
 					a1.style.width = "100%";
 					break;
-				case "Si":
+				case "Sí":
 					this.vaccines="false"
-					a2.innerHTML = "No se";
+					a2.innerHTML = "No sé";
 					a1.style.width = "50%";
 					break;
 			}

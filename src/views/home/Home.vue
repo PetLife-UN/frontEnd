@@ -57,19 +57,13 @@
                             
                         </div>
                         <div class="cboton">
-                            <button class="btn btn-lg button_adopta" v-on:click="verInfo(mascota.id)">Ver mas</button>
+                            <button class="btn btn-lg button_adopta" v-on:click="verInfo(mascota.id)">Ver más</button>
 
                         </div>
                         
                     </div>
                 </div>
             </div>
-
- 
-        </div>
-
-        <div>
-            
         </div>
     </div>
 </template>
@@ -184,4 +178,14 @@ export default {
 
 </script>
 <style>
+
+    .info_cuida_mascota{
+        background-color: rgb(54, 54, 54);
+        margin-bottom: -10px;
+        height: 300px;
+    }
+
+    .info_cuida_mascota .contenido{
+        color:white;
+    }
 </style>
