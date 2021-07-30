@@ -1,17 +1,19 @@
 <template>
     <navbar/>
     <div class = "container-fliud">
-        
-       <div class = "botones " style = "margin-left:8%;">
-            <button type="button" class="btn  button_volver" v-on:click="volver()">Volver a info mascota</button>
+        <div class = "container-fluid" style = "padding-left:8%;">
+            <div class = "botones " >
+                <button type="button" class="btn  button_volver" v-on:click="volver()">Volver a info mascota</button>
+            </div>
         </div>
+       
         
         <div class="row g-0 justify-content-center" > 
             
-            <div class="col-sm-7">
+            <div class="col-sm-8">
                 <application-form  class="col-sm-12" :idPet="$route.params.idPet"/>
             </div> 
-            <div class="justify-content-center col-sm-4 " style="margin-top: 30px">
+            <div class="justify-content-center col-sm-3 " style="margin-top: 30px">
                 <pet-preview  :idPet="$route.params.idPet" /> 
             </div> 
         </div>

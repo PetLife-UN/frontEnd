@@ -7,7 +7,7 @@
                         <h2 class=" col-12 text-center mt-3 mb-5 title_solicitud">
                             Formulario de solicitud de Adopción
                         </h2>
-                        
+                        <p style="text-align:center; font-size:20px; color:rgb(40,40,40);">Los campos marcados con astericos (*) son obligatorios</p>
                         <br>
                         <div class="form-group col-12 row">
                             <label class="control-label col-sm-4 offset-sm-1 label_info" for="name">Nombre Completo * </label>
@@ -41,7 +41,7 @@
 
 
                         <div class="form-group col-12 row">
-                            <label for="communication" class="col-sm-4 control-label offset-sm-1 label_info"> Departamento * </label>
+                            <label for="department" class="col-sm-4 control-label offset-sm-1 label_info"> Departamento * </label>
                             <div class="col-sm-7 ">
                                 <select class="form-select g-0" style = "width:100%" id="department" v-model="department" required>
                                     <option selected disabled hidden value="">Seleccione una opción </option>
@@ -53,7 +53,7 @@
 
 
                         <div class="form-group col-12 row">
-                            <label for="communication" class="col-sm-4 control-label offset-sm-1"> Ciudad * </label>
+                            <label for="city" class="col-sm-4 control-label offset-sm-1 label_info"> Ciudad * </label>
                             <div class="col-sm-7 ">
                                 <select class="form-select g-0" style = "width:100%" id="city" v-model="city" required>
                                     <option selected disabled hidden value="">Seleccione una opción </option>
@@ -66,34 +66,10 @@
 
 
 
-
-
-                        <div class="form-group col-12 row">
-                            <label class="control-label col-sm-4 offset-sm-1 label_info" for="department">Departamento * </label>
-                            <div class="col-sm-7">
-                                <input type="text" id="department" class="form-control " placeholder="Escriba el departamento donde habita" v-model="department" required >
-                            </div>
-                            <span v-if="msg.department"  class="info" >{{msg.department}}</span>
-                        </div>
-
-
-
-
-                        <div class="form-group col-12 row">
-                            <label class="control-label col-sm-4 offset-sm-1 label_info" for="city">Ciudad * </label>
-                            <div class="col-sm-7">
-                                <input type="text" id="city" class="form-control " placeholder="Escriba la ciudad donde habita" v-model="city" required>
-                            </div>
-                            <span v-if="msg.city"  class="info" >{{msg.city}}</span>
-                        </div>
-                        
-
-
-
                         <div class="form-group col-12 row">
                             <label class="control-label col-sm-4 offset-sm-1 label_info" for="address">Dirección * </label>
                             <div class="col-sm-7">
-                                <input type="text" id="address" class="form-control " placeholder="Escriba la dirección de residencia, por motivos importantes" v-model="address" required>
+                                <input type="text" id="address" class="form-control " placeholder="Escriba su dirección de residencia." v-model="address" required>
                             </div>
                             <span v-if="msg.address"  class=" info" >{{msg.address}}</span>
                         </div>
@@ -120,7 +96,7 @@
                         <div class="form-group col-12 row">
                             <label class="control-label col-sm-4 offset-sm-1 label_info" for="familyMembers">Miembros familiares * </label>
                             <div class="col-sm-7">
-                                <input type="number" id="familyMembers" class="form-control " placeholder="Cuantos miembros viven en su familia" v-model="familyMembers" required>
+                                <input type="number" id="familyMembers" class="form-control " placeholder="¿Cuántos miembros viven en su familia?" v-model="familyMembers" required>
                             </div>
                             <span v-if="msg.familyMembers"  class=" info" >{{msg.familyMembers}}</span>
                         </div>
@@ -134,9 +110,9 @@
                         </div>
 
                         <div class="form-group col-12 row">
-                            <label class="control-label col-sm-4 offset-sm-1 label_info" for="whoAutho">Quien autoriza la adopción * </label>
+                            <label class="control-label col-sm-4 offset-sm-1 label_info" for="whoAutho">¿Quién autoriza la adopción? * </label>
                             <div class="col-sm-7">
-                                <input type="text" id="whoAutho" class="form-control " placeholder="Que miembro de la familia autoriza la adopción" v-model="whoAutho" required>
+                                <input type="text" id="whoAutho" class="form-control " placeholder="¿Qué miembro de la familia autoriza la adopción?" v-model="whoAutho" required>
                             </div>
                             <span v-if="msg.whoAutho"  class="info" >{{msg.whoAutho}}</span>
                         </div>
@@ -177,27 +153,27 @@
                         <div class="form-group col-12 row">
                             <label class="control-label col-sm-4 offset-sm-1 label_info" for="reason"> ¿Por qué desea adoptar? * </label>
                             <div class="col-sm-7">
-                                <textarea id="reason" class="form-control " placeholder="Relate en pocas lineas el porque desea adoptar esta mascota" v-model="reason" rows="9" required />
+                                <textarea id="reason" class="form-control " placeholder="Relate en pocas lineas el porque desea adoptar esta mascota" v-model="reason" rows="6" required />
                             </div>
                             <span v-if="msg.reason"  class="info" >{{msg.reason}}</span>
                         </div>
 
                         <div class="form-group col-12 row">
-                            <label class="control-label col-sm-4 offset-sm-1 label_info" for="restingPlace"> ¿Donde dormirá la mascota? * </label>
+                            <label class="control-label col-sm-4 offset-sm-1 label_info" for="restingPlace"> ¿Dónde dormirá la mascota? * </label>
                             <div class="col-sm-7">
-                                <input type="text" id="restingPlace" class="form-control " placeholder="Tiene su casa adecuada para la mascota, donde dormira?" v-model="restingPlace" required>
+                                <textarea type="text" id="restingPlace" class="form-control " placeholder="¿Tiene una casa adecuada para la mascota? &#10;¿Dónde dormira?" rows="2" v-model="restingPlace" required/>
                             </div>
                             <span v-if="msg.restingPlace"  class="info" >{{msg.restingPlace}}</span>
                         </div>
 
                         <div class="form-group col-12 row">
-                            <label class="control-label col-sm-4 offset-sm-1 label_info" for="careOption"> ¿Quién lo cuidara? * </label>
+                            <label class="control-label col-sm-4 offset-sm-1 label_info" for="careOption"> ¿Quién lo cuidará? * </label>
                             <div class="col-sm-7">
-                                <input type="text" id="careOption" class="form-control " placeholder="¿Quien cuidara la mascota cuando usted no pueda?" v-model="careOption" required>
+                                <input type="text" id="careOption" class="form-control " placeholder="¿Quién cuidará la mascota cuando usted no pueda?" v-model="careOption" required>
                             </div>
                             <span v-if="msg.careOption"  class="info" >{{msg.careOption}}</span>
                         </div>
-                        <p></p>
+                        <br>
                         <div class="row">
                             <div class="col-4 offset-sm-1 label_info"> ¿Hay miembros alergicos en la familia?* </div>
                                 <div class="col-sm-7">
@@ -225,12 +201,12 @@
                                                 v-model="allergies"
                                                 value="false"
                                             />
-                                        No
+                                            No
                                         </label>
                                     </div>
                                 </div>   
                         </div>
-                        <p></p>
+                        <br> 
                         <div class="row">
                             <div class="col-4 offset-sm-1 label_info"> ¿Ha tenido mascotas?  </div>
                                 <div class="col-sm-7 ">
@@ -248,7 +224,8 @@
                                         </label>
                                     </div>
                                 </div>   
-                        </div>  
+                            </div> 
+                        <br> 
                         <div class="form-group col-12 row" v-if="animalExperience">
                             <label class="control-label col-sm-4 offset-sm-1 label_info" for="experienceType"> ¿Qué tipos de mascota? </label>
                             <div class="col-sm-7">
@@ -271,12 +248,13 @@
                             <span v-if="msg.experienceNow"  class="info" >{{msg.experienceNow}}</span>
                         </div>
                         <div class="form-group col-12 row" v-if="animalExperience">
-                            <label class="control-label col-sm-4 offset-sm-1 label_info" for="experienceReason"> ¿Por que? </label>
+                            <label class="control-label col-sm-4 offset-sm-1 label_info" for="experienceReason"> ¿Por qué? </label>
                             <div class="col-sm-7">
                                 <input type="text" id="experienceReason" class="form-control " placeholder="Causa del actual estado de las mascotas" v-model="experienceReason">
                             </div>
                             <span v-if="msg.experienceReason"  class="info" >{{msg.experienceReason}}</span>
                         </div> 
+                        <br>
                         <div class="row">
                             <div class="col-4 offset-sm-1 label_info"> ¿Está dispuesto a pasar un periodo de ajuste en el que la mascota aprenda a ir al baño, se adapte a los miembros de la familia y la nueva casa? </div>
                                 <div class="col-sm-7 ">
@@ -295,13 +273,15 @@
                                     </div>
                                 </div>   
                         </div>
+                        <br>
                         <div class="form-group col-12 row" v-if="adjustmentPeriod">
                             <label class="control-label col-sm-4 offset-sm-1 label_info" for="adjustmentPeriodTime"> ¿Cuánto tiempo? </label>
                             <div class="col-sm-7">
-                                <input type="text" id="adjustmentPeriodTime" class="form-control " placeholder="Cuanto tiempo estaria dispuesto" v-model="adjustmentPeriodTime">
+                                <input type="text" id="adjustmentPeriodTime" class="form-control " placeholder="¿Cuánto tiempo estaria dispuesto?" v-model="adjustmentPeriodTime">
                             </div>
                             <span v-if="msg.adjustmentPeriodTime"  class="info" >{{msg.adjustmentPeriodTime}}</span>
                         </div> 
+                        <br>
                         <div class="row">
                             <div class="col-4 offset-sm-1 label_info"> ¿Está dispuesto a que se realice seguimento para verificar el estado del animal? </div>
                                 <div class="col-sm-7 ">
@@ -323,71 +303,44 @@
 
 
                         <div class="form-group row">
-                            <label for="communication" class="col-sm-4 control-label offset-sm-1">
-                                Por cual medio de comunicación prefiere ser contactado * </label>
+                            <label for="communication" class="col-sm-4 control-label offset-sm-1 label_info">
+                                ¿Por cuál medio de comunicación prefiere ser contactado? * </label>
                             <div class="col-sm-7">
-                                <select class="form-select" id="communication" v-model="communication" required>
+                                <select class="form-select g-0" style = "width:100%" required id="communication" v-model="communication">
                                     <option selected disabled hidden value="">Seleccione una opción </option>
-                                    <option value="Telefono Fijo">Teléfono Fijo</option>
-                                    <option value="Telefono celular">Telefono Celular</option>
+                                    <option value="Teléfono Fijo">Teléfono Fijo</option>
+                                    <option value="Teléfono celular">Teléfono Celular</option>
                                     <option value="Email">Email</option>
                                 </select>
                             </div>
+                            <span v-if="msg.communication"  class="info" >{{msg.communication}}</span>
                         </div>
 
 
 
-                        <div class="form-group row">
-                            <button class="col-sm-4 offset-sm-1 btn btn-success" type="submit" :disabled="isDisable" > Enviar Formulario </button>
-                            <button class="col-sm-4 offset-sm-2 btn btn-danger" type="button" @click="cancelar" > Cancelar, ir atras </button>
 
-
-                            <div class="datos botones">
-		
-                                <button 
-                                    class="btn btn-primary publicar" 
-                                    @click="publicar" 
-                                    type="button" 
-                                    :disabled="isDisable">
-                                    Publicar
-                                </button>
-
-                                <button 
-                                    type="button" 
-                                    class="btn btn-danger cancelar" 
-                                    @click="cancelar">
-                                    Cancelar
-                                </button>
-                            </div>
-                            
+                        <div class="form-group row justify-content-center botones_aplsol">
+                            <button class="boton_enviar col-md-5  " type="submit" :disabled="isDisable" > Enviar Formulario </button>
+                            <button class="boton_cancelar col-md-5 offset-sm-1" type="button" @click="cancelar" > Cancelar </button>  
                         </div>      
 
-
-                        <div class="datos botones">
-		
-                            <button 
-                                class="btn btn-primary publicar" 
-                                @click="publicar" 
-                                type="button" 
-                                :disabled="isDisable">
-                                Publicar
-                            </button>
-
-                            <button 
-                                type="button" 
-                                class="btn btn-danger cancelar" 
-                                @click="cancelar">
-                                Cancelar
-                            </button>
-                        </div>
-
-
                     </form>
-                    <div class="container" v-if="alerta">
-                        <div class="alerta">
-                            <h3>Parece que hay un error con el servidor, intente mas tarde</h3>
+                    
+                    
+                    <div class=" container container_completo_sol " v-if="alerta">
+                        
+                        <div class="row justify-content-center msg_error_addsol">
+                            <div class="col-2 content_error" >
+                                <img class= "error_ico" src="../assets/img/delete_512px.png">
+                            </div>
+                            <div class="col-10 content_error">
+                                <p class = "no_solicitud">No se ha podido enviar la solicitud.</p>
+                                <p class = "error_solicitud">Error: {{error}} </p>
+                            </div>
                         </div>
+                        
                     </div>
+
                 </div>
             </div>
         </div>
@@ -434,7 +387,7 @@ export default {
             alerta: false,
             municipios:[],
             ciudades:[],
-
+            error:"Error de conexión",
         }
     },
     watch:{
@@ -468,7 +421,7 @@ export default {
             var index = parseInt(modValue[0]);
             this.ciudades = this.municipios[index].ciudades;
             this.department = value;
-            this.departmentVal(value);
+            this.departmentVal(modValue[1]);
             this.allValidation();
         },
         address(value){
@@ -536,6 +489,11 @@ export default {
             this.experienceReasonVal(value);
             this.allValidation();
         },
+        communication(value){
+            this.communication = value;
+            this.communicationVal(value);
+            this.allValidation();
+        },
         adjustmentPeriodTime(value){
             this.adjustmentPeriodTime = value;
             this.adjustmentPeriodTimeVal(value);
@@ -561,31 +519,33 @@ export default {
             }
             
             var date = new Date().toISOString("en-US", {timeZone: "America/Bogota"})
+            var modDepartment = ((this.department.split("-"))[1]).trim();
+
             let json = {
-                "name": this.name,
+                "name": this.name.trim(),
                 "email": this.email,
                 "telNumber": this.telNumber,
                 "movilNumber": this.movilNumber,
                 "city": this.city,
-                "department": this.department,
-                "address": this.address,
+                "department": modDepartment,
+                "address": this.address.trim(),
                 "age": this.age,
-                "occupation": this.occupation,
+                "occupation": this.occupation.trim(),
                 "familyMembers" : this.familyMembers,
                 "averageAge": this.averageAge,
-                "whoAutho": this.whoAutho,
+                "whoAutho": this.whoAutho.trim(),
                 "familyAgreement": this.familyAgreement,
-                "reason": this.reason,
-                "restingPlace" : this.restingPlace,
+                "reason": this.reason.trim(),
+                "restingPlace" : this.restingPlace.trim(),
                 "careOption": this.careOption,
                 "allergies": this.allergies,
                 "animalExperience" : this.animalExperience,
-                "experienceType" : this.experienceType,
+                "experienceType" : this.experienceType.trim(),
                 "experienceLife": this.experienceLife,
                 "experienceNow":this.experienceNow,
-                "experienceReason": this.experienceReason,
+                "experienceReason": this.experienceReason.trim(),
                 "adjustmentPeriod" :this.adjustmentPeriod,
-                "adjustmentPeriodTime": this.adjustmentPeriodTime,
+                "adjustmentPeriodTime": this.adjustmentPeriodTime.trim(),
                 "followingAgreement": this.followingAgreement,
                 "communication": this.communication,
                 "date":date,
@@ -594,9 +554,7 @@ export default {
             console.log(json)
 
             /* SERVICE UPDATE*/
-            //axios.post("http://localhost:8080/api/apply/form/"+this.idPet, json,)
-            //axios.post("https://unpetlife.herokuapp.com/api/apply/form/"+this.idPet, json,)
-            /*axios({
+            axios({
 					//url: "http://localhost:8080/api/apply/form/"+this.idPet,
 					url: "https://unpetlife.herokuapp.com/api/apply/form/"+this.idPet,
 					data: json,
@@ -604,15 +562,14 @@ export default {
 				})
             .then((data) => {
                 if (data.status == 200) {
-                    console.log("El registro fue correcto");
-                    alert("el registro fue exitoso, se le enviara un mensaje a su correo")
+                    alert("El registro fue exitoso, se le enviara un mensaje a su correo")
                     this.$router.push('/adopta/1');
                 }
             }).catch((error) => {
-                var errormes =  "¡Parece que hubo un error de comunicación con el servidor!";
-                console.log(errormes);
                 this.alerta = true;
-            });*/
+                var msg_back = error.response.data.message;
+                this.error = msg_back;
+            });
 
         },
         onSubmit(){
@@ -642,10 +599,21 @@ export default {
             }
         },
         telNumberVal(value){
-            if((value > 0 &&  value.length > 6 && value.length < 10) || value.length === 0 ){
+            if((value > 0 &&  value.length > 6 && value.length < 10) ){
                 this.msg['telNumber'] = '';
+                this.msg['communication'] = '';
+            }else if(value.length === 0 ){
+                this.msg['telNumber'] = '';
+                if(this.communication == "Teléfono Fijo"){
+                    this.msg['communication'] = 'Verifique el teléfono fijo ingresado.';
+                }else{
+                    this.msg['communication'] = '';
+                }
             }else{
                 this.msg['telNumber'] = 'Verifique el número de teléfono.';
+                if(this.communication == "Teléfono Fijo"){
+                    this.msg['communication'] = 'Verifique el teléfono fijo ingresado.';
+                }
             }
         },
         movilNumberVal(value){
@@ -780,10 +748,21 @@ export default {
         },
         adjustmentPeriodTimeVal(value){
             let nonSpace = value.replace(/\s/g, '');
-            if((nonSpace.length > 4 && nonSpace.length < 50) || value.length === 0 ){
+            if((nonSpace.length > 3 && nonSpace.length < 50) || value.length === 0 ){
                 this.msg['adjustmentPeriodTime'] = '';
             }else{
-                this.msg['adjustmentPeriodTime'] = 'Describa cuánto tiempo en dias, años o meses';
+                this.msg['adjustmentPeriodTime'] = 'Describa cuánto tiempo en dias, años o meses.';
+            }
+        },
+        communicationVal(value){
+            if(value == "Teléfono Fijo"){
+                if(this.telNumber.length > 6 ){
+                    this.msg['communication'] = '';
+                }else{
+                    this.msg['communication'] = 'Verifique el teléfono fijo ingresado.';
+                }
+            }else{
+                this.msg['communication'] = '';
             }
         },
         allValidation(){
@@ -813,11 +792,13 @@ label{
 }
 .label_info{
     font-size: 18px;
+    padding-right: 50px;
 }
 .form-group {
     margin-block: 15px;
     color:black;
     font-weight: 400;
+    
     
 }
 .form-check-inline{
@@ -830,14 +811,38 @@ label{
     color: rgb(207, 0, 0);
     text-align: center;
 }
-.alerta{
-    font-size: 19px;
-    background-color: red;
-    border-block: inherit;
-    border-color: black;
-    margin: 4rem;
-    color: beige;
+/*Container alerta */
+.container_completo_sol{
+    width:100%;
+    display: flex;
+    justify-content: center;
 }
+
+.msg_error_addsol{
+    width:400px;
+    border-style: solid;
+	border-color: rgb(109, 109, 109);
+    background: rgb(112, 112, 112);
+	color: rgb(233, 233, 233);
+    text-align: center;
+    border-radius: 20px;
+    padding: 16px;
+    font-size: 17px;
+}
+.msg_error_addsol p{
+    color: rgb(233, 233, 233);
+}
+.error_ico{
+    width:80px;
+}
+.no_solicitud{
+    font-size: 17px;
+    font-weight: 500;
+}
+.error_solicitud{
+    font-size: 11px;
+}
+/* */
 #format{
     display: grid;
     background-color: white;
@@ -859,4 +864,60 @@ label{
     font-weight: 600;
     margin: .5rem 0 0.5rem;
 }
+
+
+/*Botones  solicitud*/
+.botones_aplsol{
+    display: block;
+    margin: 1rem;
+    font-size: 1.8rem;
+    color: #000000;
+    font-family: "Merienda", cursive;
+    font-weight: 600;
+    padding-left: 10rem;
+}
+
+
+.botones_aplsol .boton_enviar {
+    padding: 1.4rem 2rem 1.4rem 2rem;
+    border-radius: 5rem;
+    border-color: #6FABF9;
+    border-width: thin;
+    color: black;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#99d9f7+0,aadeff+100 */
+    background: #99d9f7;
+}
+
+.botones_aplsol .boton_enviar:hover {
+    color: white;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#64b8ff+0,54c8e5+46,64b8ff+100 */
+    background: #64b8ff;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    border: 5px solid #B6B6B6;
+}
+
+.botones_aplsol .boton_cancelar {
+    padding: 1.4rem 2rem 1.4rem 2rem;
+    border-radius: 5rem;
+    border-color: #ff2323;
+    border-width: thin;
+    color: black;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#99d9f7+0,aadeff+100 */
+    background: #ff2323;;
+}
+
+.botones_aplsol .boton_cancelar:hover {
+    color: white;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#64b8ff+0,54c8e5+46,64b8ff+100 */
+    background: red;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    border: 5px solid #B6B6B6;
+}
+
+
+
 </style>
