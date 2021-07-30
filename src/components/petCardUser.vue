@@ -119,10 +119,10 @@ export default {
 	props: ['imageRoute', 'petName', 'petDescription', 'idPet', 'edad', 'tipo', 'raza', 'updateValues','showSnackDelete','hideSnackDelete','deleteType'],
 	methods: {
 		verInfo(id) {
-			this.$router.push("/Info_mascota/" + id)
+			this.$router.push("/info-mascota/" + id)
 		},
 		goPet() {
-			this.$router.push("/Info_mascota/" + this.idPet)
+			this.$router.push("/info-mascota/" + this.idPet)
 		},
 		mascotas() {
 			if (valor % 2 == 0) {

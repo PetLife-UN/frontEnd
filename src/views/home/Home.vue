@@ -91,7 +91,7 @@ export default {
     },
     methods:{
         verInfo(idPet){
-            this.$router.push("/Info_mascota/"+idPet)
+            this.$router.push("/info-mascota/"+idPet)
         },
         mascotas(i) {
             if(valor%2==0){
