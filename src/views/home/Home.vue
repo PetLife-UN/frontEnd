@@ -204,7 +204,6 @@
                 <div class="imagen">
                     <img src="@/assets/img/caballo.png">
                 </div>
-
                 <div class="consejos">
                     <h3 class="mascota mayuscula">
                         Equino
