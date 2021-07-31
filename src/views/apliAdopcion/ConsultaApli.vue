@@ -29,7 +29,7 @@
                     class="mayuscula">
                     ocultas
                 </button>
-                <!-- <button
+            <!-- <button
                     v-on:click="changeVisFilter('Todas'); boton=2"
                     id="todas"
                     :class="color(2)"
@@ -38,58 +38,56 @@
                 </button> -->
             </div>    
         </div>
-    </div>
 
-    <div class = "container-fluid bg-light cuerpo_consultaApli">
-        <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" :updateValues = "updateValues"/>
+        <div class = "container-fluid bg-light cuerpo_consultaApli">
+            <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" :updateValues = "updateValues"/>
 
-        <br>
-        <div class = "container">
-            
-            <div class = "container_img_notresults" v-if="listSize==0">
-                <img src="../../assets/img/dog_confused.png" >
-                <p class="title_notfound">No se han encontrado resultados</p>
-                <p class="subtitle_notfound">Parece que no tienes solicitudes con esos parámetros</p>
-            </div>
-            
-            <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
-                <p class="text_info_id_apli">Publicación #{{apli.id}}</p>
-                <div class = "lateral_bar_consultasol" v-bind:style="{ background: COLOR_TIPO[apli.publicationVisible] ||  COLOR_TIPO[true] }"></div>
-                <div class = "row g-0 content_consultasol ">
-                    <div class="col-5 col_infoapli">
-                        <br>
-                        <p><mark class="titulo_soli">Nombre: </mark>{{apli.name.substring(0,50)}}</p>
-                        <p><mark class="titulo_soli">Email: </mark>{{apli.email.substring(0,40)}}</p>
-                        <p><mark class="titulo_soli">Teléfono móvil: </mark>{{apli.movilNumber}}</p>
-                        <p v-if=" apli.telNumber != 'No aplica' "><mark class="titulo_soli">Teléfono Fijo: </mark>{{apli.telNumber}}</p>
-                        <p><mark class="titulo_soli">Familia de acuerdo: </mark> <img v-bind:src="ICON_TIPO[apli.familyAgreement]"></p>
-                    </div>
-                    <div class = "col-4 container_extra_info">
-                        <br>
-                        <p><mark class="titulo_soli">Canal comunicación: </mark>{{apli.communication}}</p>
-                        <p><mark class="titulo_soli">Edad:  </mark>{{apli.age}} años</p>
-                        <p><mark class="titulo_soli">Ubicación: </mark>{{apli.city}} ({{apli.department}})</p>
-                        <p><mark class="titulo_soli">Dirección: </mark>{{apli.address}}</p>
-                        <br>
-                        <button 
-                            type="button" 
-                            class="btn button_verinfo_apli" 
-                            @click="bloquear"
-                            v-on:click="()=>TogglePopup('buttonTrigger',apli)">
-                            Información completa
-                        </button>
-                    </div>
-                    <div class = "col-3 ">
-                        <img class="card-img-top imagen_apli" v-bind:src="apli.pet.link_foto" v-bind:alt="apli.pet.id">
+            <br>
+            <div class = "container">
+                
+                <div class = "container_img_notresults" v-if="listSize==0">
+                    <img src="../../assets/img/dog_confused.png" >
+                    <p class="title_notfound">No se han encontrado resultados</p>
+                    <p class="subtitle_notfound">Parece que no tienes solicitudes con esos parámetros</p>
+                </div>
+                
+                <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
+                    <p class="text_info_id_apli">Publicación #{{apli.id}}</p>
+                    <div class = "lateral_bar_consultasol" v-bind:style="{ background: COLOR_TIPO[apli.publicationVisible] ||  COLOR_TIPO[true] }"></div>
+                    <div class = "row g-0 content_consultasol ">
+                        <div class="col-5 col_infoapli">
+                            <br>
+                            <p><mark class="titulo_soli">Nombre: </mark>{{apli.name.substring(0,50)}}</p>
+                            <p><mark class="titulo_soli">Email: </mark>{{apli.email.substring(0,40)}}</p>
+                            <p><mark class="titulo_soli">Teléfono móvil: </mark>{{apli.movilNumber}}</p>
+                            <p v-if=" apli.telNumber != 'No aplica' "><mark class="titulo_soli">Teléfono Fijo: </mark>{{apli.telNumber}}</p>
+                            <p><mark class="titulo_soli">Familia de acuerdo: </mark> <img v-bind:src="ICON_TIPO[apli.familyAgreement]"></p>
+                        </div>
+                        <div class = "col-4 container_extra_info">
+                            <br>
+                            <p><mark class="titulo_soli">Canal comunicación: </mark>{{apli.communication}}</p>
+                            <p><mark class="titulo_soli">Edad:  </mark>{{apli.age}} años</p>
+                            <p><mark class="titulo_soli">Ubicación: </mark>{{apli.city}} ({{apli.department}})</p>
+                            <p><mark class="titulo_soli">Dirección: </mark>{{apli.address}}</p>
+                            <br>
+                            <button 
+                                type="button" 
+                                class="btn button_verinfo_apli" 
+                                @click="bloquear"
+                                v-on:click="()=>TogglePopup('buttonTrigger',apli)">
+                                Información completa
+                            </button>
+                        </div>
+                        <div class = "col-3 ">
+                            <img class="card-img-top imagen_apli" v-bind:src="apli.pet.link_foto" v-bind:alt="apli.pet.id">
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div> 
+            <br>
+            <br>
         </div> 
-        <br>
-        <br>
-    </div> 
-    
-    <div class="espacio_trabajo">
+        
         <nav  class="paginas" v-if="listSize!=0">
           <ul class="pagination justify-content-center">
             <li class="buttons_pagination" v-on:click="gobackPage()">
