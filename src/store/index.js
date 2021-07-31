@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import axios from "axios";
-
+import addFormApli from "./modules/addFormApli";
+import addPet from "./modules/addPet";
 
 export default createStore({
 	state: {
@@ -167,4 +168,8 @@ export default createStore({
 		successSentRecover: state => state.successRecoverPassword,
 		successChangedPass: state => state.passChanged,
     },
+	modules:{
+		addFormApl : addFormApli,
+		addPets : addPet,
+	}
 });

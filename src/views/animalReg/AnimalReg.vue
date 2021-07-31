@@ -18,7 +18,7 @@
 
 <script>
 import navbar from "@/components/navbar.vue";
-import animalRegForm from '@/components/animalRegForm.vue' 
+import animalRegForm from '@/components/regMascota/animalRegForm.vue' 
 export default {
     components: { 
       navbar, animalRegForm 

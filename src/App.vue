@@ -12,13 +12,12 @@
 </style>
 
 <script>
-
   import footerComponent from '@/components/footer.vue'
 
   export default{
     components:{
       footerComponent
-    }
+    },
   }
 
 </script>

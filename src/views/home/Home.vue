@@ -242,7 +242,7 @@ export default {
     },
     methods:{
         verInfo(idPet){
-            this.$router.push("/Info_mascota/"+idPet)
+            this.$router.push("/info-mascota/"+idPet)
         },
         mascotas(i) {
             if(valor%2==0){
@@ -309,4 +309,14 @@ export default {
 
 </script>
 <style>
+
+    .info_cuida_mascota{
+        background-color: rgb(54, 54, 54);
+        margin-bottom: -10px;
+        height: 300px;
+    }
+
+    .info_cuida_mascota .contenido{
+        color:white;
+    }
 </style>
