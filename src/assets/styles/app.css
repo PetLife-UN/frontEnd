@@ -1453,7 +1453,7 @@ p {
 }
 
 .espacio_trabajo .filtro .nav .peso:hover > .filtro_peso button:hover {
-  color: #FF1500;
+  color: #4B8BDD;
 }
 
 .espacio_trabajo .filtro .nav .peso:hover > .filtro_peso .rojo {
@@ -1461,7 +1461,7 @@ p {
 }
 
 .espacio_trabajo .filtro .nav .peso:hover > .filtro_peso .rojo:hover {
-  color: #656565;
+  color: #FF1500;
 }
 
 .espacio_trabajo .filtro .nav .boton {
