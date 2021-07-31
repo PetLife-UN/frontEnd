@@ -87,12 +87,15 @@
 			</div>    
 		</div>
 
-		<div class = "container_img_notresults bg-light" >
+		<div class = "no_mascotas" >
 			<img src="../../assets/img/dog_confused.png" >
-			<p class="title_notfound">No se han encontrado resultados</p>
-			<p class="subtitle_notfound">Parece que no tienes mascotas publicadas</p>
+			<h3 class="title_notfound">
+				No se han encontrado resultados
+			</h3>
+			<h4 v-if="!deleteType" class="subtitle_notfound">
+				No tienes mascotas registradas
+			</h4>
         </div>
-
 	</div>
 	<div id="snackbar_delete">{{msgDelete}}</div>
 </template>
@@ -121,6 +124,7 @@ export default {
 			json: null,
 			errorBool: false,
             deleteType: false,
+            listSize:0,
 			msgDelete: "Eliminando mascota ...",
             buttonTrigger: false,
             filtroVis:true,
@@ -149,6 +153,7 @@ export default {
 				})
 				.then((data) => {
 					this.json = data.data;
+					this.errorBool = false;
 					//console.log(this.json);
 				})
 				.catch((error) => {
@@ -165,6 +170,7 @@ export default {
 				})
 				.then((data) => {
 					this.json = data.data;
+					this.errorBool = false;
 					//console.log(this.json);
 				})
 				.catch((error) => {
@@ -191,8 +197,9 @@ export default {
         changeVisFilter(filterVis){
             if(filterVis == 'Eliminadas') this.deleteType = true;
             else this.deleteType = false;
-            console.log("click")
-            // this.filtroVis = this.FIL_VIS[filterVis]
+            // console.log("click")
+            // console.log(this.deleteType);
+            this.filtroVis = this.FIL_VIS[filterVis]
             this.updateValues();
             // document.getElementById("myDropdown").classList.remove("show");
         },
