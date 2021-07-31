@@ -20,7 +20,7 @@
                     class="mayuscula" 
                     :class="color(0)"
                     v-on:click="changeVisFilter('Visibles'); boton=0">
-                    visibles
+                    visibles 
                 </button>
                 <button
                     v-on:click="changeVisFilter('Ocultas'); boton=1"
@@ -39,8 +39,6 @@
             </div>    
         </div>
     </div>
-
-
 
     <div class = "container-fluid bg-light cuerpo_consultaApli">
         <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" :updateValues = "updateValues"/>
@@ -73,7 +71,13 @@
                         <p><mark class="titulo_soli">Ubicación: </mark>{{apli.city}} ({{apli.department}})</p>
                         <p><mark class="titulo_soli">Dirección: </mark>{{apli.address}}</p>
                         <br>
-                        <button type="button" class="btn button_verinfo_apli" v-on:click="()=>TogglePopup('buttonTrigger',apli)">Información completa</button>
+                        <button 
+                            type="button" 
+                            class="btn button_verinfo_apli" 
+                            @click="bloquear"
+                            v-on:click="()=>TogglePopup('buttonTrigger',apli)">
+                            Información completa
+                        </button>
                     </div>
                     <div class = "col-3 ">
                         <img class="card-img-top imagen_apli" v-bind:src="apli.pet.link_foto" v-bind:alt="apli.pet.id">
@@ -249,6 +253,10 @@ export default {
             else{
                 return "";
             }
+        },
+        bloquear() {
+            var tex = document.getElementById('scrollbar');
+            tex.classList.add('bloquear');
         },
         updateValues(){
             this.pagina = this.$route.params.numPage;
