@@ -114,9 +114,7 @@ import { useStore } from 'vuex'
 import { computed } from 'vue'
 
 import successPet from "@/components/regMascota/msgSuccessPet";
-//VueX
-import { useStore } from 'vuex'
-import { computed } from 'vue'
+
 
 var token = localStorage.token;
 var A_nombre = '';
