@@ -9,7 +9,13 @@
 		</div>
 
 		<div class = "botones">
-            <button type="button" class="btn  button_volver" v-on:click="volver()">Volver al Usuario</button>
+
+			<button 
+				type="button" 
+				class="btn  button_volver" 
+				v-on:click="volver()">
+				Volver al Usuario
+			</button>
         </div>
 
 		<div class = "mostrar">
@@ -62,11 +68,31 @@
             <button type="button" class="btn  button_volver" v-on:click="volver()">Volver al Usuario</button>
         </div>
         
+        <div class = "mostrar">
+			<div class="botino">
+				<button 
+					id="activo" 
+					class="mayuscula" 
+					:class="color(!deleteType)"
+					v-on:click="changeVisFilter('Visibles')">
+					activado
+				</button>
+				<button
+					v-on:click="changeVisFilter('Eliminadas')"
+					id="borrado"
+					:class="color(deleteType)"
+					class="mayuscula">
+					borrado
+				</button>
+			</div>    
+		</div>
+
 		<div class = "container_img_notresults bg-light" >
 			<img src="../../assets/img/dog_confused.png" >
 			<p class="title_notfound">No se han encontrado resultados</p>
 			<p class="subtitle_notfound">Parece que no tienes mascotas publicadas</p>
         </div>
+
 	</div>
 	<div id="snackbar_delete">{{msgDelete}}</div>
 </template>
@@ -165,7 +191,8 @@ export default {
         changeVisFilter(filterVis){
             if(filterVis == 'Eliminadas') this.deleteType = true;
             else this.deleteType = false;
-            this.filtroVis = this.FIL_VIS[filterVis]
+            console.log("click")
+            // this.filtroVis = this.FIL_VIS[filterVis]
             this.updateValues();
             // document.getElementById("myDropdown").classList.remove("show");
         },
@@ -185,7 +212,6 @@ export default {
 };
 
 </script>
-
 
 <style>
 

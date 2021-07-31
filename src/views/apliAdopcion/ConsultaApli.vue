@@ -4,43 +4,56 @@
     
     <div class="espacio_trabajo">
         <div class="subtitulo">
-            <h2 class="titulo_home texto_centrado">
-                Solicitudes de Adopción
+            <h2 class="titulo_home texto_centrado mayuscula">
+                solicitudes de adopción
             </h2>        
         </div>
         
         <div class = "botones">
             <button type="button" class="btn button_volver" v-on:click="volver()">Volver al Usuario</button>
         </div>
-    
+
+        <div class = "mostrar">
+            <div class="botino">
+                <button 
+                    id="activo" 
+                    class="mayuscula" 
+                    :class="color(0)"
+                    v-on:click="changeVisFilter('Visibles'); boton=0">
+                    visibles
+                </button>
+                <button
+                    v-on:click="changeVisFilter('Ocultas'); boton=1"
+                    id="ocultas"
+                    :class="color(1)"
+                    class="mayuscula">
+                    ocultas
+                </button>
+                <!-- <button
+                    v-on:click="changeVisFilter('Todas'); boton=2"
+                    id="todas"
+                    :class="color(2)"
+                    class="mayuscula">
+                    todas
+                </button> -->
+            </div>    
+        </div>
     </div>
+
+
 
     <div class = "container-fluid bg-light cuerpo_consultaApli">
         <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" :updateValues = "updateValues"/>
 
-        <div class = "container ">
-            <div class = "container_search">
-
-                <span class ="subtitle_dropdown"> Mostrar publicaciones:  </span>
-                <div class="dropdown" ref="dropbtn">
-                   
-                    <button v-on:click="showDrop()" class="dropbtn" >{{FIL_VIS_INV[filtroVis]}}<img class = "arror_drop" src="../../assets/icons/expand_arrow_24px.png" ></button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <a v-on:click="changeVisFilter('Visibles')"> Visibles</a>
-                        <a v-on:click="changeVisFilter('Ocultas')">Ocultas</a>
-                        <a v-on:click="changeVisFilter('Todas')">Todas</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <br>
         <div class = "container">
+            
             <div class = "container_img_notresults" v-if="listSize==0">
                 <img src="../../assets/img/dog_confused.png" >
                 <p class="title_notfound">No se han encontrado resultados</p>
                 <p class="subtitle_notfound">Parece que no tienes solicitudes con esos parámetros</p>
             </div>
+            
             <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
                 <p class="text_info_id_apli">Publicación #{{apli.id}}</p>
                 <div class = "lateral_bar_consultasol" v-bind:style="{ background: COLOR_TIPO[apli.publicationVisible] ||  COLOR_TIPO[true] }"></div>
@@ -174,6 +187,7 @@ export default {
             FIL_VIS,
             FIL_VIS_INV,
             filtroVis:true,
+            boton:0
         }
     },
     setup(){
@@ -226,7 +240,15 @@ export default {
         changeVisFilter(filterVis){
             this.filtroVis = this.FIL_VIS[filterVis]
             this.updateValues();
-            document.getElementById("myDropdown").classList.remove("show");
+            // document.getElementById("myDropdown").classList.remove("show");
+        },
+        color(a) {
+            if(a == this.boton){
+                return "color";
+            }
+            else{
+                return "";
+            }
         },
         updateValues(){
             this.pagina = this.$route.params.numPage;
@@ -247,22 +269,19 @@ export default {
                 var msg_back = error.response.data.message
                 console.log(msg_back)
             });
-        },
-        showDrop() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        },
-        closeDrop(){
-            document.getElementById("myDropdown").classList.remove("show");
         }
-        
+        // showDrop() {
+        //     document.getElementById("myDropdown").classList.toggle("show");
+        // },
+        // closeDrop(){
+        //     document.getElementById("myDropdown").classList.remove("show");
+        // }
     },
     mounted:function(){
         this.updateValues();
         onClickOutside(this.dropbtn, (event)=>this.closeDrop());
     },
 }
-
-
 
 </script>
 
@@ -360,7 +379,6 @@ export default {
     .show {
         display: block;
     }
-
 
     /*Contenedor solicitud*/
     .container_apli_info{
