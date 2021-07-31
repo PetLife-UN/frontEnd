@@ -18,7 +18,7 @@
 					type="text"
 					class="inscribir mayuscula form-control"
 					id="name"
-					placeholder="Nombre Mascota"
+					placeholder="Nombre mascota"
 					v-model="this.name">
 
 				<p v-if="msg.name"
@@ -132,7 +132,7 @@
 					@click="esteril"
 					class="progress">
 					<div class="bar" id="Ebar"></div >
-					<h4 class="percent" id="Epercent">No se</h4>
+					<h4 class="percent" id="Epercent">No sé</h4>
 				</div>
 
 			</div>
@@ -162,7 +162,7 @@
 					@click="Vacuna"
 					class="progress">
 					<div class="bar" id="Vbar"></div >
-					<h4 class="percent" id="Vpercent">No se</h4>
+					<h4 class="percent" id="Vpercent">No sé</h4>
 				</div>
 
 			</div>
@@ -172,7 +172,7 @@
 				<h3 
 					for="image" 
 					class="">
-					Fotografia*
+					Fotografía*
 				</h3>
 
 				<div class="dropbox">
@@ -186,18 +186,17 @@
 						id="file">
 
 					<p v-if="isInitial">
-						Arrastre la fotografia de la mascota
+						Arrastre la fotografía de la mascota
 						<br>
 						<span>
-							O haga click.
+							O haga clic para cargar.
 						</span>
 					</p>
-					
 					<p v-if="isSaving">
 						Imagen subida. 
 						<br>
 						<span>
-							Arrastre o click para cambiar.
+							Arrastre o haga clic para cambiar.
 						</span>
 					</p>
 					
@@ -226,16 +225,34 @@
 					v-model="message"
 					class="form-control seleccion"
 					id="message"
-					placeholder="Comportamiento del animal, gustos, es amabel con los niños, se adapta a espacios pequeños..."
+					placeholder="Comportamiento del animal, gustos, es amable con los niños, se adapta a espacios pequeños..."
 					rows="8">
 				</textarea>
 			</div>
 			<div class="datos Mensaje texto_centrado">
 
-				<h3 class="texto_centrado">
+				<h3 class="texto_centrado" style="font-size:21px; text-align:center;">
 					Los campos marcados con astericos (*) son obligatorios
 				</h3>
+				<br>
+
+				<div class=" container container_completo_sol " v-if="alert">
+                        
+					<div class="row justify-content-center msg_error_addsol">
+						<div class="col-2 content_error" >
+							<img class= "error_ico" src="../../assets/img/delete_512px.png">
+						</div>
+						<div class="col-10 content_error">
+							<p class = "no_solicitud">No se ha podido enviar la solicitud.</p>
+							<p class = "error_solicitud">Error:   &emsp; {{error}} </p>
+						</div>
+					</div>
+					
+				</div>
+				
 			</div>
+
+
 
 			<div class="datos botones">
 		
@@ -254,9 +271,21 @@
 					Cancelar
 				</button>
 			</div>
-
 		</div>
-		<div id="snackbar_addPet">{{msgAdd}}</div>
+
+		
+
+		<div id="snackbar_addPet">
+			
+			<div class = "row g-0">
+				<div class = "col-2">
+					<div class="loader">  </div> 
+				</div>
+				<div class = "col-auto">
+					<p class = "text_sending">Añadiendo mascota</p>
+				</div>
+			</div>
+		</div>
 	
 	</form>
 </template>
@@ -264,6 +293,8 @@
 <script>
 
 import axios from "axios";
+//VueX
+import { useStore } from 'vuex'
 
 var url = document.getElementById("url");
 const STATUS_INITIAL = 0,
@@ -271,12 +302,24 @@ const STATUS_INITIAL = 0,
 	STATUS_LOADING = 2;
 export default {
 	name: "animalRegForm",
+	setup(props) {
+        //VueX config
+        const store = useStore()
+        //States
+        //Functions
+        function addPetSol(){
+            store.dispatch("addPets/addPet");
+        }
+        return{
+            addPetSol,
+        }
+    },
 	data() {
 		return {
 			currentStatus: STATUS_INITIAL,
 			name: "",
 			age: "",
-			sterile: "Desconosco",
+			sterile: "Desconozco",
 			type: "",
 			sex: "",
 			breed: "",
@@ -286,7 +329,9 @@ export default {
 			url: "",
 			active: false,
 			msg: [],
-			msgAdd: "Añadiendo mascota ...",
+			msgAdd: "Añadiendo mascota",
+			error:"Error de conexión con el servidor",
+			alert:false,
 		};
 	},
 	computed: {
@@ -310,7 +355,7 @@ export default {
 		filesChange(fileList) {
 			this.currentStatus = STATUS_LOADING;
 			const img2 = document.getElementById("img");
-			img2.src ="https://gifimage.net/wp-content/uploads/2017/09/blue-loading-gif-transparent-4.gif";
+			img2.src =require("../../assets/img/loading_add.gif");
 			var formdata = new FormData();
 			url = document.getElementById("url");
 			formdata.append("image", fileList[0]);
@@ -335,19 +380,19 @@ export default {
 			const a2 = document.querySelector('#Epercent');
 			// console.log(this.sterile);
 			switch (a2.innerHTML) {
-				case "No se":
+				case "No sé":
 					this.sterile="No";
 					a2.innerHTML = "No";
 					a1.style.width = "0%";
 					break;
 				case "No":
-					this.sterile="Si"
-					a2.innerHTML = "Si";
+					this.sterile="Sí"
+					a2.innerHTML = "Sí";
 					a1.style.width = "100%";
 					break;
-				case "Si":
-					this.sterile="Desconosco"
-					a2.innerHTML = "No se";
+				case "Sí":
+					this.sterile="Desconozco"
+					a2.innerHTML = "No sé";
 					a1.style.width = "50%";
 					break;
 			}
@@ -374,19 +419,19 @@ export default {
 			const a2 = document.querySelector('#Vpercent');
 			// console.log(this.sterile);
 			switch (a2.innerHTML) {
-				case "No se":
+				case "No sé":
 					this.vaccines="false";
 					a2.innerHTML = "No";
 					a1.style.width = "0%";
 					break;
 				case "No":
 					this.vaccines="true"
-					a2.innerHTML = "Si";
+					a2.innerHTML = "Sí";
 					a1.style.width = "100%";
 					break;
-				case "Si":
+				case "Sí":
 					this.vaccines="false"
-					a2.innerHTML = "No se";
+					a2.innerHTML = "No sé";
 					a1.style.width = "50%";
 					break;
 			}
@@ -410,14 +455,13 @@ export default {
 			axios
 				//.post("http://localhost:8080/api/publish/new-publish", json, {
 				.post("https://unpetlife.herokuapp.com/api/publish/new-publish", json, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          },
-        })
+					headers: {
+						'Authorization': `Bearer ${token}`
+					},
+				})
 				.then((data) => {
 					if (data.status == 200) {
 						// console.log("correcto");
-						this.hideSnackAddPet();
 						this.currentStatus= STATUS_INITIAL;
 						this.name = null;
 						this.age = null;
@@ -429,17 +473,16 @@ export default {
 						this.vaccines = null;
 						this.message = null;
 						this.url = null; 
+						this.alert = false;
+						this.error = "Error de conexión con el servidor";
+						this.addPetSol();
 						this.$router.push('profile');
 					}
 				})
 				.catch((error) => {
-					this.error = true;
-					if (error.response.status === 400 || error.response.status === 401 || error.response === 403) {
-						this.error_msg = "Credenciales incorrectas";
-					} else {
-						this.error_msg =
-							"¡Parece que hubo un error de comunicación con el servidor!";
-					}
+					this.alert = true;
+					console.log(error)
+					this.error = error.response.data.message;
 				});
 		},
 		cancelar(){
@@ -466,17 +509,12 @@ export default {
 			}
 		},
 		showSnackAddPet() {
-			this.msgAdd = "Añadiendo mascota ..." 
 			var x = document.getElementById("snackbar_addPet");
-			x.className = "show";
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 10500);
 			
 		},
-		hideSnackAddPet() {
-			var x = document.getElementById("snackbar_addPet");
-			this.msgDelete = "Mascota añadida"
-			setTimeout(function(){ x.className = x.className.replace("show", "");  }, 2000);
-			
-		},
+		
 	},
 	watch:{
 		name(value){
@@ -495,7 +533,7 @@ export default {
 
 	#snackbar_addPet {
 		visibility: hidden;
-		min-width: 250px;
+		width: 300px;
 		margin-left: -125px;
 		background-color: #fff;
 		border-style: solid;
@@ -513,18 +551,85 @@ export default {
 
 	#snackbar_addPet.show {
 		visibility: visible;
-		-webkit-animation: fadein 0.5s;
-		animation: fadein 0.5s;
+		-webkit-animation: fadein 0.5s, fadeout 0.5s 10s;
+		animation: fadein 0.5s, fadeout 0.5s 10s;
 	}
 
+	.text_sending{
+		margin: 0;
+		position: absolute;
+		top: 50%;
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);
+		padding-left: 30px;
+	}
+	/* Animations to fade the snackbar in and out */
 	@-webkit-keyframes fadein {
-		from {bottom: 0; opacity: 0;} 
-		to {bottom: 30px; opacity: 1;}
+	from {bottom: 0; opacity: 0;}
+	to {bottom: 30px; opacity: 1;}
 	}
 
 	@keyframes fadein {
-		from {bottom: 0; opacity: 0;}
-		to {bottom: 30px; opacity: 1;}
+	from {bottom: 0; opacity: 0;}
+	to {bottom: 30px; opacity: 1;}
 	}
 
+	@-webkit-keyframes fadeout {
+	from {bottom: 30px; opacity: 1;}
+	to {bottom: 0; opacity: 0;}
+	}
+
+	@keyframes fadeout {
+	from {bottom: 30px; opacity: 1;}
+	to {bottom: 0; opacity: 0;}
+	}
+
+	/**Loader */
+	.loader {
+		border: 7px solid #d4d4d4;
+		animation: spin 1s linear infinite;
+		border-top: 7px solid #6FABF9;
+		border-radius: 50%;
+		width: 50px;
+		height: 50px;
+	}
+
+	@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+	}
+
+	/*Container alerta */
+	.container_completo_sol{
+		width:100%;
+		display: flex;
+		justify-content: center;
+	}
+
+	.msg_error_addsol{
+		width:400px;
+		border-style: solid;
+		border-color: rgb(109, 109, 109);
+		background: rgb(112, 112, 112);
+		color: rgb(233, 233, 233);
+		text-align: center;
+		border-radius: 20px;
+		padding: 16px;
+		font-size: 17px;
+	}
+	.msg_error_addsol p{
+		color: rgb(233, 233, 233);
+	}
+	.error_ico{
+		width:80px;
+	}
+	.no_solicitud{
+		font-size: 17px;
+		font-weight: 500;
+	}
+	.error_solicitud{
+		font-size: 11px;
+		text-align: left;
+		padding-left: 10px;
+	}
 </style>
