@@ -3,13 +3,13 @@
 
     
     <div class="espacio_trabajo" style="width:100%; margin-left:0px; margin-right:0;">
-        <div class="subtitulo">
+        <div class="subtitulo " style="width:80%; margin: 0 auto;">
             <h2 class="titulo_home texto_centrado mayuscula">
                 solicitudes de adopción
             </h2>        
         </div>
         
-        <div class = "botones">
+        <div class = "botones" style="width:80%; margin-left:10%;">
             <button type="button" class="btn button_volver" v-on:click="volver()">Volver al Usuario</button>
         </div>
 
