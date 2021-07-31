@@ -325,17 +325,29 @@
                         </div>      
 
                     </form>
-                    
-                    
+
                     <div class=" container container_completo_sol " v-if="alerta">
                         
                         <div class="row justify-content-center msg_error_addsol">
                             <div class="col-2 content_error" >
-                                <img class= "error_ico" src="../assets/img/delete_512px.png">
+                                <img class= "error_ico" src="../../assets/img/delete_512px.png">
                             </div>
                             <div class="col-10 content_error">
                                 <p class = "no_solicitud">No se ha podido enviar la solicitud.</p>
                                 <p class = "error_solicitud">Error: {{error}} </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+
+                    <div id="snackbar_addPet">
+                        <div class = "row g-0">
+                            <div class = "col-2">
+                                <div class="loader">  </div> 
+                            </div>
+                            <div class = "col-auto">
+                                <p class = "text_sending">Enviando solicitud</p>
                             </div>
                         </div>
                         
@@ -349,6 +361,8 @@
 </template>
 
 <script>
+
+
 import axios from "axios";
 import municipios from '@/assets/json/municipios.json'
 //VueX
@@ -520,6 +534,12 @@ export default {
         },
     },
     methods:{
+        showSnackBar(){
+            this.isDisable = true;
+            var x = document.getElementById("snackbar_addPet");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 10500);
+        },
         sendForm(){
             if(!(this.animalExperience)){
                 this.experienceType = "";
@@ -530,7 +550,7 @@ export default {
             if(!(this.adjustmentPeriod)){
                 this.adjustmentPeriodTime= "";
             }
-            
+            this.showSnackBar();
             var date = new Date().toISOString("en-US", {timeZone: "America/Bogota"})
             var modDepartment = ((this.department.split("-"))[1]).trim();
 
@@ -564,7 +584,7 @@ export default {
                 "date":date,
                 "pet_id": this.idPet
             }
-            console.log(json)
+            
 
             /* SERVICE UPDATE*/
             axios({
@@ -574,8 +594,8 @@ export default {
 					method: "POST",
 				})
             .then((data) => {
+                this.isDisable = false;
                 if (data.status == 200) {
-                    alert("El registro fue exitoso, se le enviara un mensaje a su correo")
                     let soli = {
                         telPhone:this.telNumber,
                         telCell:this.movilNumber,
@@ -586,6 +606,7 @@ export default {
                     
                 }
             }).catch((error) => {
+                this.isDisable = false;
                 this.alerta = true;
                 var msg_back = error.response.data.message;
                 this.error = msg_back;
@@ -938,6 +959,74 @@ label{
     border: 5px solid #B6B6B6;
 }
 
+/*Snackbar */
+#snackbar_addPet {
+    visibility: hidden;
+    width: 300px;
+    margin-left: -125px;
+    background-color: #fff;
+    border-style: solid;
+    border-color: rgb(77, 77, 77);
+    color: #333;
+    text-align: center;
+    border-radius: 20px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+    
+}
 
+#snackbar_addPet.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 10s;
+    animation: fadein 0.5s, fadeout 0.5s 10s;
+}
 
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+.text_sending{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding-left: 30px;
+}
+
+/**Loader */
+.loader {
+    border: 7px solid #d4d4d4;
+    animation: spin 1s linear infinite;
+    border-top: 7px solid #6FABF9;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 </style>

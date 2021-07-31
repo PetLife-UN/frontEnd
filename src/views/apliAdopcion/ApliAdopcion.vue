@@ -23,8 +23,8 @@
 
 <script>
 import navbar from "@/components/navbar.vue";
-import ApplicationForm from '@/components/ApplicationForm.vue';
-import petPreview from '@/components/mascotaPreview.vue';
+import ApplicationForm from '@/components/apliAdopcion/applicationForm.vue';
+import petPreview from '@/components/apliAdopcion/mascotaPreview.vue';
 
 export default {
     data() {

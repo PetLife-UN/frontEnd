@@ -52,15 +52,15 @@ export default {
     }
 },
   data() {
-    const ICON_DEFAULT = require('../assets/icons/white_other_96px.png')
+    const ICON_DEFAULT = require('../../assets/icons/white_other_96px.png')
     const ICON_TIPO = {
-        'Canino':require('../assets/icons/white_dog_96px.png'),
-        'Felino':require('../assets/icons/white_cat_96px.png'),
-        'Bovino':require('../assets/icons/white_cow_96px.png'),
-        'Pez':require('../assets/icons/white_fish_96px.png'),
-        'Ave':require('../assets/icons/white_bird_96px.png'),
-        'Roedor':require('../assets/icons/white_hamster_96px.png'),
-        'Equino':require('../assets/icons/white_horse_96px.png'),
+        'Canino':require('../../assets/icons/white_dog_96px.png'),
+        'Felino':require('../../assets/icons/white_cat_96px.png'),
+        'Bovino':require('../../assets/icons/white_cow_96px.png'),
+        'Pez':require('../../assets/icons/white_fish_96px.png'),
+        'Ave':require('../../assets/icons/white_bird_96px.png'),
+        'Roedor':require('../../assets/icons/white_hamster_96px.png'),
+        'Equino':require('../../assets/icons/white_horse_96px.png'),
     }
     return {
       pet : "",
