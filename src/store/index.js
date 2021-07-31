@@ -10,19 +10,20 @@ export default createStore({
 		user: {},
 		error: false,
 		successRecoverPassword: false,
-		passChanged: false
+		passChanged: false,
+        lastLogin: null
 	},
 	mutations: {
 		login_request(state) {
 			state.statusMessage = "performing login";
 			state.passChanged = false;
 		},
-		login_success(state, token, email) {
+		login_success(state, {token, email, lastLogin}) {
 			state.token = token;
 			state.user = email;
 			state.statusMessage = "success";
 			state.error = false;
-			
+			state.lastLogin = lastLogin;
 		},
 		not_registered_user(state) {
 			state.statusMessage =
@@ -45,6 +46,7 @@ export default createStore({
 		logout(state) {
 			state.status = "";
 			state.token = "";
+            state.lastLogin = null;
 		},
 		email_sent_recover(state){
 			state.successRecoverPassword = true;
@@ -69,11 +71,10 @@ export default createStore({
 				.then((response) => {
 					const token = response.data.token;
 					const email = response.data.email;
-					const hoy = new Date();
-					const fechahoy = hoy.getDate()+'/'+(hoy.getMonth()+1)+"/"+ hoy.getFullYear() + "-" +  hoy.getHours() + ":" + hoy.getMinutes();
+                    const lastLogin = response.data.lastLogin;
 					localStorage.setItem("token", token);
 					axios.defaults.headers.common["Authorization"] = 'Bearer ' +token;
-					commit("login_success", token, email);
+					commit("login_success", {token, email, lastLogin});
                     //console.log("sucess")
 					resolve(response);
                     
@@ -167,6 +168,7 @@ export default createStore({
 		recoverStatus: state => state.messageRecover,
 		successSentRecover: state => state.successRecoverPassword,
 		successChangedPass: state => state.passChanged,
+        lastLogin: state => state.lastLogin,
     },
 	modules:{
 		addFormApl : addFormApli,
