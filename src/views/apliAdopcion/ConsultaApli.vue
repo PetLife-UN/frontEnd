@@ -2,7 +2,7 @@
     <navbar/>
 
     
-    <div class="espacio_trabajo">
+    <div class="espacio_trabajo" style="width:100%; margin-left:0px; margin-right:0;">
         <div class="subtitulo">
             <h2 class="titulo_home texto_centrado mayuscula">
                 solicitudes de adopción
