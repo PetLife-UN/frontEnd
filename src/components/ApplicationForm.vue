@@ -351,9 +351,28 @@
 <script>
 import axios from "axios";
 import municipios from '@/assets/json/municipios.json'
+//VueX
+import { useStore } from 'vuex'
 
 export default {
     name: "applicationForm",
+    props:{
+        idPet:{
+            Type: Number,
+            required: true
+        },
+    },
+    setup(props){
+        //VueX config
+        const store = useStore()
+        //FUnctions
+        function enviarSolicitud(soli){
+            store.dispatch("addFormApl/sendSol",{soli});
+        }
+        return{
+            enviarSolicitud,
+        }
+    },
     data(){
         return{
             name: "",
@@ -500,12 +519,6 @@ export default {
             this.allValidation();
         },
     },
-    props:{
-        idPet:{
-            Type: Number,
-            required: true
-        }
-    },
     methods:{
         sendForm(){
             if(!(this.animalExperience)){
@@ -563,7 +576,14 @@ export default {
             .then((data) => {
                 if (data.status == 200) {
                     alert("El registro fue exitoso, se le enviara un mensaje a su correo")
+                    let soli = {
+                        telPhone:this.telNumber,
+                        telCell:this.movilNumber,
+                        email:this.email,
+                    }
+                    this.enviarSolicitud(soli)
                     this.$router.push('/adopta/1');
+                    
                 }
             }).catch((error) => {
                 this.alerta = true;

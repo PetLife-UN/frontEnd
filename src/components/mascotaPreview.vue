@@ -35,8 +35,22 @@
 
 <script>
 import axios from "axios";
+
+//VueX
+import { useStore } from 'vuex'
+
 export default {
-  
+  setup(props) {
+    //VueX config
+    const store = useStore()
+    //Functions
+    function changePetName(petName){
+        store.dispatch("addFormApl/changePetName",petName);
+    }
+    return{
+      changePetName,
+    }
+},
   data() {
     const ICON_DEFAULT = require('../assets/icons/white_other_96px.png')
     const ICON_TIPO = {
@@ -77,6 +91,7 @@ export default {
           this.type = data.data.tipo;
           this.sex = (data.data.sexo === "female")? "Hembra":"Macho";
           this.name = data.data.nombre;
+          this.changePetName(this.name)
         });
     },
     methods:{

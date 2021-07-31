@@ -1,11 +1,10 @@
 <template>
   <navbar />
-
   <div class="espacio_trabajo">
     <div class="subtitulo">
       <h1 class="titulo_home texto_centrado">Adopción de mascotas</h1>
     </div>
-    
+    <msgSuccess v-if="msgVisible" />
     <div class="filtro subtitulo">
       
       <ul class="nav">
@@ -556,6 +555,9 @@
 import navbar from "@/components/navbar";
 import axios from "axios";
 
+import msgSuccess from "@/components/apliAdopcion/msgSuccessApli"
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 var datos = "";
 var valor = 1;
@@ -577,6 +579,18 @@ export default {
   },
   components: {
     navbar,
+    msgSuccess,
+    
+  },
+  setup(){
+    //VueX config
+    const store = useStore()
+    //States
+    const msgVisible = computed(() => store.state.addFormApl.msgVisible)
+    //FUnctions
+    return{
+      msgVisible,
+    }
   },
   methods: {
     Esterilidad(){

@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import axios from "axios";
-
+import addFormApli from "./modules/addFormApli";
 
 export default createStore({
 	state: {
@@ -167,4 +167,8 @@ export default createStore({
 		successSentRecover: state => state.successRecoverPassword,
 		successChangedPass: state => state.passChanged,
     },
+	modules:{
+		addFormApl : addFormApli,
+
+	}
 });
