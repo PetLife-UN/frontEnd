@@ -254,6 +254,8 @@ export default {
         },
         exitApli(){
             const token = localStorage.token;
+            
+            document.getElementById('scrollbar').classList.remove('bloquear');
             if(this.modifyConfig){
                 const json ={
 					"id" : this.aplicationInfo.id,

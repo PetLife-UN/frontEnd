@@ -18,6 +18,12 @@
     }
 }
 
+@mixin media450 {
+    @media (min-width: 453px) {
+        @content;
+    }
+}
+
 @mixin media500 {
     @media (min-width: 500px) {
         @content;

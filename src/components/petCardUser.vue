@@ -45,7 +45,6 @@
 				</div>
 
 				<div class="col-3 icono">
-					<!-- <img class="imgmascota" :src="imagen(tipo)"> -->
 					<img
 						v-if="tipo == 'Felino'"
 						class="animal imgmascota"
@@ -88,21 +87,18 @@
 					/>
 				</div>
 			</div>
-			<!-- <h3 class="card-title">{{ petName }}</h3> -->
 
-			<div class="cboton" v-if=!deleteType>
+			<div class="cboton">
 				<button
+					v-if=!deleteType
 					class="btn btn-lg button_adopta"
-					v-on:click="verInfo(idPet)"
-				>
+					v-on:click="verInfo(idPet)">
 					Ver más
 				</button>
-			</div>
-            <div class="cboton" v-else>
 				<button
+					v-else
 					class="btn btn-lg button_adopta"
-					v-on:click="Recuperar(idPet)"
-				>
+					v-on:click="Recuperar(idPet)">
 					Recuperar
 				</button>
 			</div>
@@ -152,7 +148,6 @@ export default {
 			}
 			else {
 				datos = nombre.split(" ");
-				// console.log(datos);
 				return `${datos[0]} ${datos[1]}`
 			}
 		},
@@ -160,7 +155,6 @@ export default {
 			if (e >= 18) {
 				return 'mirar'
 			}
-
 		},
 		adicion(nombre) {
 			if (nombre.length > 18) {
@@ -169,7 +163,6 @@ export default {
 					aux = aux + ' ' + datos[i];
 				}
 				return aux
-
 			}
 		},
 		Borrar(idPet) {
@@ -204,6 +197,9 @@ export default {
 				console.log(error);
 			});
         }
+		// fuente(event){
+		// 	return "--rotateX:-12.5deg; --rotateY:19.6044deg; transform: rotateX(var(--rotateX))rotateY(var(--rotateY));";
+		// },
 	}
 }
 

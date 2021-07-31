@@ -1,5 +1,5 @@
 <template lang="">
-	<navbar />
+	<navbar/>
 	<div v-if="!this.errorBool" class="espacio_trabajo">
 		
 		<div class ="subtitulo">
@@ -9,23 +9,33 @@
 		</div>
 
 		<div class = "botones">
-            <button type="button" class="btn  button_volver" v-on:click="volver()">Volver al Usuario</button>
+
+			<button 
+				type="button" 
+				class="btn  button_volver" 
+				v-on:click="volver()">
+				Volver al Usuario
+			</button>
         </div>
 
-        <div class = "container ">
-            <div class = "container_search">
-
-                <span class ="subtitle_dropdown"> Mostrar publicaciones:  </span>
-                <div class="dropdown" ref="dropbtn">
-                   
-                    <button v-on:click="showDrop()" class="dropbtn" >{{FIL_VIS_INV[filtroVis]}}<img class = "arror_drop" src="../../assets/icons/expand_arrow_24px.png" ></button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <a v-on:click="changeVisFilter('Visibles')"> Visibles</a>
-                        <a v-on:click="changeVisFilter('Eliminadas')">Eliminadas</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class = "mostrar">
+			<div class="botino">
+				<button 
+					id="activo" 
+					class="mayuscula" 
+					:class="color(!deleteType)"
+					v-on:click="changeVisFilter('Visibles')">
+					activado
+				</button>
+				<button
+					v-on:click="changeVisFilter('Eliminadas')"
+					id="borrado"
+					:class="color(deleteType)"
+					class="mayuscula">
+					borrado
+				</button>
+			</div>    
+		</div>
 
 		<div class="row tres_mascotas">
 			<petCardUser
@@ -50,9 +60,7 @@
 	<div v-else class="espacio_trabajo">
 		<div class ="subtitulo">
 			<h1 class="titulo_home texto_centrado">
-
 				El Usuario no Tiene Mascotas
-
 			</h1>
 		</div>
 
@@ -60,16 +68,36 @@
             <button type="button" class="btn  button_volver" v-on:click="volver()">Volver al Usuario</button>
         </div>
         
-		<div class = "container_img_notresults bg-light" >
+        <div class = "mostrar">
+			<div class="botino">
+				<button 
+					id="activo" 
+					class="mayuscula" 
+					:class="color(!deleteType)"
+					v-on:click="changeVisFilter('Visibles')">
+					activado
+				</button>
+				<button
+					v-on:click="changeVisFilter('Eliminadas')"
+					id="borrado"
+					:class="color(deleteType)"
+					class="mayuscula">
+					borrado
+				</button>
+			</div>    
+		</div>
+
+		<div class = "no_mascotas" >
 			<img src="../../assets/img/dog_confused.png" >
-			<p class="title_notfound">No se han encontrado resultados</p>
-			<p class="subtitle_notfound">Parece que no tienes mascotas publicadas</p>
+			<h3 class="title_notfound">
+				No se han encontrado resultados
+			</h3>
+			<h4 v-if="!deleteType" class="subtitle_notfound">
+				No tienes mascotas registradas
+			</h4>
         </div>
 	</div>
 	<div id="snackbar_delete">{{msgDelete}}</div>
-
-
-
 </template>
 
 <script>
@@ -96,6 +124,7 @@ export default {
 			json: null,
 			errorBool: false,
             deleteType: false,
+            listSize:0,
 			msgDelete: "Eliminando mascota ...",
             buttonTrigger: false,
             filtroVis:true,
@@ -124,6 +153,7 @@ export default {
 				})
 				.then((data) => {
 					this.json = data.data;
+					this.errorBool = false;
 					//console.log(this.json);
 				})
 				.catch((error) => {
@@ -140,6 +170,7 @@ export default {
 				})
 				.then((data) => {
 					this.json = data.data;
+					this.errorBool = false;
 					//console.log(this.json);
 				})
 				.catch((error) => {
@@ -148,14 +179,10 @@ export default {
 					}
 				});
             }
-			
-			
 		},
-
 		volver(){
             this.$router.go(-1);
         },
-
 		showSnackDelete() {
 			this.msgDelete = "Eliminando mascota ..." 
 			var x = document.getElementById("snackbar_delete");
@@ -166,38 +193,32 @@ export default {
 			var x = document.getElementById("snackbar_delete");
 			this.msgDelete = "Mascota eliminada"
 			setTimeout(function(){ x.className = x.className.replace("show", "");  }, 2000);
-			
 		},
-        showDrop() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        },
-        closeDrop(){
-            document.getElementById("myDropdown").classList.remove("show");
-        },
         changeVisFilter(filterVis){
-            if(filterVis == 'Eliminadas'){
-                this.deleteType = true;
-            }else{
-                this.deleteType = false;
-            }
+            if(filterVis == 'Eliminadas') this.deleteType = true;
+            else this.deleteType = false;
+            // console.log("click")
+            // console.log(this.deleteType);
             this.filtroVis = this.FIL_VIS[filterVis]
             this.updateValues();
-            document.getElementById("myDropdown").classList.remove("show");
-        }
-		
-
+            // document.getElementById("myDropdown").classList.remove("show");
+        },
+		color(a) {
+			if(a){
+				return "color";
+			}
+			else{
+				return "";
+			}
+		}
 	},
 	mounted: function () {
 		this.updateValues();
         onClickOutside(this.dropbtn, (event)=>this.closeDrop());
-	},
+	}
 };
 
-
-
-
 </script>
-
 
 <style>
 
@@ -234,8 +255,5 @@ export default {
 		from {bottom: 0; opacity: 0;}
 		to {bottom: 30px; opacity: 1;}
 	}
-
-
-
 
 </style>
