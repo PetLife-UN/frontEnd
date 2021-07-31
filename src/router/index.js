@@ -71,7 +71,7 @@ const routes = [
     component: Adopta
   },
   {
-    path: '/info_mascota/:idPet',
+    path: '/info-mascota/:idPet',
     name: 'Info_mascota',
     component: Info_mascota
 
@@ -100,10 +100,22 @@ const routes = [
   
 ]
 
+
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior() {
+    const id = 'app';
+    const yOffset = -100; 
+    const element = document.getElementById(id);
+    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({top: y, behavior: 'smooth'});
+    
+  }
 })
+
+
 
 router.beforeEach((to, from, next) => {
     if(to.matched.some(record => record.meta.requiresAuth)) {
