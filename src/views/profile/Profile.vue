@@ -2,13 +2,14 @@
   
   <navbar/>
   
-  <div class="espacio_trabajo">
-    <div class ="subtitulo">
-      <h1 class="titulo_home texto_centrado">
-        Perfil de Usuario
-      </h1>
-    </div>
-  </div>
+	<div class="espacio_trabajo">
+		<div class ="subtitulo">
+			<h1 class="titulo_home texto_centrado">
+				Perfil de Usuario
+			</h1>
+		</div>
+	</div>
+	<successPet v-if="msgVisible" />
 
   <div class="separacion">
     
@@ -110,13 +111,29 @@
 import navbar from "@/components/navbar";
 import axios from "axios";
 
+import successPet from "@/components/regMascota/msgSuccessPet";
+//VueX
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+
 var token = localStorage.token;
 var A_nombre = '';
 var A_apellido = '';
 var A_numero = 0;
 
+
 export default {
 	name: "Profile",
+	setup(){
+		//VueX config
+        const store = useStore()
+        //States
+        const msgVisible = computed(() => store.state.addPets.msgVisible)
+        //Functions
+        return{
+			msgVisible,
+		}
+	},
 	data() {
 		return {
 			show: true,
@@ -129,6 +146,7 @@ export default {
 	},
 	components: {
 		navbar,
+		successPet,
 	},
 	methods: {
 		errorNombre() {

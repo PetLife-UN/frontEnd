@@ -1,4 +1,4 @@
-<template>
+<template lang="">
   <navbar />
   <div class="espacio_trabajo">
     <div class="subtitulo">

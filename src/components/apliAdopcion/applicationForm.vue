@@ -341,7 +341,7 @@
                     </div>
 
 
-                    <div id="snackbar_addPet">
+                    <div id="snackbar_addSol">
                         <div class = "row g-0">
                             <div class = "col-2">
                                 <div class="loader">  </div> 
@@ -350,7 +350,6 @@
                                 <p class = "text_sending">Enviando solicitud</p>
                             </div>
                         </div>
-                        
                     </div>
 
                 </div>
@@ -536,7 +535,7 @@ export default {
     methods:{
         showSnackBar(){
             this.isDisable = true;
-            var x = document.getElementById("snackbar_addPet");
+            var x = document.getElementById("snackbar_addSol");
             x.className = "show";
             setTimeout(function(){ x.className = x.className.replace("show", ""); }, 10500);
         },
@@ -882,6 +881,8 @@ label{
 }
 .error_solicitud{
     font-size: 11px;
+    text-align: left;
+	padding-left: 10px;
 }
 /* */
 #format{
@@ -960,7 +961,7 @@ label{
 }
 
 /*Snackbar */
-#snackbar_addPet {
+#snackbar_addSol {
     visibility: hidden;
     width: 300px;
     margin-left: -125px;
@@ -979,7 +980,7 @@ label{
     
 }
 
-#snackbar_addPet.show {
+#snackbar_addSol.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 10s;
     animation: fadein 0.5s, fadeout 0.5s 10s;
