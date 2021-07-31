@@ -787,6 +787,7 @@ export default {
     },
     filtrar: function(){
       // Tratamiento de las entradas
+      valor = 1;
       let tiposP = "";
       let esterilP = "";
       let sexoP= "";
