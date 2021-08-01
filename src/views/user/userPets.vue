@@ -90,10 +90,10 @@
 		<div class = "no_mascotas" >
 			<img src="../../assets/img/dog_confused.png" >
 			<h3 class="title_notfound">
-				No se han encontrado resultados
+				No se han encontrado resultados.
 			</h3>
 			<h4 v-if="!deleteType" class="subtitle_notfound">
-				No tienes mascotas registradas
+				No tienes mascotas registradas.
 			</h4>
         </div>
 	</div>
