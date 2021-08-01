@@ -16,8 +16,8 @@
                 </div>
             </a>
 
-
-            <a class="card " style="background:rgb(40,40,40,0.3); border:0;" v-on:click="goRegister()" >
+           
+            <a class="card" style="background:rgb(40,40,40,0.3); border:0;" v-on:click="goRegister()" >
                 <img class="card__image__add" src="../../assets/icons/add_64px.png" />
                 <div class="card__overlay">
                     <div class="card__header_add" style= "background:rgb(240,240,240)">
@@ -89,6 +89,7 @@ export default {
   margin: 0 5vw;
   padding: 0;
   list-style-type: none;
+  min-height: 200px;
 }
 
 
@@ -105,7 +106,6 @@ export default {
 
 
 .card__image {   
-    
     height: 100%;
     object-fit: cover;
     
@@ -155,6 +155,7 @@ export default {
   transform: translateY(0);
 }
 .card__image__add{
+    
     height: 70%;
     object-fit: cover;
     margin: 0;

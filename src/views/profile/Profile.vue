@@ -438,22 +438,26 @@ export default {
 			})
 			.then((data) => {
 				let pets = data.data;
-				let a = (this.getRandomInt(data.data.length));
-				let b = (this.getRandomInt(data.data.length));
-				let pet0;
-				let pet1;
-				if(pets[a] !== undefined) pet0 = pets[a]
-				if(pets[b] !== undefined) pet1 = pets[b]
-				if(pet0 == pet1){
-					this.pets = {pet0}
-				}
-				else{
-					this.pets = {pet0,pet1}
+				console.log("tests")
+				if(pets.length > 0){
+					let a = (this.getRandomInt(pets.length));
+					let b = (this.getRandomInt(pets.length));
+					let pet0;
+					let pet1;
+					if(pets[a] !== undefined) pet0 = pets[a]
+					if(pets[b] !== undefined) pet1 = pets[b]
+					if(pet0 == pet1){
+						this.pets = {pet0}
+					}
+					else{
+						this.pets = {pet0,pet1}
+					}
 				}
 				
 			})
 			.catch((error) => {
 				console.log(error)
+				this.pets ={}
 		});
 
 	}
