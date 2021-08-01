@@ -18,7 +18,7 @@
 </template>
 <script>
 
-import menuLogin from "@/components/menuLogin"
+import menuLogin from "@/components/acceso/menuLogin"
 import navbar from "@/components/navbar"
 import correoRecupera from "@/components/acceso/correoRecupera"
 import {ref} from 'vue'
@@ -27,7 +27,7 @@ export default {
     name: "Login",
     data(){
         return{
-            //Menu recuperacion contraseña
+            
         }
     },
     setup(){

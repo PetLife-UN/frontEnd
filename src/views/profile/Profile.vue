@@ -169,7 +169,7 @@ export default {
 			this.$router.push('animalreg')
 		},
 		goApliAdopcion() {
-			this.$router.push('/profile/consultaapli/1')
+			this.$router.push('/profile/consultaapli')
 		},
 		goUserPets() {
 			this.$router.push('/user/userPet')

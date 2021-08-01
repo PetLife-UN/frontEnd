@@ -408,9 +408,9 @@ body::-webkit-scrollbar:horizontal {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #64B8FF;
+  background-color: #838383;
   border-radius: 5rem;
-  border: 2px solid #AEAEAE;
+  border: 2px solid #838383;
 }
 
 .bloquear {

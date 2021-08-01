@@ -1,6 +1,6 @@
 <template >
     <navbar/>
-
+    
     
     <div class="espacio_trabajo" style="width:100%; margin-left:0px; margin-right:0;">
         <div class="subtitulo " style="width:80%; margin: 0 auto;">
@@ -29,13 +29,6 @@
                     class="mayuscula">
                     ocultas
                 </button>
-            <!-- <button
-                    v-on:click="changeVisFilter('Todas'); boton=2"
-                    id="todas"
-                    :class="color(2)"
-                    class="mayuscula">
-                    todas
-                </button> -->
             </div>    
         </div>
 
@@ -89,62 +82,62 @@
         </div> 
         
         <nav  class="paginas" v-if="listSize!=0">
-          <ul class="pagination justify-content-center">
-            <li class="buttons_pagination" v-on:click="gobackPage()">
-              <a class="page-link page-link-back" href="#">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-arrow-big-left"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M20 15h-8v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h8a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1z"
-                  ></path>
-                </svg>
-              </a>
-            </li>
+            <ul class="pagination justify-content-center">
+                <li class="buttons_pagination" v-on:click="gobackPage()">
+                <a class="page-link page-link-back" href="#">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-arrow-big-left"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                        d="M20 15h-8v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h8a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1z"
+                    ></path>
+                    </svg>
+                </a>
+                </li>
 
-            <li
-              class="page-item buttons_pagination"
-              v-for="page in parseInt(totalPages)"
-              :key="page"
-              v-on:click="gotoPage(page)">
+                <li
+                class="page-item buttons_pagination"
+                v-for="page in parseInt(totalPages)"
+                :key="page"
+                v-on:click="gotoPage(page)">
 
-              <a class="page-link page-link-numbers" href="#">
-                {{ page }}
-              </a>
-            </li>
+                <a class="page-link page-link-numbers" href="#">
+                    {{ page }}
+                </a>
+                </li>
 
-            <li class="buttons_pagination" v-on:click="gonextPage()">
-              <a class="page-link page-link-next" href="#">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-arrow-big-right"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z"
-                  ></path>
-                </svg>
-              </a>
-            </li>
-          </ul>
+                <li class="buttons_pagination" v-on:click="gonextPage()">
+                <a class="page-link page-link-next" href="#">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-arrow-big-right"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                        d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z"
+                    ></path>
+                    </svg>
+                </a>
+                </li>
+            </ul>
         </nav>
     </div>
     
@@ -176,11 +169,14 @@ export default {
             true:"#4B8BDD",
             false:"#d9534f",
         }
+        var QUERY = {
+            "pag":1,
+            "vis":true,
+        }
         return{
             ListaApli:null,
             infoApli,
             buttonTrigger:false,
-            pagina:1,
             size:5,
             totalPages:0,
             ICON_TIPO,
@@ -188,8 +184,8 @@ export default {
             listSize:0,
             FIL_VIS,
             FIL_VIS_INV,
-            filtroVis:true,
-            boton:0
+            boton:0,
+            QUERY,
         }
     },
     setup(){
@@ -217,32 +213,75 @@ export default {
         navbar,
         infoApli
     },
+    watch:{
+        
+        "$route.query.pag":{
+            immediate: true,
+            handler(newVal){
+                if(!isNaN(newVal) && newVal !== undefined){
+                    this.QUERY.pag = newVal
+                    
+                }else{
+                    this.QUERY = {
+                        "pag":1,
+                        "vis":true,
+                    }
+                    this.$router.replace({ path: "/profile/consultaapli"})
+                }
+                this.updateValues()
+            }
+        },
+        
+        "$route.query.vis":{
+            immediate: true,
+            handler(newVal){
+                if ( newVal == "true" || newVal == "false") {
+                    this.QUERY.vis = newVal
+                    if(newVal == "true"){
+                        this.boton = 0;
+                    }else{
+                        this.boton = 1;
+                    }
+                }else{
+                    this.QUERY = {
+                        "pag":1,
+                        "vis":true,
+                    }
+                    this.$router.push({ path: "/profile/consultaapli"})
+                }
+                this.updateValues()
+                
+            }
+        },
+        
+    },
     methods:{
         volver(){
             this.$router.push("/profile")
         },
         gotoPage(idPage){
-            this.$router.push("/profile/consultaapli/"+idPage)
-            //console.log("Boton")
+            this.QUERY.pag = idPage;
+            this.$router.push({path:"/profile/consultaapli", query:this.QUERY})
         },
         gobackPage(){
-            if(this.pagina == 1){
+            if(this.QUERY.pag == 1){
                 return
             }
-            this.pagina =  this.pagina-1
-            this.$router.push("/profile/consultaapli/"+this.pagina)
+            this.QUERY.pag = this.QUERY.pag - 1;
+            this.$router.push({path:"/profile/consultaapli", query:this.QUERY})
+            
         },
         gonextPage(){
-            if(this.pagina == this.totalPages){
+            if(this.QUERY.pag == this.totalPages){
                 return
             }
-            this.pagina =  this.pagina - - 1
-            this.$router.push("/profile/consultaapli/"+this.pagina)
+            this.QUERY.pag = this.QUERY.pag - - 1;
+            //Escritura javaScript
+            this.$router.push({path:"/profile/consultaapli", query:this.QUERY})
         },
         changeVisFilter(filterVis){
-            this.filtroVis = this.FIL_VIS[filterVis]
-            this.updateValues();
-            // document.getElementById("myDropdown").classList.remove("show");
+            this.QUERY.vis = this.FIL_VIS[filterVis]
+            this.$router.push({ path: "/profile/consultaapli",query:this.QUERY})
         },
         color(a) {
             if(a == this.boton){
@@ -257,16 +296,25 @@ export default {
             tex.classList.add('bloquear');
         },
         updateValues(){
-            this.pagina = this.$route.params.numPage;
+            console.log(this.QUERY)
+            //Load token
             const token = localStorage.token;
+            //Pagination variables Query
+            let pag = this.QUERY.pag;
+            let vis = this.QUERY.vis;
             axios
-            //.get("http://localhost:8080/api/apply/getApplicationUserPage?deleted=false&visible="+(this.filtroVis)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
-            .get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?deleted=false&visible="+(this.filtroVis)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
+            .get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?deleted=false&visible="+(vis)+"&page="+(pag-1)+"&size="+(this.size) ,{
                 headers: {
                     'Authorization': `Bearer ${token}`
                 },
             })
             .then( data =>{
+                //Verificar que no exista desborda en paginacion
+                let maxPage = data.data.totalPages;
+                if(this.QUERY.pag > maxPage){
+                    this.QUERY.pag = maxPage;
+                    this.$router.push({path:"/profile/consultaapli", query:this.QUERY})
+                }
                 this.ListaApli = data.data.content;
                 this.totalPages = data.data.totalPages;
                 this.listSize = (this.ListaApli == null)?0:this.ListaApli.length;
@@ -275,13 +323,9 @@ export default {
                 var msg_back = error.response.data.message
                 console.log(msg_back)
             });
+            
+            
         }
-        // showDrop() {
-        //     document.getElementById("myDropdown").classList.toggle("show");
-        // },
-        // closeDrop(){
-        //     document.getElementById("myDropdown").classList.remove("show");
-        // }
     },
     mounted:function(){
         this.updateValues();
