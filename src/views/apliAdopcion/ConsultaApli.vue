@@ -31,8 +31,8 @@
                 </button>
             </div>    
         </div>
-
-        <div class = "container-fluid bg-light cuerpo_consultaApli">
+  
+      <div class = "container-fluid bg-light cuerpo_consultaApli">
             <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" :updateValues = "updateValues"/>
 
             <br>
@@ -80,7 +80,7 @@
             <br>
             <br>
         </div> 
-        
+
         <nav  class="paginas" v-if="listSize!=0">
             <ul class="pagination justify-content-center">
                 <li class="buttons_pagination" v-on:click="gobackPage()">
