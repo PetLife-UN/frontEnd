@@ -48,42 +48,42 @@
 					<img
 						v-if="tipo == 'Felino'"
 						class="animal imgmascota"
-						src="../assets/img/cat_96px.png"
+						src="../../assets/img/cat_96px.png"
 					/>
 					<img
 						v-else-if="tipo == 'Canino'"
 						class="animal imgmascota"
-						src="../assets/img/dog_96px.png"
+						src="../../assets/img/dog_96px.png"
 					/>
 					<img
 						v-else-if="tipo == 'Roedor'"
 						class="animal imgmascota"
-						src="../assets/img/hamster_96px.png"
+						src="../../assets/img/hamster_96px.png"
 					/>
 					<img
 						v-else-if="tipo == 'Pez'"
 						class="animal imgmascota"
-						src="../assets/img/fish_96px.png"
+						src="../../assets/img/fish_96px.png"
 					/>
 					<img
 						v-else-if="tipo == 'Bovino'"
 						class="animal imgmascota"
-						src="../assets/img/cow_96px.png"
+						src="../../assets/img/cow_96px.png"
 					/>
 					<img
 						v-else-if="tipo == 'Ave'"
 						class="animal imgmascota"
-						src="../assets/img/bird_96px.png"
+						src="../../assets/img/bird_96px.png"
 					/>
 					<img
 						v-else-if="tipo == 'Equino'"
 						class="animal imgmascota"
-						src="../assets/img/horse_96px.png"
+						src="../../assets/img/horse_96px.png"
 					/>
 					<img
 						v-else
 						class="animal imgmascota"
-						src="../assets/img/other_96px.png"
+						src="../../assets/img/other_96px.png"
 					/>
 				</div>
 			</div>

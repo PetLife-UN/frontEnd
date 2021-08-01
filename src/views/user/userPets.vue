@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import petCardUser from "@/components/petCardUser";
+import petCardUser from "@/components/regMascota/petCardUser";
 import navbar from "@/components/navbar";
 import axios from "axios";
 import {ref} from 'vue'

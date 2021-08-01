@@ -896,8 +896,6 @@ export default {
       .then((data) => {
         this.Listamascota = data.data.content;
         this.totalPages = data.data.totalPages;
-        //console.log(data);
-        //console.log("total_pages:",data.data.totalPages);
       });
   },
 };
