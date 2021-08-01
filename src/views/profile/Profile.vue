@@ -1,114 +1,228 @@
 <template lang="">
   
-  <navbar/>
-  
-	<div class="espacio_trabajo">
-		<div class ="subtitulo">
-			<h1 class="titulo_home texto_centrado">
-				Perfil de Usuario
-			</h1>
+	<navbar/>
+	
+	
+	<successPet v-if="msgVisible" />
+	<div class = "row g-0">
+		<div class = "col-6">
+			<div class="espacio_trabajo">
+				<div class ="subtitulo">
+					<h1 class="titulo_home texto_centrado">
+						Perfil de Usuario
+					</h1>
+				</div>
+			</div>
+			<div class="separacion">
+				<div class="usuario">
+					<div class="nombre datos">
+						<h3>Usuario<span>:</span></h3>
+						<div v-if="show">
+							<h2 class="mayuscula">{{Nombre(json)}}</h2>
+						</div>
+			
+						<div class="cambiar" v-else>
+							<input 
+								v-on:click="errorNombre"
+								type="text" 
+								class="form-control mayuscula"
+								id="floatingName" 
+								placeholder="Nombre" 
+								maxlength="50"
+								v-model="json.name">
+			
+							<hr class="vertical" width="3" size="500">
+							<hr class="Horizontal">
+			
+							<input 
+								v-on:click="errorApellido"
+								type="text" 
+								class="form-control mayuscula" 
+								id="floatingSurame" 
+								placeholder="Nombre" 
+								maxlength="50"
+								v-model="json.surname">    
+						</div>
+						<hr>
+					</div>
+		
+					<div class="correo datos">
+						<h3>E-mail<span>:</span></h3>
+						<h2>{{Email(json)}}</h2>
+						<hr>
+					</div>
+			
+					<div class="celular datos">
+						<h3>Celular<span>:</span></h3>
+						<div v-if="show">
+						<h2>{{Cell(json)}}</h2>
+						</div>
+						<div class="cambiar" v-else>
+						<input 
+							v-on:click="errorCelular"
+							type="number" 
+							class="form-control" 
+							id="floatingcellPhoneNumber" 
+							placeholder="Teléfono" 
+							maxlength="10" 
+							oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+							v-model="json.cellPhoneNumber">
+						</div>
+						<hr>
+					</div>
+
+					<div class="celular datos">
+						<h3>Ultima conexion<span>:</span></h3>
+						<h2>{{this.UltimaCon()}}</h2>
+					</div>
+				</div>
+			</div>
+
+			<div class="botones">
+
+				<div class="cambios">
+					<button type="button" class ="btn" v-on:click="show = !show; editado()">
+						<span v-if="show">Editar Datos</span>
+						<span v-else>Actualizar</span>
+					</button>
+					<button v-if="!show" type="button" class ="btn" v-on:click="show = !show; cancelar()">
+						Cancelar
+					</button>
+				</div>
+			</div>
+
+
+		</div>
+		<div class = "col-6">
+			<div class="espacio_trabajo">
+				<div class ="subtitulo">
+					<h1 class="titulo_home texto_centrado">
+						Mis publicaciones
+					</h1>
+				</div>
+			</div>
+			<cardPet v-bind:pets="pets"/>
+			<br>
+			<div class = "center_button ">
+				<button type="button" class ="btn" v-on:click="goRegister">Registrar mascota para adopción</button>
+				<button type="button" class ="btn" v-on:click="goUserPets">Ver mis publicaciones</button>
+			</div>
+			<br>
+			<br>
+			<div class="w-100"></div>
+			<div class="espacio_trabajo">
+				<div class ="subtitulo">
+					<h1 class="titulo_home texto_centrado">
+						Solicitudes de adopción
+					</h1>
+				</div>
+			</div>
+
+			<div class = "center_button ">
+				<button type="button" class ="btn" v-on:click="goApliAdopcion">Consulta solicitudes de adopción</button>
+			</div>
+
+
 		</div>
 	</div>
-	<successPet v-if="msgVisible" />
 
-  <div class="separacion">
-    
-    <div class="usuario">
 
-      <div class="nombre datos">
-        
-        <h3>Usuario<span>:</span></h3>
-        
-        <div v-if="show">
-          <h2 class="mayuscula">{{Nombre(json)}}</h2>
-        </div>
-        
-        <div class="cambiar" v-else>
-          <input 
-            v-on:click="errorNombre"
-            type="text" 
-            class="form-control mayuscula"
-            id="floatingName" 
-            placeholder="Nombre" 
-            maxlength="50"
-            v-model="json.name">
-          
-          <hr class="vertical" width="3" size="500">
-          <hr class="Horizontal">
-          
-          <input 
-            v-on:click="errorApellido"
-            type="text" 
-            class="form-control mayuscula" 
-            id="floatingSurame" 
-            placeholder="Nombre" 
-            maxlength="50"
-            v-model="json.surname">    
-        </div>
-        <hr>
-      </div>
-      
-      <div class="correo datos">
-        <h3>E-mail<span>:</span></h3>
-        <h2>{{Email(json)}}</h2>
-        <hr>
-      </div>
-      
-      <div class="celular datos">
-        <h3>Celular<span>:</span></h3>
-        <div v-if="show">
-          <h2>{{Cell(json)}}</h2>
-        </div>
-        <div class="cambiar" v-else>
-          <input 
-            v-on:click="errorCelular"
-            type="number" 
-            class="form-control" 
-            id="floatingcellPhoneNumber" 
-            placeholder="Teléfono" 
-            maxlength="10" 
-            oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-            v-model="json.cellPhoneNumber">
-        </div>
-        <hr>
-      </div>
 
-      <!-- <div class="celular datos">
-        <h3>Role<span>:</span></h3>
-        <h2>{{Rol(json)}}</h2>
-        <hr>
-      </div> -->
+	<div class="separacion" v-if="false">
+		
+		<div class="usuario">
 
-      <div class="celular datos">
-        <h3>Ultima conexion<span>:</span></h3>
-        <h2>{{this.UltimaCon()}}</h2>
-      </div>
-    </div>
+		<div class="nombre datos">
+			
+			<h3>Usuario<span>:</span></h3>
+			
+			<div v-if="show">
+			<h2 class="mayuscula">{{Nombre(json)}}</h2>
+			</div>
+			
+			<div class="cambiar" v-else>
+			<input 
+				v-on:click="errorNombre"
+				type="text" 
+				class="form-control mayuscula"
+				id="floatingName" 
+				placeholder="Nombre" 
+				maxlength="50"
+				v-model="json.name">
+			
+			<hr class="vertical" width="3" size="500">
+			<hr class="Horizontal">
+			
+			<input 
+				v-on:click="errorApellido"
+				type="text" 
+				class="form-control mayuscula" 
+				id="floatingSurame" 
+				placeholder="Nombre" 
+				maxlength="50"
+				v-model="json.surname">    
+			</div>
+			<hr>
+		</div>
+		
+		<div class="correo datos">
+			<h3>E-mail<span>:</span></h3>
+			<h2>{{Email(json)}}</h2>
+			<hr>
+		</div>
+		
+		<div class="celular datos">
+			<h3>Celular<span>:</span></h3>
+			<div v-if="show">
+			<h2>{{Cell(json)}}</h2>
+			</div>
+			<div class="cambiar" v-else>
+			<input 
+				v-on:click="errorCelular"
+				type="number" 
+				class="form-control" 
+				id="floatingcellPhoneNumber" 
+				placeholder="Teléfono" 
+				maxlength="10" 
+				oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+				v-model="json.cellPhoneNumber">
+			</div>
+			<hr>
+		</div>
 
-    <div class="botones">
 
-      <button type="button" class ="btn" v-on:click="goRegister">Registrar mascota para adopción</button>
+		<div class="celular datos">
+			<h3>Ultima conexion<span>:</span></h3>
+			<h2>{{this.UltimaCon()}}</h2>
+		</div>
+		</div>
 
-      <button type="button" class ="btn" v-on:click="goApliAdopcion">Consulta solicitudes de adopción</button>
+		<div class="botones">
 
-      <button type="button" class ="btn" v-on:click="goUserPets">Ver mis publicaciones</button>
+		<button type="button" class ="btn" v-on:click="goRegister">Registrar mascota para adopción</button>
 
-      <div class="cambios">
-        <button type="button" class ="btn" v-on:click="show = !show; editado()">
-          <span v-if="show">Editar Datos</span>
-          <span v-else>Actualizar</span>
-        </button>
-        <button v-if="!show" type="button" class ="btn" v-on:click="show = !show; cancelar()">
-          Cancelar
-        </button>
-      </div>
+		<button type="button" class ="btn" v-on:click="goApliAdopcion">Consulta solicitudes de adopción</button>
 
-    </div>
-  </div>
+		<button type="button" class ="btn" v-on:click="goUserPets">Ver mis publicaciones</button>
+
+		<div class="cambios">
+			<button type="button" class ="btn" v-on:click="show = !show; editado()">
+			<span v-if="show">Editar Datos</span>
+			<span v-else>Actualizar</span>
+			</button>
+			<button v-if="!show" type="button" class ="btn" v-on:click="show = !show; cancelar()">
+			Cancelar
+			</button>
+		</div>
+
+		</div>
+	</div>
 </template>
 
 <script>
 import navbar from "@/components/navbar";
+import cardPet from "@/components/regMascota/cardPetPr";
+
 import axios from "axios";
 import { useStore } from 'vuex'
 import { computed } from 'vue'
@@ -149,12 +263,14 @@ export default {
 			errorBool: false,
 			e_nombre: false,
 			e_apellido: false,
-			e_phone: false
+			e_phone: false,
+			pets:{},
 		};
 	},
 	components: {
 		navbar,
 		successPet,
+		cardPet,
 	},
 	methods: {
 		errorNombre() {
@@ -289,6 +405,9 @@ export default {
 				return `${js.roles}`;
 			}
 		},
+		getRandomInt(max) {
+			return Math.floor(Math.random() * max);
+		}
 		
 	},
 	mounted: function () {  
@@ -309,9 +428,81 @@ export default {
 					this.errorBool = true;
 				}
 			});
+		
+		//Consulta mis mascotas
+		axios
+			.get("https://unpetlife.herokuapp.com/api/pet/getUserPets", {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				}
+			})
+			.then((data) => {
+				let pets = data.data;
+				let a = (this.getRandomInt(data.data.length));
+				let b = (this.getRandomInt(data.data.length));
+				let pet0;
+				let pet1;
+				if(pets[a] !== undefined) pet0 = pets[a]
+				if(pets[b] !== undefined) pet1 = pets[b]
+				if(pet0 == pet1){
+					this.pets = {pet0}
+				}
+				else{
+					this.pets = {pet0,pet1}
+				}
+				
+			})
+			.catch((error) => {
+				console.log(error)
+		});
 
 	}
 };
 </script>
 <style >
+	
+	.center_button{
+		display: flex;
+		justify-content: center;
+	}
+	.center_button .btn {
+		display: inline-block;
+		background-color: white;
+		color: #6FABF9;
+		margin: 0;
+		padding: 1.2rem 2rem;
+		border-radius: 5rem;
+		font-size: 2.2rem;
+		color: #828282;
+		font-family: "Merienda", cursive;
+		font-weight: 600;
+		margin-left: 20px;
+	}
+
+	@media (max-width: 767px) {
+		.center_button .btn {
+			width: -webkit-fill-available;
+		}
+	}
+	
+
+	.center_button .btn:hover {
+		border: 5px solid #B6B6B6;
+		-webkit-transition: all 0.5s ease-out;
+		-moz-transition: all 0.5s ease;
+		-ms-transition: all 0.5s ease;
+		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#64b8ff+0,54c8e5+46,64b8ff+100 */
+		background: #64b8ff;
+		/* Old browsers */
+		background: -moz-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+		/* FF3.6-15 */
+		background: -webkit-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+		/* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(135deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64b8ff', endColorstr='#64b8ff',GradientType=1 );
+		/* IE6-9 fallback on horizontal gradient */
+		color: white;
+	}
+
 </style>
