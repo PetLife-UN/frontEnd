@@ -81,7 +81,7 @@
 
       <div class="celular datos">
         <h3>Ultima conexion<span>:</span></h3>
-        <h2>{{UltimaCon(json)}}</h2>
+        <h2>{{this.UltimaCon()}}</h2>
       </div>
     </div>
 
@@ -110,11 +110,11 @@
 <script>
 import navbar from "@/components/navbar";
 import axios from "axios";
-
-import successPet from "@/components/regMascota/msgSuccessPet";
-//VueX
 import { useStore } from 'vuex'
 import { computed } from 'vue'
+
+import successPet from "@/components/regMascota/msgSuccessPet";
+
 
 var token = localStorage.token;
 var A_nombre = '';
@@ -124,16 +124,24 @@ var A_numero = 0;
 
 export default {
 	name: "Profile",
-	setup(){
-		//VueX config
+    setup(){
+      //VueX config
         const store = useStore()
         //States
+        const lastLogin = computed(() => store.getters.lastLogin)
         const msgVisible = computed(() => store.state.addPets.msgVisible)
         //Functions
-        return{
-			msgVisible,
+        function UltimaCon() {
+			if (this.lastLogin != null) {
+				var date = new Date(this.lastLogin);
+				date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+				return `${date.toLocaleString()}`;
+			}
+
 		}
-	},
+
+        return {lastLogin, UltimaCon, msgVisible}
+    },
 	data() {
 		return {
 			show: true,
@@ -281,14 +289,7 @@ export default {
 				return `${js.roles}`;
 			}
 		},
-		UltimaCon(js) {
-			if (js != null) {
-				var date = new Date(js.lastLogin);
-				date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
-				return `${date.toLocaleString()}`;
-			}
-
-		}
+		
 	},
 	mounted: function () {  
         const token = localStorage.token;
