@@ -215,7 +215,6 @@ export default {
         "$route.query.pag":{
             immediate: true,
             handler(newVal){
-                console.log(this.$route)
                 if(!isNaN(newVal) && newVal !== undefined){
                     this.QUERY.pag = newVal
                 }else{
@@ -236,7 +235,6 @@ export default {
         "$route.query.vis":{
             immediate: true,
             handler(newVal){
-                console.log(this.$route)
                 if ( newVal == "true" || newVal == "false") {
                     this.QUERY.vis = newVal
                     if(newVal == "true"){
@@ -315,7 +313,6 @@ export default {
             .then( data =>{
                 //Verificar que no exista desborde en paginacion
                 let maxPage = data.data.totalPages;
-                let current = this.QUERY.pag ;
                 if(this.QUERY.pag > maxPage){
                     this.QUERY.pag = maxPage;
                     this.$router.push({path:"/profile/consultaapli", query:this.QUERY})

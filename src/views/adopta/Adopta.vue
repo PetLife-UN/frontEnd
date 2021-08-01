@@ -4,7 +4,7 @@
     <div class="subtitulo">
       <h1 class="titulo_home texto_centrado">Adopción de mascotas</h1>
     </div>
-    <msgSuccess v-if="msgVisible" />
+    <msgSuccess v-if="msgVisible"/>
     <div class="filtro subtitulo">
       
       <ul class="nav">
@@ -21,56 +21,69 @@
 
               <img v-if="mascota[0]" class="animal imgmascota" src="../../assets/img/dog_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/dog_true.png">
-              Canino
+              <span v-if="mascota[0]" > Canino </span>
+              <span v-else style="color:red"> Canino </span>
             </button>
           
             <button class="" id="Felino" @click="Tipo('Felino')">
             
               <img v-if="mascota[1]" class="animal imgmascota" src="../../assets/img/cat_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/car_true.png">
-              Felino
+              <span v-if="mascota[1]" > Felino </span>
+              <span v-else style="color:red"> Felino </span>
             </button>
           
             <button class="" id="Bovino" @click="Tipo('Bovino')">
             
               <img v-if="mascota[2]" class="animal imgmascota" src="../../assets/img/cow_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/cow_true.png">
-              Bovino
+              <span v-if="mascota[2]" > Bovino </span>
+              <span v-else style="color:red"> Bovino </span>
             </button>
           
             <button class="" id="Pez" @click="Tipo('Pez')">
             
               <img v-if="mascota[3]" class="animal imgmascota" src="../../assets/img/fish_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/fish_true.png">
-              Pez
+              <span v-if="mascota[3]" > Pez </span>
+              <span v-else style="color:red"> Pez </span>
+              
             </button>
           
             <button class="" id="Roedor" @click="Tipo('Roedor')">
             
               <img v-if="mascota[4]" class="animal imgmascota" src="../../assets/img/hamster_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/hamster_true.png">
-              Roedor
+              <span v-if="mascota[4]" > Roedor </span>
+              <span v-else style="color:red"> Roedor </span>
+              
             </button>
           
             <button class="" id="Ave" @click="Tipo('Ave')">
             
               <img v-if="mascota[5]" class="animal imgmascota" src="../../assets/img/bird_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/bird_true.png">
-              Ave
+              <span v-if="mascota[5]" > Ave </span>
+              <span v-else style="color:red"> Ave </span>
+              
             </button>
           
             <button class="" id="Equino" @click="Tipo('Equino')">
             
               <img v-if="mascota[6]" class="animal imgmascota" src="../../assets/img/horse_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/horse_true.webp">
-              Equino
+              <span v-if="mascota[6]" > Equino </span>
+              <span v-else style="color:red"> Equino </span>
+              
             </button>
           
             <button class="" id="Otro" @click="Tipo('Otro')">
             
               <img v-if="mascota[7]" class="animal imgmascota" src="../../assets/img/other_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/other_true.webp">
-              Otro
+              <span v-if="mascota[7]" > Otro </span>
+              <span v-else style="color:red"> Otro </span>
+              
             </button>
           </ul>
         
@@ -91,7 +104,7 @@
             
             <h2 v-else class="texto">
               <span class="fa fa-info-circle"></span>
-              Es Esteril?
+              Es Estéril?
             </h2>
 
           </button>
@@ -229,56 +242,64 @@
 
               <img v-if="mascota[0]" class="animal imgmascota" src="../../assets/img/dog_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/dog_true.png">
-              Canino
+              <span v-if="mascota[0]" > Canino </span>
+              <span v-else style="color:red"> Canino </span>
             </button>
           
             <button class="" id="PFelino" @click="Tipo('Felino')">
             
               <img v-if="mascota[1]" class="animal imgmascota" src="../../assets/img/cat_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/car_true.png">
-              Felino
+              <span v-if="mascota[1]" > Felino </span>
+              <span v-else style="color:red"> Felino </span>
             </button>
           
             <button class="" id="PBovino" @click="Tipo('Bovino')">
             
               <img v-if="mascota[2]" class="animal imgmascota" src="../../assets/img/cow_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/cow_true.png">
-              Bovino
+              <span v-if="mascota[2]" > Bovino </span>
+              <span v-else style="color:red"> Bovino </span>
             </button>
           
             <button class="" id="PPez" @click="Tipo('Pez')">
             
               <img v-if="mascota[3]" class="animal imgmascota" src="../../assets/img/fish_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/fish_true.png">
-              Pez
+              <span v-if="mascota[3]" > Pez </span>
+              <span v-else style="color:red"> Pez </span>
             </button>
           
             <button class="" id="PRoedor" @click="Tipo('Roedor')">
             
               <img v-if="mascota[4]" class="animal imgmascota" src="../../assets/img/hamster_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/hamster_true.png">
-              Roedor
+              <span v-if="mascota[4]" > Roedor </span>
+              <span v-else style="color:red"> Roedor </span>
             </button>
           
             <button class="" id="PAve" @click="Tipo('Ave')">
             
               <img v-if="mascota[5]" class="animal imgmascota" src="../../assets/img/bird_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/bird_true.png">
-              Ave
+              <span v-if="mascota[5]" > Ave </span>
+              <span v-else style="color:red"> Ave </span>
             </button>
           
             <button class="" id="PEquino" @click="Tipo('Equino')">
             
               <img v-if="mascota[6]" class="animal imgmascota" src="../../assets/img/horse_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/horse_true.webp">
-              Equino
+              <span v-if="mascota[6]" > Equino </span>
+              <span v-else style="color:red"> Equino </span>
             </button>
           
             <button class="" id="POtro" @click="Tipo('Otro')">
             
               <img v-if="mascota[7]" class="animal imgmascota" src="../../assets/img/other_96px.png">
               <img v-else class="animal imgmascota" src="../../assets/img/other_true.webp">
-              Otro
+              <span v-if="mascota[7]" > Otro </span>
+              <span v-else style="color:red"> Otro </span>
             </button>
           </div>
 
@@ -417,6 +438,8 @@
           </div>
           <!-- <input type="submit" class="btn-submit" value="Suscribirse"> -->
         </div>
+
+        
       </div>
     </div>
     
@@ -556,25 +579,46 @@ import navbar from "@/components/navbar";
 import axios from "axios";
 
 import msgSuccess from "@/components/apliAdopcion/msgSuccessApli"
+
 import { useStore } from 'vuex'
 import { computed } from 'vue'
 
 var datos = "";
 var valor = 1;
 export default {
+  setup(){
+    //VueX config
+    const store = useStore()
+    //States
+    const msgVisible = computed(() => store.state.addFormApl.msgVisible)
+    const params = computed(() => store.state.filterPets.filter)
+    //Functions
+    function updateFilter(params) {
+      store.dispatch("filterPets/updateFilter",params);
+    }
+    function deleteFilter(params) {
+      store.dispatch("filterPets/deleteFilter");
+    }
+    
+    return {
+      params,
+      updateFilter,
+      deleteFilter,
+      msgVisible,
+    }
+  },
   data() {
     return {
       Listamascota: null,
       pagina: null,
       size: 10,
       totalPages: 0,
-      tipos: [],
       esteril: "",
       sexo: "",
-      tamano:[],
       vacunas:"",
-      mascota:[true,true,true,true,true,true,true,true],
-      peso:[true,true,true,true,true]
+      mascota:[],
+      peso:[],
+      txtParam:"",
     };
   },
   components: {
@@ -582,14 +626,15 @@ export default {
     msgSuccess,
     
   },
-  setup(){
-    //VueX config
-    const store = useStore()
-    //States
-    const msgVisible = computed(() => store.state.addFormApl.msgVisible)
-    //FUnctions
-    return{
-      msgVisible,
+  watch:{
+        
+    "$route":{
+      immediate: true,
+      handler(newVal){
+        if(newVal.name != "Adopta"){
+          this.deleteFilter()
+        } 
+      }
     }
   },
   methods: {
@@ -605,7 +650,6 @@ export default {
           this.esteril = 'Si';
           break;
       }
-      // console.log(this.esteril);
     },
     Sexo() {
       switch (this.sexo) {
@@ -619,7 +663,6 @@ export default {
           this.sexo = "Hembra";
           break;
       }
-      // console.log(this.sexo);
     },
     Vacunar() {
       switch (this.vacunas) {
@@ -633,17 +676,11 @@ export default {
           this.vacunas = "true";
           break;
       }
-      // console.log(this.vacunas);
     },
     Tipo(animal) {
-      // console.log("hola");
-      var tip = document.getElementById(`${animal}`);
-      if (tip.className=='') tip.classList.add('rojo');
-      else tip.classList.remove('rojo');
+      
 
-      tip = document.getElementById(`P${animal}`);
-      if (tip.className=='') tip.classList.add('rojo');
-      else tip.classList.remove('rojo');
+      
       
       switch (animal) {
         case 'Canino':
@@ -716,7 +753,6 @@ export default {
     },
     gotoPage(idPage) {
       this.$router.push("/adopta/" + idPage);
-      //console.log("Boton")
     },
     gobackPage() {
       if (this.pagina == 1) {
@@ -757,7 +793,6 @@ export default {
         return nombre;
       } else {
         datos = nombre.split(" ");
-        // console.log(datos);
         return `${datos[0]} ${datos[1]}`;
       }
     },
@@ -776,7 +811,6 @@ export default {
       }
     },
     filtro() {
-      // console.log("Abrir filtro");
 
       var btnAbrirPopup = document.getElementById('btn-abrir-popup'),
         overlay = document.getElementById('overlay'),
@@ -789,7 +823,6 @@ export default {
       tex.classList.add('bloquear');
     },
     salir(){
-      // console.log("hola");
       var btnAbrirPopup = document.getElementById('btn-abrir-popup'),
         overlay = document.getElementById('overlay'),
         popup = document.getElementById('popup'),
@@ -799,7 +832,7 @@ export default {
       overlay.classList.remove('active');
       popup.classList.remove('active');
     },
-    filtrar: function(){
+    tranformToParam(){
       // Tratamiento de las entradas
       valor = 1;
       let tiposP = "";
@@ -808,25 +841,25 @@ export default {
       let tamanoP= "";
       let vacunasP = "";
       let a = 0;
-      this.tipos = [];
-      this.tamano = [];
-      if (!this.mascota[0]) this.tipos[a++] = "Canino";
-      if (!this.mascota[1]) this.tipos[a++] = "Felino";
-      if (!this.mascota[2]) this.tipos[a++] = "Bovino";
-      if (!this.mascota[3]) this.tipos[a++] = "Pez";
-      if (!this.mascota[4]) this.tipos[a++] = "Roedor";
-      if (!this.mascota[5]) this.tipos[a++] = "Ave";
-      if (!this.mascota[6]) this.tipos[a++] = "Equino";
-      if (!this.mascota[7]) this.tipos[a++] = "Otro";
+      var tipos = [];
+      var tamano = [];
+      if (!this.mascota[0]) tipos[a++] = "Canino";
+      if (!this.mascota[1]) tipos[a++] = "Felino";
+      if (!this.mascota[2]) tipos[a++] = "Bovino";
+      if (!this.mascota[3]) tipos[a++] = "Pez";
+      if (!this.mascota[4]) tipos[a++] = "Roedor";
+      if (!this.mascota[5]) tipos[a++] = "Ave";
+      if (!this.mascota[6]) tipos[a++] = "Equino";
+      if (!this.mascota[7]) tipos[a++] = "Otro";
       a=0;
-      if (!this.peso[0]) this.tamano[a++] = "Chico (menos de 5 Kg)";
-      if (!this.peso[1]) this.tamano[a++] = "Pequeño (de 6 a 14 Kg)";
-      if (!this.peso[2]) this.tamano[a++] = "Mediano (de 15 a 25 Kg)";
-      if (!this.peso[3]) this.tamano[a++] = "Grande (de 26 a 50 kg)";
-      if (!this.peso[4]) this.tamano[a++] = "Enorme (mayor a 50 kg)";
+      if (!this.peso[0]) tamano[a++] = "Chico (menos de 5 Kg)";
+      if (!this.peso[1]) tamano[a++] = "Pequeño (de 6 a 14 Kg)";
+      if (!this.peso[2]) tamano[a++] = "Mediano (de 15 a 25 Kg)";
+      if (!this.peso[3]) tamano[a++] = "Grande (de 26 a 50 kg)";
+      if (!this.peso[4]) tamano[a++] = "Enorme (mayor a 50 kg)";
       
-      if(!this.tipos.length == 0){
-        tiposP = "&tipo="+this.tipos.toString();
+      if(!tipos.length == 0){
+        tiposP = "&tipo="+tipos.toString();
       }
       if(!this.esteril == ""){
         esterilP = "&esteril="+this.esteril;
@@ -834,48 +867,71 @@ export default {
       if(!this.sexo == ""){
         sexoP = "&sexo="+this.sexo;
       }
-      if(!this.tamano.length == 0){
-        tamanoP = "&tamano="+this.tamano.toString();
+      if(!tamano.length == 0){
+        tamanoP = "&tamano="+tamano.toString();
       }
       if(!this.vacunas == ""){
         vacunasP = "&vacunada="+this.vacunas;
       }
-      this.pagina = this.$route.params.idPage;
-      //axios.get("http://localhost:8080/api/pet/consultaFil?page="+(this.pagina-1)+"&size="+this.size
-                //+tiposP+esterilP+sexoP+tamanoP+vacunasP).then( data =>{
-        axios
-        .get(
-          "https://unpetlife.herokuapp.com/api/pet/consultaFil?page=" +
-            (this.pagina - 1) +
-            "&size=" +
-            this.size + tiposP+esterilP+sexoP+tamanoP+vacunasP
-        )
-        .then((data) => {
-          this.Listamascota = data.data.content;
-          this.totalPages = data.data.totalPages;
-      });
+      this.txtParam = tiposP+esterilP+sexoP+tamanoP+vacunasP;
     },
-    limpiar:function(){
-
-      this.tipos= [];
-      this.esteril= "";
-      this.sexo= "";
-      this.tamano=[];
-      this.vacunas="";
+    filtrar: function(){
+      this.tranformToParam();
       this.pagina = this.$route.params.idPage;
-      this.mascota=[true,true,true,true,true,true,true,true];
-      this.peso=[true,true,true,true,true]
-      
-      while(document.querySelector('.rojo')!=null){
-        document.querySelector('.rojo').classList.remove('rojo');
-      }
-      //axios.get("http://localhost:8080/api/pet/consultaFil?page="+(this.pagina-1)+"&size="+this.size).then( data =>{
       axios
         .get(
           "https://unpetlife.herokuapp.com/api/pet/consultaFil?page=" +
             (this.pagina - 1) +
             "&size=" +
-            this.size
+            this.size + this.txtParam
+        )
+        .then((data) => {
+          //Verifica no desborde en paginacion
+          let maxPage = data.data.totalPages;
+          if(this.pagina > maxPage){
+              this.gotoPage(maxPage)
+          }
+
+          let filter = {
+              sexo : this.sexo,
+              vacunas : this.vacunas,
+              esteril : this.esteril,
+              mascota : this.mascota,
+              peso : this.peso,
+          };
+          this.updateFilter(filter)
+
+          this.Listamascota = data.data.content;
+          this.totalPages = data.data.totalPages;
+
+
+      });
+    },
+    limpiar:function(){
+
+      this.pagina = this.$route.params.idPage;
+
+      this.deleteFilter()
+      //Load using vueX
+      this.sexo= this.params.sexo;
+      this.vacunas=this.params.vacunas;
+      this.esteril= this.params.esteril;
+      this.mascota=this.params.mascota;
+      this.peso=this.params.peso
+      this.tranformToParam()
+
+
+      
+      while(document.querySelector('.rojo')!=null){
+        document.querySelector('.rojo').classList.remove('rojo');
+      }
+
+      axios
+        .get(
+          "https://unpetlife.herokuapp.com/api/pet/consultaFil?page=" +
+            (this.pagina - 1) +
+            "&size=" +
+            this.size + this.txtParam
         )
         .then((data) => {
           this.Listamascota = data.data.content;
@@ -884,19 +940,16 @@ export default {
     }
   },
   mounted: function () {
+    //Load values of variables
     this.pagina = this.$route.params.idPage;
-    //axios.get("http://localhost:8080/api/pet/consultaFil?page="+(this.pagina-1)+"&size="+this.size).then( data =>{
-    axios
-      .get(
-        "https://unpetlife.herokuapp.com/api/pet/consultaFil?page=" +
-          (this.pagina - 1) +
-          "&size=" +
-          this.size
-      )
-      .then((data) => {
-        this.Listamascota = data.data.content;
-        this.totalPages = data.data.totalPages;
-      });
+    //Load using vueX
+    this.sexo= this.params.sexo;
+    this.vacunas=this.params.vacunas;
+    this.esteril= this.params.esteril;
+    this.mascota=this.params.mascota;
+    this.peso=this.params.peso
+
+    this.filtrar()
   },
 };
 </script>

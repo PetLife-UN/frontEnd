@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import axios from "axios";
 import addFormApli from "./modules/addFormApli";
 import addPet from "./modules/addPet";
+import filterPet from './modules/filterPet';
 
 export default createStore({
 	state: {
@@ -173,5 +174,6 @@ export default createStore({
 	modules:{
 		addFormApl : addFormApli,
 		addPets : addPet,
+		filterPets : filterPet,
 	}
 });
