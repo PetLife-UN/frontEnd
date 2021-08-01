@@ -758,6 +758,7 @@ export default {
       if (this.pagina == 1) {
         return;
       }
+      valor = 1;
       this.pagina = this.pagina - 1;
       this.$router.push("/adopta/" + this.pagina);
     },
@@ -765,6 +766,7 @@ export default {
       if (this.pagina == this.totalPages) {
         return;
       }
+      valor = 1;
       this.pagina = this.pagina - -1;
       this.$router.push("/adopta/" + this.pagina);
     },
@@ -908,7 +910,6 @@ export default {
       });
     },
     limpiar:function(){
-
       this.pagina = this.$route.params.idPage;
 
       this.deleteFilter()
