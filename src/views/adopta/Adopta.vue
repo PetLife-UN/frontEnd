@@ -716,12 +716,14 @@ export default {
     },
     gotoPage(idPage) {
       this.$router.push("/adopta/" + idPage);
+      valor = 1;
       //console.log("Boton")
     },
     gobackPage() {
       if (this.pagina == 1) {
         return;
       }
+      valor = 1;
       this.pagina = this.pagina - 1;
       this.$router.push("/adopta/" + this.pagina);
     },
@@ -729,6 +731,7 @@ export default {
       if (this.pagina == this.totalPages) {
         return;
       }
+      valor = 1;
       this.pagina = this.pagina - -1;
       this.$router.push("/adopta/" + this.pagina);
     },
@@ -856,7 +859,7 @@ export default {
       });
     },
     limpiar:function(){
-
+      valor = 1;
       this.tipos= [];
       this.esteril= "";
       this.sexo= "";
