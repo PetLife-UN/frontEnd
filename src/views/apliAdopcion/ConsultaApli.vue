@@ -169,10 +169,6 @@ export default {
             true:"#4B8BDD",
             false:"#d9534f",
         }
-        var QUERY = {
-            "pag":1,
-            "vis":true,
-        }
         return{
             ListaApli:null,
             infoApli,
@@ -185,7 +181,7 @@ export default {
             FIL_VIS,
             FIL_VIS_INV,
             boton:0,
-            QUERY,
+            QUERY:{},
         }
     },
     setup(){
@@ -202,6 +198,7 @@ export default {
             AplicaInfoEnviar.aplicationInfo = apli
         };
         const dropbtn = ref(null);
+
         return{
             popupTriggers,
             AplicaInfoEnviar,
@@ -218,15 +215,19 @@ export default {
         "$route.query.pag":{
             immediate: true,
             handler(newVal){
+                console.log(this.$route)
                 if(!isNaN(newVal) && newVal !== undefined){
                     this.QUERY.pag = newVal
-                    
                 }else{
-                    this.QUERY = {
-                        "pag":1,
-                        "vis":true,
+                    if(this.$route.path == "/profile/consultaapli"){
+                        this.QUERY = {
+                            "pag":1,
+                            "vis":true,
+                        }
+                        this.boton = 0;
+                        this.$router.push({ path: "/profile/consultaapli"})
                     }
-                    this.$router.replace({ path: "/profile/consultaapli"})
+                    
                 }
                 this.updateValues()
             }
@@ -235,6 +236,7 @@ export default {
         "$route.query.vis":{
             immediate: true,
             handler(newVal){
+                console.log(this.$route)
                 if ( newVal == "true" || newVal == "false") {
                     this.QUERY.vis = newVal
                     if(newVal == "true"){
@@ -243,11 +245,14 @@ export default {
                         this.boton = 1;
                     }
                 }else{
-                    this.QUERY = {
-                        "pag":1,
-                        "vis":true,
+                    if(this.$route.path == "/profile/consultaapli"){
+                        this.QUERY = {
+                            "pag":1,
+                            "vis":true,
+                        }
+                        this.boton = 0;
+                        this.$router.push({ path: "/profile/consultaapli"})
                     }
-                    this.$router.push({ path: "/profile/consultaapli"})
                 }
                 this.updateValues()
                 
@@ -296,7 +301,6 @@ export default {
             tex.classList.add('bloquear');
         },
         updateValues(){
-            console.log(this.QUERY)
             //Load token
             const token = localStorage.token;
             //Pagination variables Query
@@ -309,8 +313,9 @@ export default {
                 },
             })
             .then( data =>{
-                //Verificar que no exista desborda en paginacion
+                //Verificar que no exista desborde en paginacion
                 let maxPage = data.data.totalPages;
+                let current = this.QUERY.pag ;
                 if(this.QUERY.pag > maxPage){
                     this.QUERY.pag = maxPage;
                     this.$router.push({path:"/profile/consultaapli", query:this.QUERY})
@@ -328,6 +333,11 @@ export default {
         }
     },
     mounted:function(){
+        //Set default values QUERY
+        this.QUERY = {
+            "pag":this.$route.query.pag||1,
+            "vis":this.$route.query.vis||true,
+        }
         this.updateValues();
         onClickOutside(this.dropbtn, (event)=>this.closeDrop());
     },
