@@ -113,7 +113,7 @@
                                 <div class = "info_contacto">
                                     <div class = "row">
                                         <div class = "col-auto ico_contact">
-                                            <img v-bind:src="ICON_CANAL[aplicationInfo.communication]">
+                                            <img v-bind:src="ICON_CANAL[aplicationInfo.communication]||ICON_CANAL_DEFAULT">
                                         </div>
                                         <div class = "col-auto info_contact">
                                             <span class = "info_title">Canal de comunicación:</span>
@@ -200,10 +200,11 @@ export default {
         const ico = ICON_TIPO[this.aplicationInfo.pet.tipo] || ICON_DEFAULT
         const datePublication = this.aplicationInfo.date.split(/[:,T,\-,\\.]+/)
         const visible = this.aplicationInfo.publicationVisible;
+        const ICON_CANAL_DEFAULT = require('../../assets/icons/android_126px.png');
         const ICON_CANAL = {
-            'Telefono Fijo':require('../../assets/icons/phone_126px.png'),
+            'Teléfono Fijo':require('../../assets/icons/phone_126px.png'),
             'Email':require('../../assets/icons/email_126px.png'),
-            'Telefono celular':require('../../assets/icons/android_126px.png'),
+            'Teléfono celular':require('../../assets/icons/android_126px.png'),
         }
         const COLOR_TIPO = {
             true:"#4B8BDD",
@@ -221,6 +222,7 @@ export default {
             ico,
             activePage:"contacto",
             ICON_CANAL,
+            ICON_CANAL_DEFAULT,
             COLOR_TIPO,
             modifyConfig:false,
         }
@@ -252,6 +254,8 @@ export default {
         },
         exitApli(){
             const token = localStorage.token;
+            
+            document.getElementById('scrollbar').classList.remove('bloquear');
             if(this.modifyConfig){
                 const json ={
 					"id" : this.aplicationInfo.id,
@@ -281,7 +285,7 @@ export default {
 
 }
 </script>
-<style >
+<style scoped>
     .popup-infoApli{
         position: fixed;
         top: 0;

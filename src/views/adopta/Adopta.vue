@@ -1,11 +1,10 @@
-<template>
+<template lang="">
   <navbar />
-
   <div class="espacio_trabajo">
     <div class="subtitulo">
       <h1 class="titulo_home texto_centrado">Adopción de mascotas</h1>
     </div>
-    
+    <msgSuccess v-if="msgVisible" />
     <div class="filtro subtitulo">
       
       <ul class="nav">
@@ -485,7 +484,7 @@
               class="btn btn-lg button_adopta"
               v-on:click="verInfo(mascota.id)"
             >
-              Ver mas
+              Ver más
             </button>
           </div>
         </div>
@@ -556,7 +555,10 @@
 import navbar from "@/components/navbar";
 import axios from "axios";
 
-const actual = window.location.pathname.split("/");
+import msgSuccess from "@/components/apliAdopcion/msgSuccessApli"
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+
 var datos = "";
 var valor = 1;
 export default {
@@ -577,6 +579,18 @@ export default {
   },
   components: {
     navbar,
+    msgSuccess,
+    
+  },
+  setup(){
+    //VueX config
+    const store = useStore()
+    //States
+    const msgVisible = computed(() => store.state.addFormApl.msgVisible)
+    //FUnctions
+    return{
+      msgVisible,
+    }
   },
   methods: {
     Esterilidad(){
@@ -698,7 +712,7 @@ export default {
       }
     },
     verInfo(idPet) {
-      this.$router.push("/Info_mascota/" + idPet);
+      this.$router.push("/info-mascota/" + idPet);
     },
     gotoPage(idPage) {
       this.$router.push("/adopta/" + idPage);
@@ -787,6 +801,7 @@ export default {
     },
     filtrar: function(){
       // Tratamiento de las entradas
+      valor = 1;
       let tiposP = "";
       let esterilP = "";
       let sexoP= "";

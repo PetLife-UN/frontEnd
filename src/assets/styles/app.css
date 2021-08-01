@@ -370,6 +370,10 @@ template {
   text-transform: capitalize;
 }
 
+.no-visible {
+  display: none;
+}
+
 /** Media Queries **/
 html {
   font-size: 62.5%;
@@ -404,9 +408,9 @@ body::-webkit-scrollbar:horizontal {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #424242;
+  background-color: #64B8FF;
   border-radius: 5rem;
-  border: 2px solid #424242;
+  border: 2px solid #AEAEAE;
 }
 
 .bloquear {
@@ -809,6 +813,89 @@ p {
   }
 }
 
+.espacio_trabajo .subtitulo .titulo_cuidados {
+  font-size: 2.2rem;
+  color: #6FABF9;
+  font-family: "Merienda", cursive;
+  font-weight: 600;
+  padding: 2rem;
+}
+
+@media (min-width: 600px) {
+  .espacio_trabajo .subtitulo .titulo_cuidados {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .espacio_trabajo .subtitulo .titulo_cuidados {
+    font-size: 2.7rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .espacio_trabajo .subtitulo .titulo_cuidados {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .espacio_trabajo .subtitulo .titulo_cuidados {
+    font-size: 3.4rem;
+  }
+}
+
+.espacio_trabajo .mostrar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.espacio_trabajo .mostrar .botino {
+  display: flex;
+  background-color: white;
+  color: #6FABF9;
+  margin: 1rem;
+  padding: .5rem;
+  border-radius: 5rem;
+  font-size: 2.2rem;
+  color: #828282;
+  font-family: "Merienda", cursive;
+  font-weight: 600;
+}
+
+.espacio_trabajo .mostrar button {
+  background-color: white;
+  margin: 0rem;
+  border: none;
+  padding: 1.2rem 2rem;
+  border-radius: 5rem;
+  font-size: 2rem;
+  color: #55C7E7;
+  font-family: "Merienda", cursive;
+  font-weight: 600;
+}
+
+.espacio_trabajo .mostrar .color {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#64b8ff+0,54c8e5+46,64b8ff+100 */
+  background: #64b8ff;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #64b8ff 0%, #54c8e5 46%, #64b8ff 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64b8ff', endColorstr='#64b8ff',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+  color: white;
+}
+
+.espacio_trabajo .tres_mascotas {
+  margin-bottom: 3rem;
+}
+
 .espacio_trabajo .tres_mascotas .vista {
   width: 100%;
   margin-bottom: 2rem;
@@ -1007,6 +1094,7 @@ p {
   .espacio_trabajo .tres_mascotas {
     justify-content: space-between;
     margin: auto;
+    margin-bottom: 3rem;
   }
   .espacio_trabajo .tres_mascotas .vista {
     flex: 0 0 calc( 50% - 0rem);
@@ -1365,7 +1453,7 @@ p {
 }
 
 .espacio_trabajo .filtro .nav .peso:hover > .filtro_peso button:hover {
-  color: #FF1500;
+  color: #4B8BDD;
 }
 
 .espacio_trabajo .filtro .nav .peso:hover > .filtro_peso .rojo {
@@ -1373,7 +1461,7 @@ p {
 }
 
 .espacio_trabajo .filtro .nav .peso:hover > .filtro_peso .rojo:hover {
-  color: #656565;
+  color: #FF1500;
 }
 
 .espacio_trabajo .filtro .nav .boton {
@@ -1874,6 +1962,242 @@ p {
   margin-top: 0;
   padding-left: 7rem;
   padding-right: 7rem;
+}
+
+.espacio_trabajo .cuidados {
+  display: grid;
+  grid-gap: 2rem;
+  margin: 4rem auto;
+}
+
+@media (min-width: 453px) {
+  .espacio_trabajo .cuidados {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 800px) {
+  .espacio_trabajo .cuidados {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .espacio_trabajo .cuidados {
+    grid-template-columns: repeat(1, 1fr);
+    max-width: 100rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .espacio_trabajo .cuidados {
+    max-width: 130rem;
+  }
+}
+
+.espacio_trabajo .cuidados .cuidar {
+  display: grid;
+  grid-row-gap: 2rem;
+  background-color: white;
+  border: 5px solid #6FABF9;
+  border-radius: 100rem;
+  overflow: hidden;
+  grid-template-rows: min-content auto;
+}
+
+.espacio_trabajo .cuidados .cuidar .imagen {
+  border-radius: 50%;
+  max-width: 40rem;
+  max-height: 40rem;
+  overflow: hidden;
+  border: 2px solid #828282;
+}
+
+.espacio_trabajo .cuidados .cuidar .imagen:hover {
+  border: 5px solid #6FABF9;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+}
+
+.espacio_trabajo .cuidados .cuidar .consejos {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 3rem 10rem;
+  margin-bottom: auto;
+}
+
+.espacio_trabajo .cuidados .cuidar .consejos .mascota {
+  font-size: 3rem;
+  color: #4B8BDD;
+  font-family: "Gloria Hallelujah", cursive;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 550px) {
+  .espacio_trabajo .cuidados .cuidar .consejos .mascota {
+    font-size: 3.2rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .espacio_trabajo .cuidados .cuidar .consejos .mascota {
+    font-size: 3.4rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .espacio_trabajo .cuidados .cuidar .consejos .mascota {
+    font-size: 3.6rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .espacio_trabajo .cuidados .cuidar .consejos .mascota {
+    font-size: 4rem;
+  }
+}
+
+.espacio_trabajo .cuidados .cuidar .consejos p {
+  text-align: justify;
+  font-size: 1.8rem;
+  color: #656565;
+  font-family: "Merienda", cursive;
+  font-weight: 400;
+}
+
+@media (min-width: 550px) {
+  .espacio_trabajo .cuidados .cuidar .consejos p {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .espacio_trabajo .cuidados .cuidar .consejos p {
+    font-size: 2.2rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .espacio_trabajo .cuidados .cuidar .consejos p {
+    font-size: 2.6rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .espacio_trabajo .cuidados .izquierda {
+    grid-column-gap: 1rem;
+    grid-template-rows: 1fr;
+    grid-template-columns: 30rem auto;
+  }
+  .espacio_trabajo .cuidados .izquierda .consejos {
+    justify-content: space-evenly;
+    padding: 1rem 10rem 1rem 2rem;
+    margin-bottom: 0;
+  }
+  .espacio_trabajo .cuidados .izquierda .consejos p {
+    text-align: left;
+  }
+}
+
+@media (min-width: 1200px) {
+  .espacio_trabajo .cuidados .derecha {
+    grid-column-gap: 1rem;
+    grid-template-rows: 1fr;
+    grid-template-columns: auto 30rem;
+  }
+  .espacio_trabajo .cuidados .derecha .imagen {
+    grid-column: 2/3;
+  }
+  .espacio_trabajo .cuidados .derecha .consejos {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    justify-content: space-evenly;
+    padding: 1rem 2rem 1rem 10rem;
+    margin-bottom: 0;
+  }
+  .espacio_trabajo .cuidados .derecha .consejos p {
+    text-align: right;
+  }
+}
+
+.espacio_trabajo .no_mascotas {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5rem;
+  text-align: center;
+  border-radius: 10rem;
+  padding: 1rem 3rem 3rem;
+  background-color: white;
+  max-width: 90rem;
+  border: 5px solid #6FABF9;
+  overflow: hidden;
+}
+
+.espacio_trabajo .no_mascotas img {
+  margin: auto;
+  align-items: center;
+}
+
+@media (min-width: 650px) {
+  .espacio_trabajo .no_mascotas img {
+    max-width: 50rem;
+  }
+}
+
+.espacio_trabajo .no_mascotas h3 {
+  font-size: 2rem;
+  color: #656565;
+  font-family: "Merienda", cursive;
+  font-weight: 600;
+}
+
+@media (min-width: 500px) {
+  .espacio_trabajo .no_mascotas h3 {
+    font-size: 2.4rem;
+  }
+}
+
+@media (min-width: 700px) {
+  .espacio_trabajo .no_mascotas h3 {
+    font-size: 2.8rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .espacio_trabajo .no_mascotas h3 {
+    font-size: 3.3rem;
+  }
+}
+
+.espacio_trabajo .no_mascotas h4 {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: #AEAEAE;
+  font-family: "Gloria Hallelujah", cursive;
+  font-weight: 600;
+}
+
+@media (min-width: 500px) {
+  .espacio_trabajo .no_mascotas h4 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 700px) {
+  .espacio_trabajo .no_mascotas h4 {
+    font-size: 2.4rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .espacio_trabajo .no_mascotas h4 {
+    font-size: 2.8rem;
+  }
 }
 
 .selcion {
@@ -3142,7 +3466,7 @@ ul {
 }
 
 .info_mascota .informacion .datos .ultimos .esteril, .info_mascota .informacion .datos .ultimos .vacuna {
-  margin: 1rem auto 1rem 0;
+  margin: 1rem auto 1rem -1.4rem;
   align-self: center;
 }
 
