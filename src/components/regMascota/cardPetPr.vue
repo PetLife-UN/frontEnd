@@ -2,7 +2,7 @@
 
     <li >
         <ul class="cards" >
-            <a class="card" v-for="pet in pets" :key = "pet" v-on:click="goPet(pet.id)">
+            <a class="card_n" v-for="pet in pets" :key = "pet" v-on:click="goPet(pet.id)">
                 <img class="card__image" v-bind:src="pet.link_foto" v-bind:alt="pet.id" />
                 <div class="card__overlay">
                     <div class="card__header ">
@@ -17,7 +17,7 @@
             </a>
 
            
-            <a class="card" style="background:rgb(40,40,40,0.3); border:0;" v-on:click="goRegister()" >
+            <a class="card_n" style="background:rgb(40,40,40,0.3); border:0;" v-on:click="goRegister()" >
                 <img class="card__image__add" src="../../assets/icons/add_64px.png" />
                 <div class="card__overlay">
                     <div class="card__header_add" style= "background:rgb(240,240,240)">
@@ -93,7 +93,7 @@ export default {
 }
 
 
-.card {
+.card_n {
   position: relative;
   display: block;
   height: 100%;  
@@ -123,7 +123,7 @@ export default {
   transition: .2s ease-in-out;
 }
 
-.card:hover .card__overlay {
+.card_n:hover .card__overlay {
   transform: translateY(0);
 }
 
@@ -151,7 +151,7 @@ export default {
     border:0;
     transition: .2s ease-in-out;
 }
-.card:hover .card__header_add {
+.card_n:hover .card__header_add {
   transform: translateY(0);
 }
 .card__image__add{
