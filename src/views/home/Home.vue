@@ -117,11 +117,55 @@
                     <h3 class="mascota mayuscula">
                         canino
                     </h3>
-                    <p>
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <p style="font-family: 'Open Sans'; font-size: 22px;">
+                        Tener un amigo perruno implica una gran responsabilidad, a continuación se presentan ciertas recomendaciones:
                     </p>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/clean_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Corta su pelo y uñas cuando haga falta.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/pet_bowl_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Cuida su dieta con cantidad adecuada de alimento y agua fresca.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/love_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Trátalo con cariño y amor.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/vet_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Haz visitas regulares al veterinario.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="cuidar derecha">
@@ -133,12 +177,56 @@
                     <h3 class="mascota mayuscula">
                         felino
                     </h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. 
+                    <p style="font-family: 'Open Sans'; font-size: 22px; text-align:left;">
+                        Un gatito requiere varios cuidados de tu parte, las más importantes son:
                     </p>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/clean_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Ayúdalo con su aseo cepillandolo y cuidando de sus dientes.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/pet_bowl_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Mantén comidas regulares y equilibradas.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/love_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Trátalo con cariño y amor.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/vet_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Llévalo al veterinario cuando lo necesite.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             <div class="cuidar izquierda">
@@ -309,7 +397,8 @@ export default {
 
 </script>
 <style>
-
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+    
     .info_cuida_mascota{
         background-color: rgb(54, 54, 54);
         margin-bottom: -10px;
@@ -318,5 +407,15 @@ export default {
 
     .info_cuida_mascota .contenido{
         color:white;
+    }
+    .ico_tip{
+        width:70px;
+    }
+    .tips_text{
+        font-family: 'Open Sans';
+        font-size: 18px;
+        font-weight: 600;
+        color:rgb(83, 83, 83);
+        
     }
 </style>

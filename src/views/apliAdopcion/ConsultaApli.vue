@@ -313,13 +313,22 @@ export default {
             .then( data =>{
                 //Verificar que no exista desborde en paginacion
                 let maxPage = data.data.totalPages;
-                if(this.QUERY.pag > maxPage){
-                    this.QUERY.pag = maxPage;
+                if(data.data.totalElements > 0){
+                    if(this.QUERY.pag > maxPage){
+                        this.QUERY.pag = maxPage;
+                        this.$router.push({path:"/profile/consultaapli", query:this.QUERY})
+                    }
+                    this.ListaApli = data.data.content;
+                    this.totalPages = data.data.totalPages;
+                    this.listSize = (this.ListaApli == null)?0:this.ListaApli.length;
+                }else{
+                    this.QUERY.pag = 1;
                     this.$router.push({path:"/profile/consultaapli", query:this.QUERY})
+                    this.ListaApli = data.data.content;
+                    this.totalPages = data.data.totalPages;
+                    this.listSize = (this.ListaApli == null)?0:this.ListaApli.length;
                 }
-                this.ListaApli = data.data.content;
-                this.totalPages = data.data.totalPages;
-                this.listSize = (this.ListaApli == null)?0:this.ListaApli.length;
+                
             })
             .catch((error) => {
                 var msg_back = error.response.data.message

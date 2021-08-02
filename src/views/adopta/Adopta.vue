@@ -514,6 +514,19 @@
       </div>
     </div>
 
+
+    <div class = "no_mascotas" v-if="noResult">
+      <img src="../../assets/img/dog_confused.png" >
+      <h3 class="title_notfound">
+        No se han encontrado resultados.
+      </h3>
+      <h4  class="subtitle_notfound">
+        No hay mascotas con los filtros seleccionados.
+      </h4>
+    </div>
+
+
+
     <nav class="paginas">
       <ul class="pagination justify-content-center">
         <li class="buttons_pagination" v-on:click="gobackPage()">
@@ -619,6 +632,7 @@ export default {
       mascota:[],
       peso:[],
       txtParam:"",
+      noResult:false,
     };
   },
   components: {
@@ -878,6 +892,7 @@ export default {
       this.txtParam = tiposP+esterilP+sexoP+tamanoP+vacunasP;
     },
     filtrar: function(){
+      this.noResult = false;
       this.tranformToParam();
       this.pagina = this.$route.params.idPage;
       axios
@@ -889,31 +904,40 @@ export default {
         )
         .then((data) => {
           //Verifica no desborde en paginacion
-          let maxPage = data.data.totalPages;
-          if(this.pagina > maxPage){
-              this.gotoPage(maxPage)
+          console.log(data.data)
+          console.log(data.data.totalElements)
+          if(data.data.totalElements > 0){
+            let maxPage = data.data.totalPages;
+            if(this.pagina > maxPage){
+                this.gotoPage(maxPage)
+            }
+
+            let filter = {
+                sexo : this.sexo,
+                vacunas : this.vacunas,
+                esteril : this.esteril,
+                mascota : this.mascota,
+                peso : this.peso,
+            };
+            this.updateFilter(filter)
+
+            this.Listamascota = data.data.content;
+            this.totalPages = data.data.totalPages;
+          }else{
+            this.noResult = true;
+            this.gotoPage(1)
+            this.Listamascota = data.data.content;
+            this.totalPages = data.data.totalPages;
           }
-
-          let filter = {
-              sexo : this.sexo,
-              vacunas : this.vacunas,
-              esteril : this.esteril,
-              mascota : this.mascota,
-              peso : this.peso,
-          };
-          this.updateFilter(filter)
-
-          this.Listamascota = data.data.content;
-          this.totalPages = data.data.totalPages;
+          
 
 
       });
     },
     limpiar:function(){
-      this.pagina = this.$route.params.idPage;
-
+      this.noResult = false;
       this.deleteFilter()
-      //Load using vueX
+      this.$router.push("/adopta/" + 1);
       this.sexo= this.params.sexo;
       this.vacunas=this.params.vacunas;
       this.esteril= this.params.esteril;
@@ -929,8 +953,7 @@ export default {
 
       axios
         .get(
-          "https://unpetlife.herokuapp.com/api/pet/consultaFil?page=" +
-            (this.pagina - 1) +
+          "https://unpetlife.herokuapp.com/api/pet/consultaFil?page=0" +
             "&size=" +
             this.size + this.txtParam
         )
@@ -938,6 +961,7 @@ export default {
           this.Listamascota = data.data.content;
           this.totalPages = data.data.totalPages;
       });
+      
     }
   },
   mounted: function () {

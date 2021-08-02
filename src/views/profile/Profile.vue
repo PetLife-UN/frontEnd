@@ -5,7 +5,7 @@
 	
 	<successPet v-if="msgVisible" />
 	<div class = "row g-0">
-		<div class = "col-6">
+		<div class = "col-lg-12 col-xl-6">
 			<div class="espacio_trabajo">
 				<div class ="subtitulo">
 					<h1 class="titulo_home texto_centrado">
@@ -93,7 +93,7 @@
 
 
 		</div>
-		<div class = "col-6">
+		<div class = "col-lg-12 col-xl-6">
 			<div class="espacio_trabajo">
 				<div class ="subtitulo">
 					<h1 class="titulo_home texto_centrado">

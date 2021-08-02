@@ -5,8 +5,8 @@
             <a class="card" v-for="pet in pets" :key = "pet" v-on:click="goPet(pet.id)">
                 <img class="card__image" v-bind:src="pet.link_foto" v-bind:alt="pet.id" />
                 <div class="card__overlay">
-                    <div class="card__header">
-                        <img class="card__thumb" v-bind:src="ICON_TIPO[pet.tipo]||ICON_DEFAULT" v-bind:alt="pet.id" />
+                    <div class="card__header ">
+                        <img class="card__thumb " v-bind:src="ICON_TIPO[pet.tipo]||ICON_DEFAULT" v-bind:alt="pet.id" />
                         <div class="card__header-text">
                             <h3 class="card__title">{{pet.nombre}}</h3>            
                             <span class="card__status">{{pet.edad}} años</span>
@@ -187,10 +187,10 @@ export default {
 
 .card__thumb {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;      
+  width: 50px;
+  height: 50px;      
   border-radius: 50%;
-  margin:0;
+  margin:-20px;
   background: #dfdfdf;      
 }
 
