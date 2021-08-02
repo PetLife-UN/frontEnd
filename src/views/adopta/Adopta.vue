@@ -904,8 +904,6 @@ export default {
         )
         .then((data) => {
           //Verifica no desborde en paginacion
-          console.log(data.data)
-          console.log(data.data.totalElements)
           if(data.data.totalElements > 0){
             let maxPage = data.data.totalPages;
             if(this.pagina > maxPage){

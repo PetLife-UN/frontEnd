@@ -438,7 +438,6 @@ export default {
 			})
 			.then((data) => {
 				let pets = data.data;
-				console.log("tests")
 				if(pets.length > 0){
 					let a = (this.getRandomInt(pets.length));
 					let b = (this.getRandomInt(pets.length));
