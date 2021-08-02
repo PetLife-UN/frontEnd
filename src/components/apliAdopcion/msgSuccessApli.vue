@@ -19,7 +19,7 @@
                     <p style = "font-size:21px;">En los próximos días los cuidadores de <mark style="background:transparent; font-weight: 600;">{{petName}}</mark> se estarán comunicando para realizar el proceso adopción.</p>
                     <br>
                     <hr class="new1" style="color:#4B8BDD;">
-                    <p style = "font-size:18px;">Recuerda te pueden contactar por los siguientes medios:</p>
+                    <p style = "font-size:18px;">Recuerda que te pueden contactar por los siguientes medios:</p>
                     <br>
                     
                     <div class = "container_contact">

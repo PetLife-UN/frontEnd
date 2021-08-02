@@ -55,7 +55,7 @@
                             alt="error">
                         </div>
                         <div class ="Success_activacion" v-if="success_activacion">
-                            <p>Tu cuenta ha sido activada exitosamente</p>
+                            <p>Tu cuenta ha sido activada exitosamente.</p>
                             <h3>¡Te damos la Bienvenida a PetLife!</h3>
                         </div>
                         <div class ="Success_activacion" v-if="e_activacion">

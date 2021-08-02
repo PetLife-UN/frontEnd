@@ -378,7 +378,6 @@ export default {
 		esteril() {
 			const a1 = document.querySelector('#Ebar');
 			const a2 = document.querySelector('#Epercent');
-			// console.log(this.sterile);
 			switch (a2.innerHTML) {
 				case "No sé":
 					this.sterile="No";
@@ -386,12 +385,12 @@ export default {
 					a1.style.width = "0%";
 					break;
 				case "No":
-					this.sterile="Sí"
+					this.sterile="Si"
 					a2.innerHTML = "Sí";
 					a1.style.width = "100%";
 					break;
 				case "Sí":
-					this.sterile="Desconozco"
+					this.sterile="No"
 					a2.innerHTML = "No sé";
 					a1.style.width = "50%";
 					break;
@@ -463,16 +462,16 @@ export default {
 					if (data.status == 200) {
 						// console.log("correcto");
 						this.currentStatus= STATUS_INITIAL;
-						this.name = null;
-						this.age = null;
-						this.sterile = null;
-						this.type = null;
-						this.sex = null;
-						this.breed = null;
-						this.size = null;
-						this.vaccines = null;
-						this.message = null;
-						this.url = null; 
+						this.name = "";
+						this.age = "";
+						this.sterile= "Desconozco",
+						this.type = "";
+						this.sex = "";
+						this.breed = "";
+						this.size = "";
+						this.vaccines = "false";
+						this.message = "";
+						this.url = ""; 
 						this.alert = false;
 						this.error = "Error de conexión con el servidor";
 						this.addPetSol();

@@ -619,7 +619,7 @@ export default {
             this.$router.push('/adopta/1');
         },
         nameVal(value){
-            let regex = /^(?![\s.]+$)[a-zA-Z\s.áéíóú]*$/;
+            let regex = /^(?![\s.]+$)[a-zA-Z\s.áéíóúÁÉÍÓÚÜü]*$/;
             let nonSpace = value.replace(/\s/g, '');
             if((regex.test(value) && nonSpace.length > 3 && nonSpace.length < 151) || value.length === 0 ){
                 this.msg['name'] = ''

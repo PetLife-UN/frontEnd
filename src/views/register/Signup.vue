@@ -18,7 +18,7 @@
 <script>
 
 import navbar from "@/components/navbar"
-import menuSignup from "@/components/menuSignup"
+import menuSignup from "@/components/acceso/menuSignup"
 export default {
     name: "Signup",
     components:{

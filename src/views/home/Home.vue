@@ -95,7 +95,7 @@
                         
                     </div>
                     <div class="cboton">
-                        <button class="btn btn-lg button_adopta" v-on:click="verInfo(mascota.id)">Ver mas</button>
+                        <button class="btn btn-lg button_adopta" v-on:click="verInfo(mascota.id)">Ver más</button>
                     </div>
                 </div>
             </div>
@@ -117,11 +117,55 @@
                     <h3 class="mascota mayuscula">
                         canino
                     </h3>
-                    <p>
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <p style="font-family: 'Open Sans'; font-size: 22px;">
+                        Tener un amigo perruno implica una gran responsabilidad, a continuación se presentan ciertas recomendaciones:
                     </p>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/clean_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Corta su pelo y uñas cuando haga falta.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/pet_bowl_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Cuida su dieta con cantidad adecuada de alimento y agua fresca.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/love_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Trátalo con cariño y amor.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/vet_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Haz visitas regulares al veterinario.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="cuidar derecha">
@@ -133,12 +177,55 @@
                     <h3 class="mascota mayuscula">
                         felino
                     </h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. 
+                    <p style="font-family: 'Open Sans'; font-size: 22px; text-align:left;">
+                        Un gatito requiere varios cuidados de tú parte, los más importantes son:
                     </p>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/clean_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Ayúdalo con su aseo cepillándolo y cuidando de sus dientes.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/pet_bowl_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Mantén comidas regulares y equilibradas.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/love_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Trátalo con cariño y amor.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/vet_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Llévalo al veterinario cuando lo necesite.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             <div class="cuidar izquierda">
@@ -150,9 +237,55 @@
                     <h3 class="mascota mayuscula">
                         bovino
                     </h3>
-                    <p>
-                        Nullam quis maximus diam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras mollis diam dictum risus sollicitudin vestibulum. Proin nec pellentesque nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                   <p style="font-family: 'Open Sans'; font-size: 22px;">
+                        Las vacas, al igual que las personas, pueden estresarse por malas condiciones. Estas son algunas recomendaciones para su cuidado:
                     </p>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/field_64px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Espacios amplios de desplazamiento.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/pet_bowl_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Comida y agua fresca a su alcance siempre.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/love_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Trátala con cariño y amor.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/vet_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Establece un calendario de desparasitación.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="cuidar derecha">
@@ -164,10 +297,54 @@
                     <h3 class="mascota mayuscula">
                         pez
                     </h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. 
+                    <p style="font-family: 'Open Sans'; font-size: 22px; text-align:left;">
+                        A continuación se presentan algunos consejos para el cuidado de los peces en casa:
                     </p>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/aquarium_240px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Busca un acuario del tamaño adecuado.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/temperature_52px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Mantén al pez en su temperatura adecuada.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/water_52px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Mantén el agua limpia y renovada.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/vet_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Llévalo al veterinario cuando lo necesite.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="cuidar izquierda">
@@ -179,9 +356,55 @@
                     <h3 class="mascota mayuscula">
                         roedor
                     </h3>
-                    <p>
-                        Nullam quis maximus diam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras mollis diam dictum risus sollicitudin vestibulum. Proin nec pellentesque nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                    <p style="font-family: 'Open Sans'; font-size: 22px;">
+                        Los roedores domésticos son animales muy sociables, divertidos y excelentes mascotas. Algunas recomendaciones para el cuidado son:
                     </p>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/clean_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Mantén su jaula limpia.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/pet_bowl_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Cuida de su alimentación, las dietas pueden variar.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/love_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Trátalo con cariño y amor.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/vet_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Llévalo al veterinario cuando sea necesario.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="cuidar derecha">
@@ -193,10 +416,54 @@
                     <h3 class="mascota mayuscula">
                         ave
                     </h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. 
+                    <p style="font-family: 'Open Sans'; font-size: 22px; text-align:left;">
+                        El cuidado de un pájaro suele ser por lo general bastante fácil, a continuación se presentan algunas recomendaciones:
                     </p>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/feather_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Ten especial cuidado cuando se renueve su plumaje.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/pet_bowl_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Busca las semillas adecuadas para el tipo de ave.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/love_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Trátalo con cariño y amor.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/cage_64px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Busca una jaula adecuada y cómoda.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -208,9 +475,55 @@
                     <h3 class="mascota mayuscula">
                         Equino
                     </h3>
-                    <p>
-                        Nullam quis maximus diam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras mollis diam dictum risus sollicitudin vestibulum. Proin nec pellentesque nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                    <p style="font-family: 'Open Sans'; font-size: 22px;">
+                        Tener un caballo es una gran responsabilidad, necesitan de varios cuidados. Veamos algunos de sus cuidados básicos:
                     </p>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/barn_60px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Mantén limpio su bebedero y comedero.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/pet_bowl_128px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >La comida, el agua y la sal son esenciales.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/love_100px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Trátalo con cariño y amor.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "col-6">
+                            <div class = "row">
+                                <div class = "col-2">
+                                    <img class = "ico_tip" src = "../../assets/icons/field_64px.png">
+                                </div>
+                                <div class = "col-10">
+                                    <span class = "tips_text" >Espacios amplios de desplazamiento.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -309,7 +622,8 @@ export default {
 
 </script>
 <style>
-
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+    
     .info_cuida_mascota{
         background-color: rgb(54, 54, 54);
         margin-bottom: -10px;
@@ -318,5 +632,15 @@ export default {
 
     .info_cuida_mascota .contenido{
         color:white;
+    }
+    .ico_tip{
+        width:70px;
+    }
+    .tips_text{
+        font-family: 'Open Sans';
+        font-size: 18px;
+        font-weight: 600;
+        color:rgb(83, 83, 83);
+        
     }
 </style>

@@ -3,13 +3,13 @@ import Login from '../views/login/Login.vue'
 import Signup from '../views/register/Signup.vue'
 import Home from '../views/home/Home.vue'
 import Profile from '../views/profile/Profile.vue'
-import Rpassword from '../views/recover/Contraseña.vue'
-import Activate from '../views/recover/activate.vue'
+import Rpassword from '../views/recover/Contrasena.vue'
+import Activate from '../views/recover/Activate.vue'
 import User from '../views/user/User.vue'
 import AnimalReg from "../views/animalReg/AnimalReg.vue"
 import Adopta from '../views/adopta/Adopta.vue'
-import Info_mascota from '../views/adopta/Info_mascota.vue'
-import userPets from '../views/user/userPets.vue'
+import Info_mascota from '../views/adopta/InfoMascota.vue'
+import userPets from '../views/user/UserPets.vue'
 import ConsultaApli from '../views/apliAdopcion/ConsultaApli.vue' 
 import ApliAdopcion from '../views/apliAdopcion/ApliAdopcion.vue' 
 import store from '@/store/index';
@@ -90,7 +90,7 @@ const routes = [
     component: ApliAdopcion
   },
   {
-    path: '/profile/consultaapli/:numPage',
+    path: '/profile/consultaapli',
     name: 'ConsultaApli',
     component: ConsultaApli,
     meta: {
@@ -105,6 +105,8 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+
+
   scrollBehavior() {
     const id = 'app';
     const yOffset = -100; 
