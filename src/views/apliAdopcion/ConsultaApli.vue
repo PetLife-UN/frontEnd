@@ -1,135 +1,143 @@
 <template >
     <navbar/>
-
     
-    <div class="espacio_trabajo">
-        <div class="subtitulo">
-            <h2 class="titulo_home texto_centrado">
-                Solicitudes de Adopción
+    
+    <div class="espacio_trabajo" style="width:100%; margin-left:0px; margin-right:0;">
+        <div class="subtitulo " style="width:80%; margin: 0 auto;">
+            <h2 class="titulo_home texto_centrado mayuscula">
+                solicitudes de adopción
             </h2>        
         </div>
         
-        <div class = "botones">
+        <div class = "botones" style="width:80%; margin-left:10%;">
             <button type="button" class="btn button_volver" v-on:click="volver()">Volver al Usuario</button>
         </div>
-    
-    </div>
 
-    <div class = "container-fluid bg-light cuerpo_consultaApli">
-        <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" :updateValues = "updateValues"/>
-
-        <div class = "container ">
-            <div class = "container_search">
-
-                <span class ="subtitle_dropdown"> Mostrar publicaciones:  </span>
-                <div class="dropdown" ref="dropbtn">
-                   
-                    <button v-on:click="showDrop()" class="dropbtn" >{{FIL_VIS_INV[filtroVis]}}<img class = "arror_drop" src="../../assets/icons/expand_arrow_24px.png" ></button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <a v-on:click="changeVisFilter('Visibles')"> Visibles</a>
-                        <a v-on:click="changeVisFilter('Ocultas')">Ocultas</a>
-                        <a v-on:click="changeVisFilter('Todas')">Todas</a>
-                    </div>
-                </div>
-            </div>
+        <div class = "mostrar">
+            <div class="botino">
+                <button 
+                    id="activo" 
+                    class="mayuscula" 
+                    :class="color(0)"
+                    v-on:click="changeVisFilter('Visibles'); boton=0">
+                    visibles 
+                </button>
+                <button
+                    v-on:click="changeVisFilter('Ocultas'); boton=1"
+                    id="ocultas"
+                    :class="color(1)"
+                    class="mayuscula">
+                    ocultas
+                </button>
+            </div>    
         </div>
+  
+      <div class = "container-fluid bg-light cuerpo_consultaApli">
+            <infoApli v-if="popupTriggers.buttonTrigger" :TogglePopup = "()=>TogglePopup('buttonTrigger')" :aplicationInfo = "AplicaInfoEnviar.aplicationInfo" :updateValues = "updateValues"/>
 
-        <br>
-        <div class = "container">
-            <div class = "container_img_notresults" v-if="listSize==0">
-                <img src="../../assets/img/dog_confused.png" >
-                <p class="title_notfound">No se han encontrado resultados</p>
-                <p class="subtitle_notfound">Parece que no tienes solicitudes con esos parámetros</p>
-            </div>
-            <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
-                <p class="text_info_id_apli">Publicación #{{apli.id}}</p>
-                <div class = "lateral_bar_consultasol" v-bind:style="{ background: COLOR_TIPO[apli.publicationVisible] ||  COLOR_TIPO[true] }"></div>
-                <div class = "row g-0 content_consultasol ">
-                    <div class="col-5 col_infoapli">
-                        <br>
-                        <p><mark class="titulo_soli">Nombre: </mark>{{apli.name.substring(0,50)}}</p>
-                        <p><mark class="titulo_soli">Email: </mark>{{apli.email.substring(0,40)}}</p>
-                        <p><mark class="titulo_soli">Teléfono móvil: </mark>{{apli.movilNumber}}</p>
-                        <p v-if=" apli.telNumber != 'No aplica' "><mark class="titulo_soli">Teléfono Fijo: </mark>{{apli.telNumber}}</p>
-                        <p><mark class="titulo_soli">Familia de acuerdo: </mark> <img v-bind:src="ICON_TIPO[apli.familyAgreement]"></p>
-                    </div>
-                    <div class = "col-4 container_extra_info">
-                        <br>
-                        <p><mark class="titulo_soli">Canal comunicación: </mark>{{apli.communication}}</p>
-                        <p><mark class="titulo_soli">Edad:  </mark>{{apli.age}} años</p>
-                        <p><mark class="titulo_soli">Ubicación: </mark>{{apli.city}} ({{apli.department}})</p>
-                        <p><mark class="titulo_soli">Dirección: </mark>{{apli.address}}</p>
-                        <br>
-                        <button type="button" class="btn button_verinfo_apli" v-on:click="()=>TogglePopup('buttonTrigger',apli)">Información completa</button>
-                    </div>
-                    <div class = "col-3 ">
-                        <img class="card-img-top imagen_apli" v-bind:src="apli.pet.link_foto" v-bind:alt="apli.pet.id">
+            <br>
+            <div class = "container">
+                
+                <div class = "container_img_notresults" v-if="listSize==0">
+                    <img src="../../assets/img/dog_confused.png" >
+                    <p class="title_notfound">No se han encontrado resultados</p>
+                    <p class="subtitle_notfound">Parece que no tienes solicitudes con esos parámetros</p>
+                </div>
+                
+                <div class="row  g-0 mb-5 container_apli_info border"  v-for="apli in ListaApli" :key = "apli.id" >
+                    <p class="text_info_id_apli">Publicación #{{apli.id}}</p>
+                    <div class = "lateral_bar_consultasol" v-bind:style="{ background: COLOR_TIPO[apli.publicationVisible] ||  COLOR_TIPO[true] }"></div>
+                    <div class = "row g-0 content_consultasol ">
+                        <div class="col-5 col_infoapli">
+                            <br>
+                            <p><mark class="titulo_soli">Nombre: </mark>{{apli.name.substring(0,50)}}</p>
+                            <p><mark class="titulo_soli">Email: </mark>{{apli.email.substring(0,40)}}</p>
+                            <p><mark class="titulo_soli">Teléfono móvil: </mark>{{apli.movilNumber}}</p>
+                            <p v-if=" apli.telNumber != 'No aplica' "><mark class="titulo_soli">Teléfono Fijo: </mark>{{apli.telNumber}}</p>
+                            <p><mark class="titulo_soli">Familia de acuerdo: </mark> <img v-bind:src="ICON_TIPO[apli.familyAgreement]"></p>
+                        </div>
+                        <div class = "col-4 container_extra_info">
+                            <br>
+                            <p><mark class="titulo_soli">Canal comunicación: </mark>{{apli.communication}}</p>
+                            <p><mark class="titulo_soli">Edad:  </mark>{{apli.age}} años</p>
+                            <p><mark class="titulo_soli">Ubicación: </mark>{{apli.city}} ({{apli.department}})</p>
+                            <p><mark class="titulo_soli">Dirección: </mark>{{apli.address}}</p>
+                            <br>
+                            <button 
+                                type="button" 
+                                class="btn button_verinfo_apli" 
+                                @click="bloquear"
+                                v-on:click="()=>TogglePopup('buttonTrigger',apli)">
+                                Información completa
+                            </button>
+                        </div>
+                        <div class = "col-3 ">
+                            <img class="card-img-top imagen_apli" v-bind:src="apli.pet.link_foto" v-bind:alt="apli.pet.id">
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div> 
+            <br>
+            <br>
         </div> 
-        <br>
-        <br>
-    </div> 
-    
-    <div class="espacio_trabajo">
+
         <nav  class="paginas" v-if="listSize!=0">
-          <ul class="pagination justify-content-center">
-            <li class="buttons_pagination" v-on:click="gobackPage()">
-              <a class="page-link page-link-back" href="#">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-arrow-big-left"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M20 15h-8v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h8a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1z"
-                  ></path>
-                </svg>
-              </a>
-            </li>
+            <ul class="pagination justify-content-center">
+                <li class="buttons_pagination" v-on:click="gobackPage()">
+                <a class="page-link page-link-back" href="#">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-arrow-big-left"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                        d="M20 15h-8v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h8a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1z"
+                    ></path>
+                    </svg>
+                </a>
+                </li>
 
-            <li
-              class="page-item buttons_pagination"
-              v-for="page in parseInt(totalPages)"
-              :key="page"
-              v-on:click="gotoPage(page)">
+                <li
+                class="page-item buttons_pagination"
+                v-for="page in parseInt(totalPages)"
+                :key="page"
+                v-on:click="gotoPage(page)">
 
-              <a class="page-link page-link-numbers" href="#">
-                {{ page }}
-              </a>
-            </li>
+                <a class="page-link page-link-numbers" href="#">
+                    {{ page }}
+                </a>
+                </li>
 
-            <li class="buttons_pagination" v-on:click="gonextPage()">
-              <a class="page-link page-link-next" href="#">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-arrow-big-right"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z"
-                  ></path>
-                </svg>
-              </a>
-            </li>
-          </ul>
+                <li class="buttons_pagination" v-on:click="gonextPage()">
+                <a class="page-link page-link-next" href="#">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-arrow-big-right"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                        d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z"
+                    ></path>
+                    </svg>
+                </a>
+                </li>
+            </ul>
         </nav>
     </div>
     
@@ -165,7 +173,6 @@ export default {
             ListaApli:null,
             infoApli,
             buttonTrigger:false,
-            pagina:1,
             size:5,
             totalPages:0,
             ICON_TIPO,
@@ -173,7 +180,8 @@ export default {
             listSize:0,
             FIL_VIS,
             FIL_VIS_INV,
-            filtroVis:true,
+            boton:0,
+            QUERY:{},
         }
     },
     setup(){
@@ -190,6 +198,7 @@ export default {
             AplicaInfoEnviar.aplicationInfo = apli
         };
         const dropbtn = ref(null);
+
         return{
             popupTriggers,
             AplicaInfoEnviar,
@@ -201,68 +210,144 @@ export default {
         navbar,
         infoApli
     },
+    watch:{
+        
+        "$route.query.pag":{
+            immediate: true,
+            handler(newVal){
+                if(!isNaN(newVal) && newVal !== undefined){
+                    this.QUERY.pag = newVal
+                }else{
+                    if(this.$route.path == "/profile/consultaapli"){
+                        this.QUERY = {
+                            "pag":1,
+                            "vis":true,
+                        }
+                        this.boton = 0;
+                        this.$router.push({ path: "/profile/consultaapli"})
+                    }
+                    
+                }
+                this.updateValues()
+            }
+        },
+        
+        "$route.query.vis":{
+            immediate: true,
+            handler(newVal){
+                if ( newVal == "true" || newVal == "false") {
+                    this.QUERY.vis = newVal
+                    if(newVal == "true"){
+                        this.boton = 0;
+                    }else{
+                        this.boton = 1;
+                    }
+                }else{
+                    if(this.$route.path == "/profile/consultaapli"){
+                        this.QUERY = {
+                            "pag":1,
+                            "vis":true,
+                        }
+                        this.boton = 0;
+                        this.$router.push({ path: "/profile/consultaapli"})
+                    }
+                }
+                this.updateValues()
+                
+            }
+        },
+        
+    },
     methods:{
         volver(){
             this.$router.push("/profile")
         },
         gotoPage(idPage){
-            this.$router.push("/profile/consultaapli/"+idPage)
-            //console.log("Boton")
+            this.QUERY.pag = idPage;
+            this.$router.push({path:"/profile/consultaapli", query:this.QUERY})
         },
         gobackPage(){
-            if(this.pagina == 1){
+            if(this.QUERY.pag == 1){
                 return
             }
-            this.pagina =  this.pagina-1
-            this.$router.push("/profile/consultaapli/"+this.pagina)
+            this.QUERY.pag = this.QUERY.pag - 1;
+            this.$router.push({path:"/profile/consultaapli", query:this.QUERY})
+            
         },
         gonextPage(){
-            if(this.pagina == this.totalPages){
+            if(this.QUERY.pag == this.totalPages){
                 return
             }
-            this.pagina =  this.pagina - - 1
-            this.$router.push("/profile/consultaapli/"+this.pagina)
+            this.QUERY.pag = this.QUERY.pag - - 1;
+            //Escritura javaScript
+            this.$router.push({path:"/profile/consultaapli", query:this.QUERY})
         },
         changeVisFilter(filterVis){
-            this.filtroVis = this.FIL_VIS[filterVis]
-            this.updateValues();
-            document.getElementById("myDropdown").classList.remove("show");
+            this.QUERY.vis = this.FIL_VIS[filterVis]
+            this.$router.push({ path: "/profile/consultaapli",query:this.QUERY})
+        },
+        color(a) {
+            if(a == this.boton){
+                return "color";
+            }
+            else{
+                return "";
+            }
+        },
+        bloquear() {
+            var tex = document.getElementById('scrollbar');
+            tex.classList.add('bloquear');
         },
         updateValues(){
-            this.pagina = this.$route.params.numPage;
+            //Load token
             const token = localStorage.token;
+            //Pagination variables Query
+            let pag = this.QUERY.pag;
+            let vis = this.QUERY.vis;
             axios
-            //.get("http://localhost:8080/api/apply/getApplicationUserPage?deleted=false&visible="+(this.filtroVis)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
-            .get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?deleted=false&visible="+(this.filtroVis)+"&page="+(this.pagina-1)+"&size="+(this.size) ,{
+            .get("https://unpetlife.herokuapp.com/api/apply/getApplicationUserPage?deleted=false&visible="+(vis)+"&page="+(pag-1)+"&size="+(this.size) ,{
                 headers: {
                     'Authorization': `Bearer ${token}`
                 },
             })
             .then( data =>{
-                this.ListaApli = data.data.content;
-                this.totalPages = data.data.totalPages;
-                this.listSize = (this.ListaApli == null)?0:this.ListaApli.length;
+                //Verificar que no exista desborde en paginacion
+                let maxPage = data.data.totalPages;
+                if(data.data.totalElements > 0){
+                    if(this.QUERY.pag > maxPage){
+                        this.QUERY.pag = maxPage;
+                        this.$router.push({path:"/profile/consultaapli", query:this.QUERY})
+                    }
+                    this.ListaApli = data.data.content;
+                    this.totalPages = data.data.totalPages;
+                    this.listSize = (this.ListaApli == null)?0:this.ListaApli.length;
+                }else{
+                    this.QUERY.pag = 1;
+                    this.$router.push({path:"/profile/consultaapli", query:this.QUERY})
+                    this.ListaApli = data.data.content;
+                    this.totalPages = data.data.totalPages;
+                    this.listSize = (this.ListaApli == null)?0:this.ListaApli.length;
+                }
+                
             })
             .catch((error) => {
                 var msg_back = error.response.data.message
                 console.log(msg_back)
             });
-        },
-        showDrop() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        },
-        closeDrop(){
-            document.getElementById("myDropdown").classList.remove("show");
+            
+            
         }
-        
     },
     mounted:function(){
+        //Set default values QUERY
+        this.QUERY = {
+            "pag":this.$route.query.pag||1,
+            "vis":this.$route.query.vis||true,
+        }
         this.updateValues();
         onClickOutside(this.dropbtn, (event)=>this.closeDrop());
     },
 }
-
-
 
 </script>
 
@@ -360,7 +445,6 @@ export default {
     .show {
         display: block;
     }
-
 
     /*Contenedor solicitud*/
     .container_apli_info{
